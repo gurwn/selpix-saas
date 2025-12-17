@@ -27,7 +27,7 @@ export const Hero = () => {
         actions={[
           {
             text: t("common.getStarted"),
-            href: GET_STARTED_LINK,
+            href: GET_STARTED_LINK || "",
             icon: <ArrowRight className="size-4" />,
             variant: "default",
             onClick: handleGetStartedClick,

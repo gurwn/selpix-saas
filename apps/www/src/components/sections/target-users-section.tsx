@@ -105,7 +105,7 @@ export const TargetUsersSection = () => {
         title: t("targetUsers.users.vibecoder.title"),
         description: t("targetUsers.users.vibecoder.description"),
         buttonText: t("common.getStarted"),
-        buttonLink: GET_STARTED_LINK,
+        buttonLink: GET_STARTED_LINK || "",
         imageSrc: "/images/target-user/vibecoder.png",
         imageAlt: t("targetUsers.users.vibecoder.title"),
         personas: [
@@ -124,7 +124,7 @@ export const TargetUsersSection = () => {
         title: t("targetUsers.users.solo.title"),
         description: t("targetUsers.users.solo.description"),
         buttonText: t("common.getStarted"),
-        buttonLink: GET_STARTED_LINK,
+        buttonLink: GET_STARTED_LINK || "",
         imageSrc: "/images/target-user/solo-developer.png",
         imageAlt: t("targetUsers.users.solo.title"),
         personas: [
@@ -143,7 +143,7 @@ export const TargetUsersSection = () => {
         title: t("targetUsers.users.startup.title"),
         description: t("targetUsers.users.startup.description"),
         buttonText: t("common.getStarted"),
-        buttonLink: GET_STARTED_LINK,
+        buttonLink: GET_STARTED_LINK || "",
         imageSrc: "/images/target-user/startup.png",
         imageAlt: t("targetUsers.users.startup.title"),
         personas: [
