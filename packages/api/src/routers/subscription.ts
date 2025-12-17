@@ -67,7 +67,7 @@ export const subscriptionRouter = createTRPCRouter({
       // LemonSqueezy 체크아웃 생성 (유틸리티 함수 사용)
       return await createLemonSqueezyCheckout({
         email: userEmail,
-        username: ctx.user.username,
+        username: ctx.user.username || "",
         userId: ctx.user.id,
         locale: input.locale,
         planLemonSqueezyVariantId: plan.lemonSqueezyVariantId,
