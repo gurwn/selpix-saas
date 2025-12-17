@@ -10,7 +10,8 @@
       "customers": "Customers",
       "billing": "Billing",
       "settings": "Settings",
-      "support": "Support"
+      "support": "Support",
+      "products": "Products"
     },
     "topbar": {
       "searchPlaceholder": "Search..."
@@ -38,6 +39,46 @@
     "chart": {
       "title": "Monthly Revenue"
     }
+  },
+  "ProductListPage": {
+    "title": "Products",
+    "description": "Manage sourced products and view analysis results.",
+    "addProduct": "Add Product (Test)",
+    "myProducts": "My Products",
+    "totalProducts": "{count} products registered.",
+    "columns": {
+      "image": "Image",
+      "name": "Name",
+      "category": "Category",
+      "price": "Wholesale / Rec. Price",
+      "margin": "Margin",
+      "competition": "Competition",
+      "score": "Score",
+      "date": "Date"
+    },
+    "empty": "No products found. Click button to add one."
+  },
+  "ProductDetailPage": {
+    "reAnalyze": "Re-Analyze",
+    "startRegistration": "Start Registration",
+    "goBack": "Go Back",
+    "source": "Source",
+    "score": "Score",
+    "wholesalePrice": "Wholesale Price",
+    "recommendedPrice": "Rec. Price",
+    "expectedMargin": "Expected Margin",
+    "competition": "Competition",
+    "tabs": {
+      "overview": "Overview",
+      "analysis": "AI Analysis",
+      "margins": "Margin Calc",
+      "registrations": "Registrations"
+    },
+    "productImage": "Product Image",
+    "analysisScope": "AI Analysis Scope",
+    "analysisDesc": "Detailed analysis of market fit and keywords.",
+    "trend": "Trend",
+    "searchVolume": "Search Volume"
   },
   "SettingsPage": {
     "title": "Settings",
@@ -103,7 +144,8 @@
     "everythingInMaxX5": "Everything in Max x5",
     "paymentUrlError": "Unable to open payment page.",
     "subscriptionProcessError": "An error occurred while processing the subscription.",
-    "updateSuccess": "Subscription updated."
+    "updateSuccess": "Subscription updated.",
+    "comingSoon": "Coming Soon"
   },
   "PlanChangeConfirmDialog": {
     "upgradeTitle": "Confirm Plan Upgrade",

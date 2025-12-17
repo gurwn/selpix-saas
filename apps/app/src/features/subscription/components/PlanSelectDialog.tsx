@@ -22,7 +22,7 @@ interface Props {
 }
 
 const PlanSelectDialogContext = createContext<{ open: () => void }>({
-  open: () => {},
+  open: () => { },
 });
 
 export function usePlanSelectDialog() {
@@ -145,11 +145,11 @@ export function PlanSelectDialog({ open, onOpenChange }: Props) {
     nameToId.set(plan.name, plan.id);
     const features = Array.isArray(plan.content)
       ? plan.content
-          .map((f: unknown) =>
-            isEmptyStringOrNil(String(f)) ? null : String(f)
-          )
-          .filter(Boolean)
-          .map((key) => t(key as string))
+        .map((f: unknown) =>
+          isEmptyStringOrNil(String(f)) ? null : String(f)
+        )
+        .filter(Boolean)
+        .map((key) => t(key as string))
       : [];
     return {
       name: plan.name,
@@ -186,15 +186,19 @@ export function PlanSelectDialog({ open, onOpenChange }: Props) {
                     updateSubscriptionMutation.isPending);
                 const isCurrent =
                   subscription != null && subscription.planId === planId;
-                const ctaText = isLoading
-                  ? t("processing")
-                  : isCurrent
-                    ? t("currentPlan")
-                    : subscription != null && plan
-                      ? Number(plan.price) > Number(subscription.plan.price)
-                        ? t("upgradePlan")
-                        : t("downgradePlan")
-                      : t("tryVooster");
+                const isAvailable = plan?.available ?? true;
+
+                const ctaText = !isAvailable
+                  ? t("comingSoon")
+                  : isLoading
+                    ? t("processing")
+                    : isCurrent
+                      ? t("currentPlan")
+                      : subscription != null && plan
+                        ? Number(plan.price) > Number(subscription.plan.price)
+                          ? t("upgradePlan")
+                          : t("downgradePlan")
+                        : t("tryVooster");
 
                 return (
                   <PricingCard
@@ -202,7 +206,7 @@ export function PlanSelectDialog({ open, onOpenChange }: Props) {
                     tier={tier}
                     paymentFrequency="monthly"
                     onSelect={() => handleSubscribe(planId)}
-                    disabled={isCurrent}
+                    disabled={isCurrent || !isAvailable}
                     loading={isLoading}
                     ctaText={ctaText}
                   />

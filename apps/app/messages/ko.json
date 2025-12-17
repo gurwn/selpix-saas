@@ -10,7 +10,8 @@
       "customers": "고객",
       "billing": "결제",
       "settings": "설정",
-      "support": "지원"
+      "support": "지원",
+      "products": "상품 관리"
     },
     "topbar": {
       "searchPlaceholder": "검색..."
@@ -38,6 +39,46 @@
     "chart": {
       "title": "월간 매출"
     }
+  },
+  "ProductListPage": {
+    "title": "상품 관리",
+    "description": "소싱한 상품 목록을 관리하고 분석 결과를 확인하세요.",
+    "addProduct": "상품 추가 (테스트)",
+    "myProducts": "내 상품 목록",
+    "totalProducts": "총 {count}개의 상품이 등록되어 있습니다.",
+    "columns": {
+      "image": "이미지",
+      "name": "상품명",
+      "category": "카테고리",
+      "price": "도매가 / 권장가",
+      "margin": "마진율",
+      "competition": "경쟁강도",
+      "score": "점수",
+      "date": "등록일"
+    },
+    "empty": "등록된 상품이 없습니다. 버튼을 눌러 추가해보세요."
+  },
+  "ProductDetailPage": {
+    "reAnalyze": "재분석",
+    "startRegistration": "등록 시작",
+    "goBack": "뒤로 가기",
+    "source": "출처",
+    "score": "점수",
+    "wholesalePrice": "도매가",
+    "recommendedPrice": "권장 판매가",
+    "expectedMargin": "예상 마진",
+    "competition": "경쟁 강도",
+    "tabs": {
+      "overview": "개요",
+      "analysis": "AI 분석",
+      "margins": "마진 계산",
+      "registrations": "등록 관리"
+    },
+    "productImage": "상품 이미지",
+    "analysisScope": "AI 분석 범위",
+    "analysisDesc": "시장 적합성 및 키워드 상세 분석 결과입니다.",
+    "trend": "트렌드",
+    "searchVolume": "검색량"
   },
   "SettingsPage": {
     "title": "설정",
@@ -103,7 +144,8 @@
     "everythingInMaxX5": "Max x5의 모든 기능",
     "paymentUrlError": "결제 페이지를 열 수 없습니다.",
     "subscriptionProcessError": "구독 처리 중 오류가 발생했습니다.",
-    "updateSuccess": "구독이 업데이트되었습니다."
+    "updateSuccess": "구독이 업데이트되었습니다.",
+    "comingSoon": "준비 중"
   },
   "PlanChangeConfirmDialog": {
     "upgradeTitle": "플랜 업그레이드 확인",

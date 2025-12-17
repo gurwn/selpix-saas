@@ -35,7 +35,7 @@ export function AppSidebar() {
     const navItems = [
         { label: tLayout("nav.overview"), icon: Home, href: "/" },
         { label: tLayout("nav.analytics"), icon: BarChart3, href: "/analytics" },
-        { label: "Products", icon: Package, href: "/products" }, // Placeholder for now
+        { label: tLayout("nav.products"), icon: Package, href: "/products" },
         { label: tLayout("nav.customers"), icon: Users, href: "/customers" },
         { label: tLayout("nav.billing"), icon: CreditCard, href: "/subscription" },
         { label: tLayout("nav.settings"), icon: Settings, href: "/settings" },

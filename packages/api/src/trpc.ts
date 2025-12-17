@@ -30,6 +30,7 @@ export function createContextInner(opts: CreateContextOptions) {
   return {
     headers: opts.headers,
     auth: opts.auth,
+    prisma,
   };
 }
 

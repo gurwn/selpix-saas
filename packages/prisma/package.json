@@ -25,7 +25,8 @@
     "format": "prisma format",
     "lint": "eslint .",
     "studio": "prisma studio",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "db:seed": "tsx seed.ts"
   },
   "prisma": {
     "schema": "./prisma/schema.prisma"
