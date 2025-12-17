@@ -13,8 +13,8 @@
   },
   "hero": {
     "badge": "템플릿",
-    "title": "Describe\nYour Service",
-    "description": "서비스의 핵심 가치를 간단히 적어주세요.\n한두 줄이면 충분합니다.",
+    "title": "Selpix\nAI Sourcing & Automation",
+    "description": "온라인 셀러를 위한 올인원 자동화 솔루션.\n소싱부터 등록까지 AI가 도와드립니다.",
     "imageAlt": "제품 미리보기",
     "tutorial": "튜토리얼 보기"
   },
@@ -72,7 +72,6 @@
     "sectionTitle": "로드맵",
     "title": "다음 계획",
     "description": "예정된 마일스톤과 우선순위를 간단히 소개하세요.",
-
     "features": {
       "contextIntegration": {
         "name": "예정 기능 A",
@@ -124,7 +123,7 @@
         "projects": "최대 3개 프로젝트",
         "ai": "기본 기능",
         "support": "커뮤니티 지원",
-        "buttonText": "무료로 시작하기"
+        "buttonText": "무료로 체험하기"
       },
       "pro": {
         "title": "Pro",
@@ -215,7 +214,7 @@
       "privacy": "개인정보처리방침",
       "terms": "이용약관"
     },
-    "copyright": "© 2025 ProductName. All rights reserved."
+    "copyright": "© 2025 Selpix. All rights reserved."
   },
   "finalCTA": {
     "title": "시작할 준비 되셨나요?",
@@ -237,7 +236,7 @@
     }
   },
   "metadata": {
-    "title": "ProductName | AI Product Manager",
-    "description": "체계적인 바이브코딩을 돕는 AI PM"
+    "title": "Selpix | AI 셀러 자동화 솔루션",
+    "description": "도매몰 소싱부터 쿠팡 상품 등록까지, AI가 분석하고 실행하는 셀러 자동화 서비스. 지금 바로 무료로 체험해보세요."
   }
 }

@@ -13,8 +13,8 @@
   },
   "hero": {
     "badge": "Template",
-    "title": "Describe\nYour Service",
-    "description": "Write a concise value proposition.\nOne or two lines is enough.",
+    "title": "Selpix\nAI Sourcing & Automation",
+    "description": "All-in-one automation for online sellers.\nFrom sourcing to registration.",
     "imageAlt": "Product preview",
     "tutorial": "Watch Tutorial"
   },
@@ -72,7 +72,6 @@
     "sectionTitle": "Roadmap",
     "title": "What's Next",
     "description": "Outline your upcoming milestones and priorities.",
-
     "features": {
       "contextIntegration": {
         "name": "Upcoming Feature A",
@@ -215,7 +214,7 @@
       "privacy": "Privacy Policy",
       "terms": "Terms of Service"
     },
-    "copyright": "© 2025 ProductName. All rights reserved."
+    "copyright": "© 2025 Selpix. All rights reserved."
   },
   "finalCTA": {
     "title": "Ready to Get Started?",
@@ -237,7 +236,7 @@
     }
   },
   "metadata": {
-    "title": "ProductName | AI Product Manager",
-    "description": "AI PM for systematic vibe coding"
+    "title": "Selpix | AI Seller Automation",
+    "description": "Automate your selling workflow from sourcing to registration. AI-powered sourcing analysis and 1-click registration."
   }
 }
