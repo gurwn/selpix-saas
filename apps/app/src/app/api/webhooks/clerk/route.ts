@@ -24,7 +24,8 @@ export async function POST(req: Request) {
     const { id: clerkId, username, email_addresses } = event.data;
     const firstEmailAddress = email_addresses[0]?.email_address;
 
-    assert(!isEmptyStringOrNil(username), "username is required");
+    // username is optional in our DB/Schema
+    // assert(!isEmptyStringOrNil(username), "username is required");
     assert(!isEmptyStringOrNil(firstEmailAddress), "email is required");
 
     if (await prisma.user.findUnique({ where: { clerkId } })) {
