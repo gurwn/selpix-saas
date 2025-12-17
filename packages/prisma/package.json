@@ -1,13 +1,13 @@
 {
   "name": "@myapp/prisma",
   "version": "0.0.0",
-  "main": "./dist/index.js",
+  "main": "./index.ts",
   "types": "./index.ts",
   "exports": {
     ".": {
       "types": "./index.ts",
       "zod": "./prisma/generated/zod/index.ts",
-      "default": "./dist/index.js"
+      "default": "./index.ts"
     }
   },
   "scripts": {

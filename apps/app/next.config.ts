@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  transpilePackages: ["@myapp/api", "@myapp/prisma", "@myapp/utils", "@myapp/ui"],
   eslint: {
     ignoreDuringBuilds: true,
   },
