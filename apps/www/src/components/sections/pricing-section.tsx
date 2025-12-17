@@ -5,6 +5,8 @@ import { PricingSection as UIPricingSection } from "@/components/ui/pricing-sect
 import type { PricingTier } from "@/components/ui/pricing-card";
 import { useTranslations } from "next-intl";
 
+import { GET_STARTED_LINK } from "@/constants/links";
+
 export const PAYMENT_FREQUENCIES: string[] = ["monthly", "yearly"];
 
 export const TIERS: PricingTier[] = [];
@@ -23,8 +25,9 @@ export const PricingSection = () => {
         t("plans.free.ai"),
         t("plans.free.support"),
       ],
-      cta: t("plans.free.buttonText"),
+      cta: t("comingSoon"),
       priceNote: t("plans.free.unit"),
+      disabled: true,
     },
     {
       name: t("plans.pro.title"),
@@ -36,9 +39,10 @@ export const PricingSection = () => {
         t("plans.pro.ai"),
         t("plans.pro.designer"),
       ],
-      cta: t("plans.pro.buttonText"),
+      cta: t("getStarted"),
       popular: true,
       priceNote: t("plans.pro.unit"),
+      href: GET_STARTED_LINK,
     },
     {
       name: t("plans.max5.title"),
@@ -50,8 +54,9 @@ export const PricingSection = () => {
         t("plans.max5.ai"),
         t("plans.max5.image"),
       ],
-      cta: t("plans.max5.buttonText"),
+      cta: t("comingSoon"),
       priceNote: t("plans.max5.unit"),
+      disabled: true,
     },
     {
       name: t("plans.max20.title"),
@@ -63,9 +68,10 @@ export const PricingSection = () => {
         t("plans.max20.ai"),
         t("plans.max20.context"),
       ],
-      cta: t("plans.max20.buttonText"),
+      cta: t("comingSoon"),
       highlighted: true,
       priceNote: t("plans.max20.unit"),
+      disabled: true,
     },
   ];
 

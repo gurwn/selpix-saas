@@ -18,6 +18,8 @@ export interface PricingTier {
   highlighted?: boolean;
   popular?: boolean;
   priceNote?: string;
+  href?: string;
+  disabled?: boolean;
 }
 
 interface PricingCardProps {
@@ -90,13 +92,32 @@ export function PricingCard({ tier, paymentFrequency }: PricingCardProps) {
         </ul>
       </div>
 
-      <Button
-        variant={isHighlighted ? "secondary" : "default"}
-        className="w-full"
-      >
-        {tier.cta}
-        <ArrowRight className="ml-2 h-4 w-4" />
-      </Button>
+      {tier.href ? (
+        <a
+          href={tier.disabled ? "#" : tier.href}
+          className={cn("w-full", tier.disabled && "pointer-events-none")}
+          target={tier.href.startsWith("http") ? "_blank" : undefined}
+          rel={tier.href.startsWith("http") ? "noopener noreferrer" : undefined}
+        >
+          <Button
+            variant={isHighlighted ? "secondary" : "default"}
+            className="w-full"
+            disabled={tier.disabled}
+          >
+            {tier.cta}
+            {!tier.disabled && <ArrowRight className="ml-2 h-4 w-4" />}
+          </Button>
+        </a>
+      ) : (
+        <Button
+          variant={isHighlighted ? "secondary" : "default"}
+          className="w-full"
+          disabled={tier.disabled}
+        >
+          {tier.cta}
+          {!tier.disabled && <ArrowRight className="ml-2 h-4 w-4" />}
+        </Button>
+      )}
     </Card>
   );
 }
