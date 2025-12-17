@@ -2,9 +2,10 @@
 
 import Script from "next/script";
 
-export const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID!;
+export const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
 
 export function Clarity() {
+  if (!CLARITY_PROJECT_ID) return null;
   return (
     <Script
       id="clarity-init"
