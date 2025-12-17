@@ -29,7 +29,7 @@
     "@clerk/nextjs": "^6.20.1",
     "@myapp/eslint-config": "workspace:*",
     "@myapp/typescript-config": "workspace:*",
-    "@sentry/nextjs": "^9.23.0",
+    "@sentry/nextjs": "^10.31.0",
     "eslint": "^9.27.0",
     "prettier": "^3.0.3",
     "typescript": "^5.8.3"
