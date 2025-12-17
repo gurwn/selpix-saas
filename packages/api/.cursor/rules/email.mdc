@@ -1,0 +1,284 @@
+---
+description: Guidelines for implementing email sending functionality using SendGrid
+globs: packages/api/src/**/*.ts, packages/api/src/utils/email.ts, packages/api/src/routers/**/*invitation*.ts
+alwaysApply: true
+---
+
+- **Email Infrastructure Architecture**
+  - Use SendGrid as the primary email service provider
+  - Centralize email functionality in [email.ts](mdc:src/utils/email.ts)
+  - Separate email content generation in [email-templates.ts](mdc:src/utils/email-templates.ts)
+  - Configure environment variables for email service:
+    ```typescript
+    SENDGRID_API_KEY=your-api-key
+    SENDGRID_FROM_EMAIL=noreply@myapp.com
+    NEXT_PUBLIC_APP_URL=https://app.myapp.com
+    ```
+
+- **Email Utility Module Structure**
+  - **Initialization Pattern**
+
+    ```typescript
+    // ✅ DO: Initialize SendGrid conditionally
+    if (SENDGRID_API_KEY) {
+      sgMail.setApiKey(SENDGRID_API_KEY);
+    }
+
+    // ✅ DO: Use environment variables with fallbacks
+    const FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL || "noreply@myapp.com";
+    ```
+
+  - **Function Interface Design**
+
+    ```typescript
+    // ✅ DO: Use typed parameters for email functions
+    interface SendEmailParams {
+      email: string;
+      organizationName: string;
+      // ... other required fields
+    }
+
+    export async function sendEmail(params: SendEmailParams) {
+      // Implementation
+    }
+    ```
+
+- **Error Handling and Logging**
+  - **Required Error Handling Pattern**
+
+    ```typescript
+    // ✅ DO: Handle missing API key gracefully
+    if (!SENDGRID_API_KEY) {
+      await logger.log({
+        type: "event",
+        severity: "warn",
+        timestamp: new Date().toISOString(),
+        params: {
+          message: "SendGrid API key not configured, skipping email send",
+        },
+      });
+      return;
+    }
+
+    // ✅ DO: Use try-catch with proper logging
+    try {
+      await sgMail.send(msg);
+      await logger.log({
+        type: "send",
+        severity: "info",
+        timestamp: new Date().toISOString(),
+        params: {
+          /* relevant data */
+        },
+      });
+    } catch (error) {
+      await logger.logError(error as Error, {
+        /* context data */
+      });
+      throw error; // Re-throw for caller to handle
+    }
+    ```
+
+- **Email Template Standards**
+  - **Multi-format Support**
+
+    ```typescript
+    // ✅ DO: Always provide both text and HTML versions
+    const msg = {
+      to: recipient,
+      from: FROM_EMAIL,
+      subject: `[AppName] ${subject}`,
+      text: plainTextContent,
+      html: htmlContent,
+    };
+    ```
+
+  - **HTML Email Structure**
+    ```html
+    <!-- ✅ DO: Use responsive, inline-styled HTML -->
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+          /* Inline styles for email compatibility */
+        </style>
+      </head>
+      <body>
+        <!-- Email content -->
+      </body>
+    </html>
+    ```
+
+- **Localization and Content**
+  - **Language Detection and Support**
+
+    ```typescript
+    // ✅ DO: Fetch user's language preference
+    const recipient = await prisma.user.findUnique({
+      where: { email },
+      include: { preference: true },
+    });
+    const language = recipient?.preference?.aiResponseLanguage || "KO";
+    ```
+
+  - **Multi-language Content Generation**
+
+    ```typescript
+    // ✅ DO: Generate content based on user language
+    const emailContent = generateInvitationEmailContent({
+      // ... params
+      language,
+    });
+    ```
+
+  - **Dynamic Content Generation**
+
+    ```typescript
+    // ✅ DO: Build URLs dynamically
+    const invitationUrl = `${APP_URL}/org/${organizationSlug}/invited/${invitationToken}`;
+
+    // ✅ DO: Include expiration information in both languages
+    ```
+
+- **Integration with API Routes**
+  - **Email Sending in Mutations**
+
+    ```typescript
+    // ✅ DO: Send emails after successful database operations
+    const invitation = await prisma.invitation.create({
+      /* data */
+    });
+
+    await sendInvitationEmail({
+      email: input.email,
+      organizationName: invitation.organization.name,
+      // ... other params
+    });
+    ```
+
+  - **Transaction Considerations**
+    ```typescript
+    // ❌ DON'T: Send emails inside database transactions
+    // ✅ DO: Send emails after transaction commits
+    const result = await prisma.$transaction([
+      /* operations */
+    ]);
+    await sendEmail(/* params */); // After transaction
+    ```
+
+- **Security Best Practices**
+  - **Email Validation**
+
+    ```typescript
+    // ✅ DO: Validate email addresses
+    email: z.string().email();
+
+    // ✅ DO: Verify recipient authorization
+    if (invitation.email !== ctx.user.email) {
+      throw new TRPCError({
+        code: "FORBIDDEN",
+        message: "This invitation is for a different email address",
+      });
+    }
+    ```
+
+  - **Token Generation**
+    ```typescript
+    // ✅ DO: Use secure token generation
+    import { cuid2 } from "@myapp/utils";
+    token: cuid2();
+    ```
+
+- **Email Types and Use Cases**
+  - **Invitation Emails** (Currently Implemented)
+    - Team member invitations
+    - Role-based access (ADMIN/MEMBER)
+    - 7-day expiration period
+    - Secure token-based acceptance
+
+  - **Project Transfer Emails** (Currently Implemented)
+    - Project ownership transfer requests
+    - Sent to target organization owner
+    - 7-day expiration period
+    - Secure token-based confirmation
+    - Warning emphasis for irreversible action
+
+  - **Future Email Types** (Guidelines)
+
+    ```typescript
+    // Project notifications
+    export async function sendProjectNotification(
+      params: ProjectNotificationParams
+    ) {}
+
+    // Task assignments
+    export async function sendTaskAssignment(params: TaskAssignmentParams) {}
+
+    // System alerts
+    export async function sendSystemAlert(params: SystemAlertParams) {}
+    ```
+
+- **Testing and Development**
+  - **Local Development**
+
+    ```typescript
+    // ✅ DO: Allow graceful degradation without API key
+    // Emails will be skipped with warning logs
+    ```
+
+  - **Email Preview**
+    ```typescript
+    // ✅ DO: Consider adding email preview mode
+    if (process.env.EMAIL_PREVIEW_MODE) {
+      console.log("Email Preview:", msg);
+      return;
+    }
+    ```
+
+- **Monitoring and Analytics**
+  - **Success Tracking**
+    - Log all email sends with logger
+    - Track email type, recipient, and organization
+    - Monitor SendGrid webhook events (future)
+
+  - **Error Recovery**
+    - Log failures with full context
+    - Consider retry logic for transient failures
+    - Alert on repeated failures
+
+- **Email Template Structure**
+  - **Separation of Concerns**
+
+    ```typescript
+    // ✅ DO: Keep email content generation separate
+    // email-templates.ts - Content generation logic
+    export function generateInvitationEmailContent(params) {}
+    export function generateProjectTransferEmailContent(params) {}
+
+    // email.ts - Email sending logic
+    export async function sendInvitationEmail(params) {}
+    export async function sendProjectTransferEmail(params) {}
+    ```
+
+  - **Template Functions Pattern**
+    ```typescript
+    // ✅ DO: Return consistent structure
+    interface BaseEmailContent {
+      subject: string;
+      text: string;
+      html: string;
+    }
+    ```
+
+- **Best Practices Summary**
+  - Always use [getLiveLogger](mdc:packages/core-logger) for logging
+  - Fetch user language preference before generating content
+  - Separate email content generation from sending logic
+  - Validate all email inputs at API layer
+  - Send emails asynchronously after DB operations
+  - Provide both text and HTML versions
+  - Support multiple languages based on user preference
+  - Handle missing configuration gracefully
+  - Follow existing patterns in [email.ts](mdc:src/utils/email.ts) and [email-templates.ts](mdc:src/utils/email-templates.ts)

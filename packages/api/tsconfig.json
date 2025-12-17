@@ -1,0 +1,10 @@
+{
+  "extends": "@myapp/typescript-config/base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "declaration": false,
+    "declarationMap": false
+  },
+  "include": ["."],
+  "exclude": ["node_modules"]
+}

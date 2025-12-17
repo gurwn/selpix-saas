@@ -1,0 +1,98 @@
+{
+    "tech_stack": [
+        "TypeScript",
+        "Next.js",
+        "Tailwind CSS",
+        "Recharts"
+    ],
+    "features": [
+        {
+            "name": "Margin Calculator",
+            "description": "Calculates profit margin based on wholesale price, selling price, and various fees (shipping, platform commission, ad cost).",
+            "files": [
+                "src/app/margin/page.tsx"
+            ],
+            "api_doc": {
+                "summary": "Calculate Margin",
+                "description": "Client-side calculation logic for e-commerce margin.",
+                "parameters": [
+                    {
+                        "name": "wholesalePrice",
+                        "in": "input",
+                        "type": "number",
+                        "description": "Cost of goods"
+                    },
+                    {
+                        "name": "sellingPrice",
+                        "in": "input",
+                        "type": "number",
+                        "description": "Retail price"
+                    },
+                    {
+                        "name": "platform",
+                        "in": "input",
+                        "type": "string",
+                        "enum": [
+                            "rocket",
+                            "wing",
+                            "consignment"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Coupang Register API",
+            "description": "API endpoint to register products to Coupang Open Market.",
+            "files": [
+                "src/app/api/coupang/register/route.ts"
+            ],
+            "api_doc": {
+                "openapi": "3.0.0",
+                "paths": {
+                    "/api/coupang/register": {
+                        "post": {
+                            "summary": "Register Product",
+                            "requestBody": {
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "required": [
+                                                "productName",
+                                                "wholesalePrice",
+                                                "price"
+                                            ],
+                                            "properties": {
+                                                "productName": {
+                                                    "type": "string"
+                                                },
+                                                "wholesalePrice": {
+                                                    "type": "number"
+                                                },
+                                                "price": {
+                                                    "type": "number"
+                                                },
+                                                "platform": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "responses": {
+                                "200": {
+                                    "description": "Product registered successfully"
+                                },
+                                "400": {
+                                    "description": "Missing required fields"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

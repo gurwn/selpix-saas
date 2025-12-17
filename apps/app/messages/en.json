@@ -1,0 +1,128 @@
+{
+  "common": {},
+  "DashboardLayout": {
+    "group": {
+      "main": "Main"
+    },
+    "nav": {
+      "overview": "Overview",
+      "analytics": "Analytics",
+      "customers": "Customers",
+      "billing": "Billing",
+      "settings": "Settings",
+      "support": "Support"
+    },
+    "topbar": {
+      "searchPlaceholder": "Search..."
+    }
+  },
+  "DashboardPage": {
+    "title": "Dashboard",
+    "description": "Overview of your workspace metrics and recent activity.",
+    "metrics": {
+      "revenue": "Revenue",
+      "activeUsers": "Active Users",
+      "newCustomers": "New Customers",
+      "churnRate": "Churn Rate"
+    },
+    "table": {
+      "title": "Recent Customers",
+      "columns": {
+        "customer": "Customer",
+        "email": "Email",
+        "plan": "Plan",
+        "status": "Status",
+        "joinedAt": "Joined"
+      }
+    },
+    "chart": {
+      "title": "Monthly Revenue"
+    }
+  },
+  "SettingsPage": {
+    "title": "Settings",
+    "description": "Manage your preferences and appearance.",
+    "appearance": {
+      "title": "Appearance",
+      "description": "Choose your preferred theme.",
+      "theme": "Theme",
+      "selectPlaceholder": "Select theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System",
+      "current": "Current: {value}"
+    }
+  },
+  "SubscriptionPage": {
+    "title": "Subscription",
+    "description": "Manage your plan, payment method and billing history.",
+    "toast": {
+      "cancelSuccess": "Subscription cancelled.",
+      "openPaymentPortalError": "Failed to open payment portal."
+    },
+    "actions": {
+      "cancelConfirm": "Are you sure you want to cancel your subscription?",
+      "changePlan": "Change Plan",
+      "updatePaymentMethod": "Update Payment Method",
+      "cancel": "Cancel Subscription"
+    },
+    "current": {
+      "title": "Current Subscription",
+      "plan": "Plan",
+      "pricePerMonth": "{price}/mo",
+      "noSubscription": "No active subscription.",
+      "status": "Status",
+      "renewsAt": "Renews On",
+      "endsAt": "Ends On",
+      "paymentMethod": "Payment Method",
+      "card": "{brand} •••• {last4}",
+      "choosePlan": "Choose Plan"
+    },
+    "history": {
+      "title": "Billing History",
+      "empty": "No billing history to display.",
+      "columns": {
+        "date": "Date",
+        "amount": "Amount",
+        "status": "Status",
+        "invoice": "Invoice"
+      },
+      "viewInvoice": "View"
+    }
+  },
+  "PlanSelectDialog": {
+    "pricing": "Pricing",
+    "perMonth": "/mo",
+    "processing": "Processing...",
+    "currentPlan": "Current Plan",
+    "upgradePlan": "Upgrade",
+    "downgradePlan": "Downgrade",
+    "tryVooster": "Select",
+    "everythingInFree": "Everything in Free",
+    "everythingInPro": "Everything in Pro",
+    "everythingInMaxX5": "Everything in Max x5",
+    "paymentUrlError": "Unable to open payment page.",
+    "subscriptionProcessError": "An error occurred while processing the subscription.",
+    "updateSuccess": "Subscription updated."
+  },
+  "PlanChangeConfirmDialog": {
+    "upgradeTitle": "Confirm Plan Upgrade",
+    "downgradeTitle": "Confirm Plan Downgrade",
+    "dialogDescription": "Dialog to confirm plan changes.",
+    "currentPlan": "Current Plan",
+    "perMonth": "/mo",
+    "newPlan": "New Plan",
+    "billingPolicyTitle": "Billing Policy",
+    "immediateCharge": "Immediate Charge",
+    "immediateChargeDesc": "Upgrades may be charged immediately with proration.",
+    "proration": "Proration",
+    "prorationDesc": "Charges are prorated for the remaining period.",
+    "nextBillingCycle": "Applies Next Billing Cycle",
+    "nextBillingCycleDesc": "Downgrades take effect from the next billing cycle.",
+    "creditNote": "Credit",
+    "creditNoteDesc": "Downgrades may result in a credit for the difference.",
+    "cancel": "Cancel",
+    "processing": "Processing...",
+    "confirmChange": "Confirm Change"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "env": [
+        "NEXT_PUBLIC_GA_ID",
+        "NEXT_PUBLIC_CLARITY_PROJECT_ID",
+        "NEXT_PUBLIC_CRISP_WEBSITE_ID"
+      ]
+    }
+  }
+}

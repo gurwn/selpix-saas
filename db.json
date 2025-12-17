@@ -1,0 +1,509 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "프리미엄 무선 이어폰",
+      "wholesalePrice": 15000,
+      "recommendedPrice": 39900,
+      "margin": 45.2,
+      "competition": "중",
+      "searchVolume": 12500,
+      "category": "전자기기",
+      "image": "https://via.placeholder.com/200x200/3b82f6/ffffff?text=이어폰",
+      "source": "도매꾹",
+      "trend": "up",
+      "score": 92,
+      "createdAt": "2024-01-15"
+    },
+    {
+      "id": 2,
+      "name": "스마트 LED 조명",
+      "wholesalePrice": 8500,
+      "recommendedPrice": 24900,
+      "margin": 52.1,
+      "competition": "낮음",
+      "searchVolume": 8700,
+      "category": "생활용품",
+      "image": "https://via.placeholder.com/200x200/22c55e/ffffff?text=LED",
+      "source": "도매꾹",
+      "trend": "up",
+      "score": 88,
+      "createdAt": "2024-01-14"
+    },
+    {
+      "id": 3,
+      "name": "휴대용 충전기 20000mAh",
+      "wholesalePrice": 12000,
+      "recommendedPrice": 35900,
+      "margin": 48.3,
+      "competition": "높음",
+      "searchVolume": 25000,
+      "category": "전자기기",
+      "image": "https://via.placeholder.com/200x200/f59e0b/ffffff?text=충전기",
+      "source": "1688",
+      "trend": "up",
+      "score": 85,
+      "createdAt": "2024-01-13"
+    },
+    {
+      "id": 4,
+      "name": "다용도 수납 정리함",
+      "wholesalePrice": 3500,
+      "recommendedPrice": 12900,
+      "margin": 62.5,
+      "competition": "낮음",
+      "searchVolume": 6200,
+      "category": "생활용품",
+      "image": "https://via.placeholder.com/200x200/8b5cf6/ffffff?text=수납함",
+      "source": "도매꾹",
+      "trend": "stable",
+      "score": 78,
+      "createdAt": "2024-01-12"
+    },
+    {
+      "id": 5,
+      "name": "무선 마우스 슬림형",
+      "wholesalePrice": 5500,
+      "recommendedPrice": 18900,
+      "margin": 55.8,
+      "competition": "중",
+      "searchVolume": 15800,
+      "category": "전자기기",
+      "image": "https://via.placeholder.com/200x200/ec4899/ffffff?text=마우스",
+      "source": "도매꾹",
+      "trend": "up",
+      "score": 90,
+      "createdAt": "2024-01-11"
+    },
+    {
+      "id": 6,
+      "name": "블루투스 스피커 방수형",
+      "wholesalePrice": 18000,
+      "recommendedPrice": 49900,
+      "margin": 42.3,
+      "competition": "높음",
+      "searchVolume": 22000,
+      "category": "전자기기",
+      "image": "https://via.placeholder.com/200x200/ef4444/ffffff?text=스피커",
+      "source": "1688",
+      "trend": "down",
+      "score": 75,
+      "createdAt": "2024-01-10"
+    },
+    {
+      "id": 7,
+      "name": "미니 가습기 USB",
+      "wholesalePrice": 4500,
+      "recommendedPrice": 15900,
+      "margin": 58.8,
+      "competition": "낮음",
+      "searchVolume": 9800,
+      "category": "생활용품",
+      "image": "https://via.placeholder.com/200x200/06b6d4/ffffff?text=가습기",
+      "source": "도매꾹",
+      "trend": "up",
+      "score": 87,
+      "createdAt": "2024-01-09"
+    },
+    {
+      "id": 8,
+      "name": "스마트워치 밴드",
+      "wholesalePrice": 2500,
+      "recommendedPrice": 9900,
+      "margin": 65.2,
+      "competition": "중",
+      "searchVolume": 18500,
+      "category": "패션잡화",
+      "image": "https://via.placeholder.com/200x200/14b8a6/ffffff?text=밴드",
+      "source": "도매꾹",
+      "trend": "up",
+      "score": 93,
+      "createdAt": "2024-01-08"
+    },
+    {
+      "id": 9,
+      "name": "USB 허브 7포트",
+      "wholesalePrice": 8000,
+      "recommendedPrice": 22900,
+      "margin": 51.5,
+      "competition": "중",
+      "searchVolume": 12300,
+      "category": "전자기기",
+      "image": "https://via.placeholder.com/200x200/6366f1/ffffff?text=USB허브",
+      "source": "1688",
+      "trend": "stable",
+      "score": 82,
+      "createdAt": "2024-01-07"
+    },
+    {
+      "id": 10,
+      "name": "휴대용 선풍기",
+      "wholesalePrice": 3800,
+      "recommendedPrice": 12900,
+      "margin": 59.2,
+      "competition": "낮음",
+      "searchVolume": 35000,
+      "category": "생활용품",
+      "image": "https://via.placeholder.com/200x200/0ea5e9/ffffff?text=선풍기",
+      "source": "도매꾹",
+      "trend": "up",
+      "score": 95,
+      "createdAt": "2024-01-06"
+    }
+  ],
+  "recommendations": [
+    {
+      "id": 1,
+      "keyword": "무선 이어폰",
+      "products": [
+        { "id": 101, "name": "프리미엄 TWS 이어폰", "wholesalePrice": 15000, "recommendedPrice": 39900, "margin": 45, "competition": "중", "searchVolume": 12500, "trend": "up", "score": 92 },
+        { "id": 102, "name": "스포츠 블루투스 이어폰", "wholesalePrice": 12000, "recommendedPrice": 32900, "margin": 52, "competition": "낮음", "searchVolume": 8900, "trend": "up", "score": 88 },
+        { "id": 103, "name": "노이즈캔슬링 이어폰", "wholesalePrice": 25000, "recommendedPrice": 59900, "margin": 38, "competition": "높음", "searchVolume": 18000, "trend": "stable", "score": 78 },
+        { "id": 104, "name": "게이밍 이어폰 저지연", "wholesalePrice": 22000, "recommendedPrice": 54900, "margin": 43, "competition": "낮음", "searchVolume": 6500, "trend": "up", "score": 90 },
+        { "id": 105, "name": "충전케이스 포함 이어폰", "wholesalePrice": 18000, "recommendedPrice": 45900, "margin": 48, "competition": "중", "searchVolume": 15200, "trend": "up", "score": 85 }
+      ]
+    },
+    {
+      "id": 2,
+      "keyword": "LED 조명",
+      "products": [
+        { "id": 201, "name": "스마트 LED 무드등", "wholesalePrice": 8500, "recommendedPrice": 24900, "margin": 58, "competition": "낮음", "searchVolume": 7200, "trend": "up", "score": 95 },
+        { "id": 202, "name": "USB LED 스트립 5m", "wholesalePrice": 4500, "recommendedPrice": 14900, "margin": 65, "competition": "중", "searchVolume": 9500, "trend": "up", "score": 91 },
+        { "id": 203, "name": "LED 책상 스탠드", "wholesalePrice": 12000, "recommendedPrice": 32900, "margin": 52, "competition": "높음", "searchVolume": 15000, "trend": "stable", "score": 82 },
+        { "id": 204, "name": "감성 인테리어 조명", "wholesalePrice": 6500, "recommendedPrice": 19900, "margin": 62, "competition": "낮음", "searchVolume": 5800, "trend": "up", "score": 89 }
+      ]
+    },
+    {
+      "id": 3,
+      "keyword": "충전기",
+      "products": [
+        { "id": 301, "name": "고속 무선 충전기 15W", "wholesalePrice": 9000, "recommendedPrice": 25900, "margin": 55, "competition": "중", "searchVolume": 18500, "trend": "up", "score": 88 },
+        { "id": 302, "name": "PD 고속 충전기 65W", "wholesalePrice": 15000, "recommendedPrice": 39900, "margin": 48, "competition": "높음", "searchVolume": 22000, "trend": "up", "score": 85 },
+        { "id": 303, "name": "멀티 충전 스테이션", "wholesalePrice": 18000, "recommendedPrice": 45900, "margin": 51, "competition": "낮음", "searchVolume": 8200, "trend": "stable", "score": 92 }
+      ]
+    },
+    {
+      "id": 4,
+      "keyword": "보조배터리",
+      "products": [
+        { "id": 401, "name": "초슬림 보조배터리 10000mAh", "wholesalePrice": 8500, "recommendedPrice": 24900, "margin": 54, "competition": "중", "searchVolume": 28000, "trend": "up", "score": 87 },
+        { "id": 402, "name": "고속충전 보조배터리 20000mAh", "wholesalePrice": 12000, "recommendedPrice": 35900, "margin": 48, "competition": "높음", "searchVolume": 32000, "trend": "up", "score": 84 }
+      ]
+    }
+  ],
+  "wholesale": [
+    {
+      "id": 1,
+      "keyword": "무선 이어폰",
+      "products": [
+        { "id": 1001, "name": "무선 이어폰 OEM 버전", "price": 8500, "source": "도매꾹", "rating": 4.2, "minOrder": 10, "url": "https://domeggook.com/item/1001" },
+        { "id": 1002, "name": "블루투스 이어폰 프리미엄", "price": 12000, "source": "도매꾹", "rating": 4.5, "minOrder": 5, "url": "https://domeggook.com/item/1002" },
+        { "id": 1003, "name": "TWS 이어폰 공장직배송", "price": 6800, "source": "1688", "rating": 4.0, "minOrder": 50, "url": "https://1688.com/item/1003" },
+        { "id": 1004, "name": "고급형 무선 이어폰", "price": 15000, "source": "도매꾹", "rating": 4.8, "minOrder": 3, "url": "https://domeggook.com/item/1004" }
+      ]
+    },
+    {
+      "id": 2,
+      "keyword": "LED 조명",
+      "products": [
+        { "id": 2001, "name": "LED 무드등 도매", "price": 3500, "source": "도매꾹", "rating": 4.3, "minOrder": 20, "url": "https://domeggook.com/item/2001" },
+        { "id": 2002, "name": "USB LED 스트립 5m", "price": 2800, "source": "1688", "rating": 4.1, "minOrder": 100, "url": "https://1688.com/item/2002" },
+        { "id": 2003, "name": "스마트 LED 전구", "price": 4500, "source": "도매꾹", "rating": 4.6, "minOrder": 10, "url": "https://domeggook.com/item/2003" }
+      ]
+    }
+  ],
+  "margins": [
+    {
+      "id": 1,
+      "productName": "프리미엄 무선 이어폰",
+      "wholesalePrice": 15000,
+      "sellingPrice": 39900,
+      "shippingCost": 3000,
+      "commission": 10.8,
+      "adCost": 2000,
+      "packagingCost": 500,
+      "netMargin": 8970,
+      "marginRate": 22.5,
+      "platform": "rocket",
+      "calculatedAt": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "productName": "스마트 LED 조명",
+      "wholesalePrice": 8500,
+      "sellingPrice": 24900,
+      "shippingCost": 2500,
+      "commission": 6.5,
+      "adCost": 1500,
+      "packagingCost": 300,
+      "netMargin": 10485,
+      "marginRate": 42.1,
+      "platform": "wing",
+      "calculatedAt": "2024-01-14T09:00:00Z"
+    },
+    {
+      "id": 3,
+      "productName": "휴대용 충전기",
+      "wholesalePrice": 12000,
+      "sellingPrice": 35900,
+      "shippingCost": 3000,
+      "commission": 8.0,
+      "adCost": 2500,
+      "packagingCost": 400,
+      "netMargin": 15128,
+      "marginRate": 42.1,
+      "platform": "consignment",
+      "calculatedAt": "2024-01-13T14:00:00Z"
+    }
+  ],
+  "detailPages": [
+    {
+      "id": 1,
+      "productName": "프리미엄 무선 이어폰",
+      "summary": "최신 블루투스 5.3 기술을 적용한 고음질 무선 이어폰입니다. 액티브 노이즈 캔슬링과 30시간 연속 재생으로 언제 어디서나 최상의 음악 감상이 가능합니다.",
+      "usps": [
+        "블루투스 5.3 최신 기술 적용",
+        "액티브 노이즈 캔슬링 (ANC)",
+        "30시간 연속 재생 가능",
+        "IPX5 생활 방수 등급",
+        "초경량 4g 인체공학 설계"
+      ],
+      "keywords": ["무선이어폰", "블루투스이어폰", "TWS", "노이즈캔슬링", "방수이어폰"],
+      "template": "premium",
+      "createdAt": "2024-01-15T11:00:00Z"
+    },
+    {
+      "id": 2,
+      "productName": "스마트 LED 무드등",
+      "summary": "16만 가지 색상을 지원하는 스마트 LED 무드등입니다. 앱 연동으로 다양한 조명 모드를 설정할 수 있으며, 음악에 맞춰 색상이 변경됩니다.",
+      "usps": [
+        "16만 컬러 RGB LED",
+        "스마트폰 앱 연동",
+        "음악 반응 모드 지원",
+        "타이머 및 스케줄 기능",
+        "저전력 USB 충전"
+      ],
+      "keywords": ["LED조명", "무드등", "RGB조명", "인테리어조명", "스마트조명"],
+      "template": "modern",
+      "createdAt": "2024-01-14T16:00:00Z"
+    }
+  ],
+  "registrations": [
+    {
+      "id": 1,
+      "productName": "프리미엄 무선 이어폰",
+      "category": "전자기기 > 이어폰/헤드폰 > 블루투스이어폰",
+      "recommendedTitle": "[당일발송] 프리미엄 TWS 무선 이어폰 블루투스 5.3 노이즈캔슬링",
+      "price": 39900,
+      "wholesalePrice": 15000,
+      "status": "completed",
+      "platform": "rocket",
+      "createdAt": "2024-01-15T12:00:00Z"
+    },
+    {
+      "id": 2,
+      "productName": "스마트 LED 조명",
+      "category": "생활용품 > 조명 > LED조명",
+      "recommendedTitle": "[무료배송] 스마트 LED 무드등 16만컬러 앱연동",
+      "price": 24900,
+      "wholesalePrice": 8500,
+      "status": "completed",
+      "platform": "wing",
+      "createdAt": "2024-01-14T14:00:00Z"
+    },
+    {
+      "id": 3,
+      "productName": "휴대용 충전기 20000mAh",
+      "category": "전자기기 > 충전기/케이블 > 보조배터리",
+      "recommendedTitle": "[베스트] 고속충전 보조배터리 20000mAh PD 지원",
+      "price": 35900,
+      "wholesalePrice": 12000,
+      "status": "pending",
+      "platform": "rocket",
+      "createdAt": "2024-01-13T10:00:00Z"
+    },
+    {
+      "id": 4,
+      "productName": "다용도 수납 정리함",
+      "category": "생활용품 > 수납/정리 > 수납함",
+      "recommendedTitle": "[인기상품] 다용도 수납 정리함 3단 세트",
+      "price": 12900,
+      "wholesalePrice": 3500,
+      "status": "failed",
+      "platform": "consignment",
+      "createdAt": "2024-01-12T15:00:00Z"
+    }
+  ],
+  "logs": [
+    {
+      "id": 1,
+      "action": "쿠팡 등록 완료",
+      "productName": "프리미엄 무선 이어폰",
+      "status": "success",
+      "price": 39900,
+      "timestamp": "2024-01-15T12:00:00Z"
+    },
+    {
+      "id": 2,
+      "action": "상세페이지 생성",
+      "productName": "프리미엄 무선 이어폰",
+      "status": "success",
+      "timestamp": "2024-01-15T11:30:00Z"
+    },
+    {
+      "id": 3,
+      "action": "마진 계산",
+      "productName": "프리미엄 무선 이어폰",
+      "status": "success",
+      "timestamp": "2024-01-15T11:00:00Z"
+    },
+    {
+      "id": 4,
+      "action": "AI 추천 검색",
+      "productName": "무선 이어폰",
+      "status": "success",
+      "timestamp": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": 5,
+      "action": "쿠팡 등록 완료",
+      "productName": "스마트 LED 조명",
+      "status": "success",
+      "price": 24900,
+      "timestamp": "2024-01-14T16:00:00Z"
+    },
+    {
+      "id": 6,
+      "action": "상세페이지 생성",
+      "productName": "스마트 LED 조명",
+      "status": "success",
+      "timestamp": "2024-01-14T15:30:00Z"
+    },
+    {
+      "id": 7,
+      "action": "마진 계산",
+      "productName": "휴대용 충전기",
+      "status": "failed",
+      "details": "데이터 형식 오류",
+      "timestamp": "2024-01-14T14:00:00Z"
+    },
+    {
+      "id": 8,
+      "action": "AI 추천 검색",
+      "productName": "LED 조명",
+      "status": "success",
+      "timestamp": "2024-01-14T13:00:00Z"
+    },
+    {
+      "id": 9,
+      "action": "쿠팡 등록 대기",
+      "productName": "다용도 수납함",
+      "status": "pending",
+      "timestamp": "2024-01-13T17:00:00Z"
+    },
+    {
+      "id": 10,
+      "action": "상세페이지 생성",
+      "productName": "다용도 수납함",
+      "status": "success",
+      "timestamp": "2024-01-13T16:30:00Z"
+    },
+    {
+      "id": 11,
+      "action": "마진 계산",
+      "productName": "무선 마우스",
+      "status": "success",
+      "timestamp": "2024-01-13T15:00:00Z"
+    },
+    {
+      "id": 12,
+      "action": "AI 추천 검색",
+      "productName": "수납 정리함",
+      "status": "success",
+      "timestamp": "2024-01-12T14:00:00Z"
+    },
+    {
+      "id": 13,
+      "action": "쿠팡 등록 실패",
+      "productName": "USB 허브",
+      "status": "failed",
+      "details": "API 연결 오류",
+      "timestamp": "2024-01-12T12:00:00Z"
+    },
+    {
+      "id": 14,
+      "action": "상세페이지 생성",
+      "productName": "USB 허브",
+      "status": "success",
+      "timestamp": "2024-01-12T11:00:00Z"
+    },
+    {
+      "id": 15,
+      "action": "마진 계산",
+      "productName": "USB 허브",
+      "status": "success",
+      "timestamp": "2024-01-12T10:30:00Z"
+    },
+    {
+      "id": 16,
+      "action": "AI 추천 검색",
+      "productName": "블루투스 스피커",
+      "status": "success",
+      "timestamp": "2024-01-11T16:00:00Z"
+    },
+    {
+      "id": 17,
+      "action": "쿠팡 등록 완료",
+      "productName": "미니 선풍기",
+      "status": "success",
+      "price": 18900,
+      "timestamp": "2024-01-11T14:00:00Z"
+    },
+    {
+      "id": 18,
+      "action": "상세페이지 생성",
+      "productName": "미니 선풍기",
+      "status": "success",
+      "timestamp": "2024-01-11T13:00:00Z"
+    },
+    {
+      "id": 19,
+      "action": "마진 계산",
+      "productName": "미니 선풍기",
+      "status": "success",
+      "timestamp": "2024-01-11T12:00:00Z"
+    },
+    {
+      "id": 20,
+      "action": "AI 추천 검색",
+      "productName": "휴대용 선풍기",
+      "status": "success",
+      "timestamp": "2024-01-10T11:00:00Z"
+    }
+  ],
+  "stats": {
+    "totalProducts": 152,
+    "registeredToday": 8,
+    "totalMargin": 2450000,
+    "avgMarginRate": 42.5,
+    "weeklyGrowth": 12.3,
+    "monthlyRevenue": 15680000,
+    "successRate": 92.5,
+    "categories": {
+      "electronics": 45,
+      "lifestyle": 25,
+      "fashion": 15,
+      "beauty": 10,
+      "others": 5
+    },
+    "weeklyData": [
+      { "date": "월", "revenue": 850000, "products": 12, "margin": 380000 },
+      { "date": "화", "revenue": 920000, "products": 15, "margin": 420000 },
+      { "date": "수", "revenue": 780000, "products": 10, "margin": 350000 },
+      { "date": "목", "revenue": 1100000, "products": 18, "margin": 520000 },
+      { "date": "금", "revenue": 950000, "products": 14, "margin": 430000 },
+      { "date": "토", "revenue": 1250000, "products": 22, "margin": 580000 },
+      { "date": "일", "revenue": 680000, "products": 8, "margin": 290000 }
+    ]
+  }
+}

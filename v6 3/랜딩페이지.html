@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>Selpix - AI 기반 커머스 자동화 플랫폼</title>
+    <meta name="description" content="초보 셀러의 성공을 위한 AI 기반 커머스 자동화 플랫폼. 쿠팡↔도매꾹 자동 발주, ROAS 최적화, 실시간 마진 계산으로 광고비 걱정 없이 안정적인 수익 창출">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1f2937;
+            --light-color: #f8fafc;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        .stats-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .stats-number {
+            font-size: 2.8rem;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stats-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stats-desc {
+            font-size: 0.9rem;
+            color: #7b8699;
+            margin: 0;
+        }
+        
+        .problem-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 5rem 0;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid var(--primary-color);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: '추천';
+            position: absolute;
+            top: 20px;
+            right: -45px;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 90px;
+            transform: rotate(45deg);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+        
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            position: relative;
+            height: 72px;
+            width: 180px;
+        }
+        
+        .navbar-brand .brand-logo {
+            height: 140px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 4px 12px rgba(37, 99, 235, 0.35));
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        
+        .footer-logo {
+            height: 110px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.35));
+        }
+        
+        @media (max-width: 576px) {
+            .navbar-brand {
+                height: 60px;
+                width: 140px;
+            }
+            .navbar-brand .brand-logo {
+                height: 96px;
+            }
+            .hero-visual {
+                padding: 22px;
+            }
+            .hero-dashboard-nav {
+                gap: 6px;
+            }
+            .hero-nav-item {
+                font-size: 0.78rem;
+            }
+        }
+        
+        @media (max-width: 991px) {
+            .hero-visual {
+                margin-top: 30px;
+            }
+        }
+        
+        @media (max-width: 1200px) {
+            .hero-dashboard-kpis {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 0.35rem 0;
+        }
+        
+        .hero-visual {
+            border-radius: 24px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            padding: 36px;
+            box-shadow: 0 24px 70px rgba(15, 23, 42, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-dashboard-shell {
+            width: 100%;
+            max-width: 540px;
+            background: #f8fafc;
+            border-radius: 22px;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.35), 0 24px 50px rgba(15, 23, 42, 0.25);
+        }
+        
+        .hero-dashboard-topbar {
+            background: linear-gradient(135deg, #7c3aed 0%, #6366f1 70%);
+            border-radius: 18px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+        }
+        
+        .hero-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+        }
+        
+        .hero-status-pill {
+            background: rgba(255, 255, 255, 0.18);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .hero-dashboard-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .hero-nav-item {
+            background: #eef2ff;
+            color: #4c1d95;
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .hero-nav-item.active {
+            background: #c7d2fe;
+            color: #312e81;
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.25);
+        }
+        
+        .hero-dashboard-kpis {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+        }
+        
+        .hero-kpi-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 14px 16px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+        }
+        
+        .hero-kpi-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .hero-kpi-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #111827;
+        }
+        
+        .hero-quick-form {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 18px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+        }
+        
+        .hero-quick-form label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .hero-quick-form .form-control {
+            border-radius: 999px;
+            padding: 12px 18px;
+        }
+        
+        .hero-quick-form .btn {
+            border-radius: 999px;
+            padding: 12px 20px;
+        }
+        
+        .hero-automation-card {
+            background: linear-gradient(135deg, #5b21b6 0%, #a855f7 100%);
+            border-radius: 20px;
+            padding: 20px;
+            color: #fdf4ff;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .hero-automation-card .btn {
+            background: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+            border: none;
+            border-radius: 999px;
+            padding: 10px 18px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            height: 100%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin: 1rem 0;
+        }
+        
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%);
+            color: white;
+            padding: 5rem 0;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bg-gradient-light {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .login-card {
+            border-radius: 24px;
+            box-shadow: 0 30px 80px rgba(15, 23, 42, 0.12);
+        }
+        
+        /* 스크롤바 스타일링 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home" aria-label="Selpix 홈으로 이동">
+                        <img src="./누끼2.png" alt="Selpix 로고" class="brand-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">기능</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">요금제</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">후기</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">문의</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#login">콘솔 로그인</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-primary-custom" href="#pricing">무료 시작하기</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content animate-fade-in">
+                        <h1 class="display-4 fw-bold mb-4">
+                            AI가 해결하는<br>
+                            <span class="text-warning">커머스 자동화</span>
+                        </h1>
+                        <p class="lead mb-4">
+                            국내 온라인 셀러 87만 시대, 초보 셀러의 높은 이탈률을 <strong>데이터 기반 자동화</strong>로 낮춥니다.<br>
+                            쿠팡↔도매꾹 자동 발주, 실시간 마진‧ROAS 분석까지 한 번에.
+                        </p>
+                        <div class="d-flex flex-wrap gap-3 mb-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle text-warning me-2"></i>
+                                <span>월 19,990원으로 시작</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle text-warning me-2"></i>
+                                <span>3분 내 상품 등록</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle text-warning me-2"></i>
+                                <span>광고비 최대 15% 절감 사례</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap gap-3">
+                            <a href="#pricing" class="btn btn-warning btn-lg px-4 py-3 fw-bold">
+                                <i class="fas fa-rocket me-2"></i>무료로 시작하기
+                            </a>
+                            <a href="#features" class="btn btn-outline-light btn-lg px-4 py-3">
+                                <i class="fas fa-play me-2"></i>기능 둘러보기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="hero-visual">
+                        <div class="hero-dashboard-shell">
+                            <div class="hero-dashboard-topbar">
+                                <div class="hero-brand">
+                                    <i class="fas fa-robot"></i>
+                                    Selpix v1.5
+                                    <span class="hero-badge">AI 자동화</span>
+                                </div>
+                                <div class="hero-status-pill">
+                                    <i class="fas fa-signal me-1"></i>실시간 동기화
+                                </div>
+                            </div>
+                            <div class="hero-dashboard-nav">
+                                <span class="hero-nav-item active"><i class="fas fa-gauge"></i>대시보드</span>
+                                <span class="hero-nav-item"><i class="fas fa-search"></i>상품 분석</span>
+                                <span class="hero-nav-item"><i class="fas fa-cogs"></i>자동화</span>
+                                <span class="hero-nav-item"><i class="fas fa-chart-line"></i>광고 분석</span>
+                                <span class="hero-nav-item"><i class="fas fa-key"></i>키워드</span>
+                            </div>
+                            <div class="hero-dashboard-kpis">
+                                <div class="hero-kpi-card">
+                                    <div class="hero-kpi-label">
+                                        오늘 분석
+                                        <i class="fas fa-chart-line text-primary"></i>
+                                    </div>
+                                    <div class="hero-kpi-value">42</div>
+                                </div>
+                                <div class="hero-kpi-card">
+                                    <div class="hero-kpi-label">
+                                        등록 성공
+                                        <i class="fas fa-check-circle text-success"></i>
+                                    </div>
+                                    <div class="hero-kpi-value text-success">38</div>
+                                </div>
+                                <div class="hero-kpi-card">
+                                    <div class="hero-kpi-label">
+                                        평균 마진율
+                                        <i class="fas fa-percent" style="color:#8b5cf6;"></i>
+                                    </div>
+                                    <div class="hero-kpi-value text-primary">18%</div>
+                                </div>
+                                <div class="hero-kpi-card">
+                                    <div class="hero-kpi-label">
+                                        자동화 작업
+                                        <i class="fas fa-robot" style="color:#6366f1;"></i>
+                                    </div>
+                                    <div class="hero-kpi-value" style="color:#4f46e5;">96</div>
+                                </div>
+                            </div>
+                            <div class="hero-quick-form">
+                                <label for="heroQuickInput">빠른 상품 등록</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="heroQuickInput" placeholder="도매꾹 상품 URL을 입력하세요...">
+                                    <button class="btn btn-primary" type="button">분석 시작</button>
+                                </div>
+                                <small class="text-muted d-block mt-2">URL 입력 후 3분 내 자동 등록까지 완료됩니다.</small>
+                            </div>
+                            <div class="hero-automation-card">
+                                <div>
+                                    <p class="mb-1 fw-semibold">자동화 시스템</p>
+                                    <small>쿠팡 주문을 수집하고 도매꾹으로 발주하는 프로세스를 모니터링합니다.</small>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm">상태 확인</button>
+                                    <button class="btn btn-sm">자동화 실행</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Stats Section -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">국내 온라인 셀러가 직면한 현실</h2>
+                    <p class="section-subtitle">이커머스 시장의 성장 뒤에 숨겨진 셀러들의 고민</p>
+                </div>
+            </div>
+            <div class="text-end">
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#sourceModal">
+                    <i class="fas fa-info-circle me-1"></i>근거/출처
+                </button>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6">
+                    <div class="stats-card">
+                        <div class="stats-number" data-target="23" data-suffix="%">23%</div>
+                        <div class="stats-title">초보 셀러 폐업률</div>
+                        <p class="stats-desc">1년 내 폐업하는 초보 셀러 비율</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stats-card">
+                        <div class="stats-number" data-target="3" data-suffix-html="<span style='font-size: 1.5rem;'>분</span>">3<span style="font-size: 1.5rem;">분</span></div>
+                        <div class="stats-title">상품 등록 시간</div>
+                        <p class="stats-desc">기존 30분 → 3분으로 단축</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stats-card">
+                        <div class="stats-number" data-target="15" data-suffix="%">15%</div>
+                        <div class="stats-title">광고비 절약 효과</div>
+                        <p class="stats-desc">AI 최적화로 달성한 광고 효율</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stats-card">
+                        <div class="stats-number" data-target="87" data-suffix="만 명">87만 명</div>
+                        <div class="stats-title">국내 온라인 셀러</div>
+                        <p class="stats-desc">전체 온라인 셀러 규모</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-end mt-2">
+                <small class="text-muted">출처: 전자신문(2025.8.26), 서울경제(2024.3.13)</small>
+            </p>
+            
+            <!-- Problem Description -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="bg-white rounded-4 p-5 shadow-sm">
+                        <div class="row align-items-center">
+                            <div class="col-lg-8">
+                                <h3 class="fw-bold mb-3 text-danger">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                    왜 이렇게 많은 셀러가 포기할까요?
+                                </h3>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start">
+                                            <i class="fas fa-times-circle text-danger me-3 mt-1"></i>
+                                            <div>
+                                                <h6 class="fw-bold">복잡한 상품 등록</h6>
+                                                <small class="text-muted">30분씩 걸리는 수동 등록 과정</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start">
+                                            <i class="fas fa-times-circle text-danger me-3 mt-1"></i>
+                                            <div>
+                                                <h6 class="fw-bold">광고비 손실</h6>
+                                                <small class="text-muted">비효율적인 키워드로 인한 적자</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start">
+                                            <i class="fas fa-times-circle text-danger me-3 mt-1"></i>
+                                            <div>
+                                                <h6 class="fw-bold">재고 관리 부담</h6>
+                                                <small class="text-muted">수동 발주로 인한 품절/과재고</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-flex alignments-start">
+                                            <i class="fas fa-times-circle text-danger me-3 mt-1"></i>
+                                            <div>
+                                                <h6 class="fw-bold">마진 계산 오류</h6>
+                                                <small class="text-muted">숨겨진 비용으로 인한 예상치 못한 손실</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <div class="bg-danger bg-opacity-10 rounded-3 p-4">
+                                    <i class="fas fa-chart-line-down fa-4x text-danger mb-3"></i>
+                                    <h4 class="text-danger fw-bold"><span class="stats-number" data-target="23" data-suffix="%">23%</span></h4>
+                                    <p class="text-muted mb-0">초보 셀러가<br>1년 내 포기하는 비율</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="sourceModal" tabindex="-1" aria-labelledby="sourceModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="sourceModalLabel">지표 근거 및 참고 출처</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <ul class="small text-muted mb-3">
+                      <li><strong>전자신문</strong>(2025.8.26): 2025년 1~7월 기준 국내 통신판매업 폐업 신고 약 5.3만 건.</li>
+                      <li><strong>서울경제</strong>(2024.3.13): 온라인쇼핑몰의 최근 3년 폐업률 추세 약 27% → 30.5% → 37.9%.</li>
+                    </ul>
+                    <p class="small text-muted mb-0">
+                      ※ “초보 셀러 1년 내 23%” 및 “국내 온라인 셀러 87만 명”은 업계 보도와 표본 기반 추정치를 바탕으로 한 <strong>서비스 가설 지표</strong>로, 업종·기간·집계 방식에 따라 달라질 수 있습니다.
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Selpix가 해결합니다</h2>
+                <p class="section-subtitle">AI 기반 자동화로 셀러의 모든 고민을 해결합니다</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">자동 발주 시스템</h4>
+                        <p class="text-muted">쿠팡 주문 발생 시 도매꾹에서 자동 발주. 재고 관리와 배송 걱정 없이 안정적인 운영이 가능합니다.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>실시간 주문 연동</li>
+                            <li><i class="fas fa-check text-success me-2"></i>자동 재고 관리</li>
+                            <li><i class="fas fa-check text-success me-2"></i>배송 추적 자동화</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">실시간 마진 계산</h4>
+                        <p class="text-muted">환율, 수수료, 배송비까지 모든 비용을 반영한 정확한 마진 계산으로 적자 위험을 사전에 방지합니다.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>실시간 환율 반영</li>
+                            <li><i class="fas fa-check text-success me-2"></i>수수료 자동 계산</li>
+                            <li><i class="fas fa-check text-success me-2"></i>손익분기점 분석</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">AI 키워드 추천</h4>
+                        <p class="text-muted">AI 기반 추천 알고리즘으로 최적 키워드를 제안해 광고 효율 향상을 돕습니다(내부 테스트 기준).</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>CTR 기반 최적화</li>
+                            <li><i class="fas fa-check text-success me-2"></i>경쟁 키워드 분석</li>
+                            <li><i class="fas fa-check text-success me-2"></i>실시간 트렌드 반영</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">ROAS 자동 최적화</h4>
+                        <p class="text-muted">목표 ROAS 하회 시 자동으로 광고를 중단하여 불필요한 광고비 지출을 방지합니다.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>실시간 ROAS 모니터링</li>
+                            <li><i class="fas fa-check text-success me-2"></i>자동 광고 중단</li>
+                            <li><i class="fas fa-check text-success me-2"></i>성과 리포트 제공</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">멀티마켓 관리</h4>
+                        <p class="text-muted">쿠팡, 네이버 스마트스토어, 11번가 등 여러 플랫폼을 하나의 대시보드에서 통합 관리합니다.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>통합 대시보드</li>
+                            <li><i class="fas fa-check text-success me-2"></i>일괄 상품 등록</li>
+                            <li><i class="fas fa-check text-success me-2"></i>플랫폼별 최적화</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">AI 리뷰 분석</h4>
+                        <p class="text-muted">고객 리뷰를 AI가 자동으로 분석하여 상품 개선점과 마케팅 포인트를 제공합니다.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>감정 분석</li>
+                            <li><i class="fas fa-check text-success me-2"></i>키워드 추출</li>
+                            <li><i class="fas fa-check text-success me-2"></i>개선점 제안</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-5 bg-gradient-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">요금제</h2>
+                <p class="section-subtitle">성장 단계에 맞는 최적의 플랜을 선택하세요</p>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <!-- Free Plan -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card text-center">
+                        <h3 class="fw-bold mb-3">Free</h3>
+                        <div class="price">₩0<small class="fs-6 text-muted">/월</small></div>
+                        <p class="text-muted mb-4">스타트업·개인 셀러용</p>
+                        
+                        <ul class="list-unstyled text-start mb-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>자동 마진 계산 (기본형)</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>도매 상품 검색 (1일 3회)</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>쿠팡/도매꾹 기본 연동 미리보기</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>매출 대시보드 체험모드</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>AI 추천 키워드 3개/일</li>
+                        </ul>
+                        
+                        <button class="btn btn-outline-primary w-100 py-3 fw-bold">무료 시작하기</button>
+                    </div>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card featured text-center">
+                        <h3 class="fw-bold mb-3">Pro</h3>
+                        <div class="price">₩19,990<small class="fs-6 text-muted">/월</small></div>
+                        <p class="text-muted mb-4">실제 운영 셀러용 (추천)</p>
+                        
+                        <ul class="list-unstyled text-start mb-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>자동 발주(쿠팡 → 도매꾹 연동)</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>광고비·ROAS 분석</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>상품별 실마진 리포트</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>키워드 추천 무제한</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>멀티마켓 관리 (쿠팡, 네이버, 스마트스토어)</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>고객 리뷰 분석 (AI 요약)</li>
+                        </ul>
+                        
+                        <button class="btn btn-primary-custom w-100 py-3 fw-bold">Pro로 시작하기</button>
+                    </div>
+                </div>
+                
+                <!-- Business Plan -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card text-center">
+                        <h3 class="fw-bold mb-3">Business</h3>
+                        <div class="price">₩49,900<small class="fs-6 text-muted">/월</small></div>
+                        <p class="text-muted mb-4">브랜드·소상공인 대상</p>
+                        
+                        <ul class="list-unstyled text-start mb-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>모든 Pro 기능 포함</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>팀 협업 계정 5명</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>API 커스터마이징</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>자동 입출고 리포트</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>도매가격 추적 알림</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>전용 기술지원 채널</li>
+                        </ul>
+                        
+                        <button class="btn btn-outline-primary w-100 py-3 fw-bold">Business로 시작하기</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <p class="text-muted">
+                    <i class="fas fa-shield-alt me-2"></i>
+                    모든 플랜은 언제든지 변경 가능하며, 30일 무료 체험을 제공합니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login" class="py-5">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Selpix 콘솔 로그인</h2>
+                    <p class="section-subtitle">랜딩에서 바로 MVP 콘솔로 이동해 실제 워크플로우를 이어갈 수 있습니다.</p>
+                    <ul class="list-unstyled text-muted">
+                        <li class="mb-2"><i class="fas fa-circle text-success me-2"></i>/api/v1/auth/login 토큰을 그대로 index.html이 사용</li>
+                        <li class="mb-2"><i class="fas fa-circle text-success me-2"></i>테스트 아이디 제공: demo@selpix.io / buildMVP!</li>
+                        <li class="mb-2"><i class="fas fa-circle text-success me-2"></i>로그인 성공 시 0.9초 내 콘솔 리디렉션</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card login-card border-0">
+                        <div class="card-body p-4 p-lg-5">
+                            <form id="selpix-login-form" class="needs-validation" novalidate>
+                                <div class="mb-3">
+                                    <label for="login-username" class="form-label fw-semibold">이메일</label>
+                                    <input type="email" class="form-control" id="login-username" name="username" value="demo@selpix.io" required placeholder="demo@selpix.io">
+                                    <div class="invalid-feedback">이메일을 입력해주세요.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="login-password" class="form-label fw-semibold">비밀번호</label>
+                                    <input type="password" class="form-control" id="login-password" name="password" value="buildMVP!" required placeholder="buildMVP!">
+                                    <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="login-platform" class="form-label fw-semibold">플랫폼</label>
+                                    <select class="form-select" id="login-platform" name="platform">
+                                        <option value="coupang">쿠팡</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary-custom w-100 py-3">
+                                    Selpix Console 입장
+                                </button>
+                                <p id="login-status" class="text-center text-muted small mt-3">테스트 계정으로 바로 로그인할 수 있어요.</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">고객 후기</h2>
+                <p class="section-subtitle">실제 사용자들의 생생한 경험담을 들어보세요</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://via.placeholder.com/60x60/2563eb/ffffff?text=김" alt="김○○" class="rounded-circle me-3">
+                            <div>
+                                <h5 class="mb-1">김○○</h5>
+                                <small class="text-muted">쿠팡 셀러 (3개월 사용)</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="text-muted">
+                            "초보 셀러로 시작했는데 Selpix 덕분에 3개월 만에 월 매출 1,200만원을 달성했어요. 특히 자동 발주 기능이 정말 편리해서 재고 걱정 없이 운영할 수 있어요."
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://via.placeholder.com/60x60/10b981/ffffff?text=이" alt="이○○" class="rounded-circle me-3">
+                            <div>
+                                <h5 class="mb-1">이○○</h5>
+                                <small class="text-muted">네이버 스마트스토어 운영 (6개월 사용)</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="text-muted">
+                            "광고비 때문에 고민이 많았는데 ROAS 자동 최적화 기능으로 광고비를 15% 절약할 수 있었어요. AI 키워드 추천도 정말 정확해서 매출이 꾸준히 늘고 있습니다."
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://via.placeholder.com/60x60/f59e0b/ffffff?text=박" alt="박○○" class="rounded-circle me-3">
+                            <div>
+                                <h5 class="mb-1">박○○</h5>
+                                <small class="text-muted">멀티마켓 운영 (1년 사용)</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="text-muted">
+                            "여러 플랫폼을 운영하느라 정말 바빴는데 Selpix로 통합 관리하니까 업무 시간이 절반으로 줄었어요. 실시간 마진 계산 기능으로 적자 상품도 미리 걸러낼 수 있어서 안정적으로 운영하고 있습니다."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="display-5 fw-bold mb-4">지금 시작하세요!</h2>
+                    <p class="lead mb-4">
+                        30일 무료 체험으로 Selpix의 강력한 자동화 기능을 경험해보세요.<br>
+                        초보 셀러도 쉽게 성공할 수 있는 길을 열어드립니다.
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="#pricing" class="btn btn-light btn-lg px-5 py-3 fw-bold">
+                            <i class="fas fa-rocket me-2"></i>무료로 시작하기
+                        </a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg px-5 py-3">
+                            <i class="fas fa-phone me-2"></i>상담 받기
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-gradient-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">문의하기</h2>
+                <p class="section-subtitle">궁금한 점이 있으시면 언제든 연락주세요</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="row g-4">
+                        <div class="col-md-4 text-center">
+                            <div class="feature-icon mx-auto mb-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h5 class="fw-bold">이메일</h5>
+                            <p class="text-muted"><a href="mailto:team@selpix.io" class="text-decoration-none">team@selpix.io</a></p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="feature-icon mx-auto mb-3">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h5 class="fw-bold">전화</h5>
+                            <p class="text-muted">010-2484-3810</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="feature-icon mx-auto mb-3">
+                                <i class="fab fa-discord"></i>
+                            </div>
+                            <h5 class="fw-bold">디스코드</h5>
+                            <p class="text-muted">24시간 지원</p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-5">
+                        <div class="bg-white rounded-3 p-4 shadow-sm">
+                            <h4 class="fw-bold mb-3">Beta 테스터 모집 중!</h4>
+                            <p class="text-muted mb-3">
+                                초기 사용자에게는 <strong>Pro 플랜을 3개월 무료</strong>로 제공합니다.<br>
+                                지금 신청하고 Selpix와 함께 성장하세요!
+                            </p>
+                            <a href="mailto:beta@selpix.io" class="btn btn-primary-custom btn-lg">
+                                <i class="fas fa-star me-2"></i>Beta 테스터 신청하기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">
+                        <img src="./누끼2.png" alt="Selpix 로고" class="footer-logo">
+                    </h5>
+                    <p class="text-light opacity-75 mb-3">
+                        AI 기반 커머스 자동화 플랫폼으로 초보 셀러의 성공을 돕습니다.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light opacity-75 fs-5">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-light opacity-75 fs-5">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-light opacity-75 fs-5">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-light opacity-75 fs-5">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3">
+                    <h6 class="fw-bold mb-3">서비스</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#features" class="text-light opacity-75 text-decoration-none">기능</a></li>
+                        <li class="mb-2"><a href="#pricing" class="text-light opacity-75 text-decoration-none">요금제</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75 text-decoration-none">API</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75 text-decoration-none">통합</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3">
+                    <h6 class="fw-bold mb-3">지원</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light opacity-75 text-decoration-none">도움말</a></li>
+                        <li class="mb-2"><a href="#contact" class="text-light opacity-75 text-decoration-none">문의</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75 text-decoration-none">FAQ</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75 text-decoration-none">상태</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3">
+                    <h6 class="fw-bold mb-3">회사</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light opacity-75 text-decoration-none">소개</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75 text-decoration-none">블로그</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75 text-decoration-none">채용</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75 text-decoration-none">파트너</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3">
+                    <h6 class="fw-bold mb-3">법적 고지</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light opacity-75 text-decoration-none">개인정보처리방침</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75 text-decoration-none">이용약관</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75 text-decoration-none">쿠키 정책</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 opacity-25">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-light opacity-75 mb-0">
+                        © 2025 Selpix. All rights reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-light opacity-75 mb-0">
+                        Made with <i class="fas fa-heart text-danger"></i> in Korea
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.feature-card, .stats-card, .pricing-card, .testimonial-card').forEach(el => observer.observe(el));
+
+        // Counter animation for stats
+        function animateCounter(el, target, { duration = 2000, suffix = '', suffixHtml = '' } = {}) {
+            const frames = Math.max(1, Math.floor(duration / 16));
+            const step = target / frames;
+            let current = 0;
+            const render = (val) => {
+                const n = Math.floor(val);
+                if (suffixHtml) {
+                    el.innerHTML = `${n}${suffixHtml}`;
+                } else {
+                    el.textContent = `${n}${suffix}`;
+                }
+            };
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    clearInterval(timer);
+                    render(target);
+                } else {
+                    render(current);
+                }
+            }, 16);
+        }
+        const statsSection = document.querySelector('.stats-card')?.closest('section');
+        if (statsSection) {
+            const statsObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.querySelectorAll('.stats-number').forEach(counter => {
+                            const target = parseFloat(counter.getAttribute('data-target') || '0');
+                            const suffix = counter.getAttribute('data-suffix') || '';
+                            const suffixHtml = counter.getAttribute('data-suffix-html') || '';
+                            animateCounter(counter, target, { suffix, suffixHtml });
+                        });
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            statsObserver.observe(statsSection);
+        }
+
+        // Login integration
+        (function() {
+            const form = document.getElementById('selpix-login-form');
+            const statusEl = document.getElementById('login-status');
+            if (!form || !statusEl) return;
+
+            const setStatus = (type, message) => {
+                const base = 'text-center small mt-3 ';
+                const classMap = {
+                    success: 'text-success',
+                    error: 'text-danger',
+                    info: 'text-muted'
+                };
+                statusEl.className = base + (classMap[type] || 'text-muted');
+                statusEl.textContent = message;
+            };
+
+            const resolveApiBase = () => {
+                const fallback = 'http://localhost:3001/api/v1';
+                if (typeof window === 'undefined') return fallback;
+                if (window.location.protocol === 'file:') return fallback;
+                const { protocol, hostname, port } = window.location;
+                const localHosts = new Set(['localhost', '127.0.0.1']);
+                const preferredPort = '3001';
+                const resolvedPort = localHosts.has(hostname)
+                    ? (port === '' || port === '3000' ? preferredPort : port)
+                    : port;
+                const hostPort = resolvedPort ? `:${resolvedPort}` : '';
+                return `${protocol}//${hostname}${hostPort}/api/v1`;
+            };
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                if (!form.checkValidity()) {
+                    form.classList.add('was-validated');
+                    return;
+                }
+                const submitBtn = form.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.classList.add('disabled');
+                setStatus('info', 'Selpix API에 연결하는 중...');
+
+                const payload = {
+                    username: form.username.value.trim(),
+                    password: form.password.value,
+                    platform: form.platform.value
+                };
+
+                try {
+                    const response = await fetch(`${resolveApiBase()}/auth/login`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errorBody = await response.json().catch(() => ({}));
+                        throw new Error(errorBody?.message || '로그인에 실패했습니다. 계정을 확인해주세요.');
+                    }
+
+                    const data = await response.json();
+                    localStorage.setItem('selpix_session', JSON.stringify(data));
+                    if (data?.accessToken) {
+                        localStorage.setItem('selpix_auth_token', data.accessToken);
+                    }
+                    if (data?.user) {
+                        localStorage.setItem('selpix_user', JSON.stringify(data.user));
+                    }
+                    setStatus('success', '로그인 성공! 콘솔로 이동합니다...');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 900);
+                } catch (error) {
+                    console.error('Login failed:', error);
+                    setStatus('error', error?.message || '네트워크 오류가 발생했습니다.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('disabled');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

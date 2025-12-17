@@ -1,0 +1,40 @@
+{
+  "name": "www",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3000 --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@icons-pack/react-simple-icons": "^12.9.0",
+    "@next/third-parties": "^15.3.2",
+    "@myapp/ui": "workspace:*",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.15.0",
+    "lucide-react": "^0.515.0",
+    "motion": "^12.15.0",
+    "next": "^15.3.0",
+    "next-intl": "^4.3.1",
+    "next-themes": "^0.4.6",
+    "react": "^19.1.0",
+    "react-day-picker": "^9.7.0",
+    "react-dom": "^19.1.0",
+    "react-markdown": "^10.1.0",
+    "recharts": "^2.15.3"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^15.3.0",
+    "@myapp/eslint-config": "workspace:*",
+    "@myapp/typescript-config": "workspace:*",
+    "@types/node": "^22.15.3",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "eslint": "^9.27.0",
+    "typescript": "^5.8.3"
+  }
+}

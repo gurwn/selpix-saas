@@ -1,0 +1,15 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+# Architecture
+
+## Included Services
+
+- apps/app: web dashbaord
+- apps/www: web landing page
+- packages/api: trpc api routes
+- packages/ui: shadcn components
+- packages/prisma: prisma schema, client

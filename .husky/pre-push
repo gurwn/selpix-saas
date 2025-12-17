@@ -1,0 +1,42 @@
+#!/bin/bash
+echo "🚀 Running pre-push checks..."
+
+# 병렬 실행 시작
+pnpm typecheck &
+TYPECHECK_PID=$!
+
+pnpm lint &
+LINT_PID=$!
+
+pnpm test &
+TEST_PID=$!
+
+echo "⏳ Running typecheck, lint, and test in parallel..."
+
+# 각 프로세스 완료 대기 및 종료 코드 확인
+wait $TYPECHECK_PID
+TYPECHECK_EXIT=$?
+
+wait $LINT_PID
+LINT_EXIT=$?
+
+wait $TEST_PID
+TEST_EXIT=$?
+
+# 결과 확인
+if [ $TYPECHECK_EXIT -ne 0 ]; then
+  echo "❌ Typecheck failed!"
+  exit 1
+fi
+
+if [ $LINT_EXIT -ne 0 ]; then
+  echo "❌ Lint failed!"
+  exit 1
+fi
+
+if [ $TEST_EXIT -ne 0 ]; then
+  echo "❌ Test failed!"
+  exit 1
+fi
+
+echo "✅ All pre-push checks passed!" 

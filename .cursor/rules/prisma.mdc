@@ -1,0 +1,16 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Prisma Rule
+
+- prisma schema file: [schema.prisma](mdc:packages/prisma/prisma/schema.prisma)
+
+## Schema edit process
+
+1. edit [schema.prisma](mdc:packages/prisma/prisma/schema.prisma)
+2. move to `/packages/prisma`, run `pnpm db:migrate:create` to create migration file
+3. run `pnpm db:generate` to sync prisma client
+
+YOU MUST NOT run `pnpm db:migrate:deploy` to apply migration.

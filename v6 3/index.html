@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selpix v1.5 - AI 기반 커머스 자동화 플랫폼</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        window.tailwind = window.tailwind || {};
+        window.tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Space Grotesk', 'Noto Sans KR', 'sans-serif'],
+                        body: ['Noto Sans KR', 'Space Grotesk', 'system-ui']
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#0f172a'
+                        },
+                        accent: '#36fba1'
+                    },
+                    boxShadow: {
+                        glow: '0 25px 65px rgba(37,99,235,0.35)'
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- XLSX for Excel processing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        :root {
+            --selpix-bg: #020617;
+            --selpix-grid: rgba(255, 255, 255, 0.08);
+            --selpix-card: rgba(15, 23, 42, 0.85);
+        }
+        body {
+            font-family: 'Noto Sans KR', 'Space Grotesk', sans-serif;
+            background-color: var(--selpix-bg);
+            color: #e2e8f0;
+        }
+        .gradient-bg {
+            background: radial-gradient(circle at top, rgba(37, 99, 235, 0.4), transparent 45%),
+                        linear-gradient(135deg, #1e3a8a 0%, #0f172a 55%);
+        }
+        .card-shadow {
+            box-shadow: 0 35px 80px rgba(2, 6, 23, 0.65);
+        }
+        .glass-panel {
+            background: var(--selpix-card);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            backdrop-filter: blur(24px);
+            color: inherit;
+        }
+        .glass-panel .text-gray-900,
+        .glass-panel .text-gray-800 {
+            color: #f8fafc !important;
+        }
+        .glass-panel .text-gray-700,
+        .glass-panel .text-gray-600,
+        .glass-panel .text-gray-500 {
+            color: rgba(226, 232, 240, 0.82) !important;
+        }
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+            box-shadow: 0 5px 18px rgba(59, 130, 246, 0.45);
+        }
+        .automation-panel {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.75) 0%, rgba(59, 130, 246, 0.6) 60%, rgba(56, 189, 248, 0.38) 100%);
+            border: 1px solid rgba(191, 219, 254, 0.25);
+            box-shadow: 0 25px 60px rgba(37, 99, 235, 0.4);
+        }
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 9999px;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .glass-panel input,
+        .glass-panel textarea,
+        .glass-panel select {
+            background-color: rgba(15, 23, 42, 0.6);
+            border-color: rgba(148, 163, 184, 0.4);
+            color: #f8fafc;
+        }
+        .glass-panel input::placeholder,
+        .glass-panel textarea::placeholder {
+            color: rgba(226, 232, 240, 0.5);
+        }
+        .glass-panel input:focus,
+        .glass-panel textarea:focus,
+        .glass-panel select:focus {
+            outline: none;
+            border-color: rgba(59, 130, 246, 0.7);
+            box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.5);
+        }
+        .selpix-logo-img {
+            height: 130px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 10px 30px rgba(59, 130, 246, 0.45));
+        }
+        @media (max-width: 640px) {
+            .selpix-logo-img {
+                height: 96px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen font-body text-slate-100" x-data="selpixApp()">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <img src="./누끼2.png" alt="Selpix 로고" class="selpix-logo-img">
+                    <h1 class="text-2xl font-bold">Selpix v1.5</h1>
+                    <span class="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">AI 자동화</span>
+                </div>
+                <nav class="flex items-center space-x-6">
+                    <button @click="currentStep = 'dashboard'" 
+                            :class="currentStep === 'dashboard' ? 'text-yellow-300' : 'text-white'"
+                            class="hover:text-yellow-300 transition-colors">
+                        <i class="fas fa-tachometer-alt mr-2"></i>대시보드
+                    </button>
+                    <button @click="currentStep = 'analysis'" 
+                            :class="currentStep === 'analysis' ? 'text-yellow-300' : 'text-white'"
+                            class="hover:text-yellow-300 transition-colors">
+                        <i class="fas fa-search mr-2"></i>상품 분석
+                    </button>
+                    <button @click="currentStep = 'automation'" 
+                            :class="currentStep === 'automation' ? 'text-yellow-300' : 'text-white'"
+                            class="hover:text-yellow-300 transition-colors">
+                        <i class="fas fa-cogs mr-2"></i>자동화
+                    </button>
+                    <button @click="currentStep = 'history'"
+                            :class="currentStep === 'history' ? 'text-yellow-300' : 'text-white'"
+                            class="hover:text-yellow-300 transition-colors">
+                        <i class="fas fa-history mr-2"></i>이력
+                    </button>
+                    <button @click="currentStep = 'margin'"
+                            :class="currentStep === 'margin' ? 'text-yellow-300' : 'text-white'"
+                            class="hover:text-yellow-300 transition-colors">
+                        <i class="fas fa-calculator mr-2"></i>마진계산
+                    </button>
+                    <button @click="currentStep = 'adAnalysis'"
+                            :class="currentStep === 'adAnalysis' ? 'text-yellow-300' : 'text-white'"
+                            class="hover:text-yellow-300 transition-colors">
+                        <i class="fas fa-chart-line mr-2"></i>광고분석
+                    </button>
+                    <button @click="currentStep = 'keywordAnalysis'"
+                            :class="currentStep === 'keywordAnalysis' ? 'text-yellow-300' : 'text-white'"
+                            class="hover:text-yellow-300 transition-colors">
+                        <i class="fas fa-key mr-2"></i>키워드분석
+                    </button>
+                    <button @click="currentStep === 'productInspection'"
+                            :class="currentStep === 'productInspection' ? 'text-yellow-300' : 'text-white'"
+                            class="hover:text-yellow-300 transition-colors">
+                        <i class="fas fa-box mr-2"></i>상품검사
+                    </button>
+                    <button @click="currentStep = 'wholesaleSearch'"
+                            :class="currentStep === 'wholesaleSearch' ? 'text-yellow-300' : 'text-white'"
+                            class="hover:text-yellow-300 transition-colors">
+                        <i class="fas fa-search mr-2"></i>도매검색
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="bg-white border-b" x-show="currentStep === 'analysis'">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between text-sm text-gray-600 mb-2">
+                <span>진행 단계</span>
+                <span x-text="Math.round(progress) + '%'"></span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="bg-blue-600 h-2 rounded-full progress-bar" :style="'width: ' + progress + '%'"></div>
+            </div>
+            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                <span>URL 입력</span>
+                <span>상품 분석</span>
+                <span>마진 계산</span>
+                <span>키워드 생성</span>
+                <span>등록 완료</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Dashboard -->
+        <div x-show="currentStep === 'dashboard'" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Quick Stats -->
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">오늘 분석</p>
+                            <p class="text-2xl font-bold text-gray-900" x-text="stats.todayAnalysis"></p>
+                        </div>
+                        <i class="fas fa-chart-line text-blue-500 text-2xl"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">등록 성공</p>
+                            <p class="text-2xl font-bold text-green-600" x-text="stats.registrationSuccess"></p>
+                        </div>
+                        <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">평균 마진율</p>
+                            <p class="text-2xl font-bold text-purple-600" x-text="stats.averageMargin + '%'"></p>
+                        </div>
+                        <i class="fas fa-percentage text-purple-500 text-2xl"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">자동화 작업</p>
+                            <p class="text-2xl font-bold text-indigo-600" x-text="stats.automationJobs"></p>
+                        </div>
+                        <i class="fas fa-robot text-indigo-500 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Action -->
+            <div class="bg-white rounded-lg card-shadow p-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6 text-center">빠른 상품 등록</h2>
+                <div class="max-w-2xl mx-auto">
+                    <div class="flex space-x-4">
+                        <input type="url" 
+                               x-model="productUrl"
+                               placeholder="도매꾹 상품 URL을 입력하세요..."
+                               class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <button @click="startAnalysis()" 
+                                :disabled="!productUrl || isLoading"
+                                class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center">
+                            <span x-show="!isLoading">분석 시작</span>
+                            <span x-show="isLoading" class="flex items-center">
+                                <div class="loading-spinner mr-2"></div>
+                                분석 중...
+                            </span>
+                        </button>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2 text-center">URL 입력 후 3분 내에 자동 등록까지 완료됩니다</p>
+                </div>
+            </div>
+
+            <!-- Automation Quick Panel -->
+            <div class="automation-panel text-white rounded-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">자동화 시스템</h3>
+                        <p class="text-sm opacity-90">쿠팡 주문을 자동으로 수집하고 도매꾹에 발주합니다</p>
+                    </div>
+                    <div class="flex space-x-4">
+                        <button @click="checkAutomationStatus()" 
+                                class="px-4 py-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors">
+                            <i class="fas fa-sync mr-2"></i>상태 확인
+                        </button>
+                        <button @click="startAutomation()" 
+                                :disabled="isAutomating || !validateAutomationConfig()"
+                                class="px-6 py-2 bg-white text-purple-600 rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed flex items-center">
+                            <span x-show="!isAutomating">자동화 실행</span>
+                            <span x-show="isAutomating" class="flex items-center">
+                                <div class="loading-spinner mr-2"></div>
+                                처리 중...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div x-show="automationStatus" class="mt-4 text-sm">
+                    <div class="flex items-center space-x-4">
+                        <span>상태: <span x-text="automationStatus?.status || 'Unknown'"></span></span>
+                        <span>처리된 주문: <span x-text="automationStatus?.seenIdsCount || 0"></span>건</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Automation Configuration -->
+        <div x-show="currentStep === 'automation'" class="space-y-6">
+            <div class="bg-white rounded-lg card-shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-6">자동화 설정</h3>
+                
+                <!-- Coupang API Configuration -->
+                <div class="mb-8">
+                    <h4 class="text-md font-medium text-gray-900 mb-4">쿠팡 API 설정</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Access Key</label>
+                            <input type="text" x-model="automationConfig.coupangAccessKey" 
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Secret Key</label>
+                            <input type="password" x-model="automationConfig.coupangSecretKey" 
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Vendor ID</label>
+                            <input type="text" x-model="automationConfig.coupangVendorId" 
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Domeggook API Configuration -->
+                <div class="mb-8">
+                    <h4 class="text-md font-medium text-gray-900 mb-4">도매꾹 API 설정</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">API Key</label>
+                            <input type="text" x-model="automationConfig.domeApiKey" 
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">로그인 ID</label>
+                            <input type="text" x-model="automationConfig.domeLoginId" 
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">비밀번호</label>
+                            <input type="password" x-model="automationConfig.domePassword" 
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Automation Options -->
+                <div class="mb-6">
+                    <h4 class="text-md font-medium text-gray-900 mb-4">자동화 옵션</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <input type="checkbox" x-model="automationConfig.enabled" 
+                                   class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                            <label class="ml-2 block text-sm text-gray-900">자동화 활성화</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" x-model="automationConfig.autoApprove" 
+                                   class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                            <label class="ml-2 block text-sm text-gray-900">자동 승인 (수동 검토 없이 바로 발주)</label>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">처리 간격 (분)</label>
+                            <input type="number" x-model="automationConfig.processingInterval" min="5" max="1440"
+                                   class="mt-1 block w-32 px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex space-x-4">
+                    <button @click="startAutomation()" 
+                            :disabled="!validateAutomationConfig() || isAutomating"
+                            class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50">
+                        <span x-show="!isAutomating">지금 실행</span>
+                        <span x-show="isAutomating">실행 중...</span>
+                    </button>
+                    <button @click="checkAutomationStatus()" 
+                            class="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+                        상태 확인
+                    </button>
+                </div>
+            </div>
+
+            <!-- Manual Approval -->
+            <div class="bg-white rounded-lg card-shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">수동 승인</h3>
+                <p class="text-sm text-gray-600 mb-4">특정 shipmentBoxId에 대해 수동으로 승인 처리합니다.</p>
+                <div class="flex space-x-4">
+                    <input type="text" x-model="manualApprovalId" placeholder="shipmentBoxId 입력"
+                           class="flex-1 px-3 py-2 border border-gray-300 rounded-md">
+                    <button @click="approveOrder(manualApprovalId)" 
+                            :disabled="!manualApprovalId"
+                            class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50">
+                        승인 처리
+                    </button>
+                </div>
+            </div>
+
+            <!-- Automation Status -->
+            <div x-show="automationStatus" class="bg-white rounded-lg card-shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">자동화 상태</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <p class="text-sm text-gray-600">시스템 상태</p>
+                        <p class="text-lg font-semibold" x-text="automationStatus?.status || 'Unknown'"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">처리된 주문</p>
+                        <p class="text-lg font-semibold" x-text="automationStatus?.seenIdsCount || 0"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">최근 로그</p>
+                        <p class="text-lg font-semibold" x-text="automationStatus?.recentLogs?.length || 0"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Analysis (기존 코드 유지) -->
+        <div x-show="currentStep === 'analysis'" class="space-y-6">
+            <!-- Product Info -->
+            <div x-show="productData" class="bg-white rounded-lg card-shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">상품 정보</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <img x-show="productData?.image" :src="productData?.image" alt="상품 이미지" class="w-full h-64 object-cover rounded-lg">
+                        <div x-show="productData?.detailImages?.length > 1" class="mt-3">
+                            <p class="text-xs font-medium text-gray-500 mb-2">추가 상세 이미지</p>
+                            <div class="flex space-x-2 overflow-x-auto">
+                                <template x-for="(img, idx) in productData.detailImages.slice(0,6)" :key="img">
+                                    <img :src="img"
+                                         :alt="productData?.name + ' 상세 이미지 ' + (idx + 1)"
+                                         class="h-16 w-16 rounded-md object-cover border border-gray-200 flex-shrink-0">
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">상품명</label>
+                            <p x-text="productData?.name" class="mt-1 text-gray-900"></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">도매가</label>
+                            <p x-text="formatCurrency(productData?.wholesalePrice)" class="mt-1 text-lg font-semibold text-blue-600"></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">카테고리</label>
+                            <p x-text="productData?.category" class="mt-1 text-gray-900"></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">최소 주문 수량</label>
+                            <p class="mt-1 text-gray-900" x-text="(productData?.minOrderQuantity || 1) + '개'"></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">배송비</label>
+                            <p class="mt-1 text-gray-900" x-text="productData?.shippingCost ? productData.shippingCost.toLocaleString() + '원' : (productData?.shippingText || '정보 없음')"></p>
+                        </div>
+                        <div x-show="productData?.imageUsageStatus">
+                            <label class="block text-sm font-medium text-gray-700">이미지 사용</label>
+                            <div class="mt-1 space-y-2">
+                                <span :class="imageUsageClass(productData)"
+                                      class="inline-flex items-center px-3 py-1 text-xs font-medium rounded-full">
+                                    <span x-text="imageUsageLabel(productData)"></span>
+                                </span>
+                                <p x-show="productData?.imageUsageText"
+                                   class="text-sm text-gray-600 leading-snug"
+                                   x-text="productData?.imageUsageText"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div x-show="productData?.detailText" class="mt-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">상세 설명 (요약)</label>
+                    <div class="border border-gray-200 rounded-lg bg-gray-50 p-4 max-h-60 overflow-y-auto whitespace-pre-line text-sm text-gray-700">
+                        <p x-text="productData?.detailText"></p>
+                    </div>
+                </div>
+                <div x-show="productData?.detailHtml" class="mt-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">상세 설명 (원문)</label>
+                    <div class="border border-gray-200 rounded-lg bg-white p-4 max-h-96 overflow-y-auto prose prose-sm">
+                        <div x-html="productData?.detailHtml"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Margin Calculator -->
+            <div class="bg-white rounded-lg card-shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">마진 계산</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">배송비 (KRW)</label>
+                            <input type="number" x-model="marginParams.shippingCost" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">수수료율 (%)</label>
+                            <input type="number" x-model="marginParams.commissionRate" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">목표 마진율 (%)</label>
+                            <input type="number" x-model="marginParams.targetMarginRate" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">광고비 (KRW)</label>
+                            <input type="number" x-model="marginParams.advertisingCost" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <h4 class="font-medium text-gray-900 mb-3">계산 결과</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">총 원가:</span>
+                                <span x-text="formatCurrency(marginReport?.totalCost)"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">추천 판매가:</span>
+                                <span class="font-semibold text-blue-600" x-text="formatCurrency(marginReport?.recommendedPrice)"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">예상 마진:</span>
+                                <span class="font-semibold text-green-600" x-text="formatCurrency(marginReport?.marginAmount)"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">마진율:</span>
+                                <span class="font-semibold text-green-600" x-text="marginReport?.marginRate + '%'"></span>
+                            </div>
+                        </div>
+                        <button @click="calculateMargin()" class="w-full mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            마진 재계산
+                        </button>
+                        <p x-show="marginReport" class="mt-4 text-sm text-gray-600 leading-snug border-t border-gray-200 pt-3">
+                            <span x-text="marginExplanation()"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keywords -->
+            <div x-show="keywords.length > 0" class="bg-white rounded-lg card-shadow p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">AI 추천 키워드</h3>
+                    <button @click="copyAllKeywords()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                        <i class="fas fa-copy mr-2"></i>전체 복사
+                    </button>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <template x-for="(keyword, index) in keywords" :key="index">
+                        <div class="flex items-center justify-between bg-gray-50 rounded-lg p-3">
+                            <span x-text="keyword" class="text-sm"></span>
+                            <button @click="copyKeyword(keyword)" class="text-blue-600 hover:text-blue-800">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </template>
+                </div>
+                <div class="mt-4">
+                    <h4 class="font-medium text-gray-900 mb-2">쿠팡 검색 링크</h4>
+                    <div class="space-y-2">
+                        <template x-for="(keyword, index) in keywords.slice(0, 5)" :key="index">
+                            <a :href="'https://www.coupang.com/np/search?q=' + encodeURIComponent(keyword)" 
+                               target="_blank"
+                               class="block text-blue-600 hover:text-blue-800 text-sm">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                <span x-text="keyword + ' 검색'"></span>
+                            </a>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registration -->
+            <div class="bg-white rounded-lg card-shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">쿠팡 윙 등록</h3>
+                <div class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">판매가</label>
+                            <input type="number" x-model="registrationData.sellingPrice" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">할인율 (%)</label>
+                            <input type="number" x-model="registrationData.discountRate" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">선택 키워드</label>
+                        <select x-model="registrationData.selectedKeywords" multiple class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                            <template x-for="keyword in keywords" :key="keyword">
+                                <option :value="keyword" x-text="keyword"></option>
+                            </template>
+                        </select>
+                        <p class="text-xs text-gray-500 mt-1">Ctrl+클릭으로 여러 키워드 선택</p>
+                    </div>
+                    <button @click="registerProduct()" 
+                            :disabled="isRegistering"
+                            class="w-full px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50">
+                        <span x-show="!isRegistering">쿠팡 윙 등록</span>
+                        <span x-show="isRegistering" class="flex items-center justify-center">
+                            <div class="loading-spinner mr-2"></div>
+                            등록 중...
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- History -->
+        <div x-show="currentStep === 'history'" class="bg-white rounded-lg card-shadow p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">등록 이력</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">상품명</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">등록일</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">상태</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">마진율</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">유형</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">액션</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <template x-for="item in history" :key="item.id">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" x-text="item.name"></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="formatDate(item.createdAt)"></td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span :class="getStatusColor(item.status)" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
+                                        <span x-text="getStatusText(item.status)"></span>
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" x-text="(item.marginRate || 0) + '%'"></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <span x-text="item.isAutomated ? '자동' : '수동'" 
+                                          :class="item.isAutomated ? 'text-purple-600' : 'text-blue-600'"></span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <a :href="item.productUrl" target="_blank" class="text-blue-600 hover:text-blue-900">보기</a>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 마진계산 섹션 -->
+        <div x-show="currentStep === 'margin'" class="bg-white rounded-lg card-shadow p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">💰 마진 계산기</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Input Section -->
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">상품명</label>
+                        <input type="text" x-model="marginCalc.productName"
+                               placeholder="예: 무자국 수경"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">예상 판매가</label>
+                        <input type="number" x-model="marginCalc.unitPrice"
+                               placeholder="판매가 입력"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">도매가 + 배송비</label>
+                        <input type="number" x-model="marginCalc.cost"
+                               placeholder="원가 입력"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">수수료율 (%)</label>
+                        <input type="number" x-model="marginCalc.commissionRate"
+                               placeholder="11"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">클릭당 광고비 (CPC)</label>
+                        <input type="number" x-model="marginCalc.cpc"
+                               placeholder="100"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">전환율 (%)</label>
+                        <input type="number" x-model="marginCalc.conversionRate"
+                               placeholder="2"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">목표 순이익</label>
+                        <input type="number" x-model="marginCalc.targetProfit"
+                               placeholder="50000"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <button @click="calculateProfit()"
+                            class="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                        계산하기
+                    </button>
+                </div>
+
+                <!-- Result Section -->
+                <div>
+                    <div x-show="marginCalc.result" class="bg-gray-50 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold mb-4">📊 계산 결과</h3>
+                        <div class="space-y-3" x-html="marginCalc.result"></div>
+                    </div>
+
+                    <!-- History Table -->
+                    <div class="mt-6">
+                        <h3 class="text-lg font-semibold mb-4">📋 계산 기록</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">상품명</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">판매수</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">순이익</th>
+                                    </tr>
+                                </thead>
+                                <tbody x-html="marginCalc.historyHtml"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 광고분석 섹션 -->
+        <div x-show="currentStep === 'adAnalysis'" class="bg-white rounded-lg card-shadow p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">📊 광고 분석</h2>
+
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">광고 데이터 엑셀 업로드</label>
+                <input type="file" @change="loadAdData($event)" accept=".xlsx"
+                       class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                <p class="mt-2 text-sm text-gray-500">엑셀 파일을 업로드하여 ROAS, 클릭률, 전환율 등을 시각화합니다</p>
+            </div>
+
+            <!-- 통계 테이블 -->
+            <div x-show="adAnalysis.statsHtml" class="mb-6 overflow-x-auto" x-html="adAnalysis.statsHtml"></div>
+
+            <!-- 차트 -->
+            <div class="bg-gray-50 rounded-lg p-6" style="height: 600px;">
+                <canvas id="adChart"></canvas>
+            </div>
+        </div>
+
+        <!-- 키워드분석 섹션 -->
+        <div x-show="currentStep === 'keywordAnalysis'" class="bg-white rounded-lg card-shadow p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">🔑 키워드 분석</h2>
+
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">키워드 데이터 엑셀 업로드</label>
+                <input type="file" @change="loadKeywordData($event)" accept=".xlsx"
+                       class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
+            </div>
+
+            <div x-show="keywordAnalysis.products.length > 0" class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">상품별 보기</label>
+                <select x-model="keywordAnalysis.selectedProduct" @change="filterKeywords()"
+                        class="block w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    <option value="">전체 상품</option>
+                    <template x-for="product in keywordAnalysis.products" :key="product">
+                        <option :value="product" x-text="product"></option>
+                    </template>
+                </select>
+            </div>
+
+            <!-- 좋은 키워드 -->
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-green-600 mb-4">✨ 좋은 키워드</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200" x-show="keywordAnalysis.goodKeywords.length > 0">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">상품ID</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">키워드</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">노출수</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">클릭수</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">매출</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">광고비</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">ROAS</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <template x-for="kw in keywordAnalysis.goodKeywords" :key="kw.keyword">
+                                <tr>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="kw.product"></td>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="kw.keyword"></td>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="kw.impressions.toLocaleString()"></td>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="kw.clicks.toLocaleString()"></td>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="kw.revenue.toLocaleString()"></td>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="kw.spend.toLocaleString()"></td>
+                                    <td class="px-4 py-2 text-sm font-semibold text-green-600" x-text="kw.roas.toFixed(1) + '%'"></td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 저성과 키워드 -->
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-red-600 mb-4">⚠️ 저성과 키워드</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200" x-show="keywordAnalysis.lowKeywords.length > 0">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">상품ID</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">키워드</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">노출수</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">클릭수</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">매출</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">광고비</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">ROAS</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <template x-for="kw in keywordAnalysis.lowKeywords" :key="kw.keyword">
+                                <tr class="bg-red-50">
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="kw.product"></td>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="kw.keyword"></td>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="kw.impressions.toLocaleString()"></td>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="kw.clicks.toLocaleString()"></td>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="kw.revenue.toLocaleString()"></td>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="kw.spend.toLocaleString()"></td>
+                                    <td class="px-4 py-2 text-sm font-semibold text-red-600" x-text="kw.roas.toFixed(1) + '%'"></td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+
+                <button x-show="keywordAnalysis.lowKeywords.length > 0"
+                        @click="downloadLowKeywords()"
+                        class="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+                    📝 제외 키워드 다운로드
+                </button>
+            </div>
+        </div>
+
+        <!-- 상품검사 섹션 -->
+        <div x-show="currentStep === 'productInspection'" class="bg-white rounded-lg card-shadow p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">📦 상품 검사 (쿠팡 윙 양식)</h2>
+
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">상품 목록 엑셀 업로드</label>
+                <input type="file" @change="loadProductExcel($event)" accept=".xlsx"
+                       class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100">
+            </div>
+
+            <div x-show="productInspection.products.length > 0">
+                <!-- 정렬 옵션 -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">정렬</label>
+                    <select @change="sortProducts()" x-model="productInspection.sortOption"
+                            class="block w-48 px-4 py-2 border border-gray-300 rounded-lg">
+                        <option value="">-- 선택 --</option>
+                        <option value="price-asc">가격 낮은순</option>
+                        <option value="price-desc">가격 높은순</option>
+                        <option value="sales-asc">판매수 낮은순</option>
+                        <option value="sales-desc">판매수 높은순</option>
+                    </select>
+                </div>
+
+                <!-- 상품 테이블 -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">선택</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">상품명</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">기존 가격</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">판매 수량</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">도매가</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">추천가1</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">추천가2</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">추천가3</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">적용가</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500">적용</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <template x-for="(product, index) in paginatedProducts()" :key="index">
+                                <tr>
+                                    <td class="px-4 py-2"><input type="checkbox"></td>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="product.name"></td>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="product.price?.toLocaleString()"></td>
+                                    <td class="px-4 py-2 text-sm text-gray-900" x-text="product.sales?.toLocaleString()"></td>
+                                    <td class="px-4 py-2">
+                                        <input type="number" x-model="product.wholesalePrice"
+                                               @input="calculateRecommendedPrices(index)"
+                                               class="w-24 px-2 py-1 border border-gray-300 rounded"
+                                               placeholder="도매가">
+                                    </td>
+                                    <td class="px-4 py-2 text-sm" x-text="product.rec1 || '-'"></td>
+                                    <td class="px-4 py-2 text-sm" x-text="product.rec2 || '-'"></td>
+                                    <td class="px-4 py-2 text-sm" x-text="product.rec3 || '-'"></td>
+                                    <td class="px-4 py-2">
+                                        <input type="number" x-model="product.applyPrice"
+                                               class="w-24 px-2 py-1 border border-gray-300 rounded"
+                                               placeholder="적용가">
+                                    </td>
+                                    <td class="px-4 py-2">
+                                        <button @click="applyProductPrice(index)"
+                                                class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                            적용
+                                        </button>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-4 flex justify-center space-x-2">
+                    <button @click="productInspection.currentPage--"
+                            :disabled="productInspection.currentPage === 1"
+                            class="px-4 py-2 bg-gray-200 rounded disabled:opacity-50">
+                        ‹
+                    </button>
+                    <span class="px-4 py-2" x-text="`${productInspection.currentPage} / ${totalPages()}`"></span>
+                    <button @click="productInspection.currentPage++"
+                            :disabled="productInspection.currentPage === totalPages()"
+                            class="px-4 py-2 bg-gray-200 rounded disabled:opacity-50">
+                        ›
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 도매검색 섹션 -->
+        <div x-show="currentStep === 'wholesaleSearch'" class="bg-white rounded-lg card-shadow p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">🔍 도매 사이트 검색</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <!-- 검색 키워드 -->
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">검색 키워드</label>
+                    <input type="text" x-model="wholesaleSearch.keyword" @keyup.enter="searchWholesale()"
+                           placeholder="예: 무지 티셔츠, 반바지, 여름 원피스"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- 가격 범위 -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">가격 범위</label>
+                    <div class="flex space-x-2">
+                        <input type="number" x-model="wholesaleSearch.minPrice" placeholder="최소"
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                        <input type="number" x-model="wholesaleSearch.maxPrice" placeholder="최대"
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 사이트 선택 -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">검색할 사이트</label>
+                <div class="flex flex-wrap gap-3 items-center">
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" value="domeggook" x-model="wholesaleSearch.selectedSites"
+                               class="h-4 w-4 text-blue-600 rounded">
+                        <span>도매꾹</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" value="11st" x-model="wholesaleSearch.selectedSites"
+                               class="h-4 w-4 text-blue-600 rounded">
+                        <span>11번가</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" value="gmarket" x-model="wholesaleSearch.selectedSites"
+                               class="h-4 w-4 text-blue-600 rounded">
+                        <span>G마켓</span>
+                    </label>
+                    <button type="button"
+                            @click="openCoupangSearch"
+                            class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
+                        쿠팡 검색 열기
+                    </button>
+                </div>
+                <p class="mt-2 text-xs text-gray-500">
+                    쿠팡은 보안 정책으로 자동 수집이 어려워 별도 탭에서 확인 후 필요한 정보를 직접 입력해주세요.
+                </p>
+            </div>
+
+            <!-- 검색 버튼 -->
+            <button @click="searchWholesale()"
+                    :disabled="wholesaleSearch.isSearching || !wholesaleSearch.keyword"
+                    class="w-full md:w-auto px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed">
+                <span x-show="!wholesaleSearch.isSearching">🔍 검색하기</span>
+                <span x-show="wholesaleSearch.isSearching" class="flex items-center justify-center">
+                    <div class="loading-spinner mr-2"></div>
+                    검색 중...
+                </span>
+            </button>
+
+            <!-- 검색 결과 -->
+            <div x-show="wholesaleSearch.results.length > 0" class="mt-8">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold">검색 결과 (<span x-text="wholesaleSearch.results.length"></span>개)</h3>
+                        <p class="text-sm text-gray-500" x-show="wholesaleSearch.showFavoritesOnly">
+                            찜한 상품만 표시 중
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-gray-600">
+                        <div>
+                            검색 시간: <span x-text="wholesaleSearch.searchDuration"></span>ms
+                        </div>
+                        <button @click="toggleFavoritesView()"
+                                :class="wholesaleSearch.showFavoritesOnly ? 'bg-pink-600 text-white' : 'bg-gray-200 text-gray-700'"
+                                class="px-3 py-2 rounded-lg flex items-center space-x-2">
+                            <i class="fas fa-heart"></i>
+                            <span>찜한 상품</span>
+                            <span class="text-xs font-medium" x-text="favoriteResults().length"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 사이트별 필터 -->
+                <div class="mb-4 flex flex-wrap gap-2">
+                    <button @click="wholesaleSearch.filterSite = 'all'"
+                            :class="wholesaleSearch.filterSite === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'"
+                            class="px-4 py-2 rounded-lg">
+                        전체 (<span x-text="wholesaleSearch.results.length"></span>)
+                    </button>
+                    <template x-for="site in getUniqueSites()" :key="site">
+                        <button @click="wholesaleSearch.filterSite = site"
+                                :class="wholesaleSearch.filterSite === site ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'"
+                                class="px-4 py-2 rounded-lg capitalize">
+                            <span x-text="site"></span> (<span x-text="countBySite(site)"></span>)
+                        </button>
+                    </template>
+                </div>
+
+                <!-- 이미지 사용 상태 필터 -->
+                <div class="mb-4 flex flex-wrap gap-2">
+                    <template x-for="status in imageStatusOptions()" :key="status.value">
+                        <button @click="wholesaleSearch.imageFilter = status.value"
+                                :class="wholesaleSearch.imageFilter === status.value ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-700'"
+                                class="px-4 py-2 rounded-lg flex items-center space-x-2">
+                            <span x-text="status.label"></span>
+                            <span class="text-xs" x-text="status.count"></span>
+                        </button>
+                    </template>
+                </div>
+
+                <!-- 상품 그리드 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <template x-for="product in getFilteredResults()" :key="getWholesaleProductKey(product)">
+                        <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
+                             :class="getWholesaleProductKey(product) === wholesaleSearch.selectedProduct ? 'border-blue-400 ring-2 ring-blue-200' : (isWholesaleFavorite(product) ? 'border-pink-400 ring-2 ring-pink-200' : '')">
+                            <!-- 이미지 -->
+                            <div class="relative h-48 bg-gray-100">
+                                <img x-show="product.imageUrl" :src="product.imageUrl" :alt="product.name"
+                                     class="w-full h-full object-cover">
+                                <div x-show="!product.imageUrl" class="flex items-center justify-center h-full text-gray-400">
+                                    <i class="fas fa-image text-4xl"></i>
+                                </div>
+                                <!-- 사이트 배지 -->
+                                <div class="absolute top-2 right-2 px-2 py-1 bg-black bg-opacity-70 text-white text-xs rounded">
+                                    <span x-text="product.site"></span>
+                                </div>
+                                <button type="button"
+                                        @click.stop="toggleWholesaleFavorite(product)"
+                                        class="absolute top-2 left-2 bg-white bg-opacity-80 rounded-full p-1 hover:bg-opacity-100 transition"
+                                        :title="isWholesaleFavorite(product) ? '찜 취소' : '찜하기'">
+                                    <i class="fas fa-heart" :class="isWholesaleFavorite(product) ? 'text-pink-500' : 'text-gray-300'"></i>
+                                </button>
+                            </div>
+
+                            <!-- 정보 -->
+                            <div class="p-4">
+                                <h4 class="font-medium text-gray-900 mb-2 line-clamp-2 min-h-[3rem]" x-text="product.name"></h4>
+                                <p class="text-xl font-bold text-blue-600 mb-2" x-text="product.price?.toLocaleString() + '원'"></p>
+                                <div class="text-xs text-gray-600 space-y-1 mb-3">
+                                    <div>최소 주문: <span class="font-semibold" x-text="(product.minOrderQuantity || 1) + '개'"></span></div>
+                                    <div>배송비: <span class="font-semibold" x-text="product.shippingCost ? product.shippingCost.toLocaleString() + '원' : (product.shippingText || '정보 없음')"></span></div>
+                                </div>
+                                <div x-show="wholesaleDescriptionPreview(product)" class="mb-3">
+                                    <p class="text-xs font-medium text-gray-500 mb-1">상세 설명 요약</p>
+                                    <p class="text-sm text-gray-700 leading-snug" style="max-height: 4.5rem; overflow: hidden;"
+                                       x-text="wholesaleDescriptionPreview(product)"></p>
+                                </div>
+                                <div class="space-y-2">
+                                    <a :href="product.sourceUrl" target="_blank"
+                                       class="block w-full px-4 py-2 bg-green-600 text-white text-center rounded-lg hover:bg-green-700">
+                                        상세보기
+                                    </a>
+                                    <button type="button"
+                                            @click="prepareRegistrationFromWholesale(product)"
+                                            :disabled="wholesaleSearch.detailLoading === getWholesaleProductKey(product)"
+                                            class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed"
+                                            :class="getWholesaleProductKey(product) === wholesaleSearch.selectedProduct ? 'bg-blue-700 shadow-inner' : ''">
+                                        <span x-show="wholesaleSearch.detailLoading !== getWholesaleProductKey(product)">
+                                            상품 등록 준비
+                                        </span>
+                                        <span x-show="wholesaleSearch.detailLoading === getWholesaleProductKey(product)"
+                                              class="flex items-center justify-center">
+                                            <div class="loading-spinner mr-2"></div>
+                                            불러오는 중...
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="mt-3 space-y-2" x-show="product.imageUsageStatus">
+                                    <span :class="imageUsageClass(product)"
+                                          class="inline-flex items-center px-3 py-1 text-xs font-medium rounded-full">
+                                        <span x-text="imageUsageLabel(product)"></span>
+                                    </span>
+                                    <p x-show="product.imageUsageText"
+                                       class="text-xs text-gray-600 leading-snug"
+                                       x-text="product.imageUsageText"></p>
+                                </div>
+                                <div class="mt-3" x-show="product.detailImages && product.detailImages.length">
+                                    <p class="text-xs font-medium text-gray-500 mb-2">상세 이미지 미리보기</p>
+                                    <div class="flex space-x-2 overflow-x-auto">
+                                        <template x-for="(img, idx) in product.detailImages.slice(0,4)" :key="img">
+                                            <img :src="img"
+                                                 :alt="product.name + ' 상세 이미지 ' + (idx + 1)"
+                                                 class="h-14 w-14 rounded-md object-cover border border-gray-200 flex-shrink-0">
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- 에러 표시 -->
+                <div x-show="wholesaleSearch.errors.length > 0" class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                    <h4 class="font-semibold text-yellow-800 mb-2">⚠️ 일부 사이트에서 오류 발생</h4>
+                    <ul class="text-sm text-yellow-700 space-y-1">
+                        <template x-for="error in wholesaleSearch.errors" :key="error.site">
+                            <li><strong x-text="error.site"></strong>: <span x-text="error.error"></span></li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 검색 결과 없음 -->
+            <div x-show="wholesaleSearch.searched && wholesaleSearch.results.length === 0"
+                 class="mt-8 p-8 text-center text-gray-500">
+                <i class="fas fa-search text-4xl mb-4"></i>
+                <p class="text-lg">검색 결과가 없습니다.</p>
+                <p class="text-sm mt-2">다른 키워드로 검색해보세요.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notifications -->
+    <div x-show="notification.show" 
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 transform translate-y-2"
+         x-transition:enter-end="opacity-100 transform translate-y-0"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 transform translate-y-0"
+         x-transition:leave-end="opacity-0 transform translate-y-2"
+         class="fixed bottom-4 right-4 z-50">
+        <div :class="notification.type === 'success' ? 'bg-green-500' : notification.type === 'error' ? 'bg-red-500' : 'bg-blue-500'" 
+             class="text-white px-6 py-4 rounded-lg shadow-lg max-w-sm">
+            <div class="flex items-center">
+                <i :class="notification.type === 'success' ? 'fas fa-check-circle' : notification.type === 'error' ? 'fas fa-exclamation-circle' : 'fas fa-info-circle'" 
+                   class="mr-3"></i>
+                <span x-text="notification.message"></span>
+                <button @click="notification.show = false" class="ml-4 text-white hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
+                <div x-show="!wholesaleSearch.showFavoritesOnly && favoriteResults().length > 0" class="mb-4 bg-pink-50 border border-pink-200 rounded-lg p-4">
+                    <h4 class="text-sm font-semibold text-pink-700 mb-2">찜한 상품 미리보기</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <template x-for="fav in favoriteResults()" :key="getWholesaleProductKey(fav)">
+                            <button type="button"
+                                    @click="prepareRegistrationFromWholesale(fav)"
+                                    class="px-3 py-1 rounded-full border border-pink-300 bg-white text-xs text-pink-700 hover:bg-pink-100">
+                                <span x-text="fav.name"></span>
+                            </button>
+                        </template>
+                    </div>
+                </div>

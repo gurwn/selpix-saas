@@ -1,0 +1,37 @@
+[
+  {
+    "id": "TC001",
+    "title": "validate_margin_calculation_accuracy",
+    "description": "Test the margin calculator with various inputs including wholesale price, selling price, and platform selection to ensure the profit margin and net profit are calculated accurately according to the specified platform fees."
+  },
+  {
+    "id": "TC002",
+    "title": "verify_product_registration_required_fields_validation",
+    "description": "Test the Coupang Register API endpoint by submitting product registration requests with missing required fields such as productName, wholesalePrice, or price to verify that the API returns a 400 error with appropriate error messages."
+  },
+  {
+    "id": "TC003",
+    "title": "test_product_registration_input_sanitization",
+    "description": "Submit product registration requests containing harmful HTML tags like <script> in product descriptions and verify that the API sanitizes inputs properly to prevent security vulnerabilities."
+  },
+  {
+    "id": "TC004",
+    "title": "check_phone_number_formatting_in_registration",
+    "description": "Verify that phone numbers submitted during product registration are reformatted to the international standard format (e.g., +821012345678) before being processed or stored."
+  },
+  {
+    "id": "TC005",
+    "title": "test_single_product_creation_without_options",
+    "description": "Test the product registration API by submitting a product without any option values and verify that the product is created successfully without errors."
+  },
+  {
+    "id": "TC006",
+    "title": "dashboard_loading_and_error_handling",
+    "description": "Verify that the dashboard UI displays loading spinners while fetching sales and margin data and shows appropriate error messages if the data retrieval API requests fail."
+  },
+  {
+    "id": "TC007",
+    "title": "dashboard_responsive_ui_on_screen_resize",
+    "description": "Test the dashboard UI responsiveness by resizing the window to various screen sizes including mobile dimensions and verify that the layout adjusts correctly without breaking usability."
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "name": "@myapp/prisma",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "types": "./index.ts",
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "zod": "./prisma/generated/zod/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup index.ts",
+    "db:generate": "prisma generate",
+    "db:migrate:diff": "prisma migrate diff",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:migrate:create": "prisma migrate dev --create-only",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:migrate:reset": "prisma migrate reset",
+    "db:prebuild": "npm run db:generate",
+    "db:predev": "npm run db:generate",
+    "db:push": "prisma db push",
+    "dev": "tsup index.ts --watch",
+    "format": "prisma format",
+    "lint": "eslint .",
+    "studio": "prisma studio",
+    "postinstall": "prisma generate"
+  },
+  "prisma": {
+    "schema": "./prisma/schema.prisma"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.8.2",
+    "decimal.js": "^10.6.0",
+    "dotenv": "^16.5.0",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.1",
+    "zod-prisma": "^0.5.4",
+    "zod-prisma-types": "^3.2.4"
+  },
+  "devDependencies": {
+    "@myapp/eslint-config": "workspace:*",
+    "@myapp/typescript-config": "workspace:*",
+    "@types/node": "^22.15.3",
+    "eslint": "^9.27.0",
+    "prisma": "^6.8.2",
+    "rimraf": "^5.0.5",
+    "tsup": "^8.0.2",
+    "tsx": "4.19.1",
+    "typescript": "^5.8.3"
+  }
+}

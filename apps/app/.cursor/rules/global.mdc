@@ -1,0 +1,38 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+# Guidline
+
+## Must
+
+- use **pnpm**
+- 항상 먼저 코드베이스를 파악하고, 오류가 없는 구현계획을 세우고 그대로 구현하세요.
+- After completing the task, please suggest a commit message following the convention from the git commit history.
+- use shadcn components from `@myapp/ui`
+
+- **Function Scope Separation**:
+  - ✅ DO: Keep display logic separate from business logic
+  - ✅ DO: Import data processing functions from other modules
+  - ❌ DON'T: Include task manipulations within UI functions
+  - ❌ DON'T: Create circular dependencies with other modules
+
+## Libraries
+
+- date-fns
+- es-toolkit
+- framer-motion
+- react-hook-form
+- ts-pattern
+- zod
+- @tanstack/react-query
+- trpc
+
+## Data Fetching
+
+- use trpc client. ref: [client.tsx](mdc:apps/app/src/utils/trpc/client.tsx)
+- use useSupenseQuery for data query. ref: [TaskDetailDrawer.tsx](mdc:apps/app/src/features/dashboard/components/TaskDetailDrawer/TaskDetailDrawer.tsx)
+- use useMutation for data mutation. ref: [Wizard.tsx](mdc:apps/app/src/features/wizard/Wizard.tsx)
+- find appropriate router in `/packages/api/src/routers` directory. ref: [project.ts](mdc:packages/api/src/routers/project.ts)

@@ -1,0 +1,15 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "passThroughEnv": [
+        "CLERK_SECRET_KEY",
+        "DATABASE_URL",
+        "DIRECT_URL",
+        "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+        "NEXT_PUBLIC_GA_ID",
+        "NEXT_PUBLIC_CLARITY_PROJECT_ID"
+      ]
+    }
+  }
+}

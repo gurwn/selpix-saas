@@ -1,0 +1,247 @@
+---
+description: Comprehensive API development guidelines for tRPC routers, middleware, and database operations
+globs: packages/api/src/**/*.ts
+alwaysApply: true
+---
+
+# API Package Guidelines
+
+## Directory Structure
+
+```
+packages/api/
+├── src/
+│   ├── trpc.ts           # Core tRPC setup - DO NOT modify without understanding middleware chain
+│   ├── root.ts           # Router aggregation - Add new routers here
+│   ├── routers/          # All API endpoints
+│   │   ├── [entity].ts   # Single entity routers
+│   │   └── [feature]/    # Feature-grouped routers with index.ts
+│   └── utils/            # Shared utilities and helpers
+└── index.ts              # Public exports only
+```
+
+## Router Development Guidelines
+
+### **Router Structure Requirements**
+
+- **Entity-Based Organization**
+  - One router per database entity (e.g., [user.ts](mdc:src/routers/user.ts), [project.ts](mdc:src/routers/project.ts))
+  - Complex features in subdirectories with index.ts aggregation
+  - Follow existing patterns in [organization/index.ts](mdc:src/routers/organization/index.ts)
+
+- **Standard CRUD Naming Convention**
+  ```typescript
+  export const entityRouter = createTRPCRouter({
+    createEntity: protectedProcedure...,    // ✅ CREATE
+    getEntity: protectedProcedure...,       // ✅ READ single
+    getEntities: protectedProcedure...,     // ✅ READ list
+    updateEntity: protectedProcedure...,    // ✅ UPDATE
+    deleteEntity: protectedProcedure...,    // ✅ DELETE
+    getEntityByField: protectedProcedure... // ✅ Filtered queries
+  });
+  ```
+
+### **Input Validation with Zod**
+
+- **Always Define Comprehensive Schemas**
+
+  ```typescript
+  // ✅ DO: Complete input validation
+  .input(z.object({
+    id: z.string().min(1),
+    name: z.string().min(1).max(255),
+    type: z.enum(["TYPE1", "TYPE2"]), // Import from Prisma
+    optional: z.string().optional(),
+  }))
+
+  // ❌ DON'T: Skip validation or use any
+  .input(z.any())
+  ```
+
+### **Error Handling Standards**
+
+- **Use Semantic TRPCError Codes**
+
+  ```typescript
+  // ✅ DO: Meaningful errors
+  throw new TRPCError({
+    code: "NOT_FOUND",
+    message: "Project not found",
+  });
+
+  // ❌ DON'T: Generic errors
+  throw new Error("Error");
+  ```
+
+- **Standard Error Codes**
+  - `UNAUTHORIZED` - No authentication
+  - `FORBIDDEN` - No permission
+  - `NOT_FOUND` - Resource doesn't exist
+  - `CONFLICT` - Duplicate or constraint violation
+  - `PRECONDITION_FAILED` - Business logic failure
+
+## Database Operations
+
+### **ID Generation Pattern**
+
+- **Use CUID2 with Entity Prefixes**
+
+  ```typescript
+  // ✅ DO: Consistent prefixes
+  const projectId = `prj_${cuid2()}`;
+  const taskId = `tsk_${cuid2()}`;
+  const userId = `usr_${cuid2()}`;
+
+  // ❌ DON'T: Random IDs
+  const id = cuid2();
+  ```
+
+### **Transaction Usage**
+
+- **Group Related Operations**
+
+  ```typescript
+  // ✅ DO: Atomic operations
+  await prisma.$transaction(async (tx) => {
+    const project = await tx.project.create({...});
+    await tx.log.create({...});
+    return project;
+  });
+
+  // ❌ DON'T: Separate queries that should be atomic
+  ```
+
+### **Query Patterns**
+
+- **Include Related Data Efficiently**
+
+  ```typescript
+  // ✅ DO: Single query with includes
+  const project = await prisma.project.findUniqueOrThrow({
+    where: { id },
+    include: {
+      tasks: true,
+      members: { include: { user: true } },
+    },
+  });
+
+  // ❌ DON'T: Multiple queries
+  const project = await prisma.project.findUnique({...});
+  const tasks = await prisma.task.findMany({...});
+  ```
+
+## Authentication & Authorization
+
+### **Middleware Usage**
+
+- **Always Use protectedProcedure for Authenticated Routes**
+
+  ```typescript
+  // ✅ DO: Protected endpoints
+  getProject: protectedProcedure
+    .input(...)
+    .query(async ({ ctx, input }) => {
+      // ctx.user is guaranteed to exist
+    });
+
+  // ❌ DON'T: Manual auth checks
+  getProject: publicProcedure
+    .query(async ({ ctx }) => {
+      if (!ctx.auth) throw new Error("Unauthorized");
+    });
+  ```
+
+### **Permission Checking**
+
+- **Use Utility Functions**
+
+  ```typescript
+  // ✅ DO: Reusable permission checks
+  import { checkProjectAccess } from "../utils/checkProjectAccess";
+
+  const project = await checkProjectAccess(
+    prisma,
+    input.projectId,
+    ctx.user.id
+  );
+
+  // ❌ DON'T: Inline permission logic everywhere
+  ```
+
+## Code Organization
+
+### **Import Order**
+
+```typescript
+// 1. External dependencies
+import { z } from "zod";
+import { TRPCError } from "@trpc/server";
+
+// 2. Workspace packages
+import { prisma, TaskStatus, TaskImportance } from "@myapp/prisma";
+import { cuid2, formatDateTime } from "@myapp/utils";
+import { logger } from "@myapp/core-logger";
+
+// 3. Internal imports
+import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { checkProjectAccess } from "../utils/checkProjectAccess";
+```
+
+### **Response Patterns**
+
+- **Add Computed Fields After Query**
+
+  ```typescript
+  // ✅ DO: Transform after fetching
+  const projects = await prisma.project.findMany({...});
+
+  return projects.map(project => ({
+    ...project,
+    taskCount: project.tasks.length,
+    isOwner: project.ownerId === ctx.user.id,
+  }));
+  ```
+
+## Testing Considerations
+
+- **Testable Function Extraction**
+  - Extract complex business logic to utils/
+  - Keep procedures thin, logic in testable functions
+  - Reference [generateTasks.ts](mdc:src/utils/generateTasks.ts) pattern
+
+## Performance Guidelines
+
+- **Pagination for Lists**
+
+  ```typescript
+  // ✅ DO: Implement pagination
+  .input(z.object({
+    skip: z.number().default(0),
+    take: z.number().default(20).max(100),
+  }))
+  ```
+
+- **Select Only Required Fields**
+  ```typescript
+  // ✅ DO: Select specific fields for large queries
+  select: {
+    id: true,
+    name: true,
+    // Only what you need
+  }
+  ```
+
+## Common Pitfalls to Avoid
+
+- **Don't Skip Error Handling** - Always handle edge cases
+- **Don't Bypass Middleware** - Use the auth chain properly
+- **Don't Create Circular Dependencies** - Keep utils independent
+- **Don't Hardcode IDs** - Always generate with prefixes
+- **Don't Mix Concerns** - Separate business logic from tRPC procedures
+
+## References
+
+- [trpc.ts](mdc:src/trpc.ts) - Core middleware setup
+- [root.ts](mdc:src/root.ts) - Router aggregation pattern
+- [project.ts](mdc:src/routers/project.ts) - Standard CRUD example
+- [organization/index.ts](mdc:src/routers/organization/index.ts) - Nested router pattern

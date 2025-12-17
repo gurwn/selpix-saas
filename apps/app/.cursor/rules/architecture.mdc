@@ -1,0 +1,16 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Next.js Project Architecture
+
+## Directory Structure
+
+- /src/app: Next.js app router. don't define funciton itself for page component, only import. ref: [page.tsx](mdc:apps/app/src/app/(dynamic)/new/page.tsx)
+- /src/app/api/ai: Vercel AI SDK routes. ref: [route.ts](mdc:apps/app/src/app/api/ai/generate-additional-tasks/route.ts)
+- /src/components: shared components
+- /src/hooks: shared react hooks
+- /src/utils: shared utilities
+- /src/pages/[pageName]: modules for specific page
+- /src/pages/[pageName]/[PageName].tsx: page component. ref: [Home.tsx](mdc:apps/app/src/pages/home/Home.tsx)

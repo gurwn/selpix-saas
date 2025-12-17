@@ -1,0 +1,243 @@
+{
+  "common": {
+    "getStarted": "무료로 시작하기",
+    "signIn": "로그인",
+    "community": "커뮤니티"
+  },
+  "header": {
+    "home": "홈",
+    "features": "기능",
+    "pricing": "가격",
+    "faq": "FAQ",
+    "menuOpen": "메뉴 열기"
+  },
+  "hero": {
+    "badge": "템플릿",
+    "title": "Describe\nYour Service",
+    "description": "서비스의 핵심 가치를 간단히 적어주세요.\n한두 줄이면 충분합니다.",
+    "imageAlt": "제품 미리보기",
+    "tutorial": "튜토리얼 보기"
+  },
+  "solution": {
+    "sectionTitle": "솔루션",
+    "title": "핵심 베네핏을\n간단히 설명하세요",
+    "description": "제품이 어떻게 문제를 해결하는지 1~2문장으로 요약하세요.",
+    "features": {
+      "prd": {
+        "title": "기능 A",
+        "description": "간단한 기능 설명을 적어주세요."
+      },
+      "plan": {
+        "title": "기능 B",
+        "description": "간단한 기능 설명을 적어주세요."
+      },
+      "mcp": {
+        "title": "기능 C",
+        "description": "간단한 기능 설명을 적어주세요."
+      }
+    }
+  },
+  "targetUsers": {
+    "sectionTitle": "대상 사용자",
+    "title": "이런 분들께 적합합니다",
+    "description": "누가 가장 큰 가치를 얻는지 간단히 설명하세요.",
+    "users": {
+      "vibecoder": {
+        "label": "페르소나 A",
+        "title": "페르소나 A",
+        "description": "이 페르소나에 대한 짧은 설명을 적어주세요.",
+        "persona1": "핵심 특성 1",
+        "persona2": "핵심 특성 2",
+        "persona3": "핵심 특성 3"
+      },
+      "solo": {
+        "label": "페르소나 B",
+        "title": "페르소나 B",
+        "description": "이 페르소나에 대한 짧은 설명을 적어주세요.",
+        "persona1": "핵심 특성 1",
+        "persona2": "핵심 특성 2",
+        "persona3": "핵심 특성 3"
+      },
+      "startup": {
+        "label": "페르소나 C",
+        "title": "페르소나 C",
+        "description": "이 페르소나에 대한 짧은 설명을 적어주세요.",
+        "persona1": "핵심 특성 1",
+        "persona2": "핵심 특성 2",
+        "persona3": "핵심 특성 3"
+      }
+    }
+  },
+  "roadmap": {
+    "sectionTitle": "로드맵",
+    "title": "다음 계획",
+    "description": "예정된 마일스톤과 우선순위를 간단히 소개하세요.",
+
+    "features": {
+      "contextIntegration": {
+        "name": "예정 기능 A",
+        "description": "해당 예정 기능의 짧은 설명을 적어주세요.",
+        "cta": "알림받기"
+      },
+      "teamCollaboration": {
+        "name": "예정 기능 B",
+        "description": "해당 예정 기능의 짧은 설명을 적어주세요.",
+        "cta": "알림받기"
+      },
+      "milestoneRoadmap": {
+        "name": "예정 기능 C",
+        "description": "해당 예정 기능의 짧은 설명을 적어주세요.",
+        "cta": "알림받기"
+      },
+      "insights": {
+        "name": "예정 기능 D",
+        "description": "해당 예정 기능의 짧은 설명을 적어주세요.",
+        "cta": "알림받기"
+      },
+      "whatsNext": {
+        "name": "피드백 공유",
+        "description": "커뮤니티에 피드백 공유를 유도하는 간단한 문장을 넣어주세요.",
+        "cta": "피드백 제공"
+      }
+    },
+    "community": {
+      "title": "커뮤니티에 참여하세요",
+      "description": "짧고 친절한 톤으로 참여를 유도하는 문장을 작성하세요.",
+      "hashtags": "#해시태그1 #해시태그2",
+      "cta": "커뮤니티"
+    }
+  },
+  "pricing": {
+    "title": "단순하고 투명한 플랜",
+    "description": "가격 정책을 한 문장으로 요약하세요.",
+    "yearlyDiscountLabel": "35% 할인",
+    "frequencies": {
+      "monthly": "월간",
+      "yearly": "연간"
+    },
+    "plans": {
+      "free": {
+        "title": "Free",
+        "unit": "/월",
+        "description": "시작하기에 적합한 플랜",
+        "credits": "월 100 크레딧",
+        "projects": "최대 3개 프로젝트",
+        "ai": "기본 기능",
+        "support": "커뮤니티 지원",
+        "buttonText": "무료로 시작하기"
+      },
+      "pro": {
+        "title": "Pro",
+        "unit": "/월",
+        "description": "성장 중인 개인/팀을 위한 플랜",
+        "credits": "월 500 크레딧",
+        "projects": "무제한 프로젝트",
+        "ai": "고급 기능",
+        "designer": "부가 도구",
+        "buttonText": "Pro 선택하기"
+      },
+      "max5": {
+        "title": "Business",
+        "unit": "/월",
+        "description": "전문적인 사용에 적합",
+        "credits": "월 2,000 크레딧",
+        "usage": "향상된 사용량",
+        "ai": "프리미엄 기능",
+        "image": "이미지 첨부 기능",
+        "buttonText": "Business 선택하기"
+      },
+      "max20": {
+        "title": "Enterprise+",
+        "unit": "/월",
+        "description": "대용량 사용을 위한 플랜",
+        "credits": "월 10,000 크레딧",
+        "usage": "프리미엄 사용량",
+        "ai": "최상위 기능",
+        "context": "가장 큰 한도",
+        "buttonText": "Enterprise+ 선택하기"
+      }
+    },
+    "beta": {
+      "price": "무료"
+    }
+  },
+  "faq": {
+    "title": "자주 묻는 질문",
+    "description": "FAQ 소개 문구를 간략히 작성하세요.",
+    "item1": {
+      "question": "여기에 질문을 작성하세요",
+      "answer": "간단하고 명확한 답변을 작성하세요."
+    },
+    "item2": {
+      "question": "여기에 질문을 작성하세요",
+      "answer": "간단하고 명확한 답변을 작성하세요."
+    },
+    "item3": {
+      "question": "여기에 질문을 작성하세요",
+      "answer": "간단하고 명확한 답변을 작성하세요."
+    },
+    "item4": {
+      "question": "여기에 질문을 작성하세요",
+      "answer": "간단하고 명확한 답변을 작성하세요."
+    },
+    "item5": {
+      "question": "여기에 질문을 작성하세요",
+      "answer": "간단하고 명확한 답변을 작성하세요."
+    },
+    "item6": {
+      "question": "여기에 질문을 작성하세요",
+      "answer": "간단하고 명확한 답변을 작성하세요."
+    }
+  },
+  "footer": {
+    "tagline": "AI와 함께하는 체계적인 프로젝트 관리",
+    "product": {
+      "title": "제품",
+      "features": "기능",
+      "pricing": "가격",
+      "roadmap": "로드맵"
+    },
+    "company": {
+      "contact": "문의"
+    },
+    "resources": {
+      "title": "리소스",
+      "community": "커뮤니티",
+      "support": "지원",
+      "feedback": "피드백"
+    },
+    "social": {
+      "title": "SNS",
+      "threads": "threads",
+      "instagram": "instagram"
+    },
+    "legal": {
+      "privacy": "개인정보처리방침",
+      "terms": "이용약관"
+    },
+    "copyright": "© 2025 ProductName. All rights reserved."
+  },
+  "finalCTA": {
+    "title": "시작할 준비 되셨나요?",
+    "description": "짧고 명확한 클로징 카피를 넣어주세요.",
+    "cta": "시작하기",
+    "benefits": {
+      "freeAccess": {
+        "title": "혜택 A",
+        "description": "이 혜택에 대한 짧은 설명."
+      },
+      "limitedSpots": {
+        "title": "혜택 B",
+        "description": "이 혜택에 대한 짧은 설명."
+      },
+      "earlyAdopter": {
+        "title": "혜택 C",
+        "description": "이 혜택에 대한 짧은 설명."
+      }
+    }
+  },
+  "metadata": {
+    "title": "ProductName | AI Product Manager",
+    "description": "체계적인 바이브코딩을 돕는 AI PM"
+  }
+}

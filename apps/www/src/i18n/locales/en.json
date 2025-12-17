@@ -1,0 +1,243 @@
+{
+  "common": {
+    "getStarted": "Get Started",
+    "signIn": "Sign in",
+    "community": "Community"
+  },
+  "header": {
+    "home": "Home",
+    "features": "Features",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "menuOpen": "Open menu"
+  },
+  "hero": {
+    "badge": "Template",
+    "title": "Describe\nYour Service",
+    "description": "Write a concise value proposition.\nOne or two lines is enough.",
+    "imageAlt": "Product preview",
+    "tutorial": "Watch Tutorial"
+  },
+  "solution": {
+    "sectionTitle": "Solution",
+    "title": "Explain Your\nKey Benefits",
+    "description": "Use 1–2 sentences to describe how your product solves the problem.",
+    "features": {
+      "prd": {
+        "title": "Feature One",
+        "description": "Short description for feature one."
+      },
+      "plan": {
+        "title": "Feature Two",
+        "description": "Short description for feature two."
+      },
+      "mcp": {
+        "title": "Feature Three",
+        "description": "Short description for feature three."
+      }
+    }
+  },
+  "targetUsers": {
+    "sectionTitle": "Who It's For",
+    "title": "Your Ideal Audience",
+    "description": "Briefly describe who will get the most value from your product.",
+    "users": {
+      "solo": {
+        "label": "Persona B",
+        "title": "Persona B",
+        "description": "Short description for this persona.",
+        "persona1": "Key trait 1",
+        "persona2": "Key trait 2",
+        "persona3": "Key trait 3"
+      },
+      "startup": {
+        "label": "Persona C",
+        "title": "Persona C",
+        "description": "Short description for this persona.",
+        "persona1": "Key trait 1",
+        "persona2": "Key trait 2",
+        "persona3": "Key trait 3"
+      },
+      "vibecoder": {
+        "label": "Persona A",
+        "title": "Persona A",
+        "description": "Short description for this persona.",
+        "persona1": "Key trait 1",
+        "persona2": "Key trait 2",
+        "persona3": "Key trait 3"
+      }
+    }
+  },
+  "roadmap": {
+    "sectionTitle": "Roadmap",
+    "title": "What's Next",
+    "description": "Outline your upcoming milestones and priorities.",
+
+    "features": {
+      "contextIntegration": {
+        "name": "Upcoming Feature A",
+        "description": "Short description for this upcoming feature.",
+        "cta": "Get Notified"
+      },
+      "teamCollaboration": {
+        "name": "Upcoming Feature B",
+        "description": "Short description for this upcoming feature.",
+        "cta": "Get Notified"
+      },
+      "milestoneRoadmap": {
+        "name": "Upcoming Feature C",
+        "description": "Short description for this upcoming feature.",
+        "cta": "Get Notified"
+      },
+      "insights": {
+        "name": "Upcoming Feature D",
+        "description": "Short description for this upcoming feature.",
+        "cta": "Get Notified"
+      },
+      "whatsNext": {
+        "name": "Share Feedback",
+        "description": "Invite users to share feedback in your community.",
+        "cta": "Provide Feedback"
+      }
+    },
+    "community": {
+      "title": "Join the Community",
+      "description": "Invite your audience to participate and stay updated.\nKeep it short and friendly.",
+      "hashtags": "#hashtag1 #hashtag2",
+      "cta": "Community"
+    }
+  },
+  "pricing": {
+    "title": "Simple, Transparent Plans",
+    "description": "Describe your pricing in one sentence.",
+    "yearlyDiscountLabel": "Save 35%",
+    "frequencies": {
+      "monthly": "Monthly",
+      "yearly": "Yearly"
+    },
+    "plans": {
+      "free": {
+        "title": "Free",
+        "unit": "/month",
+        "description": "Great for getting started",
+        "credits": "100 credits/month",
+        "projects": "Up to 3 projects",
+        "ai": "Basic features",
+        "support": "Community support",
+        "buttonText": "Get Started Free"
+      },
+      "pro": {
+        "title": "Pro",
+        "unit": "/month",
+        "description": "For growing developers or teams",
+        "credits": "500 credits/month",
+        "projects": "Unlimited projects",
+        "ai": "Advanced features",
+        "designer": "Additional tools",
+        "buttonText": "Choose Pro"
+      },
+      "max5": {
+        "title": "Business",
+        "unit": "/month",
+        "description": "For professional usage",
+        "credits": "2,000 credits/month",
+        "usage": "Enhanced usage",
+        "ai": "Premium features",
+        "image": "Image attachment",
+        "buttonText": "Choose Business"
+      },
+      "max20": {
+        "title": "Enterprise+",
+        "unit": "/month",
+        "description": "For high-usage needs",
+        "credits": "10,000 credits/month",
+        "usage": "Premium usage",
+        "ai": "Top features",
+        "context": "Largest limit",
+        "buttonText": "Choose Enterprise+"
+      }
+    },
+    "beta": {
+      "price": "Free"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Replace with a short introduction to your FAQ.",
+    "item1": {
+      "question": "Write your question here",
+      "answer": "Write a concise answer here."
+    },
+    "item2": {
+      "question": "Write your question here",
+      "answer": "Write a concise answer here."
+    },
+    "item3": {
+      "question": "Write your question here",
+      "answer": "Write a concise answer here."
+    },
+    "item4": {
+      "question": "Write your question here",
+      "answer": "Write a concise answer here."
+    },
+    "item5": {
+      "question": "Write your question here",
+      "answer": "Write a concise answer here."
+    },
+    "item6": {
+      "question": "Write your question here",
+      "answer": "Write a concise answer here."
+    }
+  },
+  "footer": {
+    "tagline": "All in One Vibe Coding PM",
+    "product": {
+      "title": "Product",
+      "features": "Features",
+      "pricing": "Pricing",
+      "roadmap": "Roadmap"
+    },
+    "company": {
+      "contact": "Contact"
+    },
+    "resources": {
+      "title": "Resources",
+      "community": "Community",
+      "support": "Support",
+      "feedback": "Feedback"
+    },
+    "social": {
+      "title": "Social",
+      "threads": "threads",
+      "instagram": "instagram"
+    },
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "copyright": "© 2025 ProductName. All rights reserved."
+  },
+  "finalCTA": {
+    "title": "Ready to Get Started?",
+    "description": "Add a short, encouraging closing statement.",
+    "cta": "Get Started",
+    "benefits": {
+      "freeAccess": {
+        "title": "Benefit A",
+        "description": "Short description of this benefit."
+      },
+      "limitedSpots": {
+        "title": "Benefit B",
+        "description": "Short description of this benefit."
+      },
+      "earlyAdopter": {
+        "title": "Benefit C",
+        "description": "Short description of this benefit."
+      }
+    }
+  },
+  "metadata": {
+    "title": "ProductName | AI Product Manager",
+    "description": "AI PM for systematic vibe coding"
+  }
+}

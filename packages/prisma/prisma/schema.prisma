@@ -1,0 +1,323 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../generated/prisma"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+generator zod {
+  provider = "zod-prisma-types"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id       String  @id
+  clerkId  String  @unique
+  email    String  @unique
+  username String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  subscription     Subscription?
+  paymentHistories PaymentHistory[]
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELLED
+  EXPIRED
+  UNPAID
+  PAST_DUE
+}
+
+enum SubscriptionPaymentMethod {
+  CARD
+  BANK_TRANSFER
+  PAYPAL
+}
+
+// Model to manage subscriptions for organizations, tailored for Lemon Squeezy
+model Subscription {
+  id     String @id
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  planId String // Plan 모델의 ID를 참조
+  plan   Plan   @relation(fields: [planId], references: [id])
+
+  status SubscriptionStatus
+
+  // Lemon Squeezy specific fields
+  lemonSqueezyId          String                    @unique // The subscription ID from Lemon Squeezy
+  lemonSubscriptionItemId String? // The subscription item ID (for quantity updates)
+  lemonCustomerId         String // The customer ID from Lemon Squeezy
+  lemonOrderId            String                    @unique // The order ID from Lemon Squeezy
+  lemonProductId          String // The product ID from Lemon Squeezy (Lemon Squeezy의 Product ID)
+  lemonVariantId          String // The variant ID from Lemon Squeezy (Lemon Squeezy의 Variant ID)
+  renewsAt                DateTime?                 @db.Timestamptz(3) // When the subscription will renew
+  endsAt                  DateTime?                 @db.Timestamptz(3) // When the subscription is scheduled to end (e.g., after cancellation)
+  paymentMethod           SubscriptionPaymentMethod
+  cardBrand               String? // e.g., "visa", "mastercard", "amex"
+  cardLast4               String? // e.g., "1234"
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model Plan {
+  id          String  @id
+  title       String // 사용자에게 보여지는 플랜 제목 (예: "개인 프로", "팀 엔터프라이즈")
+  name        String // 내부적으로 사용되는 고유한 플랜 이름 (예: "PERSONAL_PRO", "TEAM_ENTERPRISE")
+  description String? // 플랜에 대한 간략한 설명
+  content     Json? // 플랜의 상세 내용
+  available   Boolean @default(true) // 현재 가입 가능한 플랜인지 여부
+
+  price Decimal @db.Decimal(12, 2) // 플랜 가격
+
+  // Lemon Squeezy Product/Variant ID (선택 사항이지만, Lemon Squeezy 연동 시 유용)
+  lemonSqueezyProductId String
+  lemonSqueezyVariantId String
+
+  subscriptions Subscription[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+enum PaymentStatus {
+  SUCCESS
+  FAILED
+  REFUNDED
+  PENDING
+}
+
+model WebhookEvent {
+  id          String   @id
+  eventId     String   @unique // LemonSqueezy event ID
+  eventName   String // e.g., "subscription_created", "subscription_payment_success"
+  resourceId  String // The ID of the resource (subscription, invoice, etc.)
+  processedAt DateTime @default(now())
+  payload     Json // Store the full webhook payload for debugging
+
+  createdAt DateTime @default(now())
+
+  @@index([eventName, resourceId])
+  @@index([processedAt])
+}
+
+model PaymentHistory {
+  id     String @id
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // LemonSqueezy invoice data
+  invoiceId      String @unique // LemonSqueezy invoice ID
+  subscriptionId String // LemonSqueezy subscription ID
+  customerId     String // LemonSqueezy customer ID
+  userEmail      String
+  billingReason  String // "initial", "renewal", "updated", etc.
+
+  // Payment details
+  status          PaymentStatus
+  statusFormatted String // Human readable status from LemonSqueezy
+  currency        String
+  currencyRate    String
+
+  // Amounts (all in cents)
+  subtotal       Int
+  discountTotal  Int
+  tax            Int
+  taxInclusive   Boolean
+  total          Int
+  refundedAmount Int     @default(0)
+
+  // USD amounts for reporting
+  subtotalUsd       Int
+  discountTotalUsd  Int
+  taxUsd            Int
+  totalUsd          Int
+  refundedAmountUsd Int @default(0)
+
+  // Card info (if available)
+  cardBrand    String?
+  cardLastFour String?
+
+  // URLs
+  invoiceUrl String?
+
+  // Metadata
+  testMode   Boolean   @default(false)
+  refundedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([subscriptionId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// -- New Models for Selpix SaaS Migration --
+
+model Product {
+  id               Int      @id @default(autoincrement())
+  name             String
+  wholesalePrice   Int
+  recommendedPrice Int
+  margin           Float
+  competition      String
+  searchVolume     Int
+  category         String
+  image            String
+  source           String
+  trend            String
+  score            Int
+  
+  margins       Margin[]
+  detailPages   DetailPage[]
+  registrations Registration[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Recommendation {
+  id      Int                  @id @default(autoincrement())
+  keyword String
+  items   RecommendationItem[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RecommendationItem {
+  id               Int            @id @default(autoincrement())
+  recommendationId Int
+  recommendation   Recommendation @relation(fields: [recommendationId], references: [id], onDelete: Cascade)
+  
+  name             String
+  wholesalePrice   Int
+  recommendedPrice Int
+  margin           Float
+  competition      String
+  searchVolume     Int
+  trend            String
+  score            Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WholesaleProduct {
+  id       Int    @id @default(autoincrement())
+  name     String
+  price    Int
+  source   String
+  rating   Float
+  minOrder Int
+  url      String
+  
+  wholesaleGroupId Int
+  wholesaleGroup   WholesaleGroup @relation(fields: [wholesaleGroupId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WholesaleGroup {
+  id       Int                @id @default(autoincrement())
+  keyword  String
+  products WholesaleProduct[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Margin {
+  id             Int      @id @default(autoincrement())
+  productId      Int?
+  product        Product? @relation(fields: [productId], references: [id])
+  
+  productName    String
+  wholesalePrice Int
+  sellingPrice   Int
+  shippingCost   Int
+  commission     Float
+  adCost         Int
+  packagingCost  Int
+  netMargin      Int
+  marginRate     Float
+  platform       String
+  calculatedAt   DateTime @default(now())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DetailPage {
+  id          Int      @id @default(autoincrement())
+  productId   Int?
+  product     Product? @relation(fields: [productId], references: [id])
+  
+  productName String
+  summary     String
+  usps        String[]
+  keywords    String[]
+  template    String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Registration {
+  id               Int      @id @default(autoincrement())
+  productId        Int?
+  product          Product? @relation(fields: [productId], references: [id])
+
+  productName      String
+  category         String
+  recommendedTitle String
+  price            Int
+  wholesalePrice   Int
+  status           String
+  platform         String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ActivityLog {
+  id          Int      @id @default(autoincrement())
+  action      String
+  productName String
+  status      String
+  price       Int?
+  details     String?
+  timestamp   DateTime @default(now())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DailyStat {
+  id       Int      @id @default(autoincrement())
+  date     String
+  revenue  Int
+  products Int
+  margin   Int
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

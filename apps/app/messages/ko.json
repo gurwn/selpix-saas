@@ -1,0 +1,128 @@
+{
+  "common": {},
+  "DashboardLayout": {
+    "group": {
+      "main": "메인"
+    },
+    "nav": {
+      "overview": "대시보드",
+      "analytics": "분석",
+      "customers": "고객",
+      "billing": "결제",
+      "settings": "설정",
+      "support": "지원"
+    },
+    "topbar": {
+      "searchPlaceholder": "검색..."
+    }
+  },
+  "DashboardPage": {
+    "title": "대시보드",
+    "description": "워크스페이스의 핵심 지표와 최근 활동을 한눈에 확인하세요.",
+    "metrics": {
+      "revenue": "매출",
+      "activeUsers": "활성 사용자",
+      "newCustomers": "신규 고객",
+      "churnRate": "이탈률"
+    },
+    "table": {
+      "title": "최근 고객",
+      "columns": {
+        "customer": "고객",
+        "email": "이메일",
+        "plan": "플랜",
+        "status": "상태",
+        "joinedAt": "가입일"
+      }
+    },
+    "chart": {
+      "title": "월간 매출"
+    }
+  },
+  "SettingsPage": {
+    "title": "설정",
+    "description": "환경 및 모양 설정을 변경하세요.",
+    "appearance": {
+      "title": "모양",
+      "description": "선호하는 테마를 선택하세요.",
+      "theme": "테마",
+      "selectPlaceholder": "테마 선택",
+      "light": "라이트",
+      "dark": "다크",
+      "system": "시스템",
+      "current": "현재: {value}"
+    }
+  },
+  "SubscriptionPage": {
+    "title": "구독",
+    "description": "플랜, 결제수단, 결제 내역을 관리하세요.",
+    "toast": {
+      "cancelSuccess": "구독이 취소되었습니다.",
+      "openPaymentPortalError": "결제수단 관리 페이지를 열 수 없습니다."
+    },
+    "actions": {
+      "cancelConfirm": "정말 구독을 취소하시겠어요?",
+      "changePlan": "플랜 변경",
+      "updatePaymentMethod": "결제수단 변경",
+      "cancel": "구독 취소"
+    },
+    "current": {
+      "title": "현재 구독",
+      "plan": "플랜",
+      "pricePerMonth": "{price}/월",
+      "noSubscription": "활성화된 구독이 없습니다.",
+      "status": "상태",
+      "renewsAt": "다음 결제일",
+      "endsAt": "종료일",
+      "paymentMethod": "결제 수단",
+      "card": "{brand} •••• {last4}",
+      "choosePlan": "플랜 선택"
+    },
+    "history": {
+      "title": "결제 내역",
+      "empty": "표시할 결제 내역이 없습니다.",
+      "columns": {
+        "date": "날짜",
+        "amount": "금액",
+        "status": "상태",
+        "invoice": "영수증"
+      },
+      "viewInvoice": "보기"
+    }
+  },
+  "PlanSelectDialog": {
+    "pricing": "요금제",
+    "perMonth": "/월",
+    "processing": "처리중...",
+    "currentPlan": "현재 플랜",
+    "upgradePlan": "업그레이드",
+    "downgradePlan": "다운그레이드",
+    "tryVooster": "선택",
+    "everythingInFree": "Free의 모든 기능",
+    "everythingInPro": "Pro의 모든 기능",
+    "everythingInMaxX5": "Max x5의 모든 기능",
+    "paymentUrlError": "결제 페이지를 열 수 없습니다.",
+    "subscriptionProcessError": "구독 처리 중 오류가 발생했습니다.",
+    "updateSuccess": "구독이 업데이트되었습니다."
+  },
+  "PlanChangeConfirmDialog": {
+    "upgradeTitle": "플랜 업그레이드 확인",
+    "downgradeTitle": "플랜 다운그레이드 확인",
+    "dialogDescription": "플랜 변경에 대한 확인 대화상자입니다.",
+    "currentPlan": "현재 플랜",
+    "perMonth": "/월",
+    "newPlan": "새 플랜",
+    "billingPolicyTitle": "과금 정책",
+    "immediateCharge": "즉시 청구",
+    "immediateChargeDesc": "업그레이드 시 남은 기간에 대한 금액이 안분되어 즉시 청구될 수 있습니다.",
+    "proration": "일할 계산",
+    "prorationDesc": "청구 금액은 남은 기간에 따라 일할 계산됩니다.",
+    "nextBillingCycle": "다음 결제 주기 적용",
+    "nextBillingCycleDesc": "다운그레이드는 다음 결제 주기부터 적용됩니다.",
+    "creditNote": "크레딧",
+    "creditNoteDesc": "다운그레이드 시 차액은 크레딧으로 처리될 수 있습니다.",
+    "cancel": "취소",
+    "processing": "처리중...",
+    "confirmChange": "변경 확정"
+  }
+}

@@ -1,0 +1,557 @@
+---
+description: Comprehensive i18n implementation guidelines for apps/app with routing, namespacing, and error prevention
+globs:
+alwaysApply: false
+---
+
+# Apps/App Internationalization (i18n) Implementation Guide
+
+> **"Consistency in internationalization creates seamless global user experiences"**
+
+A comprehensive guide for implementing error-free, maintainable internationalization in the `apps/app` Next.js application using `next-intl`.
+
+## 🎯 Core i18n Principles
+
+### Design Philosophy
+
+- **Type-Safe First**: Leverage TypeScript for compile-time validation
+- **Namespace-Driven**: Organize translations hierarchically by feature/component
+- **Performance-Conscious**: Minimize bundle size through strategic message loading
+- **Developer-Friendly**: Clear patterns that prevent common i18n mistakes
+
+### Required Dependencies
+
+```json
+{
+  "next-intl": "^4.3.1",
+  "next": "^15.3.0"
+}
+```
+
+## 🗂️ File Structure & Organization
+
+### Core i18n Files
+
+```
+apps/app/
+├── src/i18n/
+│   ├── routing.ts          # Locale configuration
+│   ├── navigation.ts       # Localized navigation wrappers
+│   └── request.ts          # Server-side request handling
+├── messages/
+│   ├── en.json            # English translations
+│   └── ko.json            # Korean translations
+└── middleware.ts          # Route-level locale handling
+```
+
+### Message File Structure
+
+```json
+{
+  "ComponentName": {
+    "key": "Translation value",
+    "nestedObject": {
+      "subKey": "Nested translation"
+    }
+  },
+  "FeatureName": {
+    "SubComponentName": {
+      "action": "Action text",
+      "description": "Description text"
+    }
+  }
+}
+```
+
+## 🧭 Navigation & Routing Patterns
+
+### **MANDATORY**: Use Localized Navigation Imports
+
+```typescript
+// ✅ ALWAYS: Import from localized navigation
+import { Link, useRouter, usePathname, redirect } from "@/i18n/navigation";
+
+// ❌ NEVER: Import directly from Next.js
+import { useRouter } from "next/navigation"; // This breaks locale handling
+import Link from "next/link"; // This ignores locale prefixes
+```
+
+### Routing Implementation Patterns
+
+```typescript
+// ✅ Correct: Localized link with automatic locale handling
+import { Link } from "@/i18n/navigation";
+
+<Link href="/dashboard">
+  {t("navigation.dashboard")}
+</Link>
+
+// ✅ Correct: Programmatic navigation with locale preservation
+import { useRouter } from "@/i18n/navigation";
+
+const router = useRouter();
+router.push("/projects/new");
+
+// ✅ Correct: Server-side redirect with locale
+import { redirect } from "@/i18n/navigation";
+
+redirect("/login");
+```
+
+### Locale Management
+
+```typescript
+// ✅ Get current locale
+import { useLocale } from "next-intl";
+
+const locale = useLocale(); // "en" | "ko"
+
+// ✅ Change locale programmatically
+import { useRouter, usePathname } from "@/i18n/navigation";
+
+const router = useRouter();
+const pathname = usePathname();
+
+const changeLocale = (newLocale: string) => {
+  router.push(pathname, { locale: newLocale });
+};
+```
+
+## 📛 Namespace Naming Conventions
+
+### Component-Level Namespaces
+
+```typescript
+// ✅ Pattern: PascalCase matching component name
+export function ProjectCard() {
+  const t = useTranslations("ProjectCard");
+  return <div>{t("title")}</div>;
+}
+
+// ✅ Pattern: Feature-specific namespaces
+export function DashboardPage() {
+  const t = useTranslations("DashboardPage");
+  return <h1>{t("pageTitle")}</h1>;
+}
+```
+
+### Nested Namespace Hierarchies
+
+```typescript
+// ✅ Pattern: Feature.Component hierarchy
+export function RoleStep() {
+  const t = useTranslations("Onboarding.RoleStep");
+  return <h2>{t("title")}</h2>;
+}
+
+// ✅ Pattern: Multiple translations in one component
+export function DocumentsPage() {
+  const tPage = useTranslations("DocumentsPage");
+  const tStatus = useTranslations("StatusLabel");
+
+  return (
+    <div>
+      <h1>{tPage("title")}</h1>
+      <span>{tStatus("inProgress")}</span>
+    </div>
+  );
+}
+```
+
+### Shared Namespace Patterns
+
+```typescript
+// ✅ Pattern: Reusable shared namespaces
+const tButton = useTranslations("Button"); // "Select", "Cancel", etc.
+const tStatus = useTranslations("StatusLabel"); // "Backlog", "Done", etc.
+const tImportance = useTranslations("ImportanceLabel"); // "Must", "Should", etc.
+```
+
+## 🔑 Key Definition Standards
+
+### Key Naming Conventions
+
+```typescript
+// ✅ camelCase for all keys
+{
+  "ProjectCard": {
+    "noDescription": "No project description available.",
+    "deleteConfirm": "Are you sure you want to delete?",
+    "duplicateSuccess": "Project duplicated successfully.",
+    "lastModified": "Last modified {time}"
+  }
+}
+```
+
+### Key Categories & Patterns
+
+```typescript
+// ✅ Action keys: verb-based
+{
+  "actions": {
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "duplicate": "Duplicate"
+  }
+}
+
+// ✅ State keys: adjective/status-based
+{
+  "states": {
+    "loading": "Loading...",
+    "empty": "No items found",
+    "error": "An error occurred"
+  }
+}
+
+// ✅ Message keys: descriptive purpose
+{
+  "messages": {
+    "saveSuccess": "Settings saved successfully.",
+    "deleteConfirm": "Are you sure you want to delete?",
+    "validationError": "Please check your input."
+  }
+}
+```
+
+### Interpolation Patterns
+
+```typescript
+// ✅ Named parameters for clarity
+{
+  "countLabel": "{count} items found",
+  "lastModified": "Last modified {time}",
+  "welcomeMessage": "Hello {userName}, welcome back!"
+}
+
+// Usage
+const message = t("countLabel", { count: items.length });
+const greeting = t("welcomeMessage", { userName: user.name });
+```
+
+## 🎣 useTranslations Hook Patterns
+
+### Standard Hook Usage
+
+```typescript
+// ✅ Pattern: Single namespace per hook
+import { useTranslations } from "next-intl";
+
+export function ProjectCard() {
+  const t = useTranslations("ProjectCard");
+
+  return (
+    <div>
+      <h3>{t("title")}</h3>
+      <p>{t("description")}</p>
+      <button>{t("editButton")}</button>
+    </div>
+  );
+}
+```
+
+### Multiple Namespaces Pattern
+
+```typescript
+// ✅ Pattern: Descriptive variable names for multiple namespaces
+export function TaskDetailDialog() {
+  const tDialog = useTranslations("TaskDetailDialog");
+  const tStatus = useTranslations("StatusLabel");
+  const tImportance = useTranslations("ImportanceLabel");
+
+  return (
+    <div>
+      <h2>{tDialog("title")}</h2>
+      <span>{tStatus("inProgress")}</span>
+      <span>{tImportance("must")}</span>
+    </div>
+  );
+}
+```
+
+### Type-Safe Hook Pattern
+
+```typescript
+// ✅ Pattern: Typed hook for autocomplete
+import { useTranslations } from "next-intl";
+
+export function TypedComponent() {
+  const t: ReturnType<typeof useTranslations> = useTranslations("ComponentName");
+
+  // Now you get full TypeScript support
+  return <div>{t("keyName")}</div>;
+}
+```
+
+## 📝 Message File Management
+
+### Consistent Structure
+
+```json
+// ✅ apps/app/messages/en.json structure
+{
+  "Button": {
+    "select": "Select",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete"
+  },
+  "StatusLabel": {
+    "backlog": "Backlog",
+    "inProgress": "In Progress",
+    "done": "Done",
+    "archived": "Archived"
+  },
+  "HomePage": {
+    "title": "Welcome to AppName",
+    "noProjects": "No projects yet. Start by creating a new PRD.",
+    "createProject": "New Project"
+  }
+}
+```
+
+### Synchronization Requirements
+
+```typescript
+// ✅ CRITICAL: Maintain identical structure across locales
+// en.json
+{
+  "ProjectCard": {
+    "title": "Project Title",
+    "description": "Project Description",
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  }
+}
+
+// ko.json - MUST match structure exactly
+{
+  "ProjectCard": {
+    "title": "프로젝트 제목",
+    "description": "프로젝트 설명",
+    "actions": {
+      "edit": "수정",
+      "delete": "삭제"
+    }
+  }
+}
+```
+
+## 🚫 Critical Anti-Patterns
+
+### Hardcoded Text Prevention
+
+```typescript
+// ❌ NEVER: Hardcoded text in components
+export function RulesPage() {
+  return (
+    <div>
+      <h1>Rules</h1>  {/* Hardcoded! */}
+      <p>유용한 Rule들을 설정해서...</p>  {/* Mixed languages! */}
+    </div>
+  );
+}
+
+// ✅ ALWAYS: Use translations
+export function RulesPage() {
+  const t = useTranslations("RulesPage");
+
+  return (
+    <div>
+      <h1>{t("title")}</h1>
+      <p>{t("description")}</p>
+    </div>
+  );
+}
+```
+
+### Routing Anti-Patterns
+
+```typescript
+// ❌ NEVER: Direct Next.js imports
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
+// ❌ NEVER: Hardcoded locale handling
+const router = useRouter();
+router.push(`/${locale}/dashboard`);
+
+// ✅ ALWAYS: Use localized navigation
+import { useRouter, Link } from "@/i18n/navigation";
+
+const router = useRouter();
+router.push("/dashboard"); // Locale handled automatically
+```
+
+### Namespace Anti-Patterns
+
+```typescript
+// ❌ NEVER: Generic or unclear namespaces
+const t = useTranslations("Generic");
+const t = useTranslations("Component");
+const t = useTranslations("Page");
+
+// ❌ NEVER: Mixed naming conventions
+const t = useTranslations("project_card"); // snake_case
+const t = useTranslations("PROJECT-CARD"); // SCREAMING-KEBAB
+
+// ✅ ALWAYS: Descriptive PascalCase namespaces
+const t = useTranslations("ProjectCard");
+const t = useTranslations("TaskDetailDialog");
+const t = useTranslations("UserProfileSettings");
+```
+
+## ⚡ Performance Optimization
+
+### Strategic Message Loading
+
+```typescript
+// ✅ Component-level namespace loading
+const t = useTranslations("SpecificComponent"); // Only loads needed messages
+
+// ❌ Avoid: Loading entire message tree
+const t = useTranslations(); // Loads ALL messages
+```
+
+### Bundle Size Considerations
+
+```typescript
+// ✅ Split large namespaces by feature
+{
+  "Onboarding": {
+    "RoleStep": { /* role-specific messages */ },
+    "ExperienceStep": { /* experience-specific messages */ }
+  }
+}
+
+// ❌ Avoid: Monolithic message objects
+{
+  "Onboarding": {
+    "allRoleMessages": "...",
+    "allExperienceMessages": "...",
+    "allGoalMessages": "..."
+  }
+}
+```
+
+## 🔧 TypeScript Integration
+
+### Type-Safe Message Keys
+
+```typescript
+// ✅ Pattern: Define message key types
+type ProjectCardKeys = "title" | "description" | "editButton" | "deleteButton";
+
+interface ProjectCardProps {
+  onEdit: () => void;
+}
+
+export function ProjectCard({ onEdit }: ProjectCardProps) {
+  const t = useTranslations("ProjectCard");
+
+  return (
+    <div>
+      <h3>{t("title" as ProjectCardKeys)}</h3>
+      <button onClick={onEdit}>{t("editButton" as ProjectCardKeys)}</button>
+    </div>
+  );
+}
+```
+
+### Autocomplete Support
+
+```typescript
+// ✅ Pattern: Leverage next-intl's type inference
+import { useTranslations } from "next-intl";
+
+export function TypedComponent() {
+  const t = useTranslations("ComponentName");
+
+  // TypeScript will infer available keys from message files
+  return <div>{t("available.key.here")}</div>;
+}
+```
+
+## 📋 Implementation Checklist
+
+### Pre-Implementation
+
+- [ ] Verify locale configuration in `src/i18n/routing.ts`
+- [ ] Confirm middleware setup for route handling
+- [ ] Plan namespace hierarchy for new feature
+- [ ] Design message key structure
+
+### During Implementation
+
+- [ ] Import navigation from `@/i18n/navigation` ONLY
+- [ ] Use PascalCase namespace matching component name
+- [ ] Define camelCase keys with clear semantic meaning
+- [ ] Add translations to BOTH `en.json` AND `ko.json`
+- [ ] Test locale switching functionality
+
+### Post-Implementation
+
+- [ ] Verify no hardcoded text remains
+- [ ] Confirm message file structure synchronization
+- [ ] Test navigation with locale changes
+- [ ] Validate TypeScript autocomplete works
+- [ ] Check bundle size impact
+
+## 🎪 Advanced Patterns
+
+### Conditional Translations
+
+```typescript
+// ✅ Pattern: Conditional message selection
+const t = useTranslations("StatusMessages");
+
+const getStatusMessage = (status: "loading" | "success" | "error") => {
+  return t(status); // Uses keys "loading", "success", "error"
+};
+```
+
+### Dynamic Message Loading
+
+```typescript
+// ✅ Pattern: Feature-based message loading
+import { useTranslations } from "next-intl";
+
+export function FeatureComponent({ featureType }: { featureType: string }) {
+  const t = useTranslations(`Features.${featureType}`);
+
+  return <div>{t("description")}</div>;
+}
+```
+
+### Rich Text Support
+
+```typescript
+// ✅ Pattern: HTML/Markdown in messages
+{
+  "RichTextExample": {
+    "htmlMessage": "Visit our <strong>documentation</strong> for details",
+    "markdownSupported": "Supports **bold** and *italic* text"
+  }
+}
+
+// Usage with dangerouslySetInnerHTML for trusted content
+const htmlContent = t("htmlMessage");
+return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+```
+
+---
+
+**Quick Reference Checklist:**
+
+1. **Import from `@/i18n/navigation`** for all routing needs
+2. **Use PascalCase namespaces** matching component names
+3. **Define camelCase keys** with semantic meaning
+4. **Maintain identical structure** across all locale files
+5. **Avoid hardcoded text** at all costs
+6. **Test locale switching** functionality
+
+**Emergency Pattern:**
+If you must temporarily use hardcoded text, add a `// TODO: i18n` comment for easy identification and future resolution.

@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "project": "Selpix E-commerce Platform",
+    "date": "2025-12-04",
+    "prepared_by": "Software Development Manager"
+  },
+  "product_overview": "Selpix is an e-commerce platform tool focused on assisting sellers to calculate profit margins accurately, register products seamlessly to Coupang Open Market, and monitor sales performance via a responsive dashboard.",
+  "core_goals": [
+    "Provide accurate and reliable profit margin calculations including fees and commissions for multiple sales platforms.",
+    "Ensure robust and secure product registration to Coupang with validation and sanitization to prevent errors and security issues.",
+    "Deliver a responsive and user-friendly dashboard with proper error handling and loading states to enhance user experience."
+  ],
+  "key_features": [
+    "Margin Calculator with inputs for wholesale price, selling price, and selection of delivery platform applying different commission fees.",
+    "Coupang Register API endpoint to submit new products with validation for required fields, data sanitization, and option handling.",
+    "Dashboard UI displaying sales and margin data with spinner loading states and error messages for data retrieval failures.",
+    "Responsive design optimized for different screen sizes including mobile.",
+    "Input validation and edge case handling to ensure robustness of calculations and API interactions."
+  ],
+  "user_flow_summary": [
+    "User inputs wholesale price, selling price, and selects platform to calculate profit margin on the Margin Calculator page.",
+    "System validates inputs and calculates net profit and margin percentage dynamically, showing warnings for negative margins or invalid inputs.",
+    "User accesses the product registration form to submit product details to Coupang platform using the API.",
+    "System verifies required fields, sanitizes inputs to remove harmful tags, and processes phone number formatting and option creation before confirming success or returning errors.",
+    "User navigates to the dashboard where sales data is fetched and displayed with loading indicators and error messages as needed.",
+    "The dashboard UI adjusts responsively when window size changes to maintain usability on mobile or desktop devices."
+  ],
+  "validation_criteria": [
+    "Margin Calculator outputs must match Excel-calculated results for typical inputs.",
+    "Different platform fees correctly applied: Rocket (10.8%), Wing (6.5%), Consignment (8.0%).",
+    "Negative or zero wholesale prices and selling prices less than cost trigger warnings or errors without UI breaks.",
+    "Product registration API returns 400 errors on missing mandatory fields like productName, price.",
+    "Sanitization removes harmful HTML tags such as <script> from product descriptions.",
+    "Phone numbers are reformatted to international standard (e.g., +821012345678).",
+    "Single product creation works correctly when no option values are provided.",
+    "Dashboard shows loading spinners while fetching data and displays an error message if API requests fail.",
+    "Dashboard UI remains stable and accessible across different screen sizes including mobile devices."
+  ],
+  "code_summary": {
+    "tech_stack": [
+      "TypeScript",
+      "Next.js",
+      "Tailwind CSS",
+      "Recharts"
+    ],
+    "features": [
+      {
+        "name": "Margin Calculator",
+        "description": "Calculates profit margin based on wholesale price, selling price, and various fees (shipping, platform commission, ad cost).",
+        "files": [
+          "src/app/margin/page.tsx"
+        ],
+        "api_doc": {
+          "summary": "Calculate Margin",
+          "description": "Client-side calculation logic for e-commerce margin.",
+          "parameters": [
+            {
+              "name": "wholesalePrice",
+              "in": "input",
+              "type": "number",
+              "description": "Cost of goods"
+            },
+            {
+              "name": "sellingPrice",
+              "in": "input",
+              "type": "number",
+              "description": "Retail price"
+            },
+            {
+              "name": "platform",
+              "in": "input",
+              "type": "string",
+              "enum": [
+                "rocket",
+                "wing",
+                "consignment"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "Coupang Register API",
+        "description": "API endpoint to register products to Coupang Open Market.",
+        "files": [
+          "src/app/api/coupang/register/route.ts"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "paths": {
+            "/api/coupang/register": {
+              "post": {
+                "summary": "Register Product",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "required": [
+                          "productName",
+                          "wholesalePrice",
+                          "price"
+                        ],
+                        "properties": {
+                          "productName": {
+                            "type": "string"
+                          },
+                          "wholesalePrice": {
+                            "type": "number"
+                          },
+                          "price": {
+                            "type": "number"
+                          },
+                          "platform": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Product registered successfully"
+                  },
+                  "400": {
+                    "description": "Missing required fields"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

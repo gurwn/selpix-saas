@@ -1,0 +1,17 @@
+{
+  "status": "commited",
+  "type": "backend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000/margin",
+  "backendAuthType": "public",
+  "executionArgs": {
+    "projectName": "selpix-mockup",
+    "projectPath": "/Users/hyukju/Downloads/selpix-mockup",
+    "testIds": [],
+    "additionalInstruction": "Focus on testing the Margin Calculator logic and the Coupang Register API error handling.",
+    "envs": {
+      "API_KEY": "sk-user-a7kMG9R-hMfBpS5kmse8Y_70qXMw0QDtCJUa8OFJYYVkIZzEVgYfHjgtSGAGnNt-VsbaCpLBRh4R66gCApihHZUY-8oYV1Vf0iES8hcV315vpXfY5nTU3J6j8O_M1cfqHnc"
+    }
+  },
+  "proxy": "http://64000662-fb6f-4bdd-b2bf-52c94575f854:ZQ5Pbn9wOMANA9ivW33Y4vKQQnh8q5Pb@tun.testsprite.com:8080"
+}

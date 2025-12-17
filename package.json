@@ -1,0 +1,39 @@
+{
+  "name": "full-saas",
+  "private": true,
+  "scripts": {
+    "build": "dotenv-flow -- turbo run build",
+    "dev": "dotenv-flow -- turbo run dev",
+    "lint": "dotenv-flow -- turbo run lint",
+    "test": "dotenv-flow -- turbo run test",
+    "typecheck": "dotenv-flow -- turbo run typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prepare": "husky",
+    "db:migrate:create": "dotenv-flow -- pnpm --filter @myapp/prisma db:migrate:create",
+    "db:migrate:deploy": "dotenv-flow -- pnpm --filter @myapp/prisma db:migrate:deploy",
+    "db:generate": "dotenv-flow -- pnpm --filter @myapp/prisma db:generate"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^7.4.4",
+    "dotenv-flow": "^4.1.0",
+    "dotenv-flow-cli": "^1.1.1",
+    "husky": "^9.1.7",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "tsx": "4.19.1",
+    "turbo": "^2.5.3",
+    "zod-prisma-types": "^3.2.4"
+  },
+  "packageManager": "pnpm@10.11.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@number-flow/react": "^0.5.10",
+    "@prisma/client": "^6.13.0",
+    "@radix-ui/react-slot": "^1.2.3",
+    "class-variance-authority": "^0.7.1",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.515.0"
+  }
+}

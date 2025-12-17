@@ -1,0 +1,131 @@
+version: '3.8'
+
+services:
+  # Backend API Server
+  selpix-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: selpix-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - FRONTEND_URL=http://localhost:8080
+      - GOOGLE_SHEET_ID=${GOOGLE_SHEET_ID}
+      - GOOGLE_SERVICE_ACCOUNT_KEY=${GOOGLE_SERVICE_ACCOUNT_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
+      - DISCORD_ROCKET_CHANNEL_ID=${DISCORD_ROCKET_CHANNEL_ID}
+      - DISCORD_CONSIGNMENT_CHANNEL_ID=${DISCORD_CONSIGNMENT_CHANNEL_ID}
+      - DISCORD_WING_CHANNEL_ID=${DISCORD_WING_CHANNEL_ID}
+      - DISCORD_GENERAL_CHANNEL_ID=${DISCORD_GENERAL_CHANNEL_ID}
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - ./logs:/app/logs
+    networks:
+      - selpix-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/api/v1/system/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Discord Bot
+  selpix-discord-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile.bot
+    container_name: selpix-discord-bot
+    environment:
+      - NODE_ENV=development
+      - API_BASE_URL=http://selpix-backend:3001/api/v1
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
+      - DISCORD_ROCKET_CHANNEL_ID=${DISCORD_ROCKET_CHANNEL_ID}
+      - DISCORD_CONSIGNMENT_CHANNEL_ID=${DISCORD_CONSIGNMENT_CHANNEL_ID}
+      - DISCORD_WING_CHANNEL_ID=${DISCORD_WING_CHANNEL_ID}
+      - DISCORD_GENERAL_CHANNEL_ID=${DISCORD_GENERAL_CHANNEL_ID}
+    volumes:
+      - ./discord-bot.js:/app/discord-bot.js
+      - ./package.json:/app/package.json
+    networks:
+      - selpix-network
+    depends_on:
+      - selpix-backend
+    restart: unless-stopped
+
+  # Frontend Development Server
+  selpix-frontend:
+    image: nginx:alpine
+    container_name: selpix-frontend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html
+      - ./main.js:/usr/share/nginx/html/main.js
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - selpix-network
+    restart: unless-stopped
+
+  # Redis for Caching (Optional)
+  redis:
+    image: redis:7-alpine
+    container_name: selpix-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - selpix-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+  # Monitoring with Prometheus (Optional)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: selpix-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    networks:
+      - selpix-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+  # Grafana for Dashboards (Optional)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: selpix-grafana
+    ports:
+      - "3300:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - selpix-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+networks:
+  selpix-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local

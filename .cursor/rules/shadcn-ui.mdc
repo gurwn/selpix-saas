@@ -1,0 +1,39 @@
+---
+description: How to install/use shadcn/ui components
+globs:
+alwaysApply: false
+---
+
+# shadcn/ui 컴포넌트 관리 가이드
+
+## **프로젝트 구조 개요**
+
+현재 monorepo는 다음과 같이 구성되어 있습니다:
+
+- `packages/ui`: @myapp/ui 패키지 (shadcn 컴포넌트 라이브러리)
+- `apps/app`: 메인 웹 대시보드
+- `apps/www`: 랜딩 페이지
+
+## **설치된 shadcn 컴포넌트 확인 방법**
+
+```sh
+ls ./packages/ui/src/components | sed 's/\.[^.]*$//'
+```
+
+## cn function
+
+To use cn function, follow below guide:
+
+```typescript
+import { cn } from "@myapp/ui/lib/utils";
+```
+
+## **shadcn 컴포넌트 추가 방법**
+
+1. `packages/ui` 경로로 이동합니다.
+2. `pnpm dlx shadcn@canary add <component_name>` 명령어로 추가합니다.
+3. `@myapp/ui`로부터 import해서 사용합니다.
+
+   ```typescript
+   import { Button } from "@myapp/ui/components/button";
+   ```
