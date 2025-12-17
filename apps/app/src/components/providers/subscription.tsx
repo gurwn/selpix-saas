@@ -6,8 +6,8 @@ import type { Plan, Subscription } from "@myapp/prisma";
 
 const SubscriptionContext = createContext<
   | {
-      subscription: (Subscription & { plan: Plan }) | null;
-    }
+    subscription: (Subscription & { plan: Plan }) | null;
+  }
   | undefined
 >(undefined);
 
@@ -17,8 +17,8 @@ export function SubscriptionProvider({
   children: React.ReactNode;
 }) {
   const [subscription] =
-    trpc.subscriptionRouter.getSubscription.useSuspenseQuery(undefined, {
-      retry: 0,
+    trpc.subscription.getSubscription.useSuspenseQuery(undefined, {
+      staleTime: 1000 * 60 * 5, // 5 minutes
     });
 
   return (

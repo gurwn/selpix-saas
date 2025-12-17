@@ -6,14 +6,14 @@ import type { User } from "@myapp/prisma";
 
 const UserContext = createContext<
   | {
-      user: User;
-    }
+    user: User;
+  }
   | undefined
 >(undefined);
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
-  const [user] = trpc.userRouter.getMe.useSuspenseQuery(undefined, {
-    retry: 0,
+  const [user] = trpc.user.getMe.useSuspenseQuery(undefined, {
+    staleTime: 1000 * 60 * 5, // 5 minutes
   });
 
   return (
