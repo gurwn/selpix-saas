@@ -46,24 +46,24 @@ export function SubscriptionPage() {
 
   // 결제 내역은 페이지에서 suspense 쿼리로 조회
   const [paymentHistories] =
-    trpc.subscriptionRouter.getPaymentHistories.useSuspenseQuery();
+    trpc.subscription.getPaymentHistories.useSuspenseQuery();
 
   // 결제수단 변경 링크는 사용자 액션 시에만 요청
   const updatePaymentMethodQuery =
-    trpc.subscriptionRouter.getUpdatePaymentMethodUrl.useQuery(undefined, {
+    trpc.subscription.getUpdatePaymentMethodUrl.useQuery(undefined, {
       enabled: false,
       retry: 0,
     });
 
   // 구독 취소
   const utils = trpc.useUtils();
-  const cancelMutation = trpc.subscriptionRouter.cancelSubscription.useMutation(
+  const cancelMutation = trpc.subscription.cancelSubscription.useMutation(
     {
       onSuccess: async () => {
         toast.success(t("toast.cancelSuccess"));
         await Promise.all([
-          utils.subscriptionRouter.getSubscription.invalidate(),
-          utils.subscriptionRouter.getPaymentHistories.invalidate(),
+          utils.subscription.getSubscription.invalidate(),
+          utils.subscription.getPaymentHistories.invalidate(),
         ]);
       },
       onError: (error) => {

@@ -62,11 +62,11 @@ export function PlanSelectDialog({ open, onOpenChange }: Props) {
 
   // 사용 가능한 플랜 조회
   const { data: plans, isLoading: plansLoading } =
-    trpc.subscriptionRouter.getPlans.useQuery();
+    trpc.subscription.getPlans.useQuery();
 
   // tRPC mutation을 사용한 결제 체크아웃 생성
   const createCheckoutMutation =
-    trpc.subscriptionRouter.createCheckout.useMutation({
+    trpc.subscription.createCheckout.useMutation({
       onSuccess: (data) => {
         if (data.paymentUrl) {
           window.location.href = data.paymentUrl;
@@ -85,7 +85,7 @@ export function PlanSelectDialog({ open, onOpenChange }: Props) {
 
   // 구독 업데이트 mutation
   const updateSubscriptionMutation =
-    trpc.subscriptionRouter.updateSubscriptionPlan.useMutation({
+    trpc.subscription.updateSubscriptionPlan.useMutation({
       onSuccess: () => {
         toast.success(t("updateSuccess"));
         // 페이지 새로고침하여 구독 정보 업데이트
