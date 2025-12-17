@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   transpilePackages: ["@myapp/api", "@myapp/prisma", "@myapp/utils", "@myapp/ui"],
+  experimental: {
+    outputFileTracingIncludes: {
+      '/api/**/*': ['../../packages/prisma/generated/prisma/**/*'],
+      '/trpc/**/*': ['../../packages/prisma/generated/prisma/**/*'],
+    },
+  },
 
   webpack: (config, { isServer }) => {
     if (isServer) {
