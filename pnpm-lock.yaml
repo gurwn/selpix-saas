@@ -141,6 +141,9 @@ importers:
       react-hook-form:
         specifier: ^7.62.0
         version: 7.68.0(react@19.2.3)
+      recharts:
+        specifier: ^2.15.4
+        version: 2.15.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       superjson:
         specifier: 1.13.1
         version: 1.13.1
@@ -11739,7 +11742,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 25.0.3
+      '@types/node': 22.19.3
       merge-stream: 2.0.0
       supports-color: 8.1.1
 

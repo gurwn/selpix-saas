@@ -8,9 +8,7 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   transpilePackages: ["@myapp/api", "@myapp/prisma", "@myapp/utils", "@myapp/ui"],
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.plugins = [...config.plugins, new PrismaPlugin()];
