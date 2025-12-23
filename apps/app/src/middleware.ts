@@ -18,10 +18,13 @@ export default clerkMiddleware(async (auth, req) => {
     return NextResponse.next();
   }
 
-  if (
-    !req.nextUrl.pathname.includes("/sign-in") &&
-    !req.nextUrl.pathname.includes("/sign-up")
-  ) {
+  const publicPaths = ["/sign-in", "/sign-up", "/", "/ko", "/en"];
+  const isPublic = publicPaths.some(path =>
+    req.nextUrl.pathname === path ||
+    (path !== "/" && req.nextUrl.pathname.startsWith(path) && req.nextUrl.pathname.split("/").length <= 3)
+  );
+
+  if (!isPublic) {
     await auth.protect();
   }
 

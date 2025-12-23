@@ -92,6 +92,34 @@
       "dark": "Dark",
       "system": "System",
       "current": "Current: {value}"
+    },
+    "Coupang": {
+      "title": "Coupang Seller Accounts",
+      "description": "Register and manage multiple Coupang seller accounts.",
+      "list": {
+        "title": "Registered Accounts",
+        "alias": "Alias",
+        "vendorId": "Vendor ID",
+        "accessKey": "Access Key",
+        "status": "Status",
+        "active": "Active",
+        "actions": "Actions",
+        "setActive": "Set Active",
+        "delete": "Delete",
+        "editAlias": "Edit Alias",
+        "empty": "No accounts registered."
+      },
+      "form": {
+        "title": "Add New Account",
+        "alias": "Account Alias (e.g., Main Store)",
+        "accessKey": "Access Key",
+        "secretKey": "Secret Key",
+        "vendorId": "Vendor ID",
+        "vendorUserId": "Vendor User ID",
+        "submit": "Add Account",
+        "saving": "Saving...",
+        "success": "Saved successfully."
+      }
     }
   },
   "SubscriptionPage": {

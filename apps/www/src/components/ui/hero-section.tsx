@@ -16,13 +16,13 @@ interface HeroAction {
   href: string;
   icon?: React.ReactNode;
   variant?:
-    | "default"
-    | "secondary"
-    | "outline"
-    | "ghost"
-    | "link"
-    | "destructive"
-    | "discord";
+  | "default"
+  | "secondary"
+  | "outline"
+  | "ghost"
+  | "link"
+  | "destructive"
+  | "discord";
   onClick?: (e: React.MouseEvent) => void;
 }
 
@@ -36,9 +36,9 @@ interface HeroProps {
   };
   title: string;
   description: string;
-  tutorial: string;
+  // tutorial: string;
   actions: HeroAction[];
-  image: {
+  image?: {
     light: string;
     dark: string;
     alt: string;
@@ -50,13 +50,15 @@ export function HeroSection({
   badge,
   title,
   description,
-  tutorial,
+  // tutorial,
   actions,
   image,
   className,
 }: HeroProps) {
   const { resolvedTheme } = useTheme();
-  const imageSrc = resolvedTheme === "light" ? image.light : image.dark;
+  // Safe access for imageSrc
+  const imageSrc =
+    image && (resolvedTheme === "light" ? image.light : image.dark);
   const [isTutorialModalOpen, setIsTutorialModalOpen] = useState(false);
 
   const handleTutorialClick = () => {
@@ -145,41 +147,32 @@ export function HeroSection({
                 </div>
               </div>
 
-              {/* Tutorial Button */}
-              <div className="relative z-10 delay-500 opacity-0 animate-appear">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={handleTutorialClick}
-                  className="flex items-center gap-2 transition-all duration-200 text-muted-foreground border-muted-foreground/30 hover:bg-muted/50 hover:text-red-400 hover:border-muted-foreground/60"
-                >
-                  <Play className="w-4 h-4 text-red-500" />
-                  {tutorial}
-                </Button>
-              </div>
+
             </div>
 
             {/* Image with Glow */}
-            <div className="relative pt-2">
-              <MockupFrame
-                className="delay-700 opacity-0 animate-appear"
-                size="small"
-              >
-                <Mockup type="responsive">
-                  <Image
-                    src={imageSrc}
-                    alt={image.alt}
-                    width={1248}
-                    height={765}
-                    priority
-                  />
-                </Mockup>
-              </MockupFrame>
-              <Glow
-                variant="top"
-                className="delay-1000 opacity-0 animate-appear-zoom"
-              />
-            </div>
+            {image && imageSrc && (
+              <div className="relative pt-2">
+                <MockupFrame
+                  className="delay-700 opacity-0 animate-appear"
+                  size="small"
+                >
+                  <Mockup type="responsive">
+                    <Image
+                      src={imageSrc}
+                      alt={image.alt}
+                      width={1248}
+                      height={765}
+                      priority
+                    />
+                  </Mockup>
+                </MockupFrame>
+                <Glow
+                  variant="top"
+                  className="delay-1000 opacity-0 animate-appear-zoom"
+                />
+              </div>
+            )}
           </div>
         </div>
       </section>

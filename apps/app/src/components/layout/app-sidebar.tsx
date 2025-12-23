@@ -23,6 +23,7 @@ import {
     Settings,
     HelpCircle,
     Package,
+    Sparkles,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -34,6 +35,7 @@ export function AppSidebar() {
 
     const navItems = [
         { label: tLayout("nav.overview"), icon: Home, href: "/" },
+        { label: "상품 등록 (Registration)", icon: Sparkles, href: "/registration" }, // Added manually
         { label: tLayout("nav.analytics"), icon: BarChart3, href: "/analytics" },
         { label: tLayout("nav.products"), icon: Package, href: "/products" },
         { label: tLayout("nav.customers"), icon: Users, href: "/customers" },

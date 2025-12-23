@@ -4,35 +4,38 @@ import { motion } from "framer-motion";
 import { UserPlus, Sparkles, UploadCloud, ArrowRight } from "lucide-react";
 import { Button } from "@myapp/ui/components/button";
 import { moveToGetStarted } from "@/lib/moveToApp";
-
-const steps = [
-    {
-        icon: UserPlus,
-        title: "가입 및 연동",
-        description: "1분 만에 회원가입하고 쿠팡, 도매몰 계정을 안전하게 연결하세요.",
-        color: "bg-blue-500/10 text-blue-500",
-    },
-    {
-        icon: Sparkles,
-        title: "AI 소싱 분석",
-        description: "Selpix AI가 마진율과 판매 가능성이 높은 상품을 자동으로 찾아냅니다.",
-        color: "bg-purple-500/10 text-purple-500",
-    },
-    {
-        icon: UploadCloud,
-        title: "원클릭 등록",
-        description: "분석된 상품을 클릭 한 번으로 쿠팡에 등록하고 판매를 시작하세요.",
-        color: "bg-green-500/10 text-green-500",
-    },
-];
+import { useTranslations } from "next-intl";
 
 export function HowItWorksSection() {
+    const t = useTranslations("howItWorks");
+
+    const steps = [
+        {
+            icon: UserPlus,
+            title: t("steps.step1.title"),
+            description: t("steps.step1.description"),
+            color: "bg-blue-500/10 text-blue-500",
+        },
+        {
+            icon: Sparkles,
+            title: t("steps.step2.title"),
+            description: t("steps.step2.description"),
+            color: "bg-purple-500/10 text-purple-500",
+        },
+        {
+            icon: UploadCloud,
+            title: t("steps.step3.title"),
+            description: t("steps.step3.description"),
+            color: "bg-green-500/10 text-green-500",
+        },
+    ];
+
     return (
         <section className="py-24 bg-background relative overflow-hidden">
             {/* Background Decor */}
             <div className="absolute inset-0 bg-grid-slate-100/50 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]" />
 
-            <div className="container px-4 md:px-6 relative z-10">
+            <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -40,11 +43,12 @@ export function HowItWorksSection() {
                         transition={{ duration: 0.5 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
-                            3단계로 시작하는 <span className="text-primary">자동화</span>
-                        </h2>
+                        <h2
+                            className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4"
+                            dangerouslySetInnerHTML={{ __html: t.raw("title") as string }}
+                        />
                         <p className="text-xl text-muted-foreground">
-                            복잡한 소싱 과정을 Selpix가 가장 단순하게 바꿨습니다.
+                            {t("description")}
                         </p>
                     </motion.div>
                 </div>
@@ -74,8 +78,8 @@ export function HowItWorksSection() {
                                 </div>
                             </div>
 
-                            <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                            <p className="text-muted-foreground max-w-xs">{step.description}</p>
+                            <h3 className="text-xl font-bold mb-3 break-keep">{step.title}</h3>
+                            <p className="text-muted-foreground max-w-sm break-keep text-balance">{step.description}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -88,7 +92,7 @@ export function HowItWorksSection() {
                     className="mt-16 text-center"
                 >
                     <Button size="lg" onClick={moveToGetStarted} className="group">
-                        지금 무료로 시작하기
+                        {t("cta")}
                         <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </Button>
                 </motion.div>

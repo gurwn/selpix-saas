@@ -362,7 +362,7 @@ importers:
   packages/prisma:
     dependencies:
       '@prisma/client':
-        specifier: ^6.8.2
+        specifier: ^6.13.0
         version: 6.19.1(prisma@6.19.1(typescript@5.9.3))(typescript@5.9.3)
       decimal.js:
         specifier: ^10.6.0
@@ -396,7 +396,7 @@ importers:
         specifier: ^9.27.0
         version: 9.39.2(jiti@2.6.1)
       prisma:
-        specifier: ^6.8.2
+        specifier: ^6.13.0
         version: 6.19.1(typescript@5.9.3)
       rimraf:
         specifier: ^5.0.5

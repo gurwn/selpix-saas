@@ -23,7 +23,7 @@ export const Hero = () => {
         }}
         title={t("hero.title")}
         description={t("hero.description")}
-        tutorial={t("hero.tutorial")}
+        // tutorial={t("hero.tutorial")}
         actions={[
           {
             text: t("common.getStarted"),
@@ -39,11 +39,7 @@ export const Hero = () => {
             variant: "discord",
           },
         ]}
-        image={{
-          light: "/images/preview.png",
-          dark: "/images/preview.png",
-          alt: t("hero.imageAlt"),
-        }}
+
         className="!bg-transparent relative z-10"
       />
     </div>

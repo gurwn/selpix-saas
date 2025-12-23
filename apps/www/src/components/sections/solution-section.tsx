@@ -9,63 +9,66 @@ export const SolutionSection = () => {
 
   const features = [
     {
-      title: t("solution.features.prd.title"),
+      title: t("solution.features.demomarket.title"),
       description: (
         <span className="tracking-tighter">
-          {t("solution.features.prd.description")
+          {t("solution.features.demomarket.description")
             .split("\n")
             .map((line, index) => (
               <span key={index}>
                 {line}
                 {index <
-                  t("solution.features.prd.description").split("\n").length -
-                    1 && (
-                  <>
-                    <br />
-                  </>
-                )}
+                  t("solution.features.demomarket.description").split("\n")
+                    .length -
+                  1 && (
+                    <>
+                      <br />
+                    </>
+                  )}
               </span>
             ))}
         </span>
       ),
     },
     {
-      title: t("solution.features.plan.title"),
+      title: t("solution.features.connection.title"),
       description: (
         <span className="tracking-tighter">
-          {t("solution.features.plan.description")
+          {t("solution.features.connection.description")
             .split("\n")
             .map((line, index) => (
               <span key={index}>
                 {line}
                 {index <
-                  t("solution.features.plan.description").split("\n").length -
-                    1 && (
-                  <>
-                    <br />
-                  </>
-                )}
+                  t("solution.features.connection.description").split("\n")
+                    .length -
+                  1 && (
+                    <>
+                      <br />
+                    </>
+                  )}
               </span>
             ))}
         </span>
       ),
     },
     {
-      title: t("solution.features.mcp.title"),
+      title: t("solution.features.automation.title"),
       description: (
         <span className="tracking-tighter">
-          {t("solution.features.mcp.description")
+          {t("solution.features.automation.description")
             .split("\n")
             .map((line, index) => (
               <span key={index}>
                 {line}
                 {index <
-                  t("solution.features.mcp.description").split("\n").length -
-                    1 && (
-                  <>
-                    <br />
-                  </>
-                )}
+                  t("solution.features.automation.description").split("\n")
+                    .length -
+                  1 && (
+                    <>
+                      <br />
+                    </>
+                  )}
               </span>
             ))}
         </span>
@@ -101,8 +104,8 @@ export const SolutionSection = () => {
                     {line}
                     {index <
                       t("solution.description").split("\n").length - 1 && (
-                      <br />
-                    )}
+                        <br />
+                      )}
                   </span>
                 ))}
             </p>

@@ -92,6 +92,34 @@
       "dark": "다크",
       "system": "시스템",
       "current": "현재: {value}"
+    },
+    "Coupang": {
+      "title": "쿠팡 판매자 계정 관리",
+      "description": "여러 개의 쿠팡 판매자 계정을 등록하고 관리할 수 있습니다.",
+      "list": {
+        "title": "등록된 계정 목록",
+        "alias": "별칭",
+        "vendorId": "업체 코드",
+        "accessKey": "Access Key",
+        "status": "상태",
+        "active": "사용 중",
+        "actions": "관리",
+        "setActive": "사용하기",
+        "delete": "삭제",
+        "editAlias": "이름 변경",
+        "empty": "등록된 계정이 없습니다."
+      },
+      "form": {
+        "title": "새 계정 추가",
+        "alias": "계정 별칭 (예: 메인 스토어)",
+        "accessKey": "Access Key",
+        "secretKey": "Secret Key",
+        "vendorId": "Vendor ID (업체 코드)",
+        "vendorUserId": "Vendor User ID (판매자 ID)",
+        "submit": "계정 추가하기",
+        "saving": "저장 중...",
+        "success": "성공적으로 저장되었습니다."
+      }
     }
   },
   "SubscriptionPage": {

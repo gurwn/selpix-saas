@@ -18,7 +18,8 @@ export async function POST(req: Request) {
             shippingCost: body.shippingCost || 3000,
             adOnOff: body.adOnOff || false,
             marketPrices: body.marketPrices || [],
-            candidatePrices: body.candidatePrices || []
+            candidatePrices: body.candidatePrices || [],
+            unitCount: body.unitCount || 1 // Pass Unit Count
         });
 
         if (!result) {

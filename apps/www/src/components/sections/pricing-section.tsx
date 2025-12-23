@@ -25,13 +25,12 @@ export const PricingSection = () => {
         t("plans.free.ai"),
         t("plans.free.support"),
       ],
-      cta: t("comingSoon"),
+      cta: t("plans.free.buttonText"),
       priceNote: t("plans.free.unit"),
-      disabled: true,
     },
     {
       name: t("plans.pro.title"),
-      price: { monthly: 15, yearly: 15 },
+      price: { monthly: "19,900원", yearly: "19,900원" },
       description: t("plans.pro.description"),
       features: [
         t("plans.pro.credits"),
@@ -39,39 +38,10 @@ export const PricingSection = () => {
         t("plans.pro.ai"),
         t("plans.pro.designer"),
       ],
-      cta: t("getStarted"),
+      cta: t("plans.pro.buttonText"),
       popular: true,
-      priceNote: t("plans.pro.unit"),
+      priceNote: t("plans.pro.unit"), // Ensure this is "원/월" or "/월"
       href: GET_STARTED_LINK,
-    },
-    {
-      name: t("plans.max5.title"),
-      price: { monthly: 70, yearly: 70 },
-      description: t("plans.max5.description"),
-      features: [
-        t("plans.max5.credits"),
-        t("plans.max5.usage"),
-        t("plans.max5.ai"),
-        t("plans.max5.image"),
-      ],
-      cta: t("comingSoon"),
-      priceNote: t("plans.max5.unit"),
-      disabled: true,
-    },
-    {
-      name: t("plans.max20.title"),
-      price: { monthly: 120, yearly: 120 },
-      description: t("plans.max20.description"),
-      features: [
-        t("plans.max20.credits"),
-        t("plans.max20.usage"),
-        t("plans.max20.ai"),
-        t("plans.max20.context"),
-      ],
-      cta: t("comingSoon"),
-      highlighted: true,
-      priceNote: t("plans.max20.unit"),
-      disabled: true,
     },
   ];
 

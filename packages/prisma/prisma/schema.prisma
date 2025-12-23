@@ -168,6 +168,20 @@ model PaymentHistory {
   @@index([createdAt])
 }
 
+model CoupangCredential {
+  id           String   @id @default(uuid())
+  userId       String   // One user can have multiple credentials
+  alias        String?  // Friendly name for the credential (e.g. "Main Store")
+  isActive     Boolean  @default(false) // Whether this is the currently active credential
+  accessKey    String
+  secretKey    String
+  vendorId     String
+  vendorUserId String?  // Optional
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
 // -- New Models for Selpix SaaS Migration --
 
 model Product {
@@ -190,6 +204,8 @@ model Product {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  
+  userId    String? // Clerk User ID
 }
 
 model Recommendation {
@@ -233,6 +249,8 @@ model WholesaleProduct {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  userId    String? // Clerk User ID
 }
 
 model WholesaleGroup {
@@ -242,6 +260,8 @@ model WholesaleGroup {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  userId    String? // Clerk User ID
 }
 
 model Margin {
@@ -292,9 +312,17 @@ model Registration {
   wholesalePrice   Int
   status           String
   platform         String
+
+  // Source & External IDs
+  sourceProductId  String?
+  sourceOptionId   String?
+  externalProductId String?
+  externalItemId   String?
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  userId    String? // Clerk User ID
 }
 
 model ActivityLog {

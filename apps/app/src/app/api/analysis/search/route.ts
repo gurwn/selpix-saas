@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { crawlerService } from '@/lib/services/crawler';
 import { prisma } from '@myapp/prisma';
+import { auth } from '@clerk/nextjs/server';
 
 export const maxDuration = 60; // Set max duration for crawling (Vercel limit/Timeouts)
 
@@ -20,11 +21,14 @@ export async function POST(req: Request) {
         const products = await crawlerService.crawlAllSites(keyword);
 
         // 2. Save to Database (Transaction)
+        const { userId } = await auth(); // Get logged-in user ID
+
         // Check if group exists or create new
         const savedGroup = await prisma.$transaction(async (tx) => {
             const group = await tx.wholesaleGroup.create({
                 data: {
                     keyword,
+                    userId, // Save User ID
                 },
             });
 

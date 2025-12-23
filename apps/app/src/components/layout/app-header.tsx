@@ -16,6 +16,8 @@ import { SignedIn } from "@/components/clerk/SignedIn";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
 
+import { ChannelSelector } from "@/components/layout/channel-selector";
+
 export function AppHeader() {
     const { toggleSidebar } = useSidebar();
     const pathname = usePathname();
@@ -50,7 +52,9 @@ export function AppHeader() {
                     </BreadcrumbList>
                 </Breadcrumb>
             </div>
-            <div className="ml-auto flex items-center gap-2 px-4">
+            <div className="ml-auto flex items-center gap-4 px-4">
+                <ChannelSelector />
+                <Separator orientation="vertical" className="h-4" />
                 <SignedIn>
                     <UserButton afterSignOutUrl="/" />
                 </SignedIn>

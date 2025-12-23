@@ -41,7 +41,7 @@ export const Header = () => {
                 className="size-7"
               />
               <span className="text-xl font-bold text-gray-900">
-                ProductName
+                Selpix
               </span>
             </Link>
           </div>
@@ -63,14 +63,14 @@ export const Header = () => {
           {/* 데스크톱 버튼 */}
           <div className="items-center hidden space-x-4 md:flex">
             <LanguageSwitcher />
-            <Button
+            {/* <Button
               variant="ghost"
               onClick={() => {
                 moveToSignIn();
               }}
             >
               {t("common.signIn")}
-            </Button>
+            </Button> */}
             <Button
               onClick={(e) => {
                 handleGetStartedClick(e);
@@ -104,7 +104,7 @@ export const Header = () => {
                       className="size-7"
                     />
                     <span className="ml-[6px] text-xl font-bold text-slate-900">
-                      ProductName
+                      Selpix
                     </span>
                   </div>
 
@@ -131,7 +131,7 @@ export const Header = () => {
                       <LanguageSwitcher />
                     </div>
                     <div className="space-y-2">
-                      <Button
+                      {/* <Button
                         variant="outline"
                         className="w-full"
                         onClick={() => {
@@ -139,7 +139,7 @@ export const Header = () => {
                         }}
                       >
                         {t("common.signIn")}
-                      </Button>
+                      </Button> */}
                       <Button
                         className="w-full"
                         onClick={(e) => {

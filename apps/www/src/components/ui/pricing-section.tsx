@@ -51,7 +51,7 @@ export function PricingSection({
         </div>
       </div>
 
-      <div className="grid w-full max-w-6xl gap-6 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="flex w-full max-w-6xl flex-wrap justify-center gap-6">
         {tiers.map((tier) => (
           <PricingCard
             key={tier.name}
