@@ -25,8 +25,8 @@ export async function GET() {
         // Implementing raw fetch here is safest to avoid breaking the service for the user during debug.
 
         const service = new CoupangService();
-        const outbound = await service.getOutboundShippingCenter();
-        const inbound = await service.getReturnShippingCenter();
+        const outbound = await service.getOutboundShippingCenters();
+        const inbound = await service.getReturnShippingCenters();
 
         return NextResponse.json({
             outboundResult: outbound,
