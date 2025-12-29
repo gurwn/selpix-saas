@@ -54,7 +54,8 @@ export function HeroSection({
   actions,
   image,
   className,
-}: HeroProps) {
+  children,
+}: HeroProps & { children?: React.ReactNode }) {
   const { resolvedTheme } = useTheme();
   // Safe access for imageSrc
   const imageSrc =

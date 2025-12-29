@@ -3,7 +3,7 @@ import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { ClientProviders } from "../client-providers";
-import { Toaster } from "@myapp/ui/components/sonner";
+import { Toaster } from "sonner";
 import "@myapp/ui/globals.css";
 import localFont from "next/font/local";
 
@@ -52,7 +52,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages} locale={locale}>
           <ClientProviders>
             {children}
-            <Toaster />
+            <Toaster richColors position="top-center" />
           </ClientProviders>
         </NextIntlClientProvider>
       </body>

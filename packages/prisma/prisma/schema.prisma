@@ -338,6 +338,7 @@ model ActivityLog {
   updatedAt DateTime @updatedAt
 }
 
+
 model DailyStat {
   id       Int      @id @default(autoincrement())
   date     String
@@ -345,6 +346,17 @@ model DailyStat {
   products Int
   margin   Int
   
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PreOrder {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  source    String?  // e.g. "landing_page"
+  referralSource       String? // Search, SNS, Friend, etc.
+  referralSourceDetail String? // Instagram, Facebook, etc.
+  reason               String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

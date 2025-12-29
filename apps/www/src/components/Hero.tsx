@@ -1,18 +1,20 @@
-"use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { HeroSection } from "@/components/ui/hero-section";
 import { ArrowRight } from "lucide-react";
 import { SiDiscord } from "@icons-pack/react-simple-icons";
-import { DISCORD_LINK, GET_STARTED_LINK } from "@/constants/links";
-import { moveToGetStarted } from "@/lib/moveToApp";
+import { DISCORD_LINK } from "@/constants/links";
+import { PreOrderDialog } from "@/components/ui/pre-order-dialog";
 
 export const Hero = () => {
   const t = useTranslations();
 
-  const handleGetStartedClick = (e: React.MouseEvent) => {
+  const [showPreOrder, setShowPreOrder] = useState(false);
+
+  const handlePreOrderClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    moveToGetStarted();
+    setShowPreOrder(true);
   };
 
   return (
@@ -26,11 +28,11 @@ export const Hero = () => {
         // tutorial={t("hero.tutorial")}
         actions={[
           {
-            text: t("common.getStarted"),
-            href: GET_STARTED_LINK || "",
+            text: "사전예약 신청하기",
+            href: "#",
             icon: <ArrowRight className="size-4" />,
             variant: "default",
-            onClick: handleGetStartedClick,
+            onClick: handlePreOrderClick,
           },
           {
             text: t("common.community"),
@@ -41,7 +43,9 @@ export const Hero = () => {
         ]}
 
         className="!bg-transparent relative z-10"
-      />
+      >
+        <PreOrderDialog open={showPreOrder} onOpenChange={setShowPreOrder} />
+      </HeroSection>
     </div>
   );
 };
