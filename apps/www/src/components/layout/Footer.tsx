@@ -14,7 +14,7 @@ export const Footer = () => {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="mb-3 text-xl font-medium text-gray-950">
-              ProductName
+              Selpix
             </div>
             <p className="text-sm leading-relaxed text-gray-600">
               {t("footer.tagline")}
