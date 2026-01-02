@@ -9,6 +9,8 @@ import { useState, useEffect } from "react";
 import { GET_STARTED_LINK } from "@/constants/links";
 import { moveToGetStarted } from "@/lib/moveToApp";
 
+import { PreOrderDialog } from "@/components/ui/pre-order-dialog";
+
 interface TabContentData {
   badge: string;
   title: React.ReactNode;
@@ -23,16 +25,13 @@ interface TabContentData {
 interface TabContentProps {
   content: TabContentData;
   index?: number;
+  onPreOrder: () => void;
 }
 
-const TabContent = ({ content, index = 0 }: TabContentProps) => {
+const TabContent = ({ content, index = 0, onPreOrder }: TabContentProps) => {
   const handleButtonClick = (e: React.MouseEvent) => {
-    if (content.buttonLink === GET_STARTED_LINK) {
-      e.preventDefault();
-      moveToGetStarted();
-    } else {
-      window.open(content.buttonLink, "_blank", "noopener,noreferrer");
-    }
+    e.preventDefault();
+    onPreOrder();
   };
 
   return (
@@ -81,6 +80,7 @@ export const TargetUsersSection = () => {
   const t = useTranslations();
   const [activeTab, setActiveTab] = useState("vibecoder");
   const [isMobile, setIsMobile] = useState(false);
+  const [isPreOrderOpen, setIsPreOrderOpen] = useState(false);
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -99,50 +99,50 @@ export const TargetUsersSection = () => {
     {
       value: "vibecoder",
       icon: <Users className="w-4 h-auto shrink-0" />,
-      label: t("targetUsers.users.vibecoder.label"),
+      label: "초보 셀러",
       content: {
-        badge: "vibecoder",
-        title: t("targetUsers.users.vibecoder.title"),
-        description: t("targetUsers.users.vibecoder.description"),
-        buttonText: t("common.getStarted"),
+        badge: "Novice Seller",
+        title: "이제 막 시작한 초보 셀러",
+        description: "복잡한 설정 없이 바로 시작하세요. 주문 관리부터 배송까지 한 번에 해결해 드립니다.",
+        buttonText: "사전예약 신청하기",
         buttonLink: GET_STARTED_LINK || "",
         imageSrc: "/images/target-user/vibecoder.png",
-        imageAlt: t("targetUsers.users.vibecoder.title"),
+        imageAlt: "Novice Seller",
         personas: [
-          t("targetUsers.users.vibecoder.persona1"),
-          t("targetUsers.users.vibecoder.persona2"),
-          t("targetUsers.users.vibecoder.persona3"),
+          "쇼핑몰 창업이 처음이신 분",
+          "복잡한 엑셀 관리가 힘드신 분",
+          "간편한 배송 처리를 원하시는 분",
         ],
       },
     },
     {
       value: "solo",
       icon: <Code2 className="w-4 h-auto shrink-0" />,
-      label: t("targetUsers.users.solo.label"),
+      label: "1인 셀러",
       content: {
-        badge: "Solo Developer",
-        title: t("targetUsers.users.solo.title"),
-        description: t("targetUsers.users.solo.description"),
-        buttonText: t("common.getStarted"),
+        badge: "Solo Seller",
+        title: "효율이 중요한 1인 셀러",
+        description: "혼자서도 수백 건의 주문을 거뜬히 처리하세요. 자동화된 시스템이 여러분의 시간을 벌어드립니다.",
+        buttonText: "사전예약 신청하기",
         buttonLink: GET_STARTED_LINK || "",
         imageSrc: "/images/target-user/solo-developer.png",
-        imageAlt: t("targetUsers.users.solo.title"),
+        imageAlt: "Solo Seller",
         personas: [
-          t("targetUsers.users.solo.persona1"),
-          t("targetUsers.users.solo.persona2"),
-          t("targetUsers.users.solo.persona3"),
+          "혼자서 모든 업무를 처리하시는 분",
+          "반복적인 업무를 줄이고 싶으신 분",
+          "마케팅에 더 집중하고 싶으신 분",
         ],
       },
     },
     {
       value: "startup",
       icon: <Lightbulb className="w-4 h-auto shrink-0" />,
-      label: t("targetUsers.users.startup.label"),
+      label: "확장하는 팀",
       content: {
-        badge: "Startup Founder",
-        title: t("targetUsers.users.startup.title"),
-        description: t("targetUsers.users.startup.description"),
-        buttonText: t("common.getStarted"),
+        badge: "Scaling Team",
+        title: "성장하는 팀을 위한 시스템",
+        description: "팀원들과 함께 효율적으로 협업하세요. 권한 관리부터 실시간 재고 공유까지 완벽하게 지원합니다.",
+        buttonText: "사전예약 신청하기",
         buttonLink: GET_STARTED_LINK || "",
         imageSrc: "/images/target-user/startup.png",
         imageAlt: t("targetUsers.users.startup.title"),
@@ -177,7 +177,11 @@ export const TargetUsersSection = () => {
           <div className="space-y-8">
             {tabs.map((tab, index) => (
               <div key={tab.value} className="p-4 rounded-2xl bg-gray-50">
-                <TabContent content={tab.content} index={index} />
+                <TabContent
+                  content={tab.content}
+                  index={index}
+                  onPreOrder={() => setIsPreOrderOpen(true)}
+                />
               </div>
             ))}
           </div>
@@ -199,13 +203,21 @@ export const TargetUsersSection = () => {
             <div className="p-8 mx-auto mt-12 rounded-2xl bg-gray-50 lg:p-16">
               <AnimatePresence mode="wait">
                 {currentTab && (
-                  <TabContent key={activeTab} content={currentTab.content} />
+                  <TabContent
+                    key={activeTab}
+                    content={currentTab.content}
+                    onPreOrder={() => setIsPreOrderOpen(true)}
+                  />
                 )}
               </AnimatePresence>
             </div>
           </Tabs>
         )}
       </div>
+      <PreOrderDialog
+        open={isPreOrderOpen}
+        onOpenChange={setIsPreOrderOpen}
+      />
     </section>
   );
 };

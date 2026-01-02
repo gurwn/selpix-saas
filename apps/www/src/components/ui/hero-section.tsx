@@ -178,6 +178,8 @@ export function HeroSection({
         </div>
       </section>
 
+      {children}
+
       {/* Tutorial Modal */}
       <TutorialModal
         isOpen={isTutorialModalOpen}

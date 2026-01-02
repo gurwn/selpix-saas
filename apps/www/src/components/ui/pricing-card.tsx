@@ -25,12 +25,20 @@ export interface PricingTier {
 interface PricingCardProps {
   tier: PricingTier;
   paymentFrequency: string;
+  onCtaClick?: (tier: PricingTier) => void;
 }
 
-export function PricingCard({ tier, paymentFrequency }: PricingCardProps) {
+export function PricingCard({ tier, paymentFrequency, onCtaClick }: PricingCardProps) {
   const price = tier.price[paymentFrequency];
   const isHighlighted = tier.highlighted;
   const isPopular = tier.popular;
+
+  const handleCtaClick = (e: React.MouseEvent) => {
+    if (onCtaClick) {
+      e.preventDefault();
+      onCtaClick(tier);
+    }
+  };
 
   return (
     <Card
@@ -92,40 +100,37 @@ export function PricingCard({ tier, paymentFrequency }: PricingCardProps) {
         </ul>
       </div>
 
-      {tier.href ? (
-        <a
-          href={tier.disabled ? "#" : tier.href}
-          className={cn("w-full", tier.disabled && "pointer-events-none")}
-          target={tier.href.startsWith("http") ? "_blank" : undefined}
-          rel={tier.href.startsWith("http") ? "noopener noreferrer" : undefined}
-        >
-          <Button
-            variant={isHighlighted ? "secondary" : "default"}
-            className="w-full"
-            disabled={tier.disabled}
+      <Button
+        variant={isHighlighted ? "secondary" : "default"}
+        className="w-full z-10"
+        disabled={tier.disabled}
+        onClick={handleCtaClick}
+        asChild={!onCtaClick && !!tier.href}
+      >
+        {(!onCtaClick && tier.href) ? (
+          <a
+            href={tier.disabled ? "#" : tier.href}
+            target={tier.href.startsWith("http") ? "_blank" : undefined}
+            rel={tier.href.startsWith("http") ? "noopener noreferrer" : undefined}
           >
             {tier.cta}
             {!tier.disabled && <ArrowRight className="ml-2 h-4 w-4" />}
-          </Button>
-        </a>
-      ) : (
-        <Button
-          variant={isHighlighted ? "secondary" : "default"}
-          className="w-full"
-          disabled={tier.disabled}
-        >
-          {tier.cta}
-          {!tier.disabled && <ArrowRight className="ml-2 h-4 w-4" />}
-        </Button>
-      )}
+          </a>
+        ) : (
+          <span>
+            {tier.cta}
+            {!tier.disabled && <ArrowRight className="ml-2 h-4 w-4" />}
+          </span>
+        )}
+      </Button>
     </Card>
   );
 }
 
 const HighlightedBackground = () => (
-  <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:45px_45px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+  <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:45px_45px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
 );
 
 const PopularBackground = () => (
-  <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
+  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
 );

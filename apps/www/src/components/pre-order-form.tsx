@@ -101,9 +101,6 @@ export const PreOrderForm = ({ onSuccess }: PreOrderFormProps) => {
                         서비스 출시 소식을 가장 먼저 알려드리겠습니다.
                     </p>
                 </div>
-                <Button variant="outline" onClick={handleReset} className="mt-4">
-                    다른 이메일로 또 신청하기
-                </Button>
             </div>
         );
     }

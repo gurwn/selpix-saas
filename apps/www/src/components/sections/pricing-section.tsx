@@ -11,8 +11,12 @@ export const PAYMENT_FREQUENCIES: string[] = ["monthly", "yearly"];
 
 export const TIERS: PricingTier[] = [];
 
+import { PreOrderDialog } from "@/components/ui/pre-order-dialog";
+
+
 export const PricingSection = () => {
   const t = useTranslations("pricing");
+  const [isPreOrderOpen, setIsPreOrderOpen] = React.useState(false);
 
   const tiers: PricingTier[] = [
     {
@@ -25,7 +29,7 @@ export const PricingSection = () => {
         t("plans.free.ai"),
         t("plans.free.support"),
       ],
-      cta: t("plans.free.buttonText"),
+      cta: "사전예약 신청하기",
       priceNote: t("plans.free.unit"),
     },
     {
@@ -38,7 +42,7 @@ export const PricingSection = () => {
         t("plans.pro.ai"),
         t("plans.pro.designer"),
       ],
-      cta: t("plans.pro.buttonText"),
+      cta: "사전예약 신청하기",
       popular: true,
       priceNote: t("plans.pro.unit"), // Ensure this is "원/월" or "/월"
       href: GET_STARTED_LINK,
@@ -55,6 +59,11 @@ export const PricingSection = () => {
         subtitle={t("description")}
         frequencies={PAYMENT_FREQUENCIES}
         tiers={tiers}
+        onCtaClick={() => setIsPreOrderOpen(true)}
+      />
+      <PreOrderDialog
+        open={isPreOrderOpen}
+        onOpenChange={setIsPreOrderOpen}
       />
     </div>
   );

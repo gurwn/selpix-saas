@@ -16,7 +16,11 @@ export function FeatureCard({
   className,
   ...props
 }: FeatureCardPorps) {
-  const p = genRandomPattern();
+  const [pattern, setPattern] = React.useState<number[][]>([]);
+
+  React.useEffect(() => {
+    setPattern(genRandomPattern());
+  }, []);
 
   return (
     <div
@@ -33,7 +37,7 @@ export function FeatureCard({
             height={20}
             x="-12"
             y="4"
-            squares={p}
+            squares={pattern}
             className="absolute inset-0 w-full h-full transition-all fill-foreground/5 stroke-foreground/25 mix-blend-overlay group-hover:fill-brand/25 group-hover:stroke-brand/55"
           />
         </div>

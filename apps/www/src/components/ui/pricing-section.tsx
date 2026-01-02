@@ -10,6 +10,7 @@ interface PricingSectionProps {
   subtitle: string;
   tiers: PricingTier[];
   frequencies: string[];
+  onCtaClick?: (tier: PricingTier) => void;
 }
 
 export function PricingSection({
@@ -17,6 +18,7 @@ export function PricingSection({
   subtitle,
   tiers,
   frequencies,
+  onCtaClick,
 }: PricingSectionProps) {
   const t = useTranslations("pricing");
   const [selectedFrequency, setSelectedFrequency] = React.useState<string>(
@@ -57,6 +59,7 @@ export function PricingSection({
             key={tier.name}
             tier={tier}
             paymentFrequency={selectedFrequency}
+            onCtaClick={onCtaClick}
           />
         ))}
       </div>

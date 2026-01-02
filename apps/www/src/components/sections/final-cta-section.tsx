@@ -2,14 +2,16 @@ import { useTranslations } from "next-intl";
 import { Button } from "@myapp/ui/components/button";
 import { ArrowRight, Clock, Shield } from "lucide-react";
 import { Glow } from "../ui/glow";
-import { moveToGetStarted } from "@/lib/moveToApp";
+import { PreOrderDialog } from "@/components/ui/pre-order-dialog";
+import { useState } from "react";
 
 export const FinalCTASection = () => {
   const t = useTranslations();
+  const [isPreOrderOpen, setIsPreOrderOpen] = useState(false);
 
   const handleGetStartedClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    moveToGetStarted();
+    setIsPreOrderOpen(true);
   };
 
   return (
@@ -81,6 +83,11 @@ export const FinalCTASection = () => {
       <Glow
         variant="bottom"
         className="delay-1000 opacity-0 animate-appear-zoom"
+      />
+
+      <PreOrderDialog
+        open={isPreOrderOpen}
+        onOpenChange={setIsPreOrderOpen}
       />
     </section>
   );

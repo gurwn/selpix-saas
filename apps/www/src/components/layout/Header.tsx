@@ -7,15 +7,18 @@ import { Menu } from "lucide-react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { DISCORD_LINK } from "@/constants/links";
-import { moveToGetStarted, moveToSignIn } from "@/lib/moveToApp";
+import { moveToSignIn } from "@/lib/moveToApp";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { useState } from "react";
+import { PreOrderDialog } from "@/components/ui/pre-order-dialog";
 
 export const Header = () => {
   const t = useTranslations();
+  const [isPreOrderOpen, setIsPreOrderOpen] = useState(false);
 
   const handleGetStartedClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    moveToGetStarted();
+    setIsPreOrderOpen(true);
   };
 
   const menuItems = [
@@ -29,20 +32,18 @@ export const Header = () => {
   return (
     <header className="z-50 w-full bg-white border-b border-gray-200">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-24">
           {/* 로고 */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-[6px]">
+            <Link href="/" className="flex items-center">
               <Image
-                src="/logo.svg"
-                alt="logo"
-                width={32}
-                height={32}
-                className="size-7"
+                src="/logo-brand.png"
+                alt="Selpix"
+                width={400}
+                height={160}
+                className="h-32 w-auto md:h-40"
+                priority
               />
-              <span className="text-xl font-bold text-gray-900">
-                Selpix
-              </span>
             </Link>
           </div>
 
@@ -97,15 +98,13 @@ export const Header = () => {
                   {/* 로고 영역 - 상단 고정 */}
                   <div className="flex items-center px-6 py-4 border-b border-slate-100">
                     <Image
-                      src="/logo.svg"
-                      alt="logo"
-                      width={32}
-                      height={32}
-                      className="size-7"
+                      src="/logo-brand.png"
+                      alt="Selpix"
+                      width={240}
+                      height={80}
+                      className="h-24 w-auto"
+                      priority
                     />
-                    <span className="ml-[6px] text-xl font-bold text-slate-900">
-                      Selpix
-                    </span>
                   </div>
 
                   {/* 메뉴 영역 - 중앙 정렬 및 확장 */}
@@ -156,6 +155,10 @@ export const Header = () => {
           </div>
         </div>
       </div>
+      <PreOrderDialog
+        open={isPreOrderOpen}
+        onOpenChange={setIsPreOrderOpen}
+      />
     </header>
   );
 };
