@@ -227,6 +227,8 @@ function buildPayload(product, outboundCode, returnCode, cat, meta){
     outboundShippingPlaceCode: outboundCode,
     vendorUserId: VENDOR_USER_ID,
     requested: true,
+    useAiPrompts: true,
+    supplyPrice: product.price,
     items,
     images,
     contents: [

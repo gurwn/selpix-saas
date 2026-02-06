@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import crypto from 'crypto'
 import { CoupangService } from '@/lib/services/coupang'
+import { aiService } from '@/lib/services/ai'
 import { prisma } from '@myapp/prisma'
 import { auth } from '@clerk/nextjs/server'
 
@@ -610,8 +611,44 @@ export async function POST(req: Request) {
         // 상품 생성 요청이 함께 들어온 경우 처리 (페이지에서 한 번에 실행할 때)
         let productResult: any = null
 
-        const productName = payload.overrides?.productName || payload.productName
-        const sellPrice = payload.overrides?.price || payload.sellPrice || payload.price
+        let productName = payload.overrides?.productName || payload.productName
+        let sellPrice = payload.overrides?.price || payload.sellPrice || payload.price
+
+        // AI prompts 적용 (상품명/가격 최적화)
+        const useAiPrompts = payload?.useAiPrompts || payload?.aiPrompts || payload?.aiOptimize
+        let effectiveProductName = productName
+        let effectiveSellPrice = sellPrice
+        if (useAiPrompts) {
+            try {
+                const context = `
+[상품정보]
+- 상품명: ${productName}
+- 브랜드: ${payload.brand || '없음'}
+- 최소주문수량: ${payload.minOrderQuantity || 1}
+- 특징/옵션: ${JSON.stringify(payload.attributes || payload.options || {})}
+- 상세설명 요약: ${(payload.detailText || payload.detailHtml || '').slice(0, 500)}
+`.trim()
+                const meta = await aiService.generateProductMetadata(context)
+                if (meta?.optimizedName) effectiveProductName = meta.optimizedName
+
+                const priceInput = {
+                    totalCost: Number(payload.supplyPrice || payload.wholesalePrice || payload.cost || 0),
+                    feeRate: Number(payload.feeRate || 10.9),
+                    shippingCost: Number(payload.shippingCost || payload.deliveryCharge || 0),
+                    adOnOff: Boolean(payload.adOnOff),
+                    marketPrices: Array.isArray(payload.marketPrices) ? payload.marketPrices : [],
+                    candidatePrices: Array.isArray(payload.candidatePrices) ? payload.candidatePrices : [Number(sellPrice || 0)],
+                    unitCount: Number(payload.unitCount || payload.minOrderQuantity || 1)
+                }
+                const priceRec = await aiService.generatePriceRecommendation(priceInput)
+                if (priceRec?.recommendedPrice) effectiveSellPrice = priceRec.recommendedPrice
+            } catch (e) {
+                console.warn('[AI prompts skipped]', e)
+            }
+        }
+        // AI 결과 반영
+        productName = effectiveProductName
+        sellPrice = effectiveSellPrice
 
         // 상품 등록 의도가 있는데 필수 파라미터가 없으면 400 에러
         if (!productName) {
