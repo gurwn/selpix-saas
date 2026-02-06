@@ -192,7 +192,8 @@ function buildItems(product, cat, meta, images){
 function sanitizeImages(list){
   const base = Array.isArray(list)?list:[];
   const dedup=[...new Set(base.filter(Boolean))];
-  return dedup.map((src,i)=>({imageOrder:i, imageType: i===0?'REPRESENTATION':'DETAIL', vendorPath: src.slice(0,200)})).slice(0,3);
+  // 대표이미지만 사용 (추가 이미지 제거)
+  return dedup.slice(0,1).map((src,i)=>({imageOrder:i, imageType:'REPRESENTATION', vendorPath: src.slice(0,200)}));
 }
 
 function buildPayload(product, outboundCode, returnCode, cat, meta){
