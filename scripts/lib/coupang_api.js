@@ -426,6 +426,11 @@ async function deleteProduct(sellerProductId) {
   return { success: false, message: `삭제 실패: ${delResult?.message || JSON.stringify(delResult)}` };
 }
 
+async function updateProduct(product) {
+  const pathUrl = `/v2/providers/seller_api/apis/api/v1/marketplace/seller-products`;
+  return cf('PUT', pathUrl, product);
+}
+
 module.exports = {
   sign,
   cf,
@@ -436,6 +441,7 @@ module.exports = {
   ensureRequiredAttributes,
   extractRangeValue,
   deleteProduct,
+  updateProduct,
   getConfig,
   BASE_URL,
 };
