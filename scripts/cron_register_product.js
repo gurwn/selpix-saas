@@ -230,6 +230,7 @@ async function registerProduct(prod){
       maximumBuyForPersonPeriod: 1,
       outboundShippingTimeDay: 2,
       unitCount: 1,
+      minimumQuantity: p.minOrderQuantity || 1,
       adultOnly: 'EVERYONE',
       taxType: 'TAX',
       parallelImported: 'NOT_PARALLEL_IMPORTED',

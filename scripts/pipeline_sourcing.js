@@ -504,7 +504,8 @@ function toQueueItem(product, marginInfo, keyword) {
     addedBy: 'pipeline',
     // 도매꾹 옵션 (색상/사이즈 등)
     domeggookOptions: product.options || null,
-    domeggookOptionNos: product.domeggookOptionNos || []
+    domeggookOptionNos: product.domeggookOptionNos || [],
+    minOrderQuantity: product.minOrderQuantity || 1
   };
 }
 
