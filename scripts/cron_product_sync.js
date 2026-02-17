@@ -286,6 +286,7 @@ async function main() {
 
       if (!DRY_RUN) {
         item.domeggookProductNo = item.domeggookProductNo || productNo;
+        item.domeggookProductName = item.domeggookProductName || source.name || '';
         item.latestSourcePrice = source.price;
 
         if (moqChanged) {
