@@ -151,7 +151,19 @@ function chooseTargetName(item, sourceName) {
   return sourceName || item.displayName || item.sellerName || '';
 }
 
-function buildReport({ syncedCount, moqChanges, priceChanges, nameChanges, unchangedCount, errors }) {
+// itemName 안에 박힌 수량 텍스트를 MOQ에 맞게 수정
+// 예: "비녀 1개" (MOQ=2) → "비녀 2개"
+//     "수량:3개" (MOQ=5) → "수량:5개"
+//     "(1개)" (MOQ=2) → "(2개)"
+function fixQtyInItemName(itemName, moq) {
+  if (!itemName || moq <= 1) return itemName;
+  return itemName
+    .replace(/수량:\d+개/, `수량:${moq}개`)
+    .replace(/\((\d+)개\)/, `(${moq}개)`)
+    .replace(/\s(\d+)개$/, ` ${moq}개`);
+}
+
+function buildReport({ syncedCount, moqChanges, priceChanges, nameChanges, itemNameChanges, unchangedCount, errors }) {
   const lines = [
     `[쿠팡 상품 동기화 리포트] ${formatKst()}`,
     DRY_RUN ? '(DRY RUN)' : '',
@@ -163,6 +175,8 @@ function buildReport({ syncedCount, moqChanges, priceChanges, nameChanges, uncha
     ...priceChanges.map(line => `  - ${line}`),
     `📝 상품명 변경: ${nameChanges.length}건`,
     ...nameChanges.map(line => `  - ${line}`),
+    `🏷 옵션명 수량 수정: ${itemNameChanges.length}건`,
+    ...itemNameChanges.map(line => `  - ${line}`),
     `⏭ 변경없음: ${unchangedCount}건`,
     `❌ 오류: ${errors.length}건`,
     ...errors.map(line => `  - ${line}`),
@@ -185,6 +199,7 @@ async function main() {
   const moqChanges = [];
   const priceChanges = [];
   const nameChanges = [];
+  const itemNameChanges = [];
   const errors = [];
 
   let syncedCount = 0;
@@ -220,8 +235,9 @@ async function main() {
       const moqChanged = items.some(it => parseIntSafe(it.minimumQuantity, 1) !== targetMinQty);
       const priceChanged = shouldUpdatePrice;
       const nameChanged = !!targetName && currentName !== targetName;
+      const itemNameChanged = items.some(it => fixQtyInItemName(it.itemName, targetMinQty) !== it.itemName);
 
-      if (!moqChanged && !priceChanged && !nameChanged) {
+      if (!moqChanged && !priceChanged && !nameChanged && !itemNameChanged) {
         unchangedCount++;
         await sleep(250);
         continue;
@@ -237,6 +253,7 @@ async function main() {
         generalProductName: nameChanged ? targetName : coupangProduct.generalProductName,
         items: items.map(it => ({
           ...it,
+          itemName: fixQtyInItemName(it.itemName, targetMinQty),
           minimumQuantity: moqChanged ? targetMinQty : it.minimumQuantity,
           salePrice: priceChanged ? targetSalePrice : it.salePrice,
           originalPrice: priceChanged ? targetSalePrice : it.originalPrice,
@@ -257,6 +274,14 @@ async function main() {
       }
       if (nameChanged) {
         nameChanges.push(`${currentName || '(기존명 없음)'} → ${targetName}`);
+      }
+      if (itemNameChanged) {
+        items.forEach(it => {
+          const fixed = fixQtyInItemName(it.itemName, targetMinQty);
+          if (fixed !== it.itemName) {
+            itemNameChanges.push(`${productLabel} | ${it.itemName} → ${fixed}`);
+          }
+        });
       }
 
       if (!DRY_RUN) {
@@ -296,6 +321,7 @@ async function main() {
     moqChanges,
     priceChanges,
     nameChanges,
+    itemNameChanges,
     unchangedCount,
     errors,
   }));
