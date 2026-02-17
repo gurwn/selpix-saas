@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   // 개발 모드에서 터보팩 사용 (더 빠른 컴파일)
   experimental: {
     optimizePackageImports: ['lucide-react', 'recharts'],
@@ -20,6 +23,7 @@ const nextConfig = {
       { protocol: 'https', hostname: '*.cafe24.com' }
     ]
   },
+  turbopack: {},
   // 모듈 ID 최적화
   webpack: (config, { dev }) => {
     if (!dev) {

@@ -1,0 +1,23 @@
+{
+  "product": "국내제작 마이보틀 트라이탄 아이스 판촉물 텀블러 물통 물병 주문제작 100개 인쇄비무료",
+  "status": 200,
+  "body": {
+    "code": "ERROR",
+    "message": "[]. 필수 구매 옵션이 존재하지 않습니다.",
+    "data": null,
+    "details": "다음과 같이 필수 구매 옵션을 입력해주세요. : '수량'. 자세한 사항은 아래 errorItems 에서 확인할 수 있습니다. 또한, 카테고리 메타 정보 조회 API(https://developers.coupangcorp.com/hc/en-us/articles/360034035713-Category-Metadata-Query) 혹은 공지사항에서 업데이트된 내용 확인할 수 있으며, 상품 생성 API (https://developers.coupangcorp.com/hc/en-us/articles/360033877853-Product-Creation)에서 업데이트된 에러 스펙 확인할 수 있습니다.",
+    "errorItems": [
+      {
+        "itemIndex": 0,
+        "itemName": "국내제작 마이보틀 트라이탄 아이스 판촉물 텀블러 물통 물병 주문제작 100개 인쇄비무료 화이트 500ml",
+        "itemAttributes": [
+          {
+            "attributeTypeName": "수량",
+            "attributeValueName": null,
+            "message": "'수량' 가 존재하지 않습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

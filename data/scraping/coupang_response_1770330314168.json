@@ -1,0 +1,34 @@
+{
+  "product": "KC인증 15W 고속무선충전기 케이블일체형 1.5미터케이블",
+  "status": 200,
+  "body": {
+    "code": "ERROR",
+    "message": "[]. 유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "data": null,
+    "details": "'3'의 값은 Number type만 가능합니다. 자세한 사항은 아래 errorItems 에서 확인할 수 있습니다. 또한, 카테고리 메타 정보 조회 API(https://developers.coupangcorp.com/hc/en-us/articles/360034035713-Category-Metadata-Query) 혹은 공지사항에서 업데이트된 내용 확인할 수 있으며, 상품 생성 API (https://developers.coupangcorp.com/hc/en-us/articles/360033877853-Product-Creation)에서 업데이트된 에러 스펙 확인할 수 있습니다.",
+    "errorItems": [
+      {
+        "itemIndex": 0,
+        "itemName": "KC인증 15W 고속무선충전기 케이블일체형 1.5미터케이블 색상:블랙 수량:3개",
+        "itemAttributes": [
+          {
+            "attributeTypeName": "수량",
+            "attributeValueName": "3",
+            "message": "유효하지 않은 구매 옵션 값입니다."
+          }
+        ]
+      },
+      {
+        "itemIndex": 1,
+        "itemName": "KC인증 15W 고속무선충전기 케이블일체형 1.5미터케이블 색상:화이트 수량:3개",
+        "itemAttributes": [
+          {
+            "attributeTypeName": "수량",
+            "attributeValueName": "3",
+            "message": "유효하지 않은 구매 옵션 값입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

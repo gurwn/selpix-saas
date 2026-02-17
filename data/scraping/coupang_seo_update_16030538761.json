@@ -1,0 +1,12 @@
+{
+  "old": "[POIPOI] 샤워기 거치대 각도조절 샤워기홀더 편리한 욕실용품 생활용품 샤워기걸이 당일출고",
+  "new": "샤워기 거치대 각도조절 벽부착 샤워기홀더 욕실 샤워기걸이 욕실용품",
+  "status": 200,
+  "body": {
+    "code": "SUCCESS",
+    "message": "[]",
+    "data": 16030538761,
+    "details": null,
+    "errorItems": null
+  }
+}

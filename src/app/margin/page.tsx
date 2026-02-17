@@ -552,7 +552,7 @@ export default function MarginPage() {
                       outerRadius={80}
                       fill="#8884d8"
                       dataKey="value"
-                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      label={({ name, percent }: any) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
                       labelLine={false}
                     >
                       {pieData.map((entry, index) => (
@@ -560,7 +560,7 @@ export default function MarginPage() {
                       ))}
                     </Pie>
                     <Tooltip
-                      formatter={(value: number) => formatCurrency(value)}
+                      formatter={(value: any) => formatCurrency(value)}
                       contentStyle={{
                         backgroundColor: '#1e293b',
                         border: '1px solid #334155',

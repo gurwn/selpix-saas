@@ -1,0 +1,11 @@
+{
+  "product": "[도매에이스] 다용도 빨래 바구니 옷정리 방정리 바구니 수납 이동수납 분리수거",
+  "status": 200,
+  "body": {
+    "code": "SUCCESS",
+    "message": "[]",
+    "data": 16030538705,
+    "details": null,
+    "errorItems": null
+  }
+}

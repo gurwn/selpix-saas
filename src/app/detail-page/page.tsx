@@ -213,7 +213,7 @@ export default function DetailPageGenerator() {
       }),
       minOrder: generatedResult.minOrder ?? 1,
       shippingFee: generatedResult.shippingFee ?? 3000,
-      imageUsage: generatedResult.imageUsage ?? 'available'
+      imageUsage: (generatedResult.imageUsage ?? 'available') as 'unknown' | 'unavailable' | 'available' | 'review'
     }
 
     setResult(finalizedResult)

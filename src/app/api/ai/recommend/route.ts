@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     - 상세설명 요약: ${productDescription.slice(0, 500)}...
     `.trim()
 
-        const result = await generateProductMetadata(context, minOrderQty || 1)
+        const result = await generateProductMetadata(context)
 
         if (!result) {
             return NextResponse.json({ ok: false, error: 'AI 생성 실패' }, { status: 500 })

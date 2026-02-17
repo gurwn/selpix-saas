@@ -1,5 +1,6 @@
 
 import OpenAI from 'openai'
+import type { BenchmarkResult } from '@/types/benchmark'
 
 // 클라이언트가 사용할 때만 환경변수 체크 (빌드 타임 에러 방지)
 const apiKey = process.env.OPENAI_API_KEY
@@ -139,6 +140,78 @@ export async function generatePriceRecommendation(input: PriceRecommendationInpu
         return JSON.parse(content) as PriceRecommendationResult;
     } catch (error) {
         console.error('AI Price Gen Error:', error);
+        return null;
+    }
+}
+
+export async function benchmarkCompetitors(
+    myProductName: string,
+    myProductInfo: string,
+    competitorUrls: string[]
+): Promise<BenchmarkResult | null> {
+    if (!openai) {
+        console.error('OPENAI_API_KEY is missing');
+        return null;
+    }
+
+    const systemPrompt = `
+당신은 이커머스 경쟁사 분석 전문가입니다.
+사용자의 상품 정보와 경쟁사 URL 목록을 받아 소구점을 분석합니다.
+
+[분석 항목]
+1. 각 경쟁사 URL에서 상품명, 소구점(감성/기능/가성비/디자인/편의성 등), 키워드, 가격대를 추출합니다.
+2. 소구점마다 강도(1~10)를 매깁니다.
+3. 사용자 상품과 비교하여 강점/약점/기회 영역을 분석합니다.
+4. A/B 테스트에 활용할 수 있는 소구점을 제안합니다.
+
+[출력 형식 (JSON)]
+{
+  "competitors": [
+    {
+      "url": "경쟁사 URL",
+      "name": "상품명",
+      "appealPoints": [{ "type": "감성", "summary": "설명", "strength": 8 }],
+      "keywords": ["키워드1", "키워드2"],
+      "priceRange": "15,000~20,000원"
+    }
+  ],
+  "comparison": {
+    "myStrengths": ["강점1", "강점2"],
+    "competitorStrengths": ["경쟁사 강점1"],
+    "opportunities": ["기회1", "기회2"],
+    "suggestedAppealPoints": [{ "type": "가성비", "description": "설명" }]
+  }
+}
+`;
+
+    const userContent = `
+[내 상품]
+- 상품명: ${myProductName}
+- 상품 정보: ${myProductInfo}
+
+[경쟁사 URL 목록]
+${competitorUrls.map((url, i) => `${i + 1}. ${url}`).join('\n')}
+
+각 URL의 상품 정보를 분석하고 비교해 주세요.
+`;
+
+    try {
+        const completion = await openai.chat.completions.create({
+            model: 'gpt-4o-mini',
+            messages: [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: userContent }
+            ],
+            response_format: { type: 'json_object' },
+            temperature: 0.7,
+        });
+
+        const content = completion.choices[0].message.content;
+        if (!content) return null;
+
+        return JSON.parse(content) as BenchmarkResult;
+    } catch (error) {
+        console.error('Benchmark AI Error:', error);
         return null;
     }
 }

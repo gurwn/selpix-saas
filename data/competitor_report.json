@@ -1,0 +1,38 @@
+[
+  {
+    "pid": 16047616412,
+    "displayName": "메이크업 파운데이션 물광 퍼프 선크림 베이스 화장품 소품",
+    "ourPrice": 22500,
+    "searchQuery": "메이크업+파운데이션+물광+퍼프",
+    "market": null,
+    "assessment": {
+      "grade": "❓",
+      "comment": "비교 데이터 없음"
+    },
+    "sampleProducts": []
+  },
+  {
+    "pid": 16047620570,
+    "displayName": "블랙헤드 세안스펀지 모공 브러쉬 미세 딥 클렌징",
+    "ourPrice": 21000,
+    "searchQuery": "블랙헤드+세안스펀지+모공+브러쉬",
+    "market": null,
+    "assessment": {
+      "grade": "❓",
+      "comment": "비교 데이터 없음"
+    },
+    "sampleProducts": []
+  },
+  {
+    "pid": 16047620590,
+    "displayName": "세안용 폼클렌징 거품기 버블메이커",
+    "ourPrice": 79000,
+    "searchQuery": "세안용+폼클렌징+거품기+버블메이커",
+    "market": null,
+    "assessment": {
+      "grade": "❓",
+      "comment": "비교 데이터 없음"
+    },
+    "sampleProducts": []
+  }
+]

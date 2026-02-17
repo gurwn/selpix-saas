@@ -55,7 +55,7 @@ export async function POST(req: Request) {
   const targets = list.slice(0, limit)
 
   const enriched = await Promise.all(
-    targets.map(async (item) => {
+    targets.map(async (item: any) => {
       try {
         const res = await crawler.enrichDomeggookProduct({
           sourceUrl: item.url || item.sourceUrl,

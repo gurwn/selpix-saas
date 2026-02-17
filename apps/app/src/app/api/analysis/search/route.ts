@@ -18,7 +18,36 @@ export async function POST(req: Request) {
         }
 
         // 1. Crawl data
-        const products = await crawlerService.crawlAllSites(keyword);
+        let products = [];
+
+        const PROXY_URL = process.env.COUPANG_PROXY_URL;
+        const PROXY_KEY = process.env.COUPANG_PROXY_KEY || '';
+
+        if (PROXY_URL) {
+            console.log('[Analysis] Proxying crawl request to:', PROXY_URL);
+            try {
+                const res = await fetch(`${PROXY_URL}/api/crawler/top?keyword=${encodeURIComponent(keyword)}`, {
+                    method: 'GET',
+                    headers: { 'x-proxy-key': PROXY_KEY },
+                });
+
+                if (!res.ok) {
+                    throw new Error(`Proxy responded with ${res.status}`);
+                }
+
+                const json = await res.json();
+                if (json.success && Array.isArray(json.data)) {
+                    products = json.data;
+                } else if (Array.isArray(json)) {
+                    products = json;
+                }
+            } catch (proxyError) {
+                console.error('[Analysis] Proxy crawl failed, falling back to local:', proxyError);
+                products = await crawlerService.crawlAllSites(keyword);
+            }
+        } else {
+            products = await crawlerService.crawlAllSites(keyword);
+        }
 
         // 2. Save to Database (Transaction)
         const { userId } = await auth(); // Get logged-in user ID

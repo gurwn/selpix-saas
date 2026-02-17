@@ -693,7 +693,7 @@ export async function POST(req: Request) {
         ]
 
         // 아이템에 notices/contents 적용
-        items.forEach((it) => {
+        items.forEach((it: any) => {
           it.notices = noticesForItem
             ; (it as any).contents = contentsForItem
         })

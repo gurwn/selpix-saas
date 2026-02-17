@@ -1,0 +1,4365 @@
+[
+  {
+    "action": "register",
+    "name": "홍삼스틱 100포",
+    "time": "2026-02-08T12:43:46.815Z",
+    "result": "ERROR",
+    "error": "The \"key\" argument must be of type string or an instance of ArrayBuffer, Buffer, TypedArray, DataView, KeyObject, or CryptoKey. Received undefined"
+  },
+  {
+    "action": "register",
+    "name": "홍삼스틱 100포",
+    "productId": 16032391898,
+    "time": "2026-02-08T12:45:30.793Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "핑크소금 선물세트 15호",
+    "productId": 16032399105,
+    "time": "2026-02-08T12:50:01.924Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "유니블럭 소변기 세정제",
+    "productId": 16032405861,
+    "time": "2026-02-08T12:55:01.681Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "CtoC 100W 충전 케이블",
+    "productId": 16032413060,
+    "time": "2026-02-08T13:00:01.681Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "빨래바구니 대형 수납",
+    "productId": 16032420642,
+    "time": "2026-02-08T13:05:02.023Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "드리온 C타입 케이블 1.5M",
+    "productId": 16032428825,
+    "time": "2026-02-08T13:10:01.074Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "샤워기거치대 각도조절",
+    "productId": 16032436359,
+    "time": "2026-02-08T13:15:01.112Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "제이엔 C타입 케이블",
+    "productId": 16032445275,
+    "time": "2026-02-08T13:20:01.458Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "데스크 정리함 2구",
+    "productId": 16032452715,
+    "time": "2026-02-08T13:25:01.529Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "모즈온 USB 충전기 1.2A",
+    "productId": 16032459750,
+    "time": "2026-02-08T13:30:01.625Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "충전기 스피디충전기 1.2A충전기 C타입충전기 8핀충전",
+    "productId": 16032467742,
+    "time": "2026-02-08T13:35:01.200Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "충전기 모디스충전기 1포트충전기 USB충전기 1.2A충",
+    "time": "2026-02-08T13:40:01.312Z",
+    "result": "FAIL",
+    "error": "{\"code\":\"ERROR\",\"message\":\"[]. 필수 구매 옵션이 존재하지 않습니다.\",\"data\":null,\"details\":\"다음과 같이 필수 구매 옵션을 입력해주세요. : '색상'. 자세한 사항은 아래 errorItems 에서 확인할 수 있습니다. 또한, 카테고리 메타 정보 조회 API(https://developers.coupangcorp.com/hc/en-us/articles/360034035713-Category-Metadata-Query) 혹은 공지사항에서 업데이트된 내용 확인할 수 있으며, 상품 생성 API ("
+  },
+  {
+    "action": "register",
+    "name": "[POIPOI] 파우치 키링 열쇠고리 인형 가방 꾸미기",
+    "productId": 16032481404,
+    "time": "2026-02-08T13:45:01.300Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "[POIPOI] 키링 파우치 가방 꾸미기 MZ 열쇠고리",
+    "productId": 16032488354,
+    "time": "2026-02-08T13:50:01.958Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭",
+    "time": "2026-02-08T13:55:01.854Z",
+    "result": "FAIL",
+    "error": "{\"code\":\"ERROR\",\"message\":\"[옵션(C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭 이어폰 C타입 연결잭 음악감상 박스포장) : 판매가는 최소 10원 단위로 입력가능합니다. (1원단위 입력 불가)]\",\"data\":null,\"details\":null,\"errorItems\":null}"
+  },
+  {
+    "action": "register",
+    "name": "알프레도휘마스선크림 70ml SPF 50+ PA+",
+    "productId": 16032504074,
+    "time": "2026-02-08T14:00:01.105Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "아스파시아 4U 스페셜 수퍼 UV 선크림 SPF50 P",
+    "productId": 16032513412,
+    "time": "2026-02-08T14:05:02.026Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "국산 썬크림 70ml SPF 50 PA+++ 자외선차단",
+    "productId": 16032522743,
+    "time": "2026-02-08T14:10:01.644Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "DIY 세안 버블메이커 버블 클렌징 세안 면도 거품기 ",
+    "productId": 16032532464,
+    "time": "2026-02-08T14:15:01.244Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "블랙헤드 세안스펀지 모공 브러쉬 미세 딥 클렌징",
+    "productId": 16032541854,
+    "time": "2026-02-08T14:20:01.325Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "메이크업 파운데이션 물광 퍼프 선크림 베이스 화장품 소",
+    "productId": 16039969084,
+    "time": "2026-02-12T00:00:01.558Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "알프레도휘마스선크림 70ml SPF 50+ PA+",
+    "time": "2026-02-12T00:30:01.965Z",
+    "result": "FAIL",
+    "error": "{\"code\":\"ERROR\",\"message\":\"유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.\",\"data\":null,\"details\":null,\"errorItems\":null}"
+  },
+  {
+    "action": "register",
+    "name": "아스파시아 4U 스페셜 수퍼 UV 선크림 SPF50 P",
+    "time": "2026-02-12T01:00:01.974Z",
+    "result": "FAIL",
+    "error": "{\"code\":\"ERROR\",\"message\":\"유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.\",\"data\":null,\"details\":null,\"errorItems\":null}"
+  },
+  {
+    "action": "register",
+    "name": "블랙헤드 세안스펀지 모공 브러쉬 미세 딥 클렌징",
+    "productId": 16040138435,
+    "time": "2026-02-12T01:30:01.133Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "세안 폼클렌징 거품기 버블메이커",
+    "productId": 16040190332,
+    "time": "2026-02-12T02:00:01.893Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "[도매꾹 단독공급] 명품 브랜드 에인 강화쑥 폼클렌징 ",
+    "time": "2026-02-12T02:30:01.321Z",
+    "result": "FAIL",
+    "error": "{\"code\":\"ERROR\",\"message\":\"유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.\",\"data\":null,\"details\":null,\"errorItems\":null}"
+  },
+  {
+    "action": "register",
+    "name": "[POIPOI] 파우치 키링 열쇠고리 인형 가방 꾸미기",
+    "productId": 16041404905,
+    "time": "2026-02-12T13:30:02.034Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "[POIPOI] 키링 파우치 가방 꾸미기 MZ 열쇠고리",
+    "productId": 16041439752,
+    "time": "2026-02-12T14:00:01.087Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭",
+    "productId": 16041476974,
+    "time": "2026-02-12T14:30:01.910Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "보조배터리 모즈온 도킹 배터리 4000 C타입",
+    "productId": 16043387983,
+    "time": "2026-02-13T13:30:01.193Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-레몬 100ml",
+    "time": "2026-02-13T14:00:01.526Z",
+    "result": "FAIL",
+    "error": "{\"code\":\"ERROR\",\"message\":\"유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.\",\"data\":null,\"details\":null,\"errorItems\":null}"
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-달팽이100ml",
+    "time": "2026-02-13T16:55:30.808Z",
+    "result": "FAIL",
+    "error": "{\"code\":\"ERROR\",\"message\":\"유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.\",\"data\":null,\"details\":null,\"errorItems\":null}"
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-사과100ml",
+    "time": "2026-02-14T00:00:01.190Z",
+    "result": "FAIL",
+    "error": "{\"code\":\"ERROR\",\"message\":\"유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.\",\"data\":null,\"details\":null,\"errorItems\":null}"
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-14T00:30:01.162Z",
+    "result": "FAIL",
+    "error": "{\"code\":\"ERROR\",\"message\":\"유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.\",\"data\":null,\"details\":null,\"errorItems\":null}"
+  },
+  {
+    "action": "register",
+    "name": "보조배터리 일체형보조배터리 도킹형 미니 보조배터리 50",
+    "productId": 16044147341,
+    "time": "2026-02-14T01:00:01.368Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "보조배터리 모디스보조배터리 5000보조배터리 C타입보조",
+    "productId": 16044183014,
+    "time": "2026-02-14T01:30:01.724Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-14T02:00:01.209Z",
+    "result": "FAIL",
+    "error": "{\"code\":\"ERROR\",\"message\":\"유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.\",\"data\":null,\"details\":null,\"errorItems\":null}"
+  },
+  {
+    "action": "register",
+    "name": "슈퍼빌드 세이버 6종 합체 자동차 로보트 호환 블록 선",
+    "productId": 16045706810,
+    "time": "2026-02-15T01:30:01.995Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "모터속도조절기 PWM A형 스피드컨트롤러 DC전압조절기",
+    "productId": 16045778045,
+    "time": "2026-02-15T02:30:01.332Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "다섯째 인격 주변 휘장",
+    "productId": 16047300472,
+    "time": "2026-02-16T03:00:01.944Z",
+    "result": "SUCCESS"
+  },
+  {
+    "action": "register",
+    "name": "메이크업 파운데이션 물광 퍼프 선크림 베이스 화장품 소",
+    "productId": 16047616412,
+    "time": "2026-02-16T08:03:29.801Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "메이크업 파운데이션 물광 퍼프 선크림 베이스 화장품 소품",
+    "coupangPayload": {
+      "displayProductName": "메이크업 파운데이션 물광 퍼프 선크림 베이스 화장품 소품",
+      "displayCategoryCode": "56534",
+      "saleStartedAt": "2026-02-16T08:03:30",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "메이크업 파운데이션 물광 퍼프 선크림 베이스 화장품 소품",
+      "salePrice": 22500,
+      "searchTags": [
+        "메이크업",
+        "파운데이션",
+        "물광",
+        "퍼프",
+        "선크림"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2024/04/19/1713502847FC08D8113663456B62B601/1713502847FC08D8113663456B62B601_img_760?hash=7eba50b06d76bd36e71d124081a8187e"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "색상/향",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "블랙헤드 세안스펀지 모공 브러쉬 미세 딥 클렌징",
+    "productId": 16047620570,
+    "time": "2026-02-16T08:06:45.046Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "블랙헤드 세안스펀지 모공 브러쉬 미세 딥 클렌징",
+    "coupangPayload": {
+      "displayProductName": "블랙헤드 세안스펀지 모공 브러쉬 미세 딥 클렌징",
+      "displayCategoryCode": "56609",
+      "saleStartedAt": "2026-02-16T08:06:45",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "블랙헤드 세안스펀지 모공 브러쉬 미세 딥 클렌징",
+      "salePrice": 21000,
+      "searchTags": [
+        "블랙헤드",
+        "세안스펀지",
+        "모공",
+        "브러쉬",
+        "미세"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/07/28/17536660325366FD20ECACE8C5815A59/17536660325366FD20ECACE8C5815A59_img_760?hash=66461788e65f654b31978b76e7dec8a5"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "색상/향",
+          "attributeValueName": "블랙",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "세안 폼클렌징 거품기 버블메이커",
+    "productId": 16047620590,
+    "time": "2026-02-16T08:06:45.908Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "세안용 폼클렌징 거품기 버블메이커",
+    "coupangPayload": {
+      "displayProductName": "세안용 폼클렌징 거품기 버블메이커",
+      "displayCategoryCode": "56605",
+      "saleStartedAt": "2026-02-16T08:06:46",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "세안용 폼클렌징 거품기 버블메이커",
+      "salePrice": 79000,
+      "searchTags": [
+        "세안용",
+        "폼클렌징",
+        "거품기",
+        "버블메이커"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/07/28/175366550421F0C33E04A2E69AD8D0F8/175366550421F0C33E04A2E69AD8D0F8_img_760?hash=30f84ae85475a5ae4a208fee618b6023"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "색상/향",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭",
+    "time": "2026-02-16T08:07:22.359Z",
+    "result": "FAIL",
+    "error": "{\"_payload\":{\"displayCategoryCode\":\"72370\",\"sellerProductName\":\"C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭\",\"vendorId\":\"A01410454\",\"saleStartedAt\":\"2026-02-16T08:07:22\",\"saleEndedAt\":\"2099-01-01T23:59:59\",\"displayProductName\":\"USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭\",\"brand\":\"\",\"generalProductName\":\"USB-C C타입 3.5mm 이어폰 변",
+    "domeggookProductNo": null,
+    "domeggookProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+    "coupangPayload": {
+      "displayProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+      "displayCategoryCode": "72370",
+      "saleStartedAt": "2026-02-16T08:07:22",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+      "salePrice": 24880,
+      "searchTags": [
+        "USB-C",
+        "C타입",
+        "3.5mm",
+        "이어폰",
+        "변환"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2022/07/22/16584850510E078EE45541C409342F79/16584850510E078EE45541C409342F79_img_760?hash=657afb080cdeeee0ea88bbd8cb6f92ec"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "길이",
+          "attributeValueName": "3.5",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "3.5",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "보조배터리 모즈온 도킹 배터리 4000 C타입",
+    "productId": 16047621327,
+    "time": "2026-02-16T08:07:23.431Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "모즈온 도킹 보조배터리 4000mAh C타입",
+    "coupangPayload": {
+      "displayProductName": "모즈온 도킹 보조배터리 4000mAh C타입",
+      "displayCategoryCode": "62684",
+      "saleStartedAt": "2026-02-16T08:07:23",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "모즈온 도킹 보조배터리 4000mAh C타입",
+      "salePrice": 24750,
+      "searchTags": [
+        "모즈온",
+        "도킹",
+        "보조배터리",
+        "4000mAh",
+        "C타입"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2019/07/30/1564470316D5B8C1E4FF1702CB08F338/1564470316D5B8C1E4FF1702CB08F338_img_760?hash=c5e3513779c6ec7224372c09df6f5af2"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "모델명/품번",
+          "attributeValueName": "상세페이지 참조",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-레몬 100ml",
+    "time": "2026-02-16T08:07:24.337Z",
+    "result": "FAIL",
+    "error": "{\"_payload\":{\"displayCategoryCode\":\"56236\",\"sellerProductName\":\"3W클리닉핸드크림-레몬 100ml\",\"vendorId\":\"A01410454\",\"saleStartedAt\":\"2026-02-16T08:07:26\",\"saleEndedAt\":\"2099-01-01T23:59:59\",\"displayProductName\":\"3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림\",\"brand\":\"\",\"generalProductName\":\"3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림\",",
+    "domeggookProductNo": null,
+    "domeggookProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:07:26",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "레몬",
+        "핸드크림",
+        "100ml",
+        "보습"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/17437288320901B5A0FF3B07DE8E3887/17437288320901B5A0FF3B07DE8E3887_img_760?hash=6aeff92547715a38894335bb1ae8fda2"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-달팽이100ml",
+    "time": "2026-02-16T08:07:27.414Z",
+    "result": "FAIL",
+    "error": "{\"_payload\":{\"displayCategoryCode\":\"56236\",\"sellerProductName\":\"3W클리닉핸드크림-달팽이100ml\",\"vendorId\":\"A01410454\",\"saleStartedAt\":\"2026-02-16T08:07:28\",\"saleEndedAt\":\"2099-01-01T23:59:59\",\"displayProductName\":\"3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml\",\"brand\":\"\",\"generalProductName\":\"3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+    "domeggookProductNo": null,
+    "domeggookProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:07:28",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "달팽이",
+        "핸드크림",
+        "보습",
+        "영양"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/1743728911A5442923E57385911012F6/1743728911A5442923E57385911012F6_img_760?hash=c3ac628a078723a0a59a3e3a82005e90"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-사과100ml",
+    "time": "2026-02-16T08:07:29.985Z",
+    "result": "FAIL",
+    "error": "{\"_payload\":{\"displayCategoryCode\":\"56236\",\"sellerProductName\":\"3W클리닉핸드크림-사과100ml\",\"vendorId\":\"A01410454\",\"saleStartedAt\":\"2026-02-16T08:07:31\",\"saleEndedAt\":\"2099-01-01T23:59:59\",\"displayProductName\":\"3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml\",\"brand\":\"\",\"generalProductName\":\"3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml\",\"",
+    "domeggookProductNo": null,
+    "domeggookProductName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:07:31",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "사과",
+        "핸드크림",
+        "보습",
+        "영양"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/1743728238CB03DF3EB768E2A5AC4F87/1743728238CB03DF3EB768E2A5AC4F87_img_760?hash=b108760532813a8c89ab1267850aa6e8"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:08:03.045Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:08:03",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "손잡이",
+        "빨대"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1.18",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:08:03.944Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:08:04",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "빨대",
+        "손잡이"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1.18",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "자전거 마운트 에어로 핸들바 가민 속도계 거치대",
+    "productId": 16047622194,
+    "time": "2026-02-16T08:08:04.860Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "가민 호환 자전거 핸들바 에어로 마운트 속도계 거치대",
+    "coupangPayload": {
+      "displayProductName": "가민 호환 자전거 핸들바 에어로 마운트 속도계 거치대",
+      "displayCategoryCode": "82377",
+      "saleStartedAt": "2026-02-16T08:08:05",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "가민 호환 자전거 핸들바 에어로 마운트 속도계 거치대",
+      "salePrice": 47500,
+      "searchTags": [
+        "가민",
+        "호환",
+        "자전거",
+        "핸들바",
+        "에어로"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/07/28/17536664570D4A745611A38C763CC0D6/17536664570D4A745611A38C763CC0D6_img_760?hash=889730bac024525aa61c1af3f767bda1"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "5단 속도 조절 가능 클립형 소형 팬 USB 충전 저소",
+    "productId": 16047625400,
+    "time": "2026-02-16T08:10:36.180Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "USB 충전 클립형 소형 선풍기 저소음 5단 속도 3단 라이트",
+    "coupangPayload": {
+      "displayProductName": "USB 충전 클립형 소형 선풍기 저소음 5단 속도 3단 라이트",
+      "displayCategoryCode": "63342",
+      "saleStartedAt": "2026-02-16T08:10:36",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "USB 충전 클립형 소형 선풍기 저소음 5단 속도 3단 라이트",
+      "salePrice": 47500,
+      "searchTags": [
+        "USB",
+        "충전",
+        "클립형",
+        "소형",
+        "선풍기"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/05/06/1746498219A5C4719082177144919EE0/1746498219A5C4719082177144919EE0_img_760?hash=785d26780b8a2b356cd5328903b99ceb"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "모델명/품번",
+          "attributeValueName": "상세페이지 참조",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "강화유리 타이탄 풀커버 강화유리필름 강화유리 액정보호 ",
+    "productId": 16047625420,
+    "time": "2026-02-16T08:10:37.306Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "타이탄 풀커버 강화유리 액정보호 필름 아이폰 17/16/15/14/13 갤럭시 S26/25/24/23",
+    "coupangPayload": {
+      "displayProductName": "타이탄 풀커버 강화유리 액정보호 필름 아이폰 17/16/15/14/13 갤럭시 S26/25/24/23",
+      "displayCategoryCode": "62618",
+      "saleStartedAt": "2026-02-16T08:10:37",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "타이탄 풀커버 강화유리 액정보호 필름 아이폰 17/16/15/14/13 갤럭시 S26/25/24/23",
+      "salePrice": 20250,
+      "searchTags": [
+        "타이탄",
+        "풀커버",
+        "강화유리",
+        "액정보호",
+        "필름"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2020/01/21/157959741704E1F3EBE79648BA5B626D/157959741704E1F3EBE79648BA5B626D_img_760?hash=7fc057669b7628aea99d8021d126b51c"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "적용모델",
+          "attributeValueName": "아이폰 17",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "모디스 카메라 풀커버 강화유리 아이폰 후면 카메라 강화",
+    "productId": 16047625433,
+    "time": "2026-02-16T08:10:38.159Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "모디스 후면 카메라 풀커버 강화유리 보호필름 아이폰 17/16/15/14 갤럭시 S25/24",
+    "coupangPayload": {
+      "displayProductName": "모디스 후면 카메라 풀커버 강화유리 보호필름 아이폰 17/16/15/14 갤럭시 S25/24",
+      "displayCategoryCode": "82627",
+      "saleStartedAt": "2026-02-16T08:10:38",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "모디스 후면 카메라 풀커버 강화유리 보호필름 아이폰 17/16/15/14 갤럭시 S25/24",
+      "salePrice": 25000,
+      "searchTags": [
+        "모디스",
+        "후면",
+        "카메라",
+        "풀커버",
+        "강화유리"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2021/12/01/1638325032E91E9D00B0D0CFAA40D4BA/1638325032E91E9D00B0D0CFAA40D4BA_img_760?hash=b712c60af08ca6a3f52a72ec0c44ac62"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "적용모델",
+          "attributeValueName": "아이폰 17",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:11:19.726Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:11:20",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "손잡이",
+        "빨대"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1.18",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:11:20.661Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:11:21",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "빨대",
+        "손잡이"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1.18",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "빨간색 채점 연필 4P 교사용 평가 도구 선생님 학교 ",
+    "productId": 16047626237,
+    "time": "2026-02-16T08:11:21.588Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "빨간색 채점 연필 4P 교사용 첨삭 평가 도구",
+    "coupangPayload": {
+      "displayProductName": "빨간색 채점 연필 4P 교사용 첨삭 평가 도구",
+      "displayCategoryCode": "79660",
+      "saleStartedAt": "2026-02-16T08:11:21",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "빨간색 채점 연필 4P 교사용 첨삭 평가 도구",
+      "salePrice": 23500,
+      "searchTags": [
+        "빨간색",
+        "채점",
+        "연필",
+        "4P",
+        "교사용"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/03/28/1743094550720621AE94ABA968E97C44/1743094550720621AE94ABA968E97C44_img_760?hash=c593b24d991a5eeff4d9093431d2024b"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "총 수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:11:50.606Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:11:51",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "손잡이",
+        "빨대"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1.18",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:11:51.524Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:11:53",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "빨대",
+        "손잡이"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1.18",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:14:27.137Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:14:27",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "손잡이",
+        "빨대"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1180",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:14:28.120Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:14:28",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "빨대",
+        "손잡이"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1180",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:14:56.312Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:14:56",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "손잡이",
+        "빨대"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1180",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:14:57.342Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:14:58",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "빨대",
+        "손잡이"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1180",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:15:59.313Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:15:59",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "손잡이",
+        "빨대"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1180",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:16:00.428Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:16:00",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "빨대",
+        "손잡이"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1180",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "슬라임키트 붕어빵 슬라임 액체괴물 장난감",
+    "time": "2026-02-16T08:30:01.294Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "붕어빵 슬라임 키트 액체괴물 장난감",
+    "coupangPayload": {
+      "displayProductName": "붕어빵 슬라임 키트 액체괴물 장난감",
+      "displayCategoryCode": "103112",
+      "saleStartedAt": "2026-02-16T08:30:02",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "붕어빵 슬라임 키트 액체괴물 장난감",
+      "salePrice": 34800,
+      "searchTags": [
+        "붕어빵",
+        "슬라임",
+        "키트",
+        "액체괴물",
+        "장난감"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/06/16/1750053340365D1669391604B27ACF82/1750053340365D1669391604B27ACF82_img_760?hash=2cf34cf8cda835e3438590427c9d2cda"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "라쿠파스 올인원 자동차 등록증 케이스 차량 취급 설명서",
+    "time": "2026-02-16T08:39:36.966Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "라쿠파스 올인원 자동차 등록증 케이스 차량 매뉴얼 홀더",
+    "coupangPayload": {
+      "displayProductName": "라쿠파스 올인원 자동차 등록증 케이스 차량 매뉴얼 홀더",
+      "displayCategoryCode": "78688",
+      "saleStartedAt": "2026-02-16T08:39:37",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "라쿠파스 올인원 자동차 등록증 케이스 차량 매뉴얼 홀더",
+      "salePrice": 21280,
+      "searchTags": [
+        "라쿠파스",
+        "올인원",
+        "자동차",
+        "등록증",
+        "케이스"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2024/12/28/1735395589D156636C529613ACC1B7E2/1735395589D156636C529613ACC1B7E2_img_760?hash=136ae1237d6a79dffbd193e8cd6dc8ee"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "프리 프린트 배드민턴 테니스 핸드 젤 쿠션 땀 흡수 내",
+    "time": "2026-02-16T08:39:37.863Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "프리 프린트 배드민턴 테니스 핸드 젤 쿠션 손잡이 땀흡수 내구",
+    "coupangPayload": {
+      "displayProductName": "프리 프린트 배드민턴 테니스 핸드 젤 쿠션 손잡이 땀흡수 내구",
+      "displayCategoryCode": "81568",
+      "saleStartedAt": "2026-02-16T08:39:38",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "프리 프린트 배드민턴 테니스 핸드 젤 쿠션 손잡이 땀흡수 내구",
+      "salePrice": 149500,
+      "searchTags": [
+        "프리",
+        "프린트",
+        "배드민턴",
+        "테니스",
+        "핸드"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2024/12/11/1733882711BB58F278D2F47966647A0B/1733882711BB58F278D2F47966647A0B_img_760?hash=ed686d3389d4a837fda5549c92590d4a"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "사이즈",
+          "attributeValueName": "FREE",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "차량 송풍구 핸드폰 거치대 자석 고정 네비게이션 스마트",
+    "time": "2026-02-16T08:39:38.677Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "차량 송풍구 자석 핸드폰 거치대 스마트폰 네비게이션용",
+    "coupangPayload": {
+      "displayProductName": "차량 송풍구 자석 핸드폰 거치대 스마트폰 네비게이션용",
+      "displayCategoryCode": "78875",
+      "saleStartedAt": "2026-02-16T08:39:39",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "차량 송풍구 자석 핸드폰 거치대 스마트폰 네비게이션용",
+      "salePrice": 21000,
+      "searchTags": [
+        "차량",
+        "송풍구",
+        "자석",
+        "핸드폰",
+        "거치대"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/25/17455123835DC67E5D0574FC7543F0A3/17455123835DC67E5D0574FC7543F0A3_img_760?hash=e6b393d1f227fe8e32801f87e1852719"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "구글 표준 조립식 VR안경",
+    "productId": 16047658790,
+    "time": "2026-02-16T08:39:39.892Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "구글 표준 조립식 VR 안경",
+    "coupangPayload": {
+      "displayProductName": "구글 표준 조립식 VR 안경",
+      "displayCategoryCode": "63290",
+      "saleStartedAt": "2026-02-16T08:39:40",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "구글 표준 조립식 VR 안경",
+      "salePrice": 22500,
+      "searchTags": [
+        "구글",
+        "표준",
+        "조립식",
+        "VR",
+        "안경"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2024/06/05/1717587974239E3E7E39A0AE27D45BC7/1717587974239E3E7E39A0AE27D45BC7_img_760?hash=d77444dd168ade21646c652e07dac091"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "모델명/품번",
+          "attributeValueName": "상세페이지 참조",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "[POIPOI] 이어폰 S20/노트/프로 C타입 커널형",
+    "productId": 16047658822,
+    "time": "2026-02-16T08:39:41.216Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "POIPOI C타입 커널형 이어폰 S20/노트/프로 호환 개별 박스포장",
+    "coupangPayload": {
+      "displayProductName": "POIPOI C타입 커널형 이어폰 S20/노트/프로 호환 개별 박스포장",
+      "displayCategoryCode": "62724",
+      "saleStartedAt": "2026-02-16T08:39:42",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "POIPOI C타입 커널형 이어폰 S20/노트/프로 호환 개별 박스포장",
+      "salePrice": 21200,
+      "searchTags": [
+        "POIPOI",
+        "C타입",
+        "커널형",
+        "이어폰",
+        "S20"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2023/07/13/16892234861EC5D8B3B777DEEB7739A9/16892234861EC5D8B3B777DEEB7739A9_img_760?hash=1b928d50a02b693f9bafe05a465c2f1b"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "모델명/품번",
+          "attributeValueName": "S20",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "dma 건전지포함 고성능 고휘도 led 13구 후레쉬 ",
+    "time": "2026-02-16T08:39:42.662Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "DMA 고휘도 LED 13구 손전등 건전지 포함",
+    "coupangPayload": {
+      "displayProductName": "DMA 고휘도 LED 13구 손전등 건전지 포함",
+      "displayCategoryCode": "82076",
+      "saleStartedAt": "2026-02-16T08:39:43",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "DMA 고휘도 LED 13구 손전등 건전지 포함",
+      "salePrice": 31880,
+      "searchTags": [
+        "DMA",
+        "고휘도",
+        "LED",
+        "13구",
+        "손전등"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2020/12/27/1609057088B18C1DAAB2F57BC2104E68/1609057088B18C1DAAB2F57BC2104E68_img_760?hash=363f4fc544ff4496682fdfe77f6abc8e"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "충전식 고성능 기포기 가정용 차량용 기포기 세련된",
+    "time": "2026-02-16T08:39:43.550Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "충전식 고성능 기포기 가정용 차량용",
+    "coupangPayload": {
+      "displayProductName": "충전식 고성능 기포기 가정용 차량용",
+      "displayCategoryCode": "82285",
+      "saleStartedAt": "2026-02-16T08:39:43",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "충전식 고성능 기포기 가정용 차량용",
+      "salePrice": 150500,
+      "searchTags": [
+        "충전식",
+        "고성능",
+        "기포기",
+        "가정용",
+        "차량용"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2019/08/05/1564995873F00A21B1E9CB485913C720/1564995873F00A21B1E9CB485913C720_img_760?hash=75afaa1357f9cc65bbbb7680f4669591"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "모델명/품번",
+          "attributeValueName": "상세페이지 참조",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "2080 청은차 수치약 120g 3입",
+    "time": "2026-02-16T08:39:44.285Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "2080 청은차 치약 120g 3입",
+    "coupangPayload": {
+      "displayProductName": "2080 청은차 치약 120g 3입",
+      "displayCategoryCode": "63981",
+      "saleStartedAt": "2026-02-16T08:39:44",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "2080 청은차 치약 120g 3입",
+      "salePrice": 30000,
+      "searchTags": [
+        "2080",
+        "청은차",
+        "치약",
+        "120g",
+        "3입"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/14/173952435731FC303E1CEA1B4ABB34A1/173952435731FC303E1CEA1B4ABB34A1_img_760?hash=4c2ba0a5f6a6dff833d50d0b5c026910"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "120",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "120",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "계수기 LCD 디스플레이 전자 디지털 카운터 MP3 수",
+    "productId": 16047658893,
+    "time": "2026-02-16T08:39:45.288Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "LCD 디스플레이 전자 디지털 계수기 카운터",
+    "coupangPayload": {
+      "displayProductName": "LCD 디스플레이 전자 디지털 계수기 카운터",
+      "displayCategoryCode": "81694",
+      "saleStartedAt": "2026-02-16T08:39:45",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "LCD 디스플레이 전자 디지털 계수기 카운터",
+      "salePrice": 630000,
+      "searchTags": [
+        "LCD",
+        "디스플레이",
+        "전자",
+        "디지털",
+        "계수기"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/05/13/17471156916B27358B15D2CEFE8E3F10/17471156916B27358B15D2CEFE8E3F10_img_760?hash=401918b802be0b5eb98aefda49474c8b"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "수치 디자인 커플 워치 일상 통근용 간결한 디자인 남성",
+    "productId": 16047658914,
+    "time": "2026-02-16T08:39:46.407Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "숫자 디자인 커플 손목시계 남녀공용 데일리",
+    "coupangPayload": {
+      "displayProductName": "숫자 디자인 커플 손목시계 남녀공용 데일리",
+      "displayCategoryCode": "69904",
+      "saleStartedAt": "2026-02-16T08:39:46",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "숫자 디자인 커플 손목시계 남녀공용 데일리",
+      "salePrice": 226000,
+      "searchTags": [
+        "숫자",
+        "디자인",
+        "커플",
+        "손목시계",
+        "남녀공용"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2026/02/11/1770793158DF7B6C9046C80676E10646/1770793158DF7B6C9046C80676E10646_img_760?hash=ae2fdf7c287509ed85f689c4ae483594"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "임밍 서프라이즈 아웃 카드 이벤트 부모님 남편 [봉투제",
+    "productId": 16047659031,
+    "time": "2026-02-16T08:39:52.082Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "임밍아웃 서프라이즈 카드 임신 소식 알리기 봉투 제공",
+    "coupangPayload": {
+      "displayProductName": "임밍아웃 서프라이즈 카드 임신 소식 알리기 봉투 제공",
+      "displayCategoryCode": "79765",
+      "saleStartedAt": "2026-02-16T08:39:52",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "임밍아웃 서프라이즈 카드 임신 소식 알리기 봉투 제공",
+      "salePrice": 20100,
+      "searchTags": [
+        "임밍아웃",
+        "서프라이즈",
+        "카드",
+        "임신",
+        "소식"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2024/06/20/171884649688EBD9051C79F659541D0B/171884649688EBD9051C79F659541D0B_img_760?hash=e3a63d4626d129e1979fb4e653929dee"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "총 수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "임밍아웃 복권 포스터 이벤트 카드 [남편 부모님 가족 ",
+    "productId": 16047659046,
+    "time": "2026-02-16T08:39:53.075Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "임밍아웃 복권 포스터 이벤트 카드 임신 소식 알리기",
+    "coupangPayload": {
+      "displayProductName": "임밍아웃 복권 포스터 이벤트 카드 임신 소식 알리기",
+      "displayCategoryCode": "79765",
+      "saleStartedAt": "2026-02-16T08:39:53",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "임밍아웃 복권 포스터 이벤트 카드 임신 소식 알리기",
+      "salePrice": 89780,
+      "searchTags": [
+        "임밍아웃",
+        "복권",
+        "포스터",
+        "이벤트",
+        "카드"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/09/04/175691462614BE3DF58A690E59339E0B/175691462614BE3DF58A690E59339E0B_img_760?hash=f73bfedcfc7efb031f37bf02672e1645"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "총 수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "[온라인공식몰] [대한민국 1등 주방세제] 애경 트리오",
+    "time": "2026-02-16T08:39:53.839Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "애경 트리오 곡물설거지 주방세제 300ml 쌀겨성분",
+    "coupangPayload": {
+      "displayProductName": "애경 트리오 곡물설거지 주방세제 300ml 쌀겨성분",
+      "displayCategoryCode": "63961",
+      "saleStartedAt": "2026-02-16T08:39:54",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "애경 트리오 곡물설거지 주방세제 300ml 쌀겨성분",
+      "salePrice": 40500,
+      "searchTags": [
+        "애경",
+        "트리오",
+        "주방세제",
+        "곡물설거지",
+        "300ml"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2022/04/25/1650867797D4F328BAE087FDEBED344F/1650867797D4F328BAE087FDEBED344F_img_760?hash=8f48aefc035a19d6c68f7a1f37a7e09a"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "300",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "300",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "[1위파워샵 초특가 이벤트] 농심공식대리점l신라면 컵6",
+    "time": "2026-02-16T08:39:54.842Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "농심 신라면 컵라면 6입",
+    "coupangPayload": {
+      "displayProductName": "농심 신라면 컵라면 6입",
+      "displayCategoryCode": "58647",
+      "saleStartedAt": "2026-02-16T08:39:55",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "농심 신라면 컵라면 6입",
+      "salePrice": 31250,
+      "searchTags": [
+        "농심",
+        "신라면",
+        "컵라면",
+        "6입"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2017/10/25/15089225776535678602DB4823554EC2/15089225776535678602DB4823554EC2_img_760?hash=a51590535ead2ceb950fd79b3d7a53e0"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "총 수량",
+          "attributeValueName": "6",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "[최저가+더큰혜택 보증] 도매꾹공식 그로스 국산친환경 ",
+    "time": "2026-02-16T08:39:56.282Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "그로스 국산 친환경 전자레인지 밀폐용기 쿡플러스 1호",
+    "coupangPayload": {
+      "displayProductName": "그로스 국산 친환경 전자레인지 밀폐용기 쿡플러스 1호",
+      "displayCategoryCode": "80589",
+      "saleStartedAt": "2026-02-16T08:39:56",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "그로스 국산 친환경 전자레인지 밀폐용기 쿡플러스 1호",
+      "salePrice": 85800,
+      "searchTags": [
+        "그로스",
+        "전자레인지",
+        "밀폐용기",
+        "국산친환경",
+        "쿡플러스1호"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2022/05/11/16522312181627E73A060AC80E264EA2/16522312181627E73A060AC80E264EA2_img_760?hash=3cffa0c8c2ad335374b4b6e5610091f7"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "대비색 휴대용 욕조 바구니 쇼핑 바구니 욕실 가정용품 ",
+    "productId": 16047659168,
+    "time": "2026-02-16T08:39:57.205Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "휴대용 욕실 수납 바구니 욕조 목욕탕 정리함",
+    "coupangPayload": {
+      "displayProductName": "휴대용 욕실 수납 바구니 욕조 목욕탕 정리함",
+      "displayCategoryCode": "74197",
+      "saleStartedAt": "2026-02-16T08:39:58",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "휴대용 욕실 수납 바구니 욕조 목욕탕 정리함",
+      "salePrice": 91250,
+      "searchTags": [
+        "휴대용",
+        "욕실수납",
+        "바구니",
+        "욕조",
+        "목욕탕"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/30/17459935797FF968374D52FEEA69FC2A/17459935797FF968374D52FEEA69FC2A_img_760?hash=4a6ce14185e64aa36151013f50428b0a"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "사이즈",
+          "attributeValueName": "FREE",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "겨울대비 따뜻한 보온성 퍼 로얄 패딩 방한운동화",
+    "productId": 16047659189,
+    "time": "2026-02-16T08:39:59.806Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "겨울용 보온 퍼 패딩 방한 운동화",
+    "coupangPayload": {
+      "displayProductName": "겨울용 보온 퍼 패딩 방한 운동화",
+      "displayCategoryCode": "67967",
+      "saleStartedAt": "2026-02-16T08:40:00",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "겨울용 보온 퍼 패딩 방한 운동화",
+      "salePrice": 60900,
+      "searchTags": [
+        "겨울용",
+        "보온",
+        "퍼패딩",
+        "방한운동화"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2023/10/10/16969271434A65882864911F2E45D85E/16969271434A65882864911F2E45D85E_img_760?hash=679cc7a466a51dcfce53d27068c8bafc"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "신발사이즈",
+          "attributeValueName": "FREE",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "여성용 대비색 빅 도트 양말 다용도 패션 실리콘 보이지",
+    "productId": 16047659206,
+    "time": "2026-02-16T08:40:00.880Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "여성 빅도트 실리콘 보트양말 페이크삭스",
+    "coupangPayload": {
+      "displayProductName": "여성 빅도트 실리콘 보트양말 페이크삭스",
+      "displayCategoryCode": "69326",
+      "saleStartedAt": "2026-02-16T08:40:01",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "여성 빅도트 실리콘 보트양말 페이크삭스",
+      "salePrice": 42500,
+      "searchTags": [
+        "여성",
+        "빅도트",
+        "실리콘",
+        "보트양말",
+        "페이크삭스"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/06/15/174996480509F105AC38DE425FDE7B23/174996480509F105AC38DE425FDE7B23_img_760?hash=b4883ec5f73bd4362401cf037901f872"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "패션의류/잡화 사이즈",
+          "attributeValueName": "FREE",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "겨울모자 빅터우위 나른한 더미 모자 여성 가을 겨울 쿨",
+    "productId": 16047659229,
+    "time": "2026-02-16T08:40:01.910Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "빅터우위 여성 겨울 더미 모자 페이스오프 햇",
+    "coupangPayload": {
+      "displayProductName": "빅터우위 여성 겨울 더미 모자 페이스오프 햇",
+      "displayCategoryCode": "69321",
+      "saleStartedAt": "2026-02-16T08:40:02",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "빅터우위 여성 겨울 더미 모자 페이스오프 햇",
+      "salePrice": 143500,
+      "searchTags": [
+        "빅터우위",
+        "여성모자",
+        "겨울모자",
+        "더미모자",
+        "페이스오프"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/11/19/1763540828A72B4D2838242C0E9857F0/1763540828A72B4D2838242C0E9857F0_img_760?hash=83b4499e068c7b55b03c4e8cba28e38a"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "패션의류/잡화 사이즈",
+          "attributeValueName": "FREE",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "고급 스테인레스 스틸 작업용가위 다용도가위 OLFA",
+    "productId": 16047659250,
+    "time": "2026-02-16T08:40:02.933Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "OLFA 스테인리스 작업용 다용도 가위",
+    "coupangPayload": {
+      "displayProductName": "OLFA 스테인리스 작업용 다용도 가위",
+      "displayCategoryCode": "79807",
+      "saleStartedAt": "2026-02-16T08:40:03",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "OLFA 스테인리스 작업용 다용도 가위",
+      "salePrice": 124000,
+      "searchTags": [
+        "OLFA",
+        "스테인리스",
+        "작업용가위",
+        "다용도가위"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/03/27/17430579899A42D45C47D8106CD95EE2/17430579899A42D45C47D8106CD95EE2_img_760?hash=a503ddef73dd6d4461a1efe2811d4665"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "팀 주장 완장",
+    "productId": 16047659359,
+    "time": "2026-02-16T08:40:08.240Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "팀 주장 완장 스포츠 캡틴 암밴드",
+    "coupangPayload": {
+      "displayProductName": "팀 주장 완장 스포츠 캡틴 암밴드",
+      "displayCategoryCode": "103446",
+      "saleStartedAt": "2026-02-16T08:40:08",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "팀 주장 완장 스포츠 캡틴 암밴드",
+      "salePrice": 21380,
+      "searchTags": [
+        "주장완장",
+        "스포츠",
+        "캡틴",
+        "암밴드"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/07/17/175271956816B718CA021172D18F17EC/175271956816B718CA021172D18F17EC_img_760?hash=602587e52375b154f4d0422dade4f82a"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "사이즈",
+          "attributeValueName": "FREE",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "레트로 은색 금색 크리스탈 비녀 혼주 머리핀 뒤꽂이",
+    "productId": 16047659381,
+    "time": "2026-02-16T08:40:09.612Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "레트로 크리스탈 비녀 뒤꽂이 혼주 머리핀 은색 금색",
+    "coupangPayload": {
+      "displayProductName": "레트로 크리스탈 비녀 뒤꽂이 혼주 머리핀 은색 금색",
+      "displayCategoryCode": "79485",
+      "saleStartedAt": "2026-02-16T08:40:10",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "레트로 크리스탈 비녀 뒤꽂이 혼주 머리핀 은색 금색",
+      "salePrice": 28500,
+      "searchTags": [
+        "레트로",
+        "크리스탈",
+        "비녀",
+        "뒤꽂이",
+        "혼주머리핀"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2023/09/20/16951954866283CCE417D9B34E780EAF/16951954866283CCE417D9B34E780EAF_img_760?hash=b80585e277b122412ad631d0eb04d420"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "레드 그린 원석 비녀 한복장신구 뒤꽂이 머리핀",
+    "productId": 16047659409,
+    "time": "2026-02-16T08:40:10.483Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "레드 그린 원석 비녀 한복 머리장식 뒤꽂이 1개",
+    "coupangPayload": {
+      "displayProductName": "레드 그린 원석 비녀 한복 머리장식 뒤꽂이 1개",
+      "displayCategoryCode": "79485",
+      "saleStartedAt": "2026-02-16T08:40:11",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "레드 그린 원석 비녀 한복 머리장식 뒤꽂이 1개",
+      "salePrice": 27500,
+      "searchTags": [
+        "레드",
+        "그린",
+        "원석",
+        "비녀",
+        "한복"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2023/07/18/1689668759F1990D7690ED9BF4570A59/1689668759F1990D7690ED9BF4570A59_img_760?hash=95edab576ad02ea606674fdafcebe48c"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "레드",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "제5인격 주변 아크릴 투명 카드",
+    "productId": 16047659423,
+    "time": "2026-02-16T08:40:11.536Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "제5인격 투명 아크릴 카드 굿즈 1개",
+    "coupangPayload": {
+      "displayProductName": "제5인격 투명 아크릴 카드 굿즈 1개",
+      "displayCategoryCode": "79765",
+      "saleStartedAt": "2026-02-16T08:40:11",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "제5인격 투명 아크릴 카드 굿즈 1개",
+      "salePrice": 82000,
+      "searchTags": [
+        "제5인격",
+        "투명",
+        "아크릴",
+        "카드",
+        "굿즈"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/07/23/1753238406D1F4BEB116778A8B9995DD/1753238406D1F4BEB116778A8B9995DD_img_760?hash=4c441bf1f561102267a0fc2be9fbf99f"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "투명",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "총 수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "다섯째 인격 주변 열쇠고리",
+    "time": "2026-02-16T08:40:12.263Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "다섯째 인격 열쇠고리 키링 굿즈 1개",
+    "coupangPayload": {
+      "displayProductName": "다섯째 인격 열쇠고리 키링 굿즈 1개",
+      "displayCategoryCode": "64687",
+      "saleStartedAt": "2026-02-16T08:40:13",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "다섯째 인격 열쇠고리 키링 굿즈 1개",
+      "salePrice": 53750,
+      "searchTags": [
+        "다섯째",
+        "인격",
+        "열쇠고리",
+        "키링",
+        "굿즈"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/07/23/17532414016A7D865580CC0357C9500D/17532414016A7D865580CC0357C9500D_img_760?hash=8424e971af9b29a25dbe6630893f76dc"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "풍선 고양이 털 인형 애견 시뮬레이터 인형",
+    "time": "2026-02-16T08:40:13.794Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "풍선 고양이 털 인형 애견 시뮬레이터 장난감 1개",
+    "coupangPayload": {
+      "displayProductName": "풍선 고양이 털 인형 애견 시뮬레이터 장난감 1개",
+      "displayCategoryCode": "66015",
+      "saleStartedAt": "2026-02-16T08:40:14",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "풍선 고양이 털 인형 애견 시뮬레이터 장난감 1개",
+      "salePrice": 72500,
+      "searchTags": [
+        "풍선",
+        "고양이",
+        "인형",
+        "애견",
+        "시뮬레이터"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/04/173864850293AF64821678227B1DE496/173864850293AF64821678227B1DE496_img_760?hash=bf1b586e81d6a8911147266af472d878"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "사이즈",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "경고 소리 시뮬레이터 비행사와 승무원 경보 키홀더 작은",
+    "productId": 16047659491,
+    "time": "2026-02-16T08:40:14.896Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "경고음 시뮬레이터 비행사 승무원 경보 키홀더 1개",
+    "coupangPayload": {
+      "displayProductName": "경고음 시뮬레이터 비행사 승무원 경보 키홀더 1개",
+      "displayCategoryCode": "78677",
+      "saleStartedAt": "2026-02-16T08:40:15",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "경고음 시뮬레이터 비행사 승무원 경보 키홀더 1개",
+      "salePrice": 100900,
+      "searchTags": [
+        "경고음",
+        "시뮬레이터",
+        "비행사",
+        "승무원",
+        "경보"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/09/01/1756725310A775F378A2D1468C5EE05A/1756725310A775F378A2D1468C5EE05A_img_760?hash=d3ea00efff57206b605561745e2cc82f"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "모델명/품번",
+          "attributeValueName": "상세페이지 참조",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "경고 소리 시뮬레이터 비행사와 승무원 경보 키홀더 작은",
+    "productId": 16047659507,
+    "time": "2026-02-16T08:40:15.724Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "경고음 시뮬레이터 비행사 승무원 경보 키홀더 소형 1개",
+    "coupangPayload": {
+      "displayProductName": "경고음 시뮬레이터 비행사 승무원 경보 키홀더 소형 1개",
+      "displayCategoryCode": "78677",
+      "saleStartedAt": "2026-02-16T08:40:16",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "경고음 시뮬레이터 비행사 승무원 경보 키홀더 소형 1개",
+      "salePrice": 113400,
+      "searchTags": [
+        "경고음",
+        "시뮬레이터",
+        "비행사",
+        "승무원",
+        "경보"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/12/13/1765589214B3E1A8A67B2D08403F6672/1765589214B3E1A8A67B2D08403F6672_img_760?hash=b26e5e96715f55ad7d160115ada0d587"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "모델명/품번",
+          "attributeValueName": "상세페이지 참조",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭",
+    "time": "2026-02-16T08:43:30.938Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "26932516",
+    "domeggookProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+    "coupangPayload": {
+      "displayProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+      "displayCategoryCode": "72370",
+      "saleStartedAt": "2026-02-16T08:43:31",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭 (C타입이어폰젠더(블랙))",
+      "salePrice": 24880,
+      "searchTags": [
+        "USB-C",
+        "C타입",
+        "3.5mm",
+        "이어폰",
+        "변환"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2022/07/22/16584850510E078EE45541C409342F79/16584850510E078EE45541C409342F79_img_760?hash=657afb080cdeeee0ea88bbd8cb6f92ec"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "길이",
+          "attributeValueName": "0.35000000000000003",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "C타입이어폰젠더(블랙)",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "3.5",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-레몬 100ml",
+    "time": "2026-02-16T08:43:32.005Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56256178",
+    "domeggookProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:43:34",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "레몬",
+        "핸드크림",
+        "100ml",
+        "보습"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/17437288320901B5A0FF3B07DE8E3887/17437288320901B5A0FF3B07DE8E3887_img_760?hash=6aeff92547715a38894335bb1ae8fda2"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-달팽이100ml",
+    "time": "2026-02-16T08:43:35.822Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56256281",
+    "domeggookProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:43:37",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "달팽이",
+        "핸드크림",
+        "보습",
+        "영양"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/1743728911A5442923E57385911012F6/1743728911A5442923E57385911012F6_img_760?hash=c3ac628a078723a0a59a3e3a82005e90"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-사과100ml",
+    "time": "2026-02-16T08:43:38.595Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56255826",
+    "domeggookProductName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:43:39",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "사과",
+        "핸드크림",
+        "보습",
+        "영양"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/1743728238CB03DF3EB768E2A5AC4F87/1743728238CB03DF3EB768E2A5AC4F87_img_760?hash=b108760532813a8c89ab1267850aa6e8"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "슬라임키트 붕어빵 슬라임 액체괴물 장난감",
+    "time": "2026-02-16T08:43:41.190Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "59051939",
+    "domeggookProductName": "붕어빵 슬라임 키트 액체괴물 장난감",
+    "coupangPayload": {
+      "displayProductName": "붕어빵 슬라임 키트 액체괴물 장난감",
+      "displayCategoryCode": "103112",
+      "saleStartedAt": "2026-02-16T08:43:41",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "붕어빵 슬라임 키트 액체괴물 장난감",
+      "salePrice": 34800,
+      "searchTags": [
+        "붕어빵",
+        "슬라임",
+        "키트",
+        "액체괴물",
+        "장난감"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/06/16/1750053340365D1669391604B27ACF82/1750053340365D1669391604B27ACF82_img_760?hash=2cf34cf8cda835e3438590427c9d2cda"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "라쿠파스 올인원 자동차 등록증 케이스 차량 취급 설명서",
+    "time": "2026-02-16T08:44:26.871Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "52919942",
+    "domeggookProductName": "라쿠파스 올인원 자동차 등록증 케이스 차량 매뉴얼 홀더",
+    "coupangPayload": {
+      "displayProductName": "라쿠파스 올인원 자동차 등록증 케이스 차량 매뉴얼 홀더",
+      "displayCategoryCode": "78688",
+      "saleStartedAt": "2026-02-16T08:44:27",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "라쿠파스 올인원 자동차 등록증 케이스 차량 매뉴얼 홀더 (다크그레이)",
+      "salePrice": 21280,
+      "searchTags": [
+        "라쿠파스",
+        "올인원",
+        "자동차",
+        "등록증",
+        "케이스"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2024/12/28/1735395589D156636C529613ACC1B7E2/1735395589D156636C529613ACC1B7E2_img_760?hash=136ae1237d6a79dffbd193e8cd6dc8ee"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "다크그레이",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭",
+    "time": "2026-02-16T08:44:58.513Z",
+    "result": "FAIL",
+    "error": "'무료배송을 위한 조건 금액' 값을 확인해 주세요|유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "26932516",
+    "domeggookProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+    "coupangPayload": {
+      "displayProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+      "displayCategoryCode": "72370",
+      "saleStartedAt": "2026-02-16T08:44:59",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭 (C타입이어폰젠더(블랙))",
+      "salePrice": 24880,
+      "searchTags": [
+        "USB-C",
+        "C타입",
+        "3.5mm",
+        "이어폰",
+        "변환"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2022/07/22/16584850510E078EE45541C409342F79/16584850510E078EE45541C409342F79_img_760?hash=657afb080cdeeee0ea88bbd8cb6f92ec"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "길이",
+          "attributeValueName": "0.35000000000000003",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "C타입이어폰젠더(블랙)",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "3.5",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-레몬 100ml",
+    "time": "2026-02-16T08:44:59.438Z",
+    "result": "FAIL",
+    "error": "'무료배송을 위한 조건 금액' 값을 확인해 주세요|유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56256178",
+    "domeggookProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:45:00",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "레몬",
+        "핸드크림",
+        "100ml",
+        "보습"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/17437288320901B5A0FF3B07DE8E3887/17437288320901B5A0FF3B07DE8E3887_img_760?hash=6aeff92547715a38894335bb1ae8fda2"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-달팽이100ml",
+    "time": "2026-02-16T08:45:02.091Z",
+    "result": "FAIL",
+    "error": "'무료배송을 위한 조건 금액' 값을 확인해 주세요|유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56256281",
+    "domeggookProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:45:03",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "달팽이",
+        "핸드크림",
+        "보습",
+        "영양"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/1743728911A5442923E57385911012F6/1743728911A5442923E57385911012F6_img_760?hash=c3ac628a078723a0a59a3e3a82005e90"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-사과100ml",
+    "time": "2026-02-16T08:45:04.752Z",
+    "result": "FAIL",
+    "error": "'무료배송을 위한 조건 금액' 값을 확인해 주세요|유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56255826",
+    "domeggookProductName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:45:06",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "사과",
+        "핸드크림",
+        "보습",
+        "영양"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/1743728238CB03DF3EB768E2A5AC4F87/1743728238CB03DF3EB768E2A5AC4F87_img_760?hash=b108760532813a8c89ab1267850aa6e8"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:45:07.628Z",
+    "result": "FAIL",
+    "error": "'무료배송을 위한 조건 금액' 값을 확인해 주세요|유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:45:08",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "손잡이",
+        "빨대"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1180",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭",
+    "time": "2026-02-16T08:45:24.536Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "26932516",
+    "domeggookProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+    "coupangPayload": {
+      "displayProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+      "displayCategoryCode": "72370",
+      "saleStartedAt": "2026-02-16T08:45:24",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭 (C타입이어폰젠더(블랙))",
+      "salePrice": 24880,
+      "searchTags": [
+        "USB-C",
+        "C타입",
+        "3.5mm",
+        "이어폰",
+        "변환"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2022/07/22/16584850510E078EE45541C409342F79/16584850510E078EE45541C409342F79_img_760?hash=657afb080cdeeee0ea88bbd8cb6f92ec"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "길이",
+          "attributeValueName": "0.35000000000000003",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "C타입이어폰젠더(블랙)",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "3.5",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-레몬 100ml",
+    "time": "2026-02-16T08:45:25.364Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56256178",
+    "domeggookProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:45:26",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "레몬",
+        "핸드크림",
+        "100ml",
+        "보습"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/17437288320901B5A0FF3B07DE8E3887/17437288320901B5A0FF3B07DE8E3887_img_760?hash=6aeff92547715a38894335bb1ae8fda2"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-달팽이100ml",
+    "time": "2026-02-16T08:45:28.244Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56256281",
+    "domeggookProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:45:29",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "달팽이",
+        "핸드크림",
+        "보습",
+        "영양"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/1743728911A5442923E57385911012F6/1743728911A5442923E57385911012F6_img_760?hash=c3ac628a078723a0a59a3e3a82005e90"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭",
+    "time": "2026-02-16T08:46:03.220Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "26932516",
+    "domeggookProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+    "coupangPayload": {
+      "displayProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+      "displayCategoryCode": "72370",
+      "saleStartedAt": "2026-02-16T08:46:03",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭 (C타입이어폰젠더(블랙))",
+      "salePrice": 24880,
+      "searchTags": [
+        "USB-C",
+        "C타입",
+        "3.5mm",
+        "이어폰",
+        "변환"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2022/07/22/16584850510E078EE45541C409342F79/16584850510E078EE45541C409342F79_img_760?hash=657afb080cdeeee0ea88bbd8cb6f92ec"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "길이",
+          "attributeValueName": "0",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "C타입이어폰젠더(블랙)",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-레몬 100ml",
+    "time": "2026-02-16T08:46:04.244Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56256178",
+    "domeggookProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:46:05",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "레몬",
+        "핸드크림",
+        "100ml",
+        "보습"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/17437288320901B5A0FF3B07DE8E3887/17437288320901B5A0FF3B07DE8E3887_img_760?hash=6aeff92547715a38894335bb1ae8fda2"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-달팽이100ml",
+    "time": "2026-02-16T08:46:07.148Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56256281",
+    "domeggookProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:46:08",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "달팽이",
+        "핸드크림",
+        "보습",
+        "영양"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/1743728911A5442923E57385911012F6/1743728911A5442923E57385911012F6_img_760?hash=c3ac628a078723a0a59a3e3a82005e90"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-사과100ml",
+    "time": "2026-02-16T08:46:09.888Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56255826",
+    "domeggookProductName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T08:46:11",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "사과",
+        "핸드크림",
+        "보습",
+        "영양"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/1743728238CB03DF3EB768E2A5AC4F87/1743728238CB03DF3EB768E2A5AC4F87_img_760?hash=b108760532813a8c89ab1267850aa6e8"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "time": "2026-02-16T08:46:12.524Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T08:46:13",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "손잡이",
+        "빨대"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1180",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭",
+    "time": "2026-02-16T08:59:39.039Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "26932516",
+    "domeggookProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+    "coupangPayload": {
+      "displayProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+      "displayCategoryCode": "72370",
+      "saleStartedAt": "2026-02-16T08:59:39",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "C타입이어폰젠더(블랙)",
+      "salePrice": 24880,
+      "searchTags": [
+        "USB-C",
+        "C타입",
+        "3.5mm",
+        "이어폰",
+        "변환"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2022/07/22/16584850510E078EE45541C409342F79/16584850510E078EE45541C409342F79_img_760?hash=657afb080cdeeee0ea88bbd8cb6f92ec"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "길이",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "C타입이어폰젠더(블랙)",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-레몬 100ml",
+    "time": "2026-02-16T09:00:01.140Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56256178",
+    "domeggookProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T09:00:02",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "레몬",
+        "핸드크림",
+        "100ml",
+        "보습"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/17437288320901B5A0FF3B07DE8E3887/17437288320901B5A0FF3B07DE8E3887_img_760?hash=6aeff92547715a38894335bb1ae8fda2"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭",
+    "time": "2026-02-16T09:02:21.434Z",
+    "result": "ERROR",
+    "error": "Cannot access 'COLOR_KEYWORDS' before initialization",
+    "domeggookProductNo": "26932516",
+    "domeggookProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭"
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-달팽이100ml",
+    "time": "2026-02-16T09:03:17.284Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56256281",
+    "domeggookProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T09:03:19",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "달팽이",
+        "핸드크림",
+        "보습",
+        "영양"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/1743728911A5442923E57385911012F6/1743728911A5442923E57385911012F6_img_760?hash=c3ac628a078723a0a59a3e3a82005e90"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-사과100ml",
+    "time": "2026-02-16T09:14:55.665Z",
+    "result": "FAIL",
+    "error": "유효하지 않은 구매 옵션 값 혹은 단위가 존재합니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "56255826",
+    "domeggookProductName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T09:14:57",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "사과",
+        "핸드크림",
+        "보습",
+        "영양"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/1743728238CB03DF3EB768E2A5AC4F87/1743728238CB03DF3EB768E2A5AC4F87_img_760?hash=b108760532813a8c89ab1267850aa6e8"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭",
+    "productId": 16047707374,
+    "time": "2026-02-16T09:24:36.913Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "26932516",
+    "domeggookProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+    "coupangPayload": {
+      "displayProductName": "USB-C C타입 3.5mm 이어폰 변환 젠더 연결잭",
+      "displayCategoryCode": "72370",
+      "saleStartedAt": "2026-02-16T09:24:37",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "C타입이어폰젠더(블랙)",
+      "salePrice": 24880,
+      "searchTags": [
+        "USB-C",
+        "C타입",
+        "3.5mm",
+        "이어폰",
+        "변환"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2022/07/22/16584850510E078EE45541C409342F79/16584850510E078EE45541C409342F79_img_760?hash=657afb080cdeeee0ea88bbd8cb6f92ec"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "길이",
+          "attributeValueName": "1cm",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "블랙",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-레몬 100ml",
+    "productId": 16047707434,
+    "time": "2026-02-16T09:24:37.906Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "56256178",
+    "domeggookProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T09:24:39",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 레몬 핸드크림 100ml 보습 영양 수분크림",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "레몬",
+        "핸드크림",
+        "100ml",
+        "보습"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/17437288320901B5A0FF3B07DE8E3887/17437288320901B5A0FF3B07DE8E3887_img_760?hash=6aeff92547715a38894335bb1ae8fda2"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100g",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-달팽이100ml",
+    "productId": 16047707492,
+    "time": "2026-02-16T09:24:40.625Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "56256281",
+    "domeggookProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T09:24:41",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 달팽이 핸드크림 보습 영양 수분크림 100ml",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "달팽이",
+        "핸드크림",
+        "보습",
+        "영양"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/1743728911A5442923E57385911012F6/1743728911A5442923E57385911012F6_img_760?hash=c3ac628a078723a0a59a3e3a82005e90"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "100g",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "3W클리닉핸드크림-사과100ml",
+    "productId": 16047707550,
+    "time": "2026-02-16T09:24:43.166Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "56255826",
+    "domeggookProductName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+    "coupangPayload": {
+      "displayProductName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+      "displayCategoryCode": "56236",
+      "saleStartedAt": "2026-02-16T09:24:44",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "3W클리닉 사과 핸드크림 보습 영양 수분크림 100ml",
+      "salePrice": 24000,
+      "searchTags": [
+        "3W클리닉",
+        "사과",
+        "핸드크림",
+        "보습",
+        "영양"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/04/1743728238CB03DF3EB768E2A5AC4F87/1743728238CB03DF3EB768E2A5AC4F87_img_760?hash=b108760532813a8c89ab1267850aa6e8"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "100ml",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "productId": 16047713047,
+    "time": "2026-02-16T09:30:01.800Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T09:30:02",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 손잡이 빨대 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "손잡이",
+        "빨대"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1180ml",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+    "productId": 16047744558,
+    "time": "2026-02-16T10:00:01.954Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": null,
+    "domeggookProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+    "coupangPayload": {
+      "displayProductName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "displayCategoryCode": "80534",
+      "saleStartedAt": "2026-02-16T10:00:02",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스테인리스 대용량 텀블러 빨대 손잡이 포함 보온보냉 1.18L",
+      "salePrice": 37000,
+      "searchTags": [
+        "스테인리스",
+        "대용량",
+        "텀블러",
+        "빨대",
+        "손잡이"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/27/1740640862361BEA9F3B64EE7FF3ACAE/1740640862361BEA9F3B64EE7FF3ACAE_img_760?hash=7ea1e110673626875e4609bc1de2e750"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "용량",
+          "attributeValueName": "1180ml",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "슬라임키트 붕어빵 슬라임 액체괴물 장난감",
+    "productId": 16047776751,
+    "time": "2026-02-16T10:30:01.227Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "59051939",
+    "domeggookProductName": "붕어빵 슬라임 키트 액체괴물 장난감",
+    "coupangPayload": {
+      "displayProductName": "붕어빵 슬라임 키트 액체괴물 장난감",
+      "displayCategoryCode": "103112",
+      "saleStartedAt": "2026-02-16T10:30:02",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "붕어빵 슬라임 키트 액체괴물 장난감",
+      "salePrice": 34800,
+      "searchTags": [
+        "붕어빵",
+        "슬라임",
+        "키트",
+        "액체괴물",
+        "장난감"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/06/16/1750053340365D1669391604B27ACF82/1750053340365D1669391604B27ACF82_img_760?hash=2cf34cf8cda835e3438590427c9d2cda"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 중량",
+          "attributeValueName": "1g",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "라쿠파스 올인원 자동차 등록증 케이스 차량 취급 설명서",
+    "productId": 16047808480,
+    "time": "2026-02-16T11:00:01.697Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "52919942",
+    "domeggookProductName": "라쿠파스 올인원 자동차 등록증 케이스 차량 매뉴얼 홀더",
+    "coupangPayload": {
+      "displayProductName": "라쿠파스 올인원 자동차 등록증 케이스 차량 매뉴얼 홀더",
+      "displayCategoryCode": "78688",
+      "saleStartedAt": "2026-02-16T11:00:02",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "다크그레이",
+      "salePrice": 21280,
+      "searchTags": [
+        "라쿠파스",
+        "올인원",
+        "자동차",
+        "등록증",
+        "케이스"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2024/12/28/1735395589D156636C529613ACC1B7E2/1735395589D156636C529613ACC1B7E2_img_760?hash=136ae1237d6a79dffbd193e8cd6dc8ee"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "다크그레이",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "프리 프린트 배드민턴 테니스 핸드 젤 쿠션 땀 흡수 내",
+    "productId": 16047840610,
+    "time": "2026-02-16T11:30:01.091Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "52335530",
+    "domeggookProductName": "프리 프린트 배드민턴 테니스 핸드 젤 쿠션 손잡이 땀흡수 내구",
+    "coupangPayload": {
+      "displayProductName": "프리 프린트 배드민턴 테니스 핸드 젤 쿠션 손잡이 땀흡수 내구",
+      "displayCategoryCode": "81568",
+      "saleStartedAt": "2026-02-16T11:30:01",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "스타 스타일캐티블루-1개입-",
+      "salePrice": 149500,
+      "searchTags": [
+        "프리",
+        "프린트",
+        "배드민턴",
+        "테니스",
+        "핸드"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2024/12/11/1733882711BB58F278D2F47966647A0B/1733882711BB58F278D2F47966647A0B_img_760?hash=ed686d3389d4a837fda5549c92590d4a"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "블루",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "사이즈",
+          "attributeValueName": "FREE",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "차량 송풍구 핸드폰 거치대 자석 고정 네비게이션 스마트",
+    "productId": 16047868453,
+    "time": "2026-02-16T12:00:01.525Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "57141867",
+    "domeggookProductName": "차량 송풍구 자석 핸드폰 거치대 스마트폰 네비게이션용",
+    "coupangPayload": {
+      "displayProductName": "차량 송풍구 자석 핸드폰 거치대 스마트폰 네비게이션용",
+      "displayCategoryCode": "78875",
+      "saleStartedAt": "2026-02-16T12:00:02",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "차량 송풍구 자석 핸드폰 거치대 스마트폰 네비게이션용",
+      "salePrice": 21000,
+      "searchTags": [
+        "차량",
+        "송풍구",
+        "자석",
+        "핸드폰",
+        "거치대"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/04/25/17455123835DC67E5D0574FC7543F0A3/17455123835DC67E5D0574FC7543F0A3_img_760?hash=e6b393d1f227fe8e32801f87e1852719"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "dma 건전지포함 고성능 고휘도 led 13구 후레쉬 ",
+    "productId": 16047892094,
+    "time": "2026-02-16T12:30:01.303Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "12188471",
+    "domeggookProductName": "DMA 고휘도 LED 13구 손전등 건전지 포함",
+    "coupangPayload": {
+      "displayProductName": "DMA 고휘도 LED 13구 손전등 건전지 포함",
+      "displayCategoryCode": "82076",
+      "saleStartedAt": "2026-02-16T12:30:01",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "DMA 고휘도 LED 13구 손전등 건전지 포함",
+      "salePrice": 24000,
+      "searchTags": [
+        "DMA",
+        "고휘도",
+        "LED",
+        "13구",
+        "손전등"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2020/12/27/1609057088B18C1DAAB2F57BC2104E68/1609057088B18C1DAAB2F57BC2104E68_img_760?hash=363f4fc544ff4496682fdfe77f6abc8e"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "충전식 고성능 기포기 가정용 차량용 기포기 세련된",
+    "time": "2026-02-16T13:00:01.153Z",
+    "result": "FAIL",
+    "error": "[중복된 옵션값이 있습니다.]",
+    "errorDetail": null,
+    "domeggookProductNo": "9002265",
+    "domeggookProductName": "충전식 고성능 기포기 가정용 차량용",
+    "coupangPayload": {
+      "displayProductName": "충전식 고성능 기포기 가정용 차량용",
+      "displayCategoryCode": "82285",
+      "saleStartedAt": "2026-02-16T13:00:01",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "충전기포기 H2블랙",
+      "salePrice": 72000,
+      "searchTags": [
+        "충전식",
+        "고성능",
+        "기포기",
+        "가정용",
+        "차량용"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2019/08/05/1564995873F00A21B1E9CB485913C720/1564995873F00A21B1E9CB485913C720_img_760?hash=75afaa1357f9cc65bbbb7680f4669591"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "모델명/품번",
+          "attributeValueName": "상세페이지 참조",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "블랙",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "2080 청은차 수치약 120g 3입",
+    "productId": 16047957078,
+    "time": "2026-02-16T13:30:01.416Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "54367109",
+    "domeggookProductName": "2080 청은차 치약 120g 3입",
+    "coupangPayload": {
+      "displayProductName": "2080 청은차 치약 120g 3입",
+      "displayCategoryCode": "63981",
+      "saleStartedAt": "2026-02-16T13:30:02",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "2080 청은차 치약 120g 3입",
+      "salePrice": 11500,
+      "searchTags": [
+        "2080",
+        "청은차",
+        "치약",
+        "120g",
+        "3입"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/14/173952435731FC303E1CEA1B4ABB34A1/173952435731FC303E1CEA1B4ABB34A1_img_760?hash=4c2ba0a5f6a6dff833d50d0b5c026910"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "120ml",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "[온라인공식몰] [대한민국 1등 주방세제] 애경 트리오",
+    "productId": 16047980403,
+    "time": "2026-02-16T14:00:01.195Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "22214842",
+    "domeggookProductName": "애경 트리오 곡물설거지 주방세제 300ml 쌀겨성분",
+    "coupangPayload": {
+      "displayProductName": "애경 트리오 곡물설거지 주방세제 300ml 쌀겨성분",
+      "displayCategoryCode": "63961",
+      "saleStartedAt": "2026-02-16T14:00:02",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "[벌크형][랜덤발송] 애경 트리오 주방세제 300ml(1P)",
+      "salePrice": 3200,
+      "searchTags": [
+        "애경",
+        "트리오",
+        "주방세제",
+        "곡물설거지",
+        "300ml"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2022/04/25/1650867797D4F328BAE087FDEBED344F/1650867797D4F328BAE087FDEBED344F_img_760?hash=8f48aefc035a19d6c68f7a1f37a7e09a"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "개당 용량",
+          "attributeValueName": "300ml",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "[1위파워샵 초특가 이벤트] 농심공식대리점l신라면 컵6",
+    "time": "2026-02-16T14:30:01.086Z",
+    "result": "FAIL",
+    "error": "중복된 옵션값이 있습니다.",
+    "errorDetail": null,
+    "domeggookProductNo": "7501609",
+    "domeggookProductName": "농심 신라면 컵라면 6입",
+    "coupangPayload": {
+      "displayProductName": "농심 신라면 컵라면 6입",
+      "displayCategoryCode": "58647",
+      "saleStartedAt": "2026-02-16T14:30:01",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "오뚜기 진라면(매운맛) 컵6입",
+      "salePrice": 12000,
+      "searchTags": [
+        "농심",
+        "신라면",
+        "컵라면",
+        "6입"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2017/10/25/15089225776535678602DB4823554EC2/15089225776535678602DB4823554EC2_img_760?hash=a51590535ead2ceb950fd79b3d7a53e0"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "총 수량",
+          "attributeValueName": "6개",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "[최저가+더큰혜택 보증] 도매꾹공식 그로스 국산친환경 ",
+    "productId": 16048528077,
+    "time": "2026-02-17T00:00:01.115Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "22787408",
+    "domeggookProductName": "그로스 국산 친환경 전자레인지 밀폐용기 쿡플러스 1호",
+    "domeggookOptionNos": [],
+    "seoOptimizedName": "그로스 국산 친환경 전자레인지 밀폐용기 쿡플러스 1호",
+    "seoOriginalName": "[최저가+더큰혜택 보증] 도매꾹공식 그로스 국산친환경 전자렌지밀폐용기 집밥 쿡플러스1호+홍보스티커무료",
+    "coupangPayload": {
+      "displayProductName": "그로스 국산 친환경 전자레인지 밀폐용기 쿡플러스 1호",
+      "displayCategoryCode": "80589",
+      "saleStartedAt": "2026-02-17T00:00:01",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "쿡플러스 1호(3종6p)선물세트",
+      "salePrice": 2700,
+      "searchTags": [
+        "그로스",
+        "전자레인지",
+        "밀폐용기",
+        "국산친환경",
+        "쿡플러스1호"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2022/05/11/16522312181627E73A060AC80E264EA2/16522312181627E73A060AC80E264EA2_img_760?hash=3cffa0c8c2ad335374b4b6e5610091f7"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "다섯째 인격 주변 열쇠고리",
+    "productId": 16048549154,
+    "time": "2026-02-17T00:30:01.395Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "59921651",
+    "domeggookProductName": "다섯째 인격 열쇠고리 키링 굿즈 1개",
+    "domeggookOptionNos": [],
+    "seoOptimizedName": "다섯째 인격 열쇠고리 키링 굿즈 1개",
+    "seoOriginalName": "다섯째 인격 주변 열쇠고리",
+    "coupangPayload": {
+      "displayProductName": "다섯째 인격 열쇠고리 키링 굿즈 1개",
+      "displayCategoryCode": "64687",
+      "saleStartedAt": "2026-02-17T00:30:02",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "tz-26 (tz-26)-16 종",
+      "salePrice": 8300,
+      "searchTags": [
+        "다섯째",
+        "인격",
+        "열쇠고리",
+        "키링",
+        "굿즈"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/07/23/17532414016A7D865580CC0357C9500D/17532414016A7D865580CC0357C9500D_img_760?hash=8424e971af9b29a25dbe6630893f76dc"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  },
+  {
+    "action": "register",
+    "name": "풍선 고양이 털 인형 애견 시뮬레이터 인형",
+    "productId": 16048564394,
+    "time": "2026-02-17T01:00:01.416Z",
+    "result": "SUCCESS",
+    "domeggookProductNo": "54046053",
+    "domeggookProductName": "풍선 고양이 털 인형 애견 시뮬레이터 장난감 1개",
+    "domeggookOptionNos": [],
+    "seoOptimizedName": "풍선 고양이 털 인형 애견 시뮬레이터 장난감 1개",
+    "seoOriginalName": "풍선 고양이 털 인형 애견 시뮬레이터 인형",
+    "coupangPayload": {
+      "displayProductName": "풍선 고양이 털 인형 애견 시뮬레이터 장난감 1개",
+      "displayCategoryCode": "66015",
+      "saleStartedAt": "2026-02-17T01:00:02",
+      "saleEndedAt": "2099-01-01T23:59:59",
+      "itemName": "수박돼지-20cm",
+      "salePrice": 14500,
+      "searchTags": [
+        "풍선",
+        "고양이",
+        "인형",
+        "애견",
+        "시뮬레이터"
+      ],
+      "images": [
+        "https://cdn1.domeggook.com/upload/item/2025/02/04/173864850293AF64821678227B1DE496/173864850293AF64821678227B1DE496_img_760?hash=bf1b586e81d6a8911147266af472d878"
+      ],
+      "attributes": [
+        {
+          "attributeTypeName": "수량",
+          "attributeValueName": "1개",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "색상",
+          "attributeValueName": "혼합색상",
+          "exposed": "EXPOSED"
+        },
+        {
+          "attributeTypeName": "사이즈",
+          "attributeValueName": "1",
+          "exposed": "EXPOSED"
+        }
+      ]
+    }
+  }
+]

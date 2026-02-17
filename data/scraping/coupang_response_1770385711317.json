@@ -1,0 +1,11 @@
+{
+  "product": "KC인증 15W 고속무선충전기 케이블일체형 1.5미터케이블",
+  "status": 200,
+  "body": {
+    "code": "SUCCESS",
+    "message": "[]",
+    "data": 16028950411,
+    "details": null,
+    "errorItems": null
+  }
+}

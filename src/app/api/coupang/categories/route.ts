@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import path from 'path'
 import fs from 'fs'
-import XLSX from 'xlsx'
+import * as XLSX from 'xlsx'
 
 // 파일 시스템 접근이 필요하므로 node 런타임으로 고정
 export const runtime = 'nodejs'

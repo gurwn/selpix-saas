@@ -11,17 +11,25 @@ import {
   FileText,
   Upload,
   History,
-  ShoppingCart
+  ShoppingCart,
+  Target,
+  Crown,
+  FlaskConical,
+  Activity
 } from 'lucide-react'
 
 const navItems = [
   { href: '/', label: 'Dashboard', icon: LayoutDashboard, description: '대시보드' },
   { href: '/wholesale-search', label: '도매 검색', icon: ShoppingCart, description: '도매 상품' },
+  { href: '/trends', label: '트렌드 분석', icon: Activity, description: '트렌드' },
   { href: '/recommendation', label: 'AI 추천', icon: Lightbulb, description: '추천 상품' },
   { href: '/margin', label: '마진 계산기', icon: Calculator, description: '마진 계산' },
   { href: '/detail-page', label: '상세페이지', icon: FileText, description: '자동 생성' },
+  { href: '/benchmark', label: '경쟁사 벤치마킹', icon: Target, description: '벤치마킹' },
+  { href: '/ab-test', label: 'A/B 테스트', icon: FlaskConical, description: '소구점 테스트' },
   { href: '/registration', label: '쿠팡 등록', icon: Upload, description: '등록 준비' },
   { href: '/logs', label: '작업 이력', icon: History, description: 'Log' },
+  { href: '/subscription', label: '구독 관리', icon: Crown, description: '구독 플랜' },
 ]
 
 export default function Sidebar() {

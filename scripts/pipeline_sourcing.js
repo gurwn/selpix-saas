@@ -400,15 +400,16 @@ function calculateMargin(product, keyword) {
   const shipping = product.shippingCost || 0;
 
   const multiplier = getMultiplier(keyword, product.name);
-  // BUG FIX 2026-02-16: 개당 원가로 계산 (묶음 전체가 아닌 1개 기준)
+  // MOQ 반영: 고객에게 minOrder개 묶음으로 판매하므로 총 원가 기준 가격 산정
   const perUnitCost = price + Math.round(shipping / minOrder);
-  const suggestedRetail = Math.round(perUnitCost * multiplier);
+  const totalCost = perUnitCost * minOrder;
+  const suggestedRetail = Math.round(totalCost * multiplier);
   const coupangFee = Math.round(suggestedRetail * COUPANG_FEE_RATE);
-  const margin = suggestedRetail - perUnitCost - coupangFee;
+  const margin = suggestedRetail - totalCost - coupangFee;
   const marginRate = margin / suggestedRetail;
 
   return {
-    unitCost: perUnitCost,
+    unitCost: totalCost,   // 판매 1건당 실제 원가 (MOQ개 합산)
     suggestedRetail,
     coupangFee,
     margin,
@@ -479,9 +480,12 @@ function toQueueItem(product, marginInfo, keyword) {
   // 고해상도 메인 이미지: enrichment imageUrl이 플레이스홀더면 detailImages[0] 사용
   const safeMainImage = getSafeVendorPath(product.imageUrl) || safeDetailImages[0] || null;
 
+  const moq = product.minOrderQuantity || 1;
+  const setDisplayName = buildSetName(product.name, moq);
+
   return {
-    sellerName: product.name.slice(0, 30),
-    displayName: product.name,
+    sellerName: setDisplayName.slice(0, 30),
+    displayName: setDisplayName,
     // 도매꾹 원본 식별자/상품명 보존 (재주문/출고용)
     domeggookProductNo: product.productNo || null,
     domeggookProductName: product.name,
@@ -507,6 +511,17 @@ function toQueueItem(product, marginInfo, keyword) {
     domeggookOptionNos: product.domeggookOptionNos || [],
     minOrderQuantity: product.minOrderQuantity || 1
   };
+}
+
+/**
+ * MOQ별 세트 상품명 생성
+ * MOQ=2 → "1+1 상품명", MOQ=3~9 → "N개세트 상품명"
+ */
+function buildSetName(name, moq) {
+  if (moq <= 1) return name;
+  const base = name.replace(/^(1\+1|[0-9]+개세트)\s+/, '').trim();
+  if (moq === 2) return `1+1 ${base}`;
+  return `${moq}개세트 ${base}`;
 }
 
 /**
@@ -592,6 +607,13 @@ async function runPipeline() {
 
         if (marginInfo.marginRate < MIN_MARGIN_RATE) {
           log(`  SKIP (마진 ${Math.round(marginInfo.marginRate * 100)}%): ${product.name.slice(0, 40)}`);
+          continue;
+        }
+
+        // MOQ >= 10 필터: 위탁판매 불가
+        const enrichedMoq = product.minOrderQuantity || 1;
+        if (enrichedMoq >= 10) {
+          log(`  SKIP (MOQ ${enrichedMoq} >= 10): ${product.name.slice(0, 40)}`);
           continue;
         }
 

@@ -1,14 +1,10 @@
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
-require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
-const fetch = global.fetch;
+require('dotenv').config({ path: '/home/dev/openclaw/.env' });
 
-const BASE_URL = 'https://api-gateway.coupang.com';
-const ACCESS_KEY = process.env.COUPANG_ACCESS_KEY;
-const SECRET_KEY = process.env.COUPANG_SECRET_KEY;
-const VENDOR_ID = process.env.COUPANG_VENDOR_ID;
-const VENDOR_USER_ID = process.env.COUPANG_VENDOR_USER_ID || VENDOR_ID;
+const { cf, predictCategory, getCategoryMeta, buildNotices, getConfig } = require('./lib/coupang_api');
+
+const { VID: VENDOR_ID, VUID: VENDOR_USER_ID } = getConfig();
 const RETURN_NAME = process.env.COUPANG_RETURN_CHARGE_NAME || '반품지';
 const RETURN_CONTACT = toE164(process.env.COUPANG_RETURN_CONTACT || '+821024843810');
 const RETURN_ZIP = process.env.COUPANG_RETURN_ZIPCODE || '00000';
@@ -24,50 +20,6 @@ function toE164(phone){
   if(digits.startsWith('82')) return `+${digits}`;
   if(digits.startsWith('0')) return `+82${digits.slice(1)}`;
   return `+82${digits}`;
-}
-
-function sign(method, pathUrl, query='') {
-  const d = new Date();
-  const pad = n => String(n).padStart(2,'0');
-  const datetime = `${String(d.getUTCFullYear()).slice(-2)}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}Z`;
-  const msg = `${datetime}${method}${pathUrl}${query}`;
-  const sig = crypto.createHmac('sha256', SECRET_KEY).update(msg,'utf-8').digest('hex');
-  return { datetime, authorization: `CEA algorithm=HmacSHA256, access-key=${ACCESS_KEY}, signed-date=${datetime}, signature=${sig}` };
-}
-
-async function cf(method, pathUrl, body=null, query=''){
-  const {datetime, authorization} = sign(method, pathUrl, query);
-  const url = `${BASE_URL}${pathUrl}${query ? '?' + query : ''}`;
-  const res = await fetch(url, {
-    method,
-    headers: {
-      'Content-Type':'application/json',
-      'Authorization': authorization,
-      'X-Coupang-Date': datetime,
-      'X-Requested-By': VENDOR_ID,
-    },
-    body: body && method !== 'GET' ? JSON.stringify(body) : undefined
-  });
-  let json={};
-  try{ json = await res.json(); }catch(e){ }
-  return {res,json};
-}
-
-async function predictCategory(productName){
-  const pathUrl = '/v2/providers/openapi/apis/api/v1/categorization/predict';
-  const body = { productName: productName.slice(0,200) };
-  const {json} = await cf('POST', pathUrl, body);
-  const id = json?.data?.predictedCategoryId;
-  const name = json?.data?.predictedCategoryName;
-  if(!id) throw new Error('카테고리 예측 실패: '+JSON.stringify(json));
-  return {id, name};
-}
-
-async function getCategoryMeta(displayCategoryCode){
-  const pathUrl = `/v2/providers/seller_api/apis/api/v1/marketplace/meta/category-related-metas/display-category-codes/${displayCategoryCode}`;
-  const {json} = await cf('GET', pathUrl, null, '');
-  if(json?.code!=='SUCCESS') throw new Error('메타 조회 실패: '+JSON.stringify(json));
-  return json.data;
 }
 
 async function ensureOutbound(name='자동출고지'){
@@ -124,26 +76,8 @@ async function ensureReturn(name='자동반품지'){
   return code;
 }
 
-function buildNoticesFromMeta(meta){
-  const notices=[];
-  if(meta?.noticeCategories?.length){
-    // 기타 재화 카테고리 우선
-    const preferred = meta.noticeCategories.find(c=>c.noticeCategoryName.includes('기타')) || meta.noticeCategories[0];
-    const catName = preferred.noticeCategoryName;
-    (preferred.noticeCategoryDetailNames||[]).forEach(d=>{
-      if(d.required==='MANDATORY'){
-        notices.push({noticeCategoryName: catName, noticeCategoryDetailName: d.noticeCategoryDetailName, content:'상세페이지 참조'});
-      }
-    });
-  }
-  if(!notices.length){
-    notices.push({noticeCategoryName:'기타 재화', noticeCategoryDetailName:'품명 및 모델명', content:'상세페이지 참조'});
-  }
-  return notices;
-}
-
 function buildItems(product, cat, meta, images){
-  const notices = buildNoticesFromMeta(meta);
+  const notices = buildNotices(meta);
   const contents = [ { contentsType:'TEXT', contentDetails:[{content: ((product.detailHtml||product.detailText||product.description||product.name||'상품 상세설명') + `<img src="${DETAIL_OVERRIDE}" border="0" />`).slice(0,2000), detailType:'TEXT'}] } ];
   const basePrice = Number(product.price)||0;
   let attrs=[];
@@ -235,12 +169,12 @@ function buildPayload(product, outboundCode, returnCode, cat, meta){
     contents: [
       { contentsType:'TEXT', contentDetails:[{content: ((product.detailHtml||product.detailText||product.description||productName||'상품 상세설명') + `<img src="${DETAIL_OVERRIDE}" border="0" />`).slice(0,2000), detailType:'TEXT'}] }
     ],
-    notices: buildNoticesFromMeta(meta)
+    notices: buildNotices(meta)
   };
 }
 
 async function main(){
-  const file = path.join(__dirname,'..','data','scraping','domeggook_payloads_20260205.json');
+  const file = path.join(__dirname,'..','data','scraping','domeggook_payloads_20260207.json');
   const arr = JSON.parse(fs.readFileSync(file,'utf-8'));
   const outbound = await ensureOutbound('자동출고지');
   const ret = await ensureReturn('자동반품지');

@@ -1,0 +1,673 @@
+[
+  {
+    "runAt": "2026-02-16T12:19:06.480Z",
+    "total": 37,
+    "success": 36,
+    "failure": 1,
+    "results": [
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047616412,
+        "salePrice": 3800,
+        "oldSalePrice": 22500,
+        "durationMs": 691,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047616412,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047620570,
+        "salePrice": 2700,
+        "oldSalePrice": 21000,
+        "durationMs": 693,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047620570,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047620590,
+        "salePrice": 3600,
+        "oldSalePrice": 79000,
+        "durationMs": 625,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047620590,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16041404905,
+        "salePrice": 2000,
+        "oldSalePrice": 20000,
+        "durationMs": 958,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16041404905,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16041439752,
+        "salePrice": 2000,
+        "oldSalePrice": 20000,
+        "durationMs": 1003,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16041439752,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047707374,
+        "salePrice": 3000,
+        "oldSalePrice": 24880,
+        "durationMs": 886,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047707374,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047621327,
+        "salePrice": 9300,
+        "oldSalePrice": 24750,
+        "durationMs": 676,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047621327,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": false,
+        "stage": "update",
+        "productId": 16043424882,
+        "salePrice": 7600,
+        "oldSalePrice": 25250,
+        "durationMs": 640,
+        "httpStatus": 400,
+        "code": "ERROR",
+        "message": "[해당 상품은 이미 삭제된 상품입니다.]",
+        "response": {
+          "code": "ERROR",
+          "message": "[해당 상품은 이미 삭제된 상품입니다.]"
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047713047,
+        "salePrice": 15000,
+        "oldSalePrice": 37000,
+        "durationMs": 621,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047713047,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16044183014,
+        "salePrice": 9000,
+        "oldSalePrice": 28750,
+        "durationMs": 558,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16044183014,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047744558,
+        "salePrice": 15000,
+        "oldSalePrice": 37000,
+        "durationMs": 771,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047744558,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047622194,
+        "salePrice": 20000,
+        "oldSalePrice": 47500,
+        "durationMs": 882,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047622194,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16045778045,
+        "salePrice": 7500,
+        "oldSalePrice": 22450,
+        "durationMs": 1020,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16045778045,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047625400,
+        "salePrice": 17500,
+        "oldSalePrice": 47500,
+        "durationMs": 607,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047625400,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047625420,
+        "salePrice": 3500,
+        "oldSalePrice": 20250,
+        "durationMs": 979,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047625420,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047625433,
+        "salePrice": 3800,
+        "oldSalePrice": 25000,
+        "durationMs": 705,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047625433,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047626237,
+        "salePrice": 4000,
+        "oldSalePrice": 23500,
+        "durationMs": 615,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047626237,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047776751,
+        "salePrice": 13000,
+        "oldSalePrice": 34800,
+        "durationMs": 1186,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047776751,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047808480,
+        "salePrice": 14000,
+        "oldSalePrice": 21280,
+        "durationMs": 765,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047808480,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047840610,
+        "salePrice": 3000,
+        "oldSalePrice": 149500,
+        "durationMs": 747,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047840610,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047868453,
+        "salePrice": 4500,
+        "oldSalePrice": 21000,
+        "durationMs": 891,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047868453,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047658790,
+        "salePrice": 3000,
+        "oldSalePrice": 22500,
+        "durationMs": 837,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047658790,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047658822,
+        "salePrice": 7600,
+        "oldSalePrice": 21200,
+        "durationMs": 800,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047658822,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047658893,
+        "salePrice": 6300,
+        "oldSalePrice": 630000,
+        "durationMs": 662,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047658893,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047658914,
+        "salePrice": 20500,
+        "oldSalePrice": 226000,
+        "durationMs": 580,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047658914,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047659031,
+        "salePrice": 4200,
+        "oldSalePrice": 20100,
+        "durationMs": 537,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047659031,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047659046,
+        "salePrice": 27500,
+        "oldSalePrice": 89780,
+        "durationMs": 607,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047659046,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047659168,
+        "salePrice": 16000,
+        "oldSalePrice": 91250,
+        "durationMs": 1056,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047659168,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047659189,
+        "salePrice": 27000,
+        "oldSalePrice": 60900,
+        "durationMs": 543,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047659189,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047659206,
+        "salePrice": 3000,
+        "oldSalePrice": 42500,
+        "durationMs": 583,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047659206,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047659229,
+        "salePrice": 13500,
+        "oldSalePrice": 143500,
+        "durationMs": 624,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047659229,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047659359,
+        "salePrice": 2600,
+        "oldSalePrice": 21380,
+        "durationMs": 788,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047659359,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047659381,
+        "salePrice": 10500,
+        "oldSalePrice": 28500,
+        "durationMs": 533,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047659381,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047659409,
+        "salePrice": 10000,
+        "oldSalePrice": 27500,
+        "durationMs": 491,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047659409,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047659423,
+        "salePrice": 7000,
+        "oldSalePrice": 82000,
+        "durationMs": 569,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047659423,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047300472,
+        "salePrice": 6300,
+        "oldSalePrice": 75500,
+        "durationMs": 657,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047300472,
+          "details": null,
+          "errorItems": null
+        }
+      },
+      {
+        "success": true,
+        "stage": "update",
+        "productId": 16047659491,
+        "salePrice": 8900,
+        "oldSalePrice": 100900,
+        "durationMs": 624,
+        "httpStatus": 200,
+        "code": "SUCCESS",
+        "message": "[]",
+        "response": {
+          "code": "SUCCESS",
+          "message": "[]",
+          "data": 16047659491,
+          "details": null,
+          "errorItems": null
+        }
+      }
+    ]
+  }
+]

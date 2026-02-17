@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import {
@@ -100,7 +100,7 @@ const wholesaleDatabase: Record<string, WholesaleProduct[]> = {
 // 인기 검색어
 const popularKeywords = ['무선 이어폰', 'LED 조명', '충전기', '보조배터리', '스마트워치', '블루투스 스피커']
 
-export default function RecommendationPage() {
+function RecommendationPageInner() {
   const searchParams = useSearchParams()
   const [keyword, setKeyword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -553,5 +553,13 @@ export default function RecommendationPage() {
         </div>
       )}
     </div>
+  )
+}
+
+export default function RecommendationPage() {
+  return (
+    <Suspense fallback={<div className="page-content"><p>로딩중...</p></div>}>
+      <RecommendationPageInner />
+    </Suspense>
   )
 }
