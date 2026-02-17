@@ -213,13 +213,22 @@ async function main() {
       unchanged++;
     }
 
-    // 가격 변동 감지 (참고용 로깅)
-    if (stock.price && item.salePrice) {
-      const sourcePrice = stock.price;
-      if (Math.abs(sourcePrice - (item.originalSourcePrice || item.salePrice)) > 500) {
-        appendLog(`  💰 [${item.productId}] 도매꾹 가격 변동: ${item.originalSourcePrice || '?'} → ${sourcePrice}`);
+    // 가격 변동 감지 (10% 이상) — 실제 쿠팡 가격 반영은 cron_product_sync.js에서 처리
+    if (stock.price) {
+      const sourcePrice = Number(stock.price);
+      const baseline = Number(item.latestSourcePrice || item.sourcePrice || item.originalSourcePrice || 0);
+
+      if (baseline > 0) {
+        const changeRate = Math.abs(sourcePrice - baseline) / baseline;
+        if (changeRate >= 0.1) {
+          const pct = (changeRate * 100).toFixed(1);
+          appendLog(`  ⚠️ [${item.productId}] 도매꾹 가격 ${pct}% 변동: ${baseline} → ${sourcePrice} (가격 동기화 필요)`);
+          item.latestSourcePrice = sourcePrice;
+          item.priceChangedAt = now;
+        }
+      } else {
+        // 기준가가 없으면 현재 소싱가를 기준값으로 저장
         item.latestSourcePrice = sourcePrice;
-        item.priceChangedAt = now;
       }
     }
 
