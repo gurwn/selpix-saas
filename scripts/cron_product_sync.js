@@ -248,9 +248,9 @@ async function main() {
 
       const updatedProduct = {
         ...coupangProduct,
+        // 노출 상품명만 변경 (SEO 최적화명)
+        // 등록 상품명(sellerProductName)은 도매꾹 원본 유지
         displayProductName: nameChanged ? targetName : coupangProduct.displayProductName,
-        sellerProductName: nameChanged ? targetName : coupangProduct.sellerProductName,
-        generalProductName: nameChanged ? targetName : coupangProduct.generalProductName,
         items: items.map(it => ({
           ...it,
           itemName: fixQtyInItemName(it.itemName, targetMinQty),
@@ -299,8 +299,8 @@ async function main() {
           item.priceSyncedAt = new Date().toISOString();
         }
         if (nameChanged) {
-          item.displayName = targetName;
-          item.sellerName = String(targetName).slice(0, 30);
+          item.displayName = targetName; // 노출명만 업데이트
+          // item.sellerName은 도매꾹 원본 유지
         }
       }
 
