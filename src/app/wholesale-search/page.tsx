@@ -181,7 +181,6 @@ export default function WholesaleSearchPage() {
       name: product.name,
       price: product.price,
       wholesalePrice: product.price,
-      sourcingKeyword: keyword || '',
     }))
 
     localStorage.setItem('detailPageData', JSON.stringify({
