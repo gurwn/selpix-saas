@@ -426,6 +426,39 @@ async function deleteProduct(sellerProductId) {
   return { success: false, message: `삭제 실패: ${delResult?.message || JSON.stringify(delResult)}` };
 }
 
+// 가격 업데이트 (아이템 단위)
+async function updateItemPrice(sellerProductId, vendorItemId, price) {
+  return cf(
+    'PUT',
+    `/v2/providers/seller_api/apis/api/v1/marketplace/seller-products/${sellerProductId}/items/${vendorItemId}/prices/${price}`,
+    {}
+  );
+}
+
+// 수량(MOQ) 업데이트 (아이템 단위)
+async function updateItemQuantity(sellerProductId, vendorItemId, quantity) {
+  return cf(
+    'PUT',
+    `/v2/providers/seller_api/apis/api/v1/marketplace/seller-products/${sellerProductId}/items/${vendorItemId}/quantities/${quantity}`,
+    {}
+  );
+}
+
+// 전체 상품 수정 (상품명 등): GET → merge → PUT
+async function updateProductFull(sellerProductId, patch) {
+  const { json } = await cf(
+    'GET',
+    `/v2/providers/seller_api/apis/api/v1/marketplace/seller-products/${sellerProductId}`
+  );
+  const full = json?.data;
+  const merged = { ...full, ...patch };
+  return cf(
+    'PUT',
+    '/v2/providers/seller_api/apis/api/v1/marketplace/seller-products',
+    merged
+  );
+}
+
 async function updateProduct(product) {
   const pathUrl = `/v2/providers/seller_api/apis/api/v1/marketplace/seller-products`;
   return cf('PUT', pathUrl, product);
@@ -441,6 +474,9 @@ module.exports = {
   ensureRequiredAttributes,
   extractRangeValue,
   deleteProduct,
+  updateItemPrice,
+  updateItemQuantity,
+  updateProductFull,
   updateProduct,
   getConfig,
   BASE_URL,

@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config({ path: '/home/dev/openclaw/.env' });
 
-const { cf } = require('./lib/coupang_api');
+const { cf, updateItemPrice, updateItemQuantity, updateProductFull } = require('./lib/coupang_api');
 const { roundPrice10 } = require('./lib/image_utils');
 
 const QUEUE_FILE = path.resolve(__dirname, '../data/register_queue.json');
@@ -138,12 +138,10 @@ async function getProduct(productId) {
   return json.data;
 }
 
-async function updateProduct(product) {
-  const { json } = await cf('PUT', '/v2/providers/seller_api/apis/api/v1/marketplace/seller-products', product);
+function ensureCoupangSuccess(json, context) {
   if (json?.code !== 'SUCCESS') {
-    throw new Error(`쿠팡 상품 업데이트 실패: ${json?.message || json?.code || 'unknown'}`);
+    throw new Error(`${context} 실패: ${json?.message || json?.code || 'unknown'}`);
   }
-  return json;
 }
 
 function chooseTargetName(item, sourceName) {
@@ -230,7 +228,7 @@ async function main() {
       const shouldUpdatePrice = priceDiffRate >= 0.1;
 
       const targetName = chooseTargetName(item, source.name);
-      const currentName = coupangProduct.displayProductName || coupangProduct.sellerProductName || '';
+      const currentName = coupangProduct.sellerProductName || coupangProduct.displayProductName || '';
 
       const moqChanged = items.some(it => parseIntSafe(it.minimumQuantity, 1) !== targetMinQty);
       const priceChanged = shouldUpdatePrice;
@@ -246,22 +244,45 @@ async function main() {
       const oldMoqValues = [...new Set(items.map(it => parseIntSafe(it.minimumQuantity, 1)))].join(',');
       const oldPrice = currentQueuePrice || parseIntSafe(items[0].salePrice, 0);
 
-      const updatedProduct = {
-        ...coupangProduct,
-        // 노출 상품명만 변경 (SEO 최적화명)
-        // 등록 상품명(sellerProductName)은 도매꾹 원본 유지
-        displayProductName: nameChanged ? targetName : coupangProduct.displayProductName,
-        items: items.map(it => ({
-          ...it,
-          itemName: fixQtyInItemName(it.itemName, targetMinQty),
-          minimumQuantity: moqChanged ? targetMinQty : it.minimumQuantity,
-          salePrice: priceChanged ? targetSalePrice : it.salePrice,
-          originalPrice: priceChanged ? targetSalePrice : it.originalPrice,
-        })),
-      };
-
       if (!DRY_RUN) {
-        await updateProduct(updatedProduct);
+        const sellerProductId = item.productId;
+        const queueVendorItemIds = Array.isArray(item.vendorItemIds)
+          ? item.vendorItemIds
+          : (item.vendorItemId ? [item.vendorItemId] : []);
+        const vendorItemIds = items.map((it, idx) => it.vendorItemId || queueVendorItemIds[idx]);
+
+        if ((moqChanged || priceChanged) && vendorItemIds.some(v => !v)) {
+          throw new Error('vendorItemId 조회 실패');
+        }
+
+        if (nameChanged || itemNameChanged) {
+          const patch = {};
+          if (nameChanged) {
+            patch.sellerProductName = targetName;
+          }
+          if (itemNameChanged) {
+            patch.items = items.map(it => ({
+              ...it,
+              itemName: fixQtyInItemName(it.itemName, targetMinQty),
+            }));
+          }
+          const { json } = await updateProductFull(sellerProductId, patch);
+          ensureCoupangSuccess(json, '쿠팡 상품 전체 업데이트');
+        }
+
+        if (moqChanged) {
+          for (const vendorItemId of vendorItemIds) {
+            const { json } = await updateItemQuantity(sellerProductId, vendorItemId, targetMinQty);
+            ensureCoupangSuccess(json, `쿠팡 MOQ 업데이트(${vendorItemId})`);
+          }
+        }
+
+        if (priceChanged) {
+          for (const vendorItemId of vendorItemIds) {
+            const { json } = await updateItemPrice(sellerProductId, vendorItemId, targetSalePrice);
+            ensureCoupangSuccess(json, `쿠팡 가격 업데이트(${vendorItemId})`);
+          }
+        }
       }
 
       const productLabel = targetName || currentName || item.displayName || item.sellerName || String(item.productId);
