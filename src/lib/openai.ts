@@ -144,6 +144,119 @@ export async function generatePriceRecommendation(input: PriceRecommendationInpu
     }
 }
 
+// ── SEO Optimize for Coupang ─────────────────────────────────
+
+export interface SEOOptimizationResult {
+    optimizedName: string;       // ≤100자 SEO 상품명
+    suggestedPrice: number;      // 10원 단위, 심리가격 전략
+    priceReasoning: string;      // 가격 산출 근거 (한 줄)
+    searchTags: string[];        // 정확히 10개
+    confidence: number;          // 0-100
+}
+
+export async function optimizeForCoupang(input: {
+    originalName: string;
+    wholesalePrice: number;
+    category?: string;
+    sourcingKeyword?: string;
+    currentSalePrice?: number;
+    currentTags?: string[];
+}): Promise<SEOOptimizationResult> {
+    const fallbackPrice = input.currentSalePrice || Math.round((input.wholesalePrice * 2.2) / 10) * 10
+    const fallback: SEOOptimizationResult = {
+        optimizedName: input.originalName.slice(0, 100),
+        suggestedPrice: fallbackPrice,
+        priceReasoning: '규칙 기반 기본 마진율 적용',
+        searchTags: input.currentTags?.slice(0, 10) || [],
+        confidence: 0,
+    }
+
+    if (!openai) {
+        console.error('OPENAI_API_KEY is missing')
+        return fallback
+    }
+
+    const systemPrompt = `당신은 쿠팡 SEO 최적화 전문가입니다. 도매 상품 정보를 받아 쿠팡 검색 최적화된 상품명, 판매가, 검색 태그를 동시에 제안합니다.
+
+[상품명 규칙]
+- 100자 이내, 특수문자(!@#$%^&*) 금지
+- 구조: [타입] [핵심특징] [용도] [규격]
+- 도매꾹 불필요 정보 제거: "도매가", "대량", "최저가", "공장직송", "무료배송" 등
+- 검색량이 높은 메인 키워드를 앞쪽에 배치
+- 브랜드가 불확실하면 절대 가짜 브랜드를 창조하지 마세요
+
+[가격 규칙]
+- 도매가 기준, 쿠팡 수수료 10.8% 감안
+- 순마진 25-40% 목표
+- 심리가격 전략: xx90원 또는 xx900원으로 설정
+- 10원 단위 반올림
+
+[태그 규칙]
+- 정확히 10개 생성
+- 소싱 키워드가 있으면 반드시 첫 번째로 포함
+- 동의어, 장문 키워드(2-4단어 조합), 용도별 키워드 포함
+- 브랜드명/경쟁사명은 절대 포함 금지
+
+[출력 형식 (JSON)]
+{
+  "optimizedName": "최적화된 상품명",
+  "suggestedPrice": 12900,
+  "priceReasoning": "가격 산출 근거 한 줄",
+  "searchTags": ["태그1", "태그2", ..., "태그10"],
+  "confidence": 85
+}`
+
+    const userContent = `[상품 정보]
+- 원래 상품명: ${input.originalName}
+- 도매가: ${input.wholesalePrice}원
+- 카테고리: ${input.category || '미지정'}
+- 소싱 키워드: ${input.sourcingKeyword || '없음'}
+- 현재 판매가: ${input.currentSalePrice || '미설정'}
+- 기존 태그: ${input.currentTags?.join(', ') || '없음'}`
+
+    try {
+        const completion = await openai.chat.completions.create({
+            model: 'gpt-4o-mini',
+            messages: [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: userContent }
+            ],
+            response_format: { type: 'json_object' },
+            temperature: 0.4,
+        })
+
+        const content = completion.choices[0].message.content
+        if (!content) return fallback
+
+        const parsed = JSON.parse(content)
+
+        // ── 후처리 가드레일 ──
+        let name = String(parsed.optimizedName || input.originalName)
+        if (name.length > 100) name = name.slice(0, 100)
+
+        let price = Number(parsed.suggestedPrice) || fallbackPrice
+        if (price < 1000 || price > 500000) price = fallbackPrice
+        price = Math.round(price / 10) * 10
+
+        let tags: string[] = Array.isArray(parsed.searchTags) ? parsed.searchTags : []
+        tags = tags.filter((t: string) => typeof t === 'string' && t.trim().length > 0)
+        if (tags.length > 10) tags = tags.slice(0, 10)
+
+        const confidence = Math.min(100, Math.max(0, Number(parsed.confidence) || 50))
+
+        return {
+            optimizedName: name,
+            suggestedPrice: price,
+            priceReasoning: String(parsed.priceReasoning || ''),
+            searchTags: tags,
+            confidence,
+        }
+    } catch (err) {
+        console.error('optimizeForCoupang failed:', err)
+        return fallback
+    }
+}
+
 export async function benchmarkCompetitors(
     myProductName: string,
     myProductInfo: string,

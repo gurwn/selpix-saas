@@ -227,6 +227,7 @@ export default function RegistrationPage() {
       setSellerProductName(product.name || '') // 초기값 설정
       setPrice(product.price || 0)
       setWholesalePrice(product.wholesalePrice || 0)
+      if (product.sourcingKeyword) setSourcingKeyword(product.sourcingKeyword)
     }
 
     const detailData = localStorage.getItem('detailPageData')
@@ -279,6 +280,14 @@ export default function RegistrationPage() {
       ])
     }
   }, [selectedCategory])
+
+  // --- AI SEO Optimization ---
+  const [seoLoading, setSeoLoading] = useState(false)
+  const [seoResult, setSeoResult] = useState<{
+    optimizedName: string; suggestedPrice: number; priceReasoning: string; searchTags: string[]; confidence: number
+  } | null>(null)
+  const [seoApplied, setSeoApplied] = useState(false)
+  const [sourcingKeyword, setSourcingKeyword] = useState('')
 
   // --- AI Recommendation Logic ---
   const [isAiLoading, setIsAiLoading] = useState(false)
@@ -361,6 +370,60 @@ export default function RegistrationPage() {
       setIsPriceAiLoading(false)
     }
   }
+
+  // --- AI SEO Optimization Logic ---
+  const handleSeoOptimize = async (nameOverride?: string, priceOverride?: number) => {
+    const name = nameOverride || productName
+    const wp = priceOverride || wholesalePrice
+    if (!name || !wp) return
+
+    setSeoLoading(true)
+    setSeoApplied(false)
+    try {
+      const res = await fetch('/api/ai/optimize-listing', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          originalName: name,
+          wholesalePrice: wp,
+          category: selectedCategory || undefined,
+          sourcingKeyword: sourcingKeyword || undefined,
+          currentSalePrice: price ? Number(price) : undefined,
+          currentTags: detailPageData?.keywords || [],
+        })
+      })
+      const json = await res.json()
+      if (json.ok && json.data) {
+        setSeoResult(json.data)
+      } else {
+        console.error('SEO optimize failed:', json.error)
+      }
+    } catch (err) {
+      console.error('SEO optimize error:', err)
+    } finally {
+      setSeoLoading(false)
+    }
+  }
+
+  const applySeoResult = () => {
+    if (!seoResult) return
+    setProductName(seoResult.optimizedName)
+    setPrice(seoResult.suggestedPrice)
+    if (detailPageData) {
+      const newData = { ...detailPageData, keywords: seoResult.searchTags }
+      setDetailPageData(newData)
+      localStorage.setItem('detailPageData', JSON.stringify(newData))
+    }
+    setSeoApplied(true)
+  }
+
+  // Auto-trigger SEO when product data is loaded
+  useEffect(() => {
+    if (productName && wholesalePrice > 0 && !seoResult && !seoLoading) {
+      handleSeoOptimize(productName, wholesalePrice)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productName, wholesalePrice])
 
   const applyPrice = (newPrice: number) => {
     setPrice(newPrice)
@@ -841,6 +904,93 @@ export default function RegistrationPage() {
           </div>
         </div>
       </div>
+
+      {/* AI SEO 최적화 패널 */}
+      {(seoLoading || seoResult) && (
+        <div className="card space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-bold text-white flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-purple-400" />
+              AI SEO 최적화
+            </h3>
+            {seoResult && !seoApplied && (
+              <button
+                onClick={() => handleSeoOptimize()}
+                className="text-xs text-slate-400 hover:text-white"
+              >
+                다시 분석
+              </button>
+            )}
+          </div>
+
+          {seoLoading && (
+            <div className="flex items-center gap-3 p-4 bg-purple-500/5 rounded-lg border border-purple-500/20">
+              <Loader2 className="w-5 h-5 animate-spin text-purple-400" />
+              <span className="text-sm text-slate-300">AI 최적화 분석 중...</span>
+            </div>
+          )}
+
+          {seoResult && !seoLoading && (
+            <div className="space-y-4">
+              {seoApplied ? (
+                <div className="flex items-center gap-2 p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+                  <CheckCircle className="w-5 h-5 text-green-400" />
+                  <span className="text-sm text-green-300">AI 최적화가 적용되었습니다</span>
+                </div>
+              ) : (
+                <>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {/* 최적화 상품명 */}
+                    <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+                      <p className="text-xs text-slate-400 mb-2">최적화 상품명</p>
+                      <p className="text-sm text-white font-medium leading-snug">{seoResult.optimizedName}</p>
+                    </div>
+
+                    {/* 추천 가격 */}
+                    <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+                      <p className="text-xs text-slate-400 mb-2">추천 판매가</p>
+                      <p className="text-xl font-bold text-white">{formatCurrency(seoResult.suggestedPrice)}</p>
+                      <p className="text-xs text-slate-500 mt-1">{seoResult.priceReasoning}</p>
+                    </div>
+                  </div>
+
+                  {/* 태그 미리보기 */}
+                  <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+                    <div className="flex items-center justify-between mb-2">
+                      <p className="text-xs text-slate-400">추천 검색 태그 ({seoResult.searchTags.length}개)</p>
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${
+                        seoResult.confidence >= 70
+                          ? 'bg-green-500/15 text-green-300'
+                          : seoResult.confidence >= 40
+                          ? 'bg-yellow-500/15 text-yellow-300'
+                          : 'bg-red-500/15 text-red-300'
+                      }`}>
+                        신뢰도 {seoResult.confidence}%
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {seoResult.searchTags.slice(0, 5).map((tag, i) => (
+                        <span key={i} className="px-2 py-0.5 bg-primary-500/20 text-primary-300 text-xs rounded">{tag}</span>
+                      ))}
+                      {seoResult.searchTags.length > 5 && (
+                        <span className="text-xs text-slate-500">+{seoResult.searchTags.length - 5}개</span>
+                      )}
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={applySeoResult}
+                    className="btn-primary w-full py-3 bg-purple-600 hover:bg-purple-700 border-transparent flex items-center justify-center gap-2"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    AI 제안 적용
+                  </button>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* 판매가 & AI 가격 제안 섹션 (상품명 바로 아래로 이동) */}
       <div className="card space-y-4">
