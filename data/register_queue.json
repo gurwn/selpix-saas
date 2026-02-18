@@ -90,7 +90,15 @@
     "minOrderQuantity": 4,
     "priceSyncedAt": "2026-02-17T13:30:12.422Z",
     "domeggookProductName": "메이크업 파운데이션 물광 퍼프 선크림 베이스 화장품 소품",
-    "lastNormalSourcePrice": 1500
+    "lastNormalSourcePrice": 1500,
+    "tiktokContent": {
+      "displayName": "물광 메이크업 에어 퍼프",
+      "hooks": {
+        "price_shock": "이 퍼프로 물광 되는데 ₩4,900?? 실화야?",
+        "empathy": "파운데이션 들뜬다고 포기했던 분들 주목",
+        "tip": "물광 메이크업 비결은 퍼프에 있었다 (방법 공개)"
+      }
+    }
   },
   {
     "sellerName": "알프레도휘마스선크림 70ml SPF 50+ PA+",
@@ -288,7 +296,15 @@
     "minOrderQuantity": 5,
     "priceSyncedAt": "2026-02-17T13:30:13.565Z",
     "domeggookProductName": "블랙헤드 세안스펀지 모공 브러쉬 미세 딥 클렌징",
-    "lastNormalSourcePrice": 1080
+    "lastNormalSourcePrice": 1080,
+    "tiktokContent": {
+      "displayName": "딥클렌징 블랙헤드 세안 스펀지",
+      "hooks": {
+        "price_shock": "블랙헤드 이걸로 없앴는데 ₩3,900입니다",
+        "empathy": "코 블랙헤드 때문에 고민이신 분들 꼭 보세요",
+        "tip": "세안 스펀지 이렇게 쓰면 블랙헤드 진짜 줄어요"
+      }
+    }
   },
   {
     "sellerName": "세안 폼클렌징 거품기 버블메이커",
@@ -2226,7 +2242,15 @@
     "minOrderQuantity": 2,
     "priceSyncedAt": "2026-02-17T13:30:34.126Z",
     "domeggookProductName": "슬라임키트 붕어빵 슬라임 액체괴물 장난감",
-    "lastNormalSourcePrice": 4300
+    "lastNormalSourcePrice": 4300,
+    "tiktokContent": {
+      "displayName": "붕어빵 슬라임 만들기 키트",
+      "hooks": {
+        "price_shock": "이 슬라임 키트 진짜 ₩9,900이에요? 😱",
+        "empathy": "아이 심심할 때 뭐하지... 이거 해봤는데 대박",
+        "tip": "슬라임 만들기 실패하는 이유 1가지 (해결법 포함)"
+      }
+    }
   },
   {
     "sellerName": "라쿠파스 올인원 자동차 등록증 케이스 차량 취급 설명서",
@@ -3357,7 +3381,15 @@
     "minOrderQuantity": 3,
     "priceSyncedAt": "2026-02-17T13:30:41.845Z",
     "domeggookProductName": "임밍 서프라이즈 아웃 카드 이벤트 부모님 남편 [봉투제공 임신 소식 알리기 용띠 축하 초기 선물 임밍복",
-    "lastNormalSourcePrice": 1680
+    "lastNormalSourcePrice": 1680,
+    "tiktokContent": {
+      "displayName": "임신 소식 깜짝 알리기 카드",
+      "hooks": {
+        "price_shock": "임밍아웃 이 방법으로 하면 됩니다 (₩6,800)",
+        "empathy": "남편한테 임신 알렸을 때 반응... 🥺",
+        "tip": "임밍아웃 서프라이즈 세팅 꿀팁 (후기 포함)"
+      }
+    }
   },
   {
     "sellerName": "임밍아웃 복권 포스터 이벤트 카드 [남편 부모님 가족 ",
@@ -3961,7 +3993,15 @@
     "moqFixedAt": "2026-02-17T04:54:35.190Z",
     "minOrderQuantity": 2,
     "domeggookProductName": "겨울대비 따뜻한 보온성 퍼 로얄 패딩 방한운동화",
-    "lastNormalSourcePrice": 10680
+    "lastNormalSourcePrice": 10680,
+    "tiktokContent": {
+      "displayName": "겨울 방한 워킹화",
+      "hooks": {
+        "price_shock": "이 운동화 ₩19,800인데 따뜻함 실화입니다",
+        "empathy": "겨울에 발 시리신 분들 이거 하나로 해결됨",
+        "tip": "겨울 운동화 고르는 법 (이 조건만 확인하세요)"
+      }
+    }
   },
   {
     "sellerName": "여성용 대비색 빅 도트 양말 다용도 패션 실리콘 보이지",
