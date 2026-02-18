@@ -88,7 +88,9 @@
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:24.362Z",
     "minOrderQuantity": 4,
-    "priceSyncedAt": "2026-02-17T13:30:12.422Z"
+    "priceSyncedAt": "2026-02-17T13:30:12.422Z",
+    "domeggookProductName": "메이크업 파운데이션 물광 퍼프 선크림 베이스 화장품 소품",
+    "lastNormalSourcePrice": 1500
   },
   {
     "sellerName": "알프레도휘마스선크림 70ml SPF 50+ PA+",
@@ -284,7 +286,9 @@
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:24.964Z",
     "minOrderQuantity": 5,
-    "priceSyncedAt": "2026-02-17T13:30:13.565Z"
+    "priceSyncedAt": "2026-02-17T13:30:13.565Z",
+    "domeggookProductName": "블랙헤드 세안스펀지 모공 브러쉬 미세 딥 클렌징",
+    "lastNormalSourcePrice": 1080
   },
   {
     "sellerName": "세안 폼클렌징 거품기 버블메이커",
@@ -472,7 +476,7 @@
       "핸즈프리",
       "키체인"
     ],
-    "status": "approved",
+    "status": "stock_stopped",
     "sourceUrl": "https://www.domeggook.com/57950596?from=lstGen",
     "sourceSite": "domeggook",
     "sourcePrice": 1000,
@@ -486,14 +490,17 @@
     "coupangStatus": "승인완료",
     "seoUpdatedAt": "2026-02-16T09:41:08.603Z",
     "domeggookProductNo": "57950596",
-    "latestSourcePrice": 1000,
-    "priceChangedAt": "2026-02-17T03:00:02.580Z",
+    "latestSourcePrice": 1,
+    "priceChangedAt": "2026-02-18T03:00:04.039Z",
     "priceFixedAt": "2026-02-16T12:14:07.249Z",
     "oldSalePrice": 20000,
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:25.566Z",
     "minOrderQuantity": 5,
-    "priceSyncedAt": "2026-02-17T13:30:15.174Z"
+    "priceSyncedAt": "2026-02-17T13:30:15.174Z",
+    "domeggookProductName": "[POIPOI] 파우치 키링 열쇠고리 인형 가방 꾸미기 이어폰 PVC 투명 다용도 보관함 케이스 MZ템 인쇄",
+    "stockStoppedAt": "2026-02-18T09:08:22.530Z",
+    "stockStopReason": "비정상가격(1원)"
   },
   {
     "sellerName": "[POIPOI] 키링 파우치 가방 꾸미기 MZ 열쇠고리",
@@ -547,7 +554,7 @@
       "키체인",
       "가방고리"
     ],
-    "status": "approved",
+    "status": "stock_stopped",
     "sourceUrl": "https://www.domeggook.com/57952492?from=lstGen",
     "sourceSite": "domeggook",
     "sourcePrice": 1000,
@@ -561,14 +568,17 @@
     "coupangStatus": "승인완료",
     "seoUpdatedAt": "2026-02-16T09:41:10.386Z",
     "domeggookProductNo": "57952492",
-    "latestSourcePrice": 1000,
-    "priceChangedAt": "2026-02-17T03:00:02.580Z",
+    "latestSourcePrice": 1,
+    "priceChangedAt": "2026-02-18T03:00:04.039Z",
     "priceFixedAt": "2026-02-16T12:14:07.249Z",
     "oldSalePrice": 20000,
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:25.566Z",
     "minOrderQuantity": 5,
-    "priceSyncedAt": "2026-02-17T13:30:16.656Z"
+    "priceSyncedAt": "2026-02-17T13:30:16.656Z",
+    "domeggookProductName": "[POIPOI] 키링 파우치 가방 꾸미기 MZ 열쇠고리 인형 이어폰 투명 다용도 보관함 케이스 판촉",
+    "stockStoppedAt": "2026-02-18T09:08:22.530Z",
+    "stockStopReason": "비정상가격(1원)"
   },
   {
     "sellerName": "C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭",
@@ -611,7 +621,7 @@
       "이어폰 변환",
       "변환젠더"
     ],
-    "status": "registered",
+    "status": "stock_stopped",
     "sourceUrl": "https://www.domeggook.com/26932516?from=lstGen",
     "sourceSite": "domeggook",
     "sourcePrice": 1490,
@@ -682,15 +692,18 @@
     "productId": 16047707374,
     "registeredAt": "2026-02-16T09:24:36.913Z",
     "seoUpdatedAt": "2026-02-16T09:41:12.035Z",
-    "latestSourcePrice": 1490,
-    "priceChangedAt": "2026-02-17T03:00:02.580Z",
+    "latestSourcePrice": 1,
+    "priceChangedAt": "2026-02-18T03:00:04.039Z",
     "priceFixedAt": "2026-02-16T12:14:07.249Z",
     "oldSalePrice": 24880,
     "coupangStatus": "임시저장",
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:25.567Z",
     "minOrderQuantity": 5,
-    "priceSyncedAt": "2026-02-17T13:30:17.890Z"
+    "priceSyncedAt": "2026-02-17T13:30:17.890Z",
+    "domeggookProductName": "C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭 이어폰 C타입 연결잭 음악감상 박스포장",
+    "stockStoppedAt": "2026-02-18T09:08:22.530Z",
+    "stockStopReason": "비정상가격(1원)"
   },
   {
     "sellerName": "보조배터리 모즈온 도킹 배터리 4000 C타입",
@@ -781,7 +794,9 @@
     "coupangStatus": "임시저장",
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:26.167Z",
-    "minOrderQuantity": 2
+    "minOrderQuantity": 2,
+    "domeggookProductName": "보조배터리 모즈온 도킹 배터리 4000 C타입",
+    "lastNormalSourcePrice": 3700
   },
   {
     "sellerName": "보조배터리 일체형보조배터리 도킹형 미니 보조배터리 50",
@@ -1144,7 +1159,7 @@
       "텀블러 손잡이",
       "손잡이빨대"
     ],
-    "status": "registered",
+    "status": "stock_stopped",
     "sourceUrl": "http://domeggook.com/54804743",
     "sourceSite": "domeggook",
     "sourcePrice": 5900,
@@ -1202,14 +1217,17 @@
     "registeredAt": "2026-02-16T09:30:01.800Z",
     "seoUpdatedAt": "2026-02-16T09:41:16.525Z",
     "domeggookProductNo": "54804743",
-    "latestSourcePrice": 5900,
-    "priceChangedAt": "2026-02-17T03:00:02.580Z",
+    "latestSourcePrice": 1,
+    "priceChangedAt": "2026-02-18T03:00:04.039Z",
     "priceFixedAt": "2026-02-16T12:14:07.249Z",
     "oldSalePrice": 37000,
     "coupangStatus": "임시저장",
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:26.769Z",
-    "minOrderQuantity": 2
+    "minOrderQuantity": 2,
+    "domeggookProductName": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온 보냉병",
+    "stockStoppedAt": "2026-02-18T09:08:22.530Z",
+    "stockStopReason": "비정상가격(1원)"
   },
   {
     "sellerName": "보조배터리 일체형보조배터리 도킹형 미니 보조배터리 50",
@@ -1343,7 +1361,8 @@
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:27.370Z",
     "minOrderQuantity": 2,
-    "domeggookProductName": "보조배터리 모디스보조배터리 5000보조배터리 C타입보조배터리 8핀보조배터리 미니보조배터리 보조베터리"
+    "domeggookProductName": "보조배터리 모디스보조배터리 5000보조배터리 C타입보조배터리 8핀보조배터리 미니보조배터리 보조베터리",
+    "lastNormalSourcePrice": 4500
   },
   {
     "sellerName": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
@@ -1387,7 +1406,7 @@
       "빨대",
       "손잡이"
     ],
-    "status": "registered",
+    "status": "deleted",
     "sourceUrl": "http://domeggook.com/54804743",
     "sourceSite": "domeggook",
     "sourcePrice": 5900,
@@ -1518,7 +1537,8 @@
     "domeggookProductNo": "54110111",
     "latestSourcePrice": 21000,
     "priceChangedAt": "2026-02-17T03:00:02.580Z",
-    "priceSyncedAt": "2026-02-17T13:30:25.527Z"
+    "priceSyncedAt": "2026-02-17T13:30:25.527Z",
+    "lastNormalSourcePrice": 21000
   },
   {
     "sellerName": "자전거 마운트 에어로 핸들바 가민 속도계 거치대",
@@ -1620,7 +1640,9 @@
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:27.971Z",
     "minOrderQuantity": 2,
-    "priceSyncedAt": "2026-02-17T13:30:27.059Z"
+    "priceSyncedAt": "2026-02-17T13:30:27.059Z",
+    "domeggookProductName": "자전거 마운트 에어로 핸들바 가민 속도계 거치대",
+    "lastNormalSourcePrice": 8000
   },
   {
     "sellerName": "1+1 PWM A형 모터 속도조절기 DC 전압 스피드 ",
@@ -1691,7 +1713,8 @@
     "moqFixedAt": "2026-02-17T04:54:28.572Z",
     "minOrderQuantity": 2,
     "priceSyncedAt": "2026-02-17T13:30:28.439Z",
-    "domeggookProductName": "모터속도조절기 PWM A형 스피드컨트롤러 DC전압조절기"
+    "domeggookProductName": "모터속도조절기 PWM A형 스피드컨트롤러 DC전압조절기",
+    "lastNormalSourcePrice": 2990
   },
   {
     "sellerName": "5단 속도 조절 가능 클립형 소형 팬 USB 충전 저소",
@@ -1740,7 +1763,7 @@
       "충전 클립형",
       "클립형소형"
     ],
-    "status": "registered",
+    "status": "stock_stopped",
     "sourceUrl": "http://domeggook.com/57529001",
     "sourceSite": "domeggook",
     "sourcePrice": 7000,
@@ -1794,14 +1817,17 @@
     "registeredAt": "2026-02-16T08:10:36.180Z",
     "seoUpdatedAt": "2026-02-16T09:41:23.976Z",
     "domeggookProductNo": "57529001",
-    "latestSourcePrice": 7000,
-    "priceChangedAt": "2026-02-17T03:00:02.580Z",
+    "latestSourcePrice": 1,
+    "priceChangedAt": "2026-02-18T03:00:04.039Z",
     "priceFixedAt": "2026-02-16T12:14:07.249Z",
     "oldSalePrice": 47500,
     "coupangStatus": "임시저장",
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:28.573Z",
-    "minOrderQuantity": 2
+    "minOrderQuantity": 2,
+    "domeggookProductName": "5단 속도 조절 가능 클립형 소형 팬 USB 충전 저소음 3단 속도 라이트 팬",
+    "stockStoppedAt": "2026-02-18T09:08:22.530Z",
+    "stockStopReason": "비정상가격(1원)"
   },
   {
     "sellerName": "강화유리 타이탄 풀커버 강화유리필름 강화유리 액정보호 ",
@@ -1898,7 +1924,9 @@
     "coupangStatus": "임시저장",
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:29.174Z",
-    "minOrderQuantity": 4
+    "minOrderQuantity": 4,
+    "domeggookProductName": "강화유리 타이탄 풀커버 강화유리필름 강화유리 액정보호 아이폰 17/16/15/14/13 갤럭시 S26/25/24/23",
+    "lastNormalSourcePrice": 1400
   },
   {
     "sellerName": "모디스 카메라 풀커버 강화유리 아이폰 후면 카메라 강화",
@@ -1994,7 +2022,9 @@
     "coupangStatus": "임시저장",
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:29.775Z",
-    "minOrderQuantity": 5
+    "minOrderQuantity": 5,
+    "domeggookProductName": "모디스 카메라 풀커버 강화유리 아이폰 후면 카메라 강화유리 갤럭시 아이폰17/16/15/14 갤럭시S25/24",
+    "lastNormalSourcePrice": 1500
   },
   {
     "sellerName": "빨간색 채점 연필 4P 교사용 평가 도구 선생님 학교 ",
@@ -2097,7 +2127,9 @@
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:30.376Z",
     "minOrderQuantity": 4,
-    "priceSyncedAt": "2026-02-17T13:30:32.853Z"
+    "priceSyncedAt": "2026-02-17T13:30:32.853Z",
+    "domeggookProductName": "빨간색 채점 연필 4P 교사용 평가 도구 선생님 학교 교정 수업 첨삭용",
+    "lastNormalSourcePrice": 1600
   },
   {
     "sellerName": "슬라임키트 붕어빵 슬라임 액체괴물 장난감",
@@ -2192,7 +2224,9 @@
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:30.978Z",
     "minOrderQuantity": 2,
-    "priceSyncedAt": "2026-02-17T13:30:34.126Z"
+    "priceSyncedAt": "2026-02-17T13:30:34.126Z",
+    "domeggookProductName": "슬라임키트 붕어빵 슬라임 액체괴물 장난감",
+    "lastNormalSourcePrice": 4300
   },
   {
     "sellerName": "라쿠파스 올인원 자동차 등록증 케이스 차량 취급 설명서",
@@ -2226,7 +2260,7 @@
       "등록증",
       "케이스"
     ],
-    "status": "registered",
+    "status": "approved",
     "sourceUrl": "http://domeggook.com/52919942",
     "sourceSite": "domeggook",
     "sourcePrice": 5510,
@@ -2310,8 +2344,9 @@
     "oldSalePrice": 21280,
     "latestSourcePrice": 5510,
     "priceChangedAt": "2026-02-17T03:00:02.580Z",
-    "coupangStatus": "임시저장",
-    "priceSyncedAt": "2026-02-17T13:30:35.368Z"
+    "coupangStatus": "승인완료",
+    "priceSyncedAt": "2026-02-17T13:30:35.368Z",
+    "lastNormalSourcePrice": 5510
   },
   {
     "sellerName": "프리 프린트 배드민턴 테니스 핸드 젤 쿠션 땀 흡수 내",
@@ -2507,7 +2542,9 @@
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:31.579Z",
     "minOrderQuantity": 3,
-    "priceSyncedAt": "2026-02-17T13:30:36.561Z"
+    "priceSyncedAt": "2026-02-17T13:30:36.561Z",
+    "domeggookProductName": "차량 송풍구 핸드폰 거치대 자석 고정 네비게이션 스마트폰 주행 운전",
+    "lastNormalSourcePrice": 1800
   },
   {
     "sellerName": "구글 표준 조립식 VR안경",
@@ -2553,7 +2590,7 @@
       "조립식 VR",
       "VR 안경"
     ],
-    "status": "registered",
+    "status": "stock_stopped",
     "sourceUrl": "http://domeggook.com/47005742",
     "sourceSite": "domeggook",
     "sourcePrice": 1200,
@@ -2602,15 +2639,18 @@
     "registeredAt": "2026-02-16T08:39:39.892Z",
     "seoUpdatedAt": "2026-02-16T09:41:29.846Z",
     "domeggookProductNo": "47005742",
-    "latestSourcePrice": 1200,
-    "priceChangedAt": "2026-02-17T03:00:02.580Z",
+    "latestSourcePrice": 1,
+    "priceChangedAt": "2026-02-18T03:00:04.039Z",
     "priceFixedAt": "2026-02-16T12:14:07.249Z",
     "oldSalePrice": 22500,
     "coupangStatus": "임시저장",
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:32.181Z",
     "minOrderQuantity": 5,
-    "priceSyncedAt": "2026-02-17T13:30:37.783Z"
+    "priceSyncedAt": "2026-02-17T13:30:37.783Z",
+    "domeggookProductName": "구글 표준 조립식 VR안경",
+    "stockStoppedAt": "2026-02-18T09:08:22.530Z",
+    "stockStopReason": "비정상가격(1원)"
   },
   {
     "sellerName": "[POIPOI] 이어폰 S20/노트/프로 C타입 커널형",
@@ -2659,7 +2699,7 @@
       "커널형이어폰",
       "커널형 이어폰"
     ],
-    "status": "registered",
+    "status": "stock_stopped",
     "sourceUrl": "http://domeggook.com/39659008",
     "sourceSite": "domeggook",
     "sourcePrice": 3800,
@@ -2713,15 +2753,18 @@
     "registeredAt": "2026-02-16T08:39:41.216Z",
     "seoUpdatedAt": "2026-02-16T09:41:31.351Z",
     "domeggookProductNo": "39659008",
-    "latestSourcePrice": 3800,
-    "priceChangedAt": "2026-02-17T03:00:02.580Z",
+    "latestSourcePrice": 1,
+    "priceChangedAt": "2026-02-18T03:00:04.039Z",
     "priceFixedAt": "2026-02-16T12:14:07.249Z",
     "oldSalePrice": 21200,
     "coupangStatus": "임시저장",
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:32.783Z",
     "minOrderQuantity": 2,
-    "priceSyncedAt": "2026-02-17T13:30:39.086Z"
+    "priceSyncedAt": "2026-02-17T13:30:39.086Z",
+    "domeggookProductName": "[POIPOI] 이어폰 S20/노트/프로 C타입 커널형 이어폰 개별 박스포장 고성능 C타입 이어폰 당일출고",
+    "stockStoppedAt": "2026-02-18T09:08:22.530Z",
+    "stockStopReason": "비정상가격(1원)"
   },
   {
     "sellerName": "dma 건전지포함 고성능 고휘도 led 13구 후레쉬 ",
@@ -2744,7 +2787,7 @@
       "13구",
       "손전등"
     ],
-    "status": "approved",
+    "status": "stock_stopped",
     "sourceUrl": "http://domeggook.com/12188471",
     "sourceSite": "domeggook",
     "sourcePrice": 9450,
@@ -2798,7 +2841,9 @@
     "registeredAt": "2026-02-16T12:30:01.303Z",
     "latestSourcePrice": 1,
     "priceChangedAt": "2026-02-17T03:00:02.580Z",
-    "coupangStatus": "승인완료"
+    "coupangStatus": "승인완료",
+    "stockStoppedAt": "2026-02-18T09:08:22.530Z",
+    "stockStopReason": "비정상가격(1원)"
   },
   {
     "sellerName": "충전식 고성능 기포기 가정용 차량용 기포기 세련된",
@@ -3004,7 +3049,9 @@
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:33.385Z",
     "minOrderQuantity": 2,
-    "priceSyncedAt": "2026-02-17T13:30:40.831Z"
+    "priceSyncedAt": "2026-02-17T13:30:40.831Z",
+    "domeggookProductName": "2080 청은차 수치약 120g 3입",
+    "lastNormalSourcePrice": 4500
   },
   {
     "sellerName": "계수기 LCD 디스플레이 전자 디지털 카운터 MP3 수",
@@ -3308,7 +3355,9 @@
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:33.385Z",
     "minOrderQuantity": 3,
-    "priceSyncedAt": "2026-02-17T13:30:41.845Z"
+    "priceSyncedAt": "2026-02-17T13:30:41.845Z",
+    "domeggookProductName": "임밍 서프라이즈 아웃 카드 이벤트 부모님 남편 [봉투제공 임신 소식 알리기 용띠 축하 초기 선물 임밍복",
+    "lastNormalSourcePrice": 1680
   },
   {
     "sellerName": "임밍아웃 복권 포스터 이벤트 카드 [남편 부모님 가족 ",
@@ -3409,7 +3458,9 @@
     "coupangStatus": "임시저장",
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:33.987Z",
-    "minOrderQuantity": 3
+    "minOrderQuantity": 3,
+    "domeggookProductName": "임밍아웃 복권 포스터 이벤트 카드 [남편 부모님 가족 친구 서프라이즈 임신 축하 소식 알리기 용띠]",
+    "lastNormalSourcePrice": 10970
   },
   {
     "sellerName": "[온라인공식몰] [대한민국 1등 주방세제] 애경 트리오",
@@ -3746,7 +3797,7 @@
       "욕조목욕탕",
       "욕조 목욕탕"
     ],
-    "status": "registered",
+    "status": "stock_stopped",
     "sourceUrl": "http://domeggook.com/57338667",
     "sourceSite": "domeggook",
     "sourcePrice": 6300,
@@ -3800,14 +3851,17 @@
     "registeredAt": "2026-02-16T08:39:57.205Z",
     "seoUpdatedAt": "2026-02-16T09:41:38.773Z",
     "domeggookProductNo": "57338667",
-    "latestSourcePrice": 6300,
-    "priceChangedAt": "2026-02-17T03:00:02.580Z",
+    "latestSourcePrice": 1,
+    "priceChangedAt": "2026-02-18T03:00:04.039Z",
     "priceFixedAt": "2026-02-16T12:14:07.249Z",
     "oldSalePrice": 91250,
     "coupangStatus": "임시저장",
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:34.588Z",
-    "minOrderQuantity": 5
+    "minOrderQuantity": 5,
+    "domeggookProductName": "대비색 휴대용 욕조 바구니 쇼핑 바구니 욕실 가정용품 수납 바구니 목욕탕",
+    "stockStoppedAt": "2026-02-18T09:08:22.530Z",
+    "stockStopReason": "비정상가격(1원)"
   },
   {
     "sellerName": "겨울대비 따뜻한 보온성 퍼 로얄 패딩 방한운동화",
@@ -3905,7 +3959,9 @@
     "coupangStatus": "임시저장",
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:35.190Z",
-    "minOrderQuantity": 2
+    "minOrderQuantity": 2,
+    "domeggookProductName": "겨울대비 따뜻한 보온성 퍼 로얄 패딩 방한운동화",
+    "lastNormalSourcePrice": 10680
   },
   {
     "sellerName": "여성용 대비색 빅 도트 양말 다용도 패션 실리콘 보이지",
@@ -4207,7 +4263,8 @@
     "domeggookProductNo": "55862533",
     "latestSourcePrice": 46100,
     "priceChangedAt": "2026-02-17T03:00:02.580Z",
-    "coupangStatus": "임시저장"
+    "coupangStatus": "임시저장",
+    "lastNormalSourcePrice": 46100
   },
   {
     "sellerName": "팀 주장 완장",
@@ -4314,7 +4371,9 @@
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:35.792Z",
     "minOrderQuantity": 5,
-    "priceSyncedAt": "2026-02-17T13:30:47.245Z"
+    "priceSyncedAt": "2026-02-17T13:30:47.245Z",
+    "domeggookProductName": "팀 주장 완장",
+    "lastNormalSourcePrice": 1110
   },
   {
     "sellerName": "레트로 은색 금색 크리스탈 비녀 혼주 머리핀 뒤꽂이",
@@ -4411,7 +4470,9 @@
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:36.393Z",
     "minOrderQuantity": 2,
-    "priceSyncedAt": "2026-02-17T13:30:48.274Z"
+    "priceSyncedAt": "2026-02-17T13:30:48.274Z",
+    "domeggookProductName": "레트로 은색 금색 크리스탈 비녀 혼주 머리핀 뒤꽂이",
+    "lastNormalSourcePrice": 4200
   },
   {
     "sellerName": "레드 그린 원석 비녀 한복장신구 뒤꽂이 머리핀",
@@ -4508,7 +4569,9 @@
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:36.995Z",
     "minOrderQuantity": 2,
-    "priceSyncedAt": "2026-02-17T13:30:49.408Z"
+    "priceSyncedAt": "2026-02-17T13:30:49.408Z",
+    "domeggookProductName": "레드 그린 원석 비녀 한복장신구 뒤꽂이 머리핀",
+    "lastNormalSourcePrice": 4000
   },
   {
     "sellerName": "제5인격 주변 아크릴 투명 카드",
@@ -4704,7 +4767,7 @@
       "키링",
       "굿즈"
     ],
-    "status": "approved",
+    "status": "stock_stopped",
     "sourceUrl": "http://domeggook.com/59921651",
     "sourceSite": "domeggook",
     "sourcePrice": 3300,
@@ -4767,11 +4830,14 @@
     "productId": 16048549154,
     "registeredAt": "2026-02-17T00:30:01.395Z",
     "coupangStatus": "승인완료",
-    "latestSourcePrice": 3300,
-    "priceChangedAt": "2026-02-17T03:00:02.580Z",
+    "latestSourcePrice": 1,
+    "priceChangedAt": "2026-02-18T03:00:04.039Z",
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:37.597Z",
-    "minOrderQuantity": 5
+    "minOrderQuantity": 5,
+    "domeggookProductName": "다섯째 인격 주변 열쇠고리",
+    "stockStoppedAt": "2026-02-18T09:08:22.530Z",
+    "stockStopReason": "비정상가격(1원)"
   },
   {
     "sellerName": "5개세트 풍선 고양이 털 인형 애견 시뮬레이터 장난감 ",
@@ -4804,7 +4870,7 @@
       "애견",
       "시뮬레이터"
     ],
-    "status": "approved",
+    "status": "stock_stopped",
     "sourceUrl": "http://domeggook.com/54046053",
     "sourceSite": "domeggook",
     "sourcePrice": 4800,
@@ -4880,12 +4946,14 @@
     "productId": 16048564394,
     "registeredAt": "2026-02-17T01:00:01.416Z",
     "coupangStatus": "승인완료",
-    "latestSourcePrice": 4800,
-    "priceChangedAt": "2026-02-17T03:00:02.580Z",
+    "latestSourcePrice": 1,
+    "priceChangedAt": "2026-02-18T03:00:04.039Z",
     "moqFixed": true,
     "moqFixedAt": "2026-02-17T04:54:37.597Z",
     "minOrderQuantity": 5,
-    "domeggookProductName": "풍선 고양이 털 인형 애견 시뮬레이터 인형"
+    "domeggookProductName": "풍선 고양이 털 인형 애견 시뮬레이터 인형",
+    "stockStoppedAt": "2026-02-18T09:08:22.530Z",
+    "stockStopReason": "비정상가격(1원)"
   },
   {
     "sellerName": "경고 소리 시뮬레이터 비행사와 승무원 경보 키홀더 작은",
