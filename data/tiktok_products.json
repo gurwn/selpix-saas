@@ -1,0 +1,28 @@
+[
+  {
+    "sellerProductId": "15530310725",
+    "productId": "8801301935",
+    "partnerLink": "https://link.coupang.com/a/dOAarV",
+    "tiktokContent": {
+      "displayName": "방수 캐릭터 수영가방",
+      "hooks": {
+        "price_shock": "아이 물놀이 가방 ₩12,500?? 이거 찐이에요 😱",
+        "empathy": "여름마다 수영가방 뭐 살지 고민했는데 이거로 해결됨",
+        "tip": "물에 젖어도 OK 방수 수영가방 고르는 기준 (이것만 보세요)"
+      }
+    }
+  },
+  {
+    "sellerProductId": "15584052959",
+    "productId": "8830657679",
+    "partnerLink": "https://link.coupang.com/a/dOAco7",
+    "tiktokContent": {
+      "displayName": "젤리백 목욕바구니",
+      "hooks": {
+        "price_shock": "욕실 정리 이거 하나면 끝인데 ₩17,860이에요",
+        "empathy": "욕실이 항상 지저분한 이유 찾았다 (이거였어)",
+        "tip": "목욕 바구니 이렇게 쓰면 욕실 깔끔해짐 (꿀팁 공개)"
+      }
+    }
+  }
+]
