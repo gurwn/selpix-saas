@@ -21,11 +21,15 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function extractDomeggookNo(item) {
-  if (item.domeggookProductNo) return String(item.domeggookProductNo);
-  const url = item.sourceUrl || '';
-  const m = url.match(/domeggook\.com\/(\d+)/);
+function extractProductNo(sourceUrl) {
+  const m = (sourceUrl || '').match(/domeggook\.com\/(\d+)/);
   return m ? m[1] : null;
+}
+
+function extractDomeggookNo(item) {
+  if (item.productNo) return String(item.productNo);
+  if (item.domeggookProductNo) return String(item.domeggookProductNo);
+  return extractProductNo(item.sourceUrl);
 }
 
 function parseBool(value) {
@@ -132,6 +136,16 @@ async function main() {
 
   let changed = false;
 
+  for (const item of queue) {
+    if (!item.productNo && item.sourceUrl) {
+      const productNo = extractProductNo(item.sourceUrl);
+      if (productNo) {
+        item.productNo = productNo;
+        changed = true;
+      }
+    }
+  }
+
   for (const item of targets) {
     const productId = item.productId;
     const label = `[${productId}] ${(item.displayName || item.sellerName || '').slice(0, 40)}`;
@@ -153,9 +167,16 @@ async function main() {
 
       if (shipping.isOverseas) {
         holdList.push(`${label} | 도매꾹:${domeggookNo} | ${shipping.reason}`);
-        if (!DRY_RUN && item.status !== '보류') {
-          item.status = '보류';
-          changed = true;
+        if (!DRY_RUN) {
+          const productNo = extractProductNo(item.sourceUrl) || String(domeggookNo);
+          if (productNo && item.productNo !== productNo) {
+            item.productNo = productNo;
+            changed = true;
+          }
+          if (item.status !== '보류') {
+            item.status = '보류';
+            changed = true;
+          }
         }
       } else {
         if (DRY_RUN) {

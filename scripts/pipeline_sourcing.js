@@ -51,6 +51,11 @@ function getMultiplier(keyword, name) {
   return DEFAULT_MULTIPLIER;
 }
 
+function extractProductNo(sourceUrl) {
+  const m = (sourceUrl || '').match(/domeggook\.com\/(\d+)/);
+  return m ? m[1] : null;
+}
+
 // 블랙리스트: 인증/반품 리스크 높은 상품 키워드
 const BLOCKED_KEYWORDS = [
   // 보조배터리 (발화, KC인증)
@@ -237,17 +242,20 @@ async function searchViaApi(keyword) {
   const items = data?.domeggook?.list?.item || [];
   // 단일 상품이면 배열이 아니라 객체로 올 수 있음
   const itemList = Array.isArray(items) ? items : [items];
-  return itemList.map(item => ({
-    name: item.title || '',
-    price: parseInt(item.price || item.domePrice || 0, 10),
-    imageUrl: item.thumb || null,
-    sourceUrl: item.url || (item.no ? `http://domeggook.com/${item.no}` : null),
-    productNo: String(item.no || ''),
-    site: 'domeggook',
-    category: keyword,
-    minOrderQuantity: parseInt(item.unitQty || 1, 10),
-    shippingCost: parseInt(item.deli?.fee || 0, 10)
-  })).filter(p => p.name && p.price > 0);
+  return itemList.map(item => {
+    const sourceUrl = item.url || (item.no ? `http://domeggook.com/${item.no}` : null);
+    return {
+      name: item.title || '',
+      price: parseInt(item.price || item.domePrice || 0, 10),
+      imageUrl: item.thumb || null,
+      sourceUrl,
+      productNo: extractProductNo(sourceUrl) || (item.no ? String(item.no) : null),
+      site: 'domeggook',
+      category: keyword,
+      minOrderQuantity: parseInt(item.unitQty || 1, 10),
+      shippingCost: parseInt(item.deli?.fee || 0, 10)
+    };
+  }).filter(p => p.name && p.price > 0);
 }
 
 /**
@@ -482,12 +490,14 @@ function toQueueItem(product, marginInfo, keyword) {
 
   const moq = product.minOrderQuantity || 1;
   const setDisplayName = buildSetName(product.name, moq);
+  const productNo = product.productNo || extractProductNo(product.sourceUrl);
 
   return {
     sellerName: setDisplayName.slice(0, 30),
     displayName: setDisplayName,
     // 도매꾹 원본 식별자/상품명 보존 (재주문/출고용)
-    domeggookProductNo: product.productNo || null,
+    domeggookProductNo: productNo || null,
+    productNo: productNo || null,
     domeggookProductName: product.name,
     salePrice: roundPrice10(marginInfo.suggestedRetail),
     imageUrl: safeMainImage,
@@ -581,6 +591,20 @@ async function runPipeline() {
 
   // 기존 대기열 로드
   const queue = loadJson(QUEUE_FILE) || [];
+  let backfilledProductNo = 0;
+  for (const item of queue) {
+    if (!item.productNo && item.sourceUrl) {
+      const productNo = extractProductNo(item.sourceUrl);
+      if (productNo) {
+        item.productNo = productNo;
+        backfilledProductNo++;
+      }
+    }
+  }
+  if (backfilledProductNo > 0) {
+    log(`기존 대기열 productNo 백필: ${backfilledProductNo}개`);
+  }
+
   const existingNames = new Set(queue.map(q => q.displayName));
   log(`기존 대기열: ${queue.length}개 (${queue.filter(q => q.status === 'pending').length}개 pending)`);
 
