@@ -435,12 +435,35 @@ async function updateItemPrice(sellerProductId, vendorItemId, price) {
   );
 }
 
-// 수량(MOQ) 업데이트 (아이템 단위)
+// 수량(MOQ) 업데이트: GET 전체 조회 → 대상 아이템 minimumQuantity 수정 → PUT 전체 반영
 async function updateItemQuantity(sellerProductId, vendorItemId, quantity) {
+  const { json } = await cf(
+    'GET',
+    `/v2/providers/seller_api/apis/api/v1/marketplace/seller-products/${sellerProductId}`
+  );
+
+  const full = json?.data;
+  if (!full) {
+    return { res: null, json };
+  }
+
+  const items = Array.isArray(full.items) ? full.items : [];
+  const target = items.find(it => String(it.vendorItemId) === String(vendorItemId));
+  if (!target) {
+    return {
+      res: null,
+      json: {
+        code: 'ERROR',
+        message: `vendorItemId 미존재: ${vendorItemId}`,
+      },
+    };
+  }
+
+  target.minimumQuantity = quantity;
   return cf(
     'PUT',
-    `/v2/providers/seller_api/apis/api/v1/marketplace/seller-products/${sellerProductId}/items/${vendorItemId}/quantities/${quantity}`,
-    {}
+    '/v2/providers/seller_api/apis/api/v1/marketplace/seller-products',
+    full
   );
 }
 
