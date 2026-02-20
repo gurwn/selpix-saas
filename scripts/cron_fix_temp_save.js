@@ -182,7 +182,9 @@ async function main() {
         if (DRY_RUN) {
           recoveredList.push(`${label} | 도매꾹:${domeggookNo} | ${shipping.reason} | DRY-RUN`);
         } else {
-          const { json } = await updateProductFull(productId, {});
+          // 임시저장 → 승인 요청 트리거
+          // 쿠팡은 requested:true 로 PUT 해야 심사 플로우로 진입함
+          const { json } = await updateProductFull(productId, { requested: true });
           if (json?.code === 'SUCCESS') {
             recoveredList.push(`${label} | 도매꾹:${domeggookNo}`);
           } else {

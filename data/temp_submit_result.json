@@ -1,0 +1,197 @@
+{
+  "time": "2026-02-20T16:36:09.087Z",
+  "tempCount": 32,
+  "submitted": 27,
+  "skippedHold": 5,
+  "skippedNoMap": 0,
+  "failed": 0,
+  "results": [
+    {
+      "pid": 16048564394,
+      "name": "풍선 고양이 털 인형 애견 시뮬레이터 인형",
+      "action": "skip_hold"
+    },
+    {
+      "pid": 16048549154,
+      "name": "5개세트 다섯째 인격 열쇠고리 키링 굿즈 1개",
+      "action": "skip_hold"
+    },
+    {
+      "pid": 16047957078,
+      "name": "1+1 2080 청은차 치약 120g 3입",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047868453,
+      "name": "3개세트 차량 송풍구 자석 핸드폰 거치대 스마트폰 네비게이션용",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047808480,
+      "name": "라쿠파스 올인원 자동차 등록증 케이스 차량 매뉴얼 홀더",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047776751,
+      "name": "1+1 붕어빵 슬라임 키트 액체괴물 장난감",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047713047,
+      "name": "1.18리터 대용량 텀블러 스텐 빨대 포함 손잡이 보온",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047707374,
+      "name": "C타입이어폰 변환젠더 USB-C타입 3.5파이 이어폰잭",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047659409,
+      "name": "1+1 레드 그린 원석 비녀 한복 머리장식 뒤꽂이 1개",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047659381,
+      "name": "1+1 레트로 크리스탈 비녀 뒤꽂이 혼주 머리핀 은색 금색",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047659359,
+      "name": "5개세트 팀 주장 완장 스포츠 캡틴 암밴드",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047659250,
+      "name": "OLFA 스테인리스 작업용 다용도 가위",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047659189,
+      "name": "1+1 겨울용 보온 퍼 패딩 방한 운동화",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047659168,
+      "name": "대비색 휴대용 욕조 바구니 쇼핑 바구니 욕실 가정용품",
+      "action": "skip_hold"
+    },
+    {
+      "pid": 16047659046,
+      "name": "3개세트 임밍아웃 복권 포스터 이벤트 카드 임신 소식 알리기",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047659031,
+      "name": "3개세트 임밍아웃 서프라이즈 카드 임신 소식 알리기 봉투 제공",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047658822,
+      "name": "[POIPOI] 이어폰 S20/노트/프로 C타입 커널형",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047658790,
+      "name": "구글 표준 조립식 VR안경",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047626237,
+      "name": "4개세트 빨간색 채점 연필 4P 교사용 첨삭 평가 도구",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047625433,
+      "name": "5개세트 모디스 후면 카메라 풀커버 강화유리 보호필름 아이폰 17/16/15/14 갤럭시 S25/24",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047625420,
+      "name": "4개세트 타이탄 풀커버 강화유리 액정보호 필름 아이폰 17/16/15/14/13 갤럭시 S26/25/24/23",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047625400,
+      "name": "5단 속도 조절 가능 클립형 소형 팬 USB 충전 저소",
+      "action": "skip_hold"
+    },
+    {
+      "pid": 16047622194,
+      "name": "1+1 가민 호환 자전거 핸들바 에어로 마운트 속도계 거치대",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047621327,
+      "name": "1+1 모즈온 도킹 보조배터리 4000mAh C타입",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047620570,
+      "name": "5개세트 블랙헤드 세안스펀지 모공 브러쉬 미세 딥 클렌징",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047616412,
+      "name": "4개세트 메이크업 파운데이션 물광 퍼프 선크림 베이스 화장품 소품",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16047300472,
+      "name": "다섯째 인격 주변 휘장",
+      "action": "skip_hold"
+    },
+    {
+      "pid": 16045778045,
+      "name": "1+1 PWM A형 모터 속도조절기 DC 전압 스피드 컨트롤러",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16045706810,
+      "name": "슈퍼빌드 세이버 합체 자동차 로봇 블록 6종 중장비 변신",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16044183014,
+      "name": "1+1 모디스 슬림핏 보조배터리 5000mAh C타입 8핀 겸용 휴대용 충전기",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16041439752,
+      "name": "[POIPOI] 키링 파우치 가방 꾸미기 MZ 열쇠고리",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    },
+    {
+      "pid": 16041404905,
+      "name": "[POIPOI] 파우치 키링 열쇠고리 인형 가방 꾸미기",
+      "action": "submit_ok",
+      "status": "SUCCESS"
+    }
+  ]
+}
