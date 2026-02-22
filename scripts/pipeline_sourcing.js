@@ -15,21 +15,29 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config({ path: '/home/dev/openclaw/.env' });
 
-const { INVALID_IMAGE_PATTERNS, isValidImageUrl, getSafeVendorPath, roundPrice10 } = require('./lib/image_utils');
+const { INVALID_IMAGE_PATTERNS, isValidImageUrl, getSafeVendorPath, roundPrice10, checkImageReachable } = require('./lib/image_utils');
 
 const DOMEGGOOK_API_KEY = process.env.DOMEGGOOK_API_KEY;
 
-const CANDIDATE_FILE = '/home/dev/openclaw/config/workspace/candidate_keywords.json';
+const DIRECTIVE_FILE = path.resolve(__dirname, '../data/sourcing_directive.json');
 const QUEUE_FILE = path.resolve(__dirname, '../data/register_queue.json');
 const LOG_FILE = path.resolve(__dirname, '../data/pipeline.log');
 const KEYWORD_HISTORY_FILE = path.resolve(__dirname, '../data/keyword_history.json');
-const TWITTER_INTEL_DIR = '/home/dev/openclaw/config/workspace/data/twitter-intel/raw';
 const KEYWORD_HISTORY_DAYS = 7;
 
 const MIN_PRICE = 1000;
 const MAX_PRICE = 50000;
-const PRODUCTS_PER_KEYWORD = 3;
-const COUPANG_FEE_RATE = 0.108; // 10.8%
+const PRODUCTS_PER_KEYWORD = 5;
+const FEE_TABLE = require('./lib/coupang_fee_table.json');
+
+function getCoupangFeeRate(categoryName) {
+  if (!categoryName) return FEE_TABLE.default;
+  for (const [cat, rate] of Object.entries(FEE_TABLE)) {
+    if (cat === 'default') continue;
+    if (categoryName.includes(cat) || cat.includes(categoryName)) return rate;
+  }
+  return FEE_TABLE.default;
+}
 const DEFAULT_MULTIPLIER = 2.5;
 const MIN_MARGIN_RATE = 0.30; // 30%
 
@@ -111,61 +119,6 @@ function saveJson(filePath, data) {
 }
 
 /**
- * 트위터 인텔에서 상품 키워드 추출
- * - 최근 1일 JSON 파일에서 category가 "model" 또는 "agent"인 항목의 summary_kr 활용
- * - summary_kr에서 2글자 이상 한국어 명사구 추출
- */
-function loadTwitterKeywords() {
-  if (!fs.existsSync(TWITTER_INTEL_DIR)) {
-    log('트위터 인텔 디렉토리 없음, 스킵');
-    return [];
-  }
-
-  const files = fs.readdirSync(TWITTER_INTEL_DIR)
-    .filter(f => /^\d{8}\.json$/.test(f))
-    .sort()
-    .reverse();
-
-  if (files.length === 0) {
-    log('트위터 인텔 raw 파일 없음, 스킵');
-    return [];
-  }
-
-  // 최근 1일 파일만 로드
-  const latestFile = path.join(TWITTER_INTEL_DIR, files[0]);
-  const data = loadJson(latestFile);
-  if (!Array.isArray(data)) {
-    log(`트위터 인텔 파일 형식 불일치: ${files[0]}`);
-    return [];
-  }
-
-  const keywords = new Set();
-  const targetCategories = ['model', 'agent'];
-
-  for (const item of data) {
-    if (!targetCategories.includes(item.category)) continue;
-    const summary = item.summary_kr;
-    if (!summary || typeof summary !== 'string') continue;
-
-    // 한국어 명사구 추출 (2~6글자 한국어 단어)
-    const matches = summary.match(/[가-힣]{2,6}/g) || [];
-    for (const m of matches) {
-      // 조사/어미/일반 단어 제외
-      const stopWords = ['에서', '으로', '하는', '있는', '없는', '위한', '대한', '통해',
-        '모델', '공개', '출시', '발표', '업그레이드', '프리뷰', '연구', '보고서',
-        '수준', '기업', '달러', '가치', '투자', '유치'];
-      if (!stopWords.includes(m) && !isBlockedProduct(m).blocked) {
-        keywords.add(m);
-      }
-    }
-  }
-
-  const result = [...keywords];
-  log(`트위터 인텔 키워드 ${result.length}개 추출 (${files[0]}): ${result.join(', ')}`);
-  return result;
-}
-
-/**
  * keyword_history.json 로드 — { "키워드": "YYYY-MM-DD", ... }
  */
 function loadKeywordHistory() {
@@ -188,47 +141,6 @@ function isRecentlySourced(keyword, history) {
   const cutoff = new Date();
   cutoff.setDate(cutoff.getDate() - KEYWORD_HISTORY_DAYS);
   return new Date(lastDate) >= cutoff;
-}
-
-/**
- * Step 1: candidate_keywords.json에서 키워드 추출
- * - ranked_keywords + keyword_scores: score >= 80 우선, >= 50 일반, < 50 스킵
- * - 없으면 기존 naver_shopping direction/change_pct 기반 (하위 호환)
- */
-function extractKeywords(candidates) {
-  // 점수 기반 정렬 (ranked_keywords가 있을 때)
-  if (candidates?.ranked_keywords?.length && candidates?.keyword_scores) {
-    const scores = candidates.keyword_scores;
-    const priority = []; // score >= 80
-    const normal = [];   // score >= 50
-    for (const kw of candidates.ranked_keywords) {
-      const s = scores[kw];
-      if (!s || s.direction === 'falling') continue;
-      if (isBlockedProduct(kw).blocked) continue;
-      if (s.composite >= 80) {
-        priority.push(kw);
-      } else if (s.composite >= 50) {
-        normal.push(kw);
-      }
-      // composite < 50: 스킵
-    }
-    const keywords = [...priority, ...normal];
-    log(`점수 기반 키워드 ${keywords.length}개 (우선 ${priority.length}개, 일반 ${normal.length}개): ${keywords.map(k => `${k}(${scores[k].composite})`).join(', ')}`);
-    return keywords;
-  }
-
-  // fallback: 기존 로직 (하위 호환)
-  const naverShopping = candidates?.naver_shopping || [];
-  const filtered = naverShopping.filter(k => k.direction !== 'falling');
-  filtered.sort((a, b) => {
-    if (a.direction === 'rising' && b.direction !== 'rising') return -1;
-    if (a.direction !== 'rising' && b.direction === 'rising') return 1;
-    return (b.change_pct || 0) - (a.change_pct || 0);
-  });
-
-  const keywords = filtered.map(k => k.keyword).filter(kw => !isBlockedProduct(kw).blocked);
-  log(`추출 키워드 ${keywords.length}개: ${keywords.join(', ')}`);
-  return keywords;
 }
 
 /**
@@ -402,17 +314,18 @@ async function enrichViaApi(product) {
 /**
  * Step 3: 마진 계산
  */
-function calculateMargin(product, keyword) {
+function calculateMargin(product, keyword, categoryName) {
   const price = product.price;
   const minOrder = product.minOrderQuantity || 1;
   const shipping = product.shippingCost || 0;
+  const feeRate = getCoupangFeeRate(categoryName || '');
 
   const multiplier = getMultiplier(keyword, product.name);
   // MOQ 반영: 고객에게 minOrder개 묶음으로 판매하므로 총 원가 기준 가격 산정
   const perUnitCost = price + Math.round(shipping / minOrder);
   const totalCost = perUnitCost * minOrder;
   const suggestedRetail = Math.round(totalCost * multiplier);
-  const coupangFee = Math.round(suggestedRetail * COUPANG_FEE_RATE);
+  const coupangFee = Math.round(suggestedRetail * feeRate);
   const margin = suggestedRetail - totalCost - coupangFee;
   const marginRate = margin / suggestedRetail;
 
@@ -420,14 +333,29 @@ function calculateMargin(product, keyword) {
     unitCost: totalCost,   // 판매 1건당 실제 원가 (MOQ개 합산)
     suggestedRetail,
     coupangFee,
+    feeRate,
     margin,
     marginRate
   };
 }
 
+// 동의어 매핑 테이블 (SEO 태그 확장용)
+const SYNONYMS = {
+  '텀블러': ['보온병', '보냉컵', '스텐텀블러', '보온텀블러'],
+  '충전기': ['고속충전기', 'USB충전기', 'C타입충전기'],
+  '거치대': ['스탠드', '홀더', '마운트'],
+  '가위': ['다용도가위', '작업가위', '사무용가위'],
+  '수납': ['정리함', '수납함', '수납정리'],
+  '이어폰': ['블루투스이어폰', '무선이어폰', '이어버드'],
+  '캠핑': ['캠핑용품', '아웃도어', '야외용품'],
+  '텐트': ['캠핑텐트', '원터치텐트', '팝업텐트'],
+  '케이스': ['폰케이스', '휴대폰케이스', '보호케이스'],
+  '조명': ['LED조명', '무드등', '랜턴'],
+};
+
 /**
- * 검색 태그 생성 — 키워드 + 상품명 단어 + 제조사 + 복합태그
- * 최대 10개, 2글자 이상
+ * 검색 태그 생성 — 키워드 + 상품명 단어 + 동의어 + 롱테일 + 제조사
+ * 최대 15개, 2~20자
  */
 function generateSearchTags(product, keyword) {
   const tags = new Set();
@@ -435,41 +363,33 @@ function generateSearchTags(product, keyword) {
   // 1. 원본 키워드
   if (keyword && keyword.length >= 2) tags.add(keyword);
 
-  // 2. 상품명에서 단어 추출
+  // 2. 상품명에서 단어 추출 (2자+)
   const words = (product.name || '').replace(/[^\w가-힣\s]/g, '').split(/\s+/).filter(w => w.length >= 2);
   for (const w of words) tags.add(w);
 
-  // 3. 제조사
+  // 3. 동의어 확장
+  for (const [term, syns] of Object.entries(SYNONYMS)) {
+    if ((product.name || '').includes(term) || (keyword && keyword.includes(term))) {
+      for (const s of syns) tags.add(s);
+    }
+  }
+
+  // 4. 롱테일 조합: keyword + 주요 단어
+  if (keyword) {
+    for (const w of words.slice(0, 3)) {
+      const combo = keyword + ' ' + w;
+      if (w !== keyword && combo.length <= 20) {
+        tags.add(combo);
+      }
+    }
+  }
+
+  // 5. 제조사명
   if (product.manufacturer && product.manufacturer.length >= 2) {
     tags.add(product.manufacturer);
   }
 
-  // 4. 키워드 + 주요 단어 복합태그 (예: "텀블러 스텐", "충전기 고속")
-  if (keyword) {
-    for (const w of words.slice(0, 3)) {
-      if (w !== keyword && (keyword + ' ' + w).length <= 20) {
-        tags.add(keyword + ' ' + w);
-      }
-    }
-  }
-
-  // 5. 카테고리 연관태그
-  const categoryTags = {
-    '텀블러': ['보온보냉', '스텐텀블러'],
-    '충전기': ['고속충전', 'USB충전'],
-    '수납': ['정리함', '수납정리'],
-    '이어폰': ['블루투스이어폰', '무선이어폰'],
-    '캠핑': ['캠핑용품', '아웃도어'],
-  };
-  if (keyword) {
-    for (const [key, relatedTags] of Object.entries(categoryTags)) {
-      if (keyword.includes(key)) {
-        for (const rt of relatedTags) tags.add(rt);
-      }
-    }
-  }
-
-  return [...tags].slice(0, 10);
+  return [...tags].filter(t => t.length >= 2 && t.length <= 20).slice(0, 15);
 }
 
 /**
@@ -516,6 +436,7 @@ function toQueueItem(product, marginInfo, keyword) {
     marginRate: Math.round(marginInfo.marginRate * 100),
     addedAt: new Date().toISOString(),
     addedBy: 'pipeline',
+    optimized: true,    // 소싱 시점에 searchTags 이미 생성됨 → 즉시 등록 가능
     // 도매꾹 옵션 (색상/사이즈 등)
     domeggookOptions: product.options || null,
     domeggookOptionNos: product.domeggookOptionNos || [],
@@ -545,29 +466,21 @@ async function runPipeline() {
     process.exit(1);
   }
 
-  // Step 1: 키워드 추출
-  const candidates = loadJson(CANDIDATE_FILE);
-  if (!candidates) {
-    log('ERROR: candidate_keywords.json 없음. 트렌드 수집이 먼저 실행되어야 합니다.');
-    process.exit(1);
+  // Step 1: 지시서(Directive) 로드
+  const directive = loadJson(DIRECTIVE_FILE);
+  if (!directive || !directive.keywords || directive.keywords.length === 0) {
+    log('ERROR: sourcing_directive.json에 유효한 지시서 없음. 오늘 소싱 스킵.');
+    return; // 그냥 정상 스킵
   }
 
-  const candidateKeywords = extractKeywords(candidates);
-
-  // 트위터 인텔 키워드 병합 (중복 제거)
-  const twitterKeywords = loadTwitterKeywords();
-  const candidateSet = new Set(candidateKeywords);
-  const mergedTwitter = twitterKeywords.filter(kw => !candidateSet.has(kw));
-  // 트위터 키워드는 뒤에 배치 (candidate 우선)
-  const allKeywords = [...candidateKeywords, ...mergedTwitter];
+  // 지시서에서 타겟 추출
+  const allKeywords = directive.keywords.map(k => typeof k === 'string' ? k : k.term).filter(Boolean);
 
   if (allKeywords.length === 0) {
-    log('키워드 없음 (candidate + twitter). 종료.');
+    log('키워드 없음 (directive). 종료.');
     return;
   }
-  if (mergedTwitter.length > 0) {
-    log(`트위터 인텔에서 ${mergedTwitter.length}개 키워드 병합: ${mergedTwitter.join(', ')}`);
-  }
+  log(`트렌드 지시서에서 ${allKeywords.length}개 키워드 타겟팅: ${allKeywords.join(', ')}`);
 
   // 키워드 이력 로드 — 최근 7일 내 소싱한 키워드 스킵
   const keywordHistory = loadKeywordHistory();
@@ -627,7 +540,7 @@ async function runPipeline() {
 
       // Step 3: 마진 계산 + 필터링
       for (const product of topProducts) {
-        const marginInfo = calculateMargin(product, keyword);
+        const marginInfo = calculateMargin(product, keyword, keyword);
 
         if (marginInfo.marginRate < MIN_MARGIN_RATE) {
           log(`  SKIP (마진 ${Math.round(marginInfo.marginRate * 100)}%): ${product.name.slice(0, 40)}`);
@@ -684,11 +597,22 @@ async function runPipeline() {
         }
 
         // enrichment 후에도 유효한 이미지가 없으면 제외
-        const hasValidImage = getSafeVendorPath(enriched.imageUrl) ||
+        const mainImage = getSafeVendorPath(enriched.imageUrl);
+        const hasValidImage = mainImage ||
           (enriched.detailImages || []).some(url => getSafeVendorPath(url));
         if (!hasValidImage) {
           log(`  SKIP (유효한 이미지 없음): ${product.name.slice(0, 40)}`);
           continue;
+        }
+
+        // T-3: 대표 이미지 접근성 사전 검증 (HEAD 요청)
+        const imgToCheck = mainImage || getSafeVendorPath((enriched.detailImages || [])[0]);
+        if (imgToCheck) {
+          const reachable = await checkImageReachable(imgToCheck);
+          if (!reachable) {
+            log(`  SKIP (이미지 접근 불가): ${product.name.slice(0, 40)} | ${imgToCheck.slice(0, 60)}`);
+            continue;
+          }
         }
 
         const queueItem = toQueueItem(enriched, marginInfo, keyword);
