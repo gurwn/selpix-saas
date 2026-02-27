@@ -353,43 +353,116 @@ const SYNONYMS = {
   '조명': ['LED조명', '무드등', '랜턴'],
 };
 
-/**
- * 검색 태그 생성 — 키워드 + 상품명 단어 + 동의어 + 롱테일 + 제조사
- * 최대 15개, 2~20자
- */
-function generateSearchTags(product, keyword) {
-  const tags = new Set();
+const TITLE_STOPWORDS = new Set([
+  '최저가', '특가', '한정', '할인', '이벤트', '당일출고', '무료배송', '정품', '공식몰', '공식',
+  '초특가', '사은품', '증정', '판촉물', '홍보스티커무료', '추천', '베스트'
+]);
 
-  // 1. 원본 키워드
-  if (keyword && keyword.length >= 2) tags.add(keyword);
+function normalizeText(input) {
+  return String(input || '')
+    .replace(/[\[\]{}()]/g, ' ')
+    .replace(/[|\\/]+/g, ' ')
+    .replace(/[_~`"'“”‘’]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
-  // 2. 상품명에서 단어 추출 (2자+)
-  const words = (product.name || '').replace(/[^\w가-힣\s]/g, '').split(/\s+/).filter(w => w.length >= 2);
-  for (const w of words) tags.add(w);
+function sanitizeTag(tag) {
+  const clean = normalizeText(tag)
+    .replace(/[^0-9a-zA-Z가-힣\s+]/g, '')
+    .trim();
+  if (clean.length < 2 || clean.length > 20) return null;
+  if (/^(keyword\d*|sesa|test|sample)$/i.test(clean)) return null;
+  return clean;
+}
 
-  // 3. 동의어 확장
-  for (const [term, syns] of Object.entries(SYNONYMS)) {
-    if ((product.name || '').includes(term) || (keyword && keyword.includes(term))) {
-      for (const s of syns) tags.add(s);
-    }
+function optimizeProductTitle(rawName, keyword, moq = 1) {
+  const base = normalizeText(rawName)
+    .replace(/^\[[^\]]+\]\s*/g, '')
+    .replace(/^(1\+1|\d+개세트)\s*/g, '')
+    .trim();
+
+  const tokens = base.split(/\s+/)
+    .map(t => t.replace(/[^0-9a-zA-Z가-힣]/g, '').trim())
+    .filter(t => t.length >= 2 && t.length <= 12)
+    .filter(t => !TITLE_STOPWORDS.has(t.toLowerCase()));
+
+  const unique = [];
+  const seen = new Set();
+  for (const t of tokens) {
+    const low = t.toLowerCase();
+    if (seen.has(low)) continue;
+    seen.add(low);
+    unique.push(t);
   }
 
-  // 4. 롱테일 조합: keyword + 주요 단어
-  if (keyword) {
-    for (const w of words.slice(0, 3)) {
-      const combo = keyword + ' ' + w;
-      if (w !== keyword && combo.length <= 20) {
-        tags.add(combo);
+  const kw = sanitizeTag(keyword || '');
+  let titleParts = [];
+  if (kw) titleParts.push(kw);
+  for (const t of unique) {
+    if (kw && t === kw) continue;
+    titleParts.push(t);
+    if (titleParts.join(' ').length >= 55) break;
+  }
+
+  let optimized = titleParts.join(' ').trim();
+  if (!optimized) optimized = base.slice(0, 60);
+  if (moq > 1) {
+    const prefix = moq === 2 ? '1+1' : `${moq}개세트`;
+    optimized = `${prefix} ${optimized}`;
+  }
+
+  return normalizeText(optimized).slice(0, 100);
+}
+
+/**
+ * 검색 태그 생성 — 키워드 + 상품명 단어 + 동의어 + 롱테일 + 제조사
+ * 최대 20개, 2~20자
+ */
+function generateSearchTags(productName, keyword, manufacturer = '') {
+  const tags = new Set();
+  const safeKeyword = sanitizeTag(keyword || '');
+  const words = normalizeText(productName)
+    .split(/\s+/)
+    .map(w => sanitizeTag(w))
+    .filter(Boolean);
+
+  if (safeKeyword) tags.add(safeKeyword);
+  for (const w of words) tags.add(w);
+
+  for (const [term, syns] of Object.entries(SYNONYMS)) {
+    if ((productName || '').includes(term) || (safeKeyword && safeKeyword.includes(term))) {
+      for (const s of syns) {
+        const ss = sanitizeTag(s);
+        if (ss) tags.add(ss);
       }
     }
   }
 
-  // 5. 제조사명
-  if (product.manufacturer && product.manufacturer.length >= 2) {
-    tags.add(product.manufacturer);
+  if (safeKeyword) {
+    for (const w of words.slice(0, 6)) {
+      if (w === safeKeyword) continue;
+      const comboA = sanitizeTag(`${safeKeyword} ${w}`);
+      const comboB = sanitizeTag(`${safeKeyword}${w}`);
+      if (comboA) tags.add(comboA);
+      if (comboB) tags.add(comboB);
+    }
   }
 
-  return [...tags].filter(t => t.length >= 2 && t.length <= 20).slice(0, 15);
+  const maker = sanitizeTag(manufacturer || '');
+  if (maker) tags.add(maker);
+
+  const arr = [...tags].filter(Boolean).slice(0, 20);
+  if (arr.length >= 20) return arr;
+
+  // 20개 미만일 때 보강 (의미 없는 placeholder 금지)
+  const boosters = ['추천', '인기', '가성비', '생활용품', '실사용'];
+  for (const b of boosters) {
+    const t = safeKeyword ? sanitizeTag(`${safeKeyword} ${b}`) : null;
+    if (t && !arr.includes(t)) arr.push(t);
+    if (arr.length >= 20) break;
+  }
+  return arr.slice(0, 20);
 }
 
 /**
@@ -397,8 +470,6 @@ function generateSearchTags(product, keyword) {
  * enriched product를 받아 고해상도 이미지 및 상세 HTML을 포함
  */
 function toQueueItem(product, marginInfo, keyword) {
-  const searchTags = generateSearchTags(product, keyword);
-
   // 상세 이미지들 (최대 10개, vendorPath 규격에 맞는 것만)
   const safeDetailImages = (product.detailImages || [])
     .map(url => getSafeVendorPath(url))
@@ -409,12 +480,13 @@ function toQueueItem(product, marginInfo, keyword) {
   const safeMainImage = getSafeVendorPath(product.imageUrl) || safeDetailImages[0] || null;
 
   const moq = product.minOrderQuantity || 1;
-  const setDisplayName = buildSetName(product.name, moq);
+  const optimizedDisplayName = optimizeProductTitle(product.name, keyword, moq);
+  const searchTags = generateSearchTags(optimizedDisplayName, keyword, product.manufacturer);
   const productNo = product.productNo || extractProductNo(product.sourceUrl);
 
   return {
-    sellerName: setDisplayName.slice(0, 30),
-    displayName: setDisplayName,
+    sellerName: optimizedDisplayName.slice(0, 30),
+    displayName: optimizedDisplayName,
     // 도매꾹 원본 식별자/상품명 보존 (재주문/출고용)
     domeggookProductNo: productNo || null,
     productNo: productNo || null,
@@ -434,6 +506,7 @@ function toQueueItem(product, marginInfo, keyword) {
     unitCost: marginInfo.unitCost,
     margin: marginInfo.margin,
     marginRate: Math.round(marginInfo.marginRate * 100),
+    originalName: product.name,
     addedAt: new Date().toISOString(),
     addedBy: 'pipeline',
     optimized: true,    // 소싱 시점에 searchTags 이미 생성됨 → 즉시 등록 가능
