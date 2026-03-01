@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-03-01T15:03:44.203Z",
+  "dryRun": false,
+  "total": 3,
+  "critical": 0,
+  "high": 2,
+  "medium": 1,
+  "low": 0,
+  "autoFixed": 2,
+  "correlations": [],
+  "items": [
+    {
+      "id": "CP-01",
+      "subsystem": "coupang",
+      "severity": "HIGH",
+      "title": "연속 에러: 최근 5건 중 5건 실패",
+      "detail": "",
+      "remediation": "auto",
+      "fixed": true,
+      "fixResult": "에러 리셋: 0건"
+    },
+    {
+      "id": "IF-07",
+      "subsystem": "infra",
+      "severity": "MEDIUM",
+      "title": "config 레포 미push: ahead 67",
+      "detail": "git push origin main 필요",
+      "remediation": "auto",
+      "fixed": true,
+      "fixResult": "config 레포 push 완료"
+    },
+    {
+      "id": "RG-01",
+      "subsystem": "review",
+      "severity": "HIGH",
+      "title": "리뷰 게이트 정체: 1건 72h+ 미리뷰",
+      "detail": "DEC-20260225-474273: add_youtube_query: 주거형 인테리어 수요 기반 영상 신호 확장",
+      "remediation": "escalate",
+      "fixed": false,
+      "fixResult": null
+    }
+  ]
+}

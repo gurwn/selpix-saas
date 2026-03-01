@@ -17,7 +17,13 @@ const cors = require('cors');
 const { PrismaClient } = require('../node_modules/@prisma/client');
 
 const app = express();
-const prisma = new PrismaClient();
+let prisma;
+try {
+  prisma = new PrismaClient();
+} catch (e) {
+  console.warn('[proxy] PrismaClient init failed, DB features disabled:', e.message);
+  prisma = null;
+}
 const PORT = process.env.PROXY_PORT || 4000;
 const PROXY_API_KEY = process.env.COUPANG_PROXY_KEY || '2c2ea54a9a6715e28865f855a9b0b7e7fed20c0d86d7c8e77f33b38327a61636';
 
@@ -96,6 +102,7 @@ async function coupangFetch(method, path, keys, body, query = '') {
 
 // --- Helper: Get user credentials from DB ---
 async function getCredentials(userId) {
+  if (!prisma) return null;
   const creds = await prisma.coupangCredential.findFirst({
     where: { userId, isActive: true },
   });
@@ -111,6 +118,34 @@ async function getCredentials(userId) {
 // --- Health check ---
 app.get('/health', (req, res) => {
   res.json({ ok: true, service: 'coupang-proxy', timestamp: new Date().toISOString() });
+});
+
+// ============================
+// Generic Coupang API relay
+// ============================
+app.post('/api/relay', authMiddleware, async (req, res) => {
+  try {
+    const { method, path, body, query, credentials } = req.body;
+    if (!method || !path) {
+      return res.status(400).json({ error: 'method and path required' });
+    }
+    // Use provided credentials or fall back to user lookup
+    let keys = credentials;
+    if (!keys) {
+      const userId = req.headers['x-user-id'];
+      if (userId) {
+        keys = await getCredentials(userId);
+      }
+    }
+    if (!keys || !keys.accessKey || !keys.secretKey) {
+      return res.status(400).json({ error: 'No credentials' });
+    }
+    const { res: cRes, json: cJson } = await coupangFetch(method, path, keys, body, query || '');
+    res.status(cRes.status).json(cJson);
+  } catch (err) {
+    console.error('[proxy] relay error:', err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // ============================

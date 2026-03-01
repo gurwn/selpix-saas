@@ -8,6 +8,16 @@
  *   - update_coupang_products.js (cf — {res, json} 반환)
  */
 const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
+
+// Circuit Breaker — 연속 실패 시 API 호출 차단
+let CircuitBreaker;
+try {
+  CircuitBreaker = require(path.resolve(__dirname, '../../../../workspace/scripts/lib/circuit_breaker'));
+} catch {
+  CircuitBreaker = null;
+}
 
 const BASE_URL = 'https://api-gateway.coupang.com';
 
@@ -19,6 +29,19 @@ function getConfig() {
     VID: process.env.COUPANG_VENDOR_ID,
     VUID: process.env.COUPANG_VENDOR_USER_ID || process.env.COUPANG_VENDOR_ID,
   };
+}
+
+// 속성 기본값 테이블 (lazy load)
+let _attrDefaults = null;
+function getAttributeDefaults() {
+  if (_attrDefaults) return _attrDefaults;
+  try {
+    const fp = path.resolve(__dirname, '../data/attribute_defaults.json');
+    _attrDefaults = JSON.parse(fs.readFileSync(fp, 'utf-8'));
+  } catch {
+    _attrDefaults = { globalDefaults: {} };
+  }
+  return _attrDefaults;
 }
 
 /**
@@ -41,6 +64,16 @@ function sign(method, pathUrl, query = '') {
  * Coupang API 호출 — {res, json} 반환 (register_coupang, update 호환)
  */
 async function cf(method, pathUrl, body = null, query = '') {
+  // Circuit Breaker 체크
+  let breaker = null;
+  if (CircuitBreaker) {
+    breaker = CircuitBreaker.load('coupang');
+    if (!breaker.canCall()) {
+      console.log(`[coupang_api] Circuit Breaker OPEN — 호출 차단: ${method} ${pathUrl}`);
+      return { res: null, json: { error: 'CIRCUIT_OPEN', message: 'Coupang API circuit breaker is open' } };
+    }
+  }
+
   const { VID } = getConfig();
   const { datetime, authorization } = sign(method, pathUrl, query);
   const url = `${BASE_URL}${pathUrl}${query ? '?' + query : ''}`;
@@ -56,6 +89,16 @@ async function cf(method, pathUrl, body = null, query = '') {
   });
   let json = {};
   try { json = await res.json(); } catch (e) { }
+
+  // Circuit Breaker 결과 기록
+  if (breaker) {
+    if (res && res.ok) {
+      breaker.recordSuccess();
+    } else if (res && (res.status === 429 || res.status >= 500)) {
+      breaker.recordFailure();
+    }
+  }
+
   return { res, json };
 }
 
@@ -229,9 +272,21 @@ function ensureRequiredAttributes(prod, meta) {
       const v = extractRangeValue(name, attrName, basicUnit);
       return (v && Number(v) > 0) ? v : '1';
     }
-    if (/^수량$/.test(attrName)) return '1';
-    if (/용량|중량|무게|개당|총\s*수량/.test(attrName)) return extractRangeValue(name, attrName, basicUnit) || '1';
+    if (/^수량$/.test(attrName)) return extractRangeValue(name, attrName, basicUnit) || '1';
+    if (/개당\s*수량/.test(attrName)) {
+      const m = name.match(/개당\s*(\d+)/);
+      return m ? m[1] : '1';
+    }
+    if (/용량|중량|무게|총\s*수량/.test(attrName)) return extractRangeValue(name, attrName, basicUnit) || '1';
     if (dataType === 'NUMBER') return extractRangeValue(name, attrName, basicUnit) || '1';
+
+    // 기본값 테이블 참조 (패턴 미매칭 속성용)
+    const defaults = getAttributeDefaults().globalDefaults || {};
+    if (defaults[attrName]) return defaults[attrName];
+    for (const [key, val] of Object.entries(defaults)) {
+      if (attrName.includes(key)) return val;
+    }
+
     return '상세페이지 참조';
   }
 
@@ -271,10 +326,21 @@ function ensureRequiredAttributes(prod, meta) {
       continue;
     }
 
-    // 숫자형 속성: 단위 접미사 보장 + 숫자 정규화
+    // 숫자형 속성: 수량계열은 숫자-only, 그 외는 단위 보정
     if (metaAttr?.dataType === 'NUMBER') {
       const raw = String(a.attributeValueName || '');
       const numericMatch = raw.match(/\d+(?:\.\d+)?/);
+      const numOnly = numericMatch ? numericMatch[0] : raw;
+      const unit = metaAttr?.basicUnit || '';
+      const isQuantityType = /수량|개당|총\s*수량|입수/.test(a.attributeTypeName);
+
+      if (isQuantityType) {
+        if (numericMatch && !/^\d+(?:\.\d+)?$/.test(raw)) {
+          a.attributeValueName = numOnly;
+          console.log(`  수량 정규화: ${a.attributeTypeName} = ${a.attributeValueName}`);
+        }
+        continue;
+      }
 
       // 값에서 숫자만 추출
       if (metaAttr?.basicUnit && /용량|중량|무게|길이|두께|높이|폭|너비|사이즈|크기/.test(a.attributeTypeName)) {
@@ -286,9 +352,6 @@ function ensureRequiredAttributes(prod, meta) {
         }
       }
 
-      // NUMBER 속성에 단위 접미사 추가 (쿠팡 API 필수)
-      const unit = metaAttr?.basicUnit || '';
-      const numOnly = numericMatch ? numericMatch[0] : raw;
       if (unit && !raw.endsWith(unit)) {
         a.attributeValueName = numOnly + unit;
         console.log(`  단위 접미사 추가: ${a.attributeTypeName} = ${a.attributeValueName}`);
@@ -365,12 +428,17 @@ function ensureRequiredAttributes(prod, meta) {
       return { attrs, skipReason: `필수속성 "${reqAttr.attributeTypeName}" 값 '기본' 금지` };
     }
 
-    // NUMBER 속성: 단위 접미사 추가
+    // NUMBER 속성: 수량계열은 숫자-only, 그 외 단위 접미사 추가
     const unit = reqAttr.basicUnit || '';
+    const isQuantityType = /수량|개당|총\s*수량|입수/.test(reqAttr.attributeTypeName || '');
     let finalValue = String(value);
-    if (reqAttr.dataType === 'NUMBER' && unit && !finalValue.endsWith(unit)) {
-      finalValue = finalValue.replace(/[^\d.]/g, '') + unit;
-      if (finalValue === unit) finalValue = '1' + unit; // fallback
+    if (reqAttr.dataType === 'NUMBER') {
+      if (isQuantityType) {
+        finalValue = finalValue.replace(/[^\d.]/g, '') || '1';
+      } else if (unit && !finalValue.endsWith(unit)) {
+        finalValue = finalValue.replace(/[^\d.]/g, '') + unit;
+        if (finalValue === unit) finalValue = '1' + unit; // fallback
+      }
     }
 
     attrs.push({

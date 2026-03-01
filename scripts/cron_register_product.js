@@ -4,8 +4,9 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config({ path: '/home/dev/openclaw/.env' });
 
-const { cfJson, buildNotices, ensureRequiredAttributes, getConfig, predictCategory: predictCategoryShared } = require('./lib/coupang_api');
-const { INVALID_IMAGE_PATTERNS, isValidImageUrl, getSafeVendorPath } = require('./lib/image_utils');
+const { cfJson, buildNotices, ensureRequiredAttributes, getConfig, predictCategory: predictCategoryShared, deleteProduct, extractRangeValue } = require('./lib/coupang_api');
+const { INVALID_IMAGE_PATTERNS, isValidImageUrl, getSafeVendorPath, checkImageReachable, roundPrice10 } = require('./lib/image_utils');
+const { classifyDenial } = require('./lib/denial_analyzer');
 
 const { AK, SK, VID, VUID } = getConfig();
 
@@ -39,6 +40,98 @@ function extractSizeFromOption(optName) {
   return m ? m[1] : null;
 }
 
+function extractQuantityFromOption(optName) {
+  const m = String(optName || '').match(/(\d+(?:\.\d+)?)/);
+  if (!m) return null;
+  const n = Number(m[1]);
+  if (!Number.isFinite(n)) return null;
+  return String(Math.max(1, Math.round(n)));
+}
+
+function sanitizeAttributeByMeta(attr, metaAttr, displayName) {
+  if (!metaAttr) return { ok: true, attr };
+
+  const typeName = attr.attributeTypeName || '';
+  const isQuantityType = /수량|개당|총\s*수량|입수/.test(typeName);
+  const dataType = metaAttr.dataType || '';
+  const basicUnit = metaAttr.basicUnit || '';
+
+  let value = String(attr.attributeValueName || '').trim();
+  if (!value) {
+    return { ok: false, reason: `${typeName}: 빈 값` };
+  }
+
+  if (dataType === 'NUMBER' || dataType === 'RANGE') {
+    let extracted = null;
+
+    if (isQuantityType) {
+      extracted = extractQuantityFromOption(value);
+    } else {
+      extracted = extractRangeValue(value, typeName, basicUnit) || extractRangeValue(displayName || '', typeName, basicUnit);
+      if (!extracted) {
+        const m = value.match(/(\d+(?:\.\d+)?)/);
+        extracted = m ? m[1] : null;
+      }
+    }
+
+    if (!extracted) {
+      return { ok: false, reason: `${typeName}: 숫자 추출 실패 (${value})` };
+    }
+
+    if (dataType === 'NUMBER') {
+      if (isQuantityType) {
+        value = extracted;
+      } else if (basicUnit) {
+        value = `${extracted}${basicUnit}`;
+      } else {
+        value = extracted;
+      }
+    } else {
+      value = extracted;
+    }
+  }
+
+  const allowedValues = (metaAttr.attributeValues || []).map(v => v.attributeValueName).filter(Boolean);
+  if (allowedValues.length && !allowedValues.includes(value)) {
+    return { ok: false, reason: `${typeName}: 허용값 불일치 (${value})` };
+  }
+
+  return { ok: true, attr: { ...attr, attributeValueName: value } };
+}
+
+function sanitizeAttributesWithMeta(attrs, metaAttrs, displayName) {
+  const metaMap = new Map((metaAttrs || []).map(m => [m.attributeTypeName, m]));
+  const out = [];
+
+  for (const attr of (attrs || [])) {
+    const metaAttr = metaMap.get(attr.attributeTypeName);
+    const sanitized = sanitizeAttributeByMeta(attr, metaAttr, displayName);
+    if (!sanitized.ok) {
+      return { ok: false, reason: sanitized.reason };
+    }
+    out.push(sanitized.attr);
+  }
+
+  // 수량/개당 수량 충돌 보정: "N개세트" 패턴이면 수량=N, 개당 수량=1 우선
+  const titleQtyMatch = String(displayName || '').match(/(\d+)\s*개\s*세트/);
+  const titleQty = titleQtyMatch ? Number(titleQtyMatch[1]) : null;
+  const qtyAttr = out.find(a => /^수량$/.test(a.attributeTypeName));
+  const perQtyAttr = out.find(a => /개당\s*수량/.test(a.attributeTypeName));
+
+  if (titleQty && qtyAttr && perQtyAttr) {
+    const qtyNum = Number(String(qtyAttr.attributeValueName).match(/\d+(?:\.\d+)?/)?.[0] || '0');
+    const perQtyNum = Number(String(perQtyAttr.attributeValueName).match(/\d+(?:\.\d+)?/)?.[0] || '0');
+
+    if (qtyNum <= 1 && perQtyNum >= titleQty) {
+      qtyAttr.attributeValueName = String(titleQty);
+      perQtyAttr.attributeValueName = '1';
+      console.log(`  수량 보정: 수량=${qtyAttr.attributeValueName}, 개당 수량=${perQtyAttr.attributeValueName}`);
+    }
+  }
+
+  return { ok: true, attrs: out };
+}
+
 function isNonAttributeGroup(groupName) {
   return /발송|배송|수령|택배/.test(groupName);
 }
@@ -49,6 +142,9 @@ function cleanOptionForAttribute(optName, attrTypeName) {
   }
   if (/사이즈|크기/i.test(attrTypeName)) {
     return extractSizeFromOption(optName) || optName;
+  }
+  if (/수량|개당|총\s*수량|입수/.test(attrTypeName)) {
+    return extractQuantityFromOption(optName) || optName;
   }
   return optName;
 }
@@ -94,9 +190,29 @@ function buildImages(prod) {
  * API payload 사전 검증 -- 불필요한 API 호출 방지
  * @returns {{ valid: boolean, reason?: string }}
  */
+// 쿠팡 금지 키워드 (노출 제한/등록 거부 사유)
+const FORBIDDEN_WORDS = new Set([
+  '최저가', '특가', '한정', '할인', '이벤트', '초특가', '사은품', '증정',
+  '당일출고', '무료배송', '빠른배송', '즉시발송', '당일발송', '오늘출발',
+  '신상', '신상품', '베스트', '1위', '인기', 'BEST', 'HOT',
+  '추천', '정품', '공식몰', '리뷰이벤트',
+]);
+const FORBIDDEN_CHARS_RE = /[!$?*@#~<>\[\]|]/;
+
 function validatePayload(payload) {
   if (!payload.displayProductName || payload.displayProductName.length > 100) {
     return { valid: false, reason: `displayProductName 누락 또는 100자 초과 (${(payload.displayProductName || '').length}자)` };
+  }
+  // 금지 특수문자 검사
+  if (FORBIDDEN_CHARS_RE.test(payload.displayProductName)) {
+    return { valid: false, reason: `displayProductName에 금지 특수문자 포함: ${payload.displayProductName}` };
+  }
+  // 금지 키워드 검사
+  const nameWords = payload.displayProductName.split(/\s+/);
+  for (const w of nameWords) {
+    if (FORBIDDEN_WORDS.has(w)) {
+      return { valid: false, reason: `displayProductName에 금지 키워드 "${w}" 포함` };
+    }
   }
   if (!payload.displayCategoryCode) {
     return { valid: false, reason: 'displayCategoryCode 누락' };
@@ -153,26 +269,11 @@ function summarizePayload(payload) {
   };
 }
 
-/**
- * 이미지 URL HEAD 요청으로 접근 가능 여부 확인 (timeout 3초)
- * @returns {boolean} 접근 가능하면 true
- */
-async function checkImageReachable(url) {
-  try {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 3000);
-    const res = await fetch(url, { method: 'HEAD', signal: controller.signal });
-    clearTimeout(timer);
-    return res.ok;
-  } catch {
-    return false;
-  }
-}
-
 async function registerProduct(prod){
   const cat = await predictCategory(prod.displayName);
   const meta = await cfJson('GET', `/v2/providers/seller_api/apis/api/v1/marketplace/meta/category-related-metas/display-category-codes/${cat.id}`);
   const notices = buildNotices(meta?.data);
+  const metaAttrs = meta?.data?.attributes || [];
 
   // 필수 속성 보완
   const { attrs: attributes, skipReason } = ensureRequiredAttributes(prod, meta);
@@ -184,6 +285,11 @@ async function registerProduct(prod){
   const hasBadDefault = attributes.some(a => a.attributeValueName === '기본');
   if(hasBadDefault){
     return { _skip: true, reason: '속성에 "기본" 값 잔존' };
+  }
+
+  const sanitizedBaseAttrs = sanitizeAttributesWithMeta(attributes, metaAttrs, prod.displayName);
+  if(!sanitizedBaseAttrs.ok){
+    return { _skip: true, reason: `속성 정규화 실패: ${sanitizedBaseAttrs.reason}` };
   }
 
   const payload = {
@@ -201,7 +307,7 @@ async function registerProduct(prod){
     deliveryCompanyCode: 'KDEXP',
     deliveryChargeType: 'FREE',
     deliveryCharge: 0,
-    freeShipOverAmount: 100000,
+    freeShipOverAmount: 0,
     deliveryChargeOnReturn: 5000,
     returnCharge: 5000,
     remoteAreaDeliverable: 'N',
@@ -215,7 +321,7 @@ async function registerProduct(prod){
     outboundShippingPlaceCode: 23987766,
     vendorUserId: VUID,
     requested: true,
-    items: buildItems(prod, notices, attributes)
+    items: buildItems(prod, notices, sanitizedBaseAttrs.attrs)
   };
 
   /**
@@ -284,17 +390,22 @@ async function registerProduct(prod){
 
     const combinations = crossJoin(attrOpts);
     const items = [];
+    const seenNames = new Set(); // itemName 중복 방지
+    const seenOptionSignatures = new Set(); // 옵션 속성 조합 중복 방지
 
     for (const combo of combinations) {
       const totalPriceAdd = combo.reduce((sum, c) => sum + (c.priceAdd || 0), 0);
       const itemPrice = p.salePrice + totalPriceAdd;
       const correctedPrice = itemPrice % 10 !== 0 ? Math.ceil(itemPrice / 10) * 10 : itemPrice;
 
-      // itemName: 옵션값 조합
-      const optLabel = combo.map(c => c.name).join(' ');
+      // itemName: 옵션값 조합 (30자 제한 + 중복 방지)
+      let optLabel = combo.map(c => c.name).join(' ');
+      if (optLabel.length > 30) optLabel = optLabel.slice(0, 30).trim();
+      if (seenNames.has(optLabel)) continue;
+      seenNames.add(optLabel);
 
       // 속성: 기존 속성 복사 + 옵션 그룹에 매칭되는 속성값 치환 (정제된 값)
-      const optAttrs = attrs.map(a => {
+      const optAttrsRaw = attrs.map(a => {
         for (const c of combo) {
           const gn = c.groupName || '';
           const isMatch =
@@ -311,12 +422,34 @@ async function registerProduct(prod){
         return { ...a };
       });
 
+      // 동일 attributeTypeName 중복 제거 (쿠팡 옵션 중복 오류 예방)
+      const attrByType = new Map();
+      for (const a of optAttrsRaw) {
+        attrByType.set(a.attributeTypeName, a);
+      }
+      const optAttrs = Array.from(attrByType.values());
+      const sanitizedOptAttrs = sanitizeAttributesWithMeta(optAttrs, metaAttrs, p.displayName);
+      if (!sanitizedOptAttrs.ok) {
+        console.log(`  옵션 조합 SKIP(속성 정규화 실패): ${sanitizedOptAttrs.reason}`);
+        continue;
+      }
+
+      // 옵션 속성 조합 시그니처 중복 제거 (같은 옵션값 조합 재전송 방지)
+      const optionSig = sanitizedOptAttrs.attrs
+        .map(a => `${a.attributeTypeName}:${a.attributeValueName}`)
+        .sort()
+        .join('|');
+      if (seenOptionSignatures.has(optionSig)) {
+        continue;
+      }
+      seenOptionSignatures.add(optionSig);
+
       items.push({
         ...baseItem,
         itemName: optLabel,
         originalPrice: correctedPrice,
         salePrice: correctedPrice,
-        attributes: optAttrs,
+        attributes: sanitizedOptAttrs.attrs,
       });
     }
 
@@ -430,6 +563,11 @@ async function processDenied(queue) {
     const reasonText = denyReasons.join(' ').toLowerCase();
     console.log(`  반려 사유: ${denyReasons.join(' | ') || '(조회 불가)'}`);
 
+    // 반려 근본원인 분류
+    const denial = classifyDenial(denyReasons.join(' '));
+    item.denialType = denial.type;
+    console.log(`  분류: ${denial.type} (confidence: ${denial.confidence})`);
+
     let fixed = false;
 
     // (a) 이미지 관련 반려
@@ -473,6 +611,12 @@ async function processDenied(queue) {
       item.attributes = [];
       fixed = true;
     }
+    // (c2) 가격 관련 반려
+    else if (reasonText.includes('판매가') || reasonText.includes('가격') || reasonText.includes('10원') || reasonText.includes('price')) {
+      console.log('  → 가격 관련 반려: 10원 단위 라운딩 재적용');
+      item.salePrice = roundPrice10(item.salePrice);
+      fixed = true;
+    }
     // (d) 사유 조회 불가 또는 기타 → 속성 초기화 후 한번 더 시도
     else {
       if ((item.retryCount || 0) === 0) {
@@ -505,6 +649,51 @@ async function processDenied(queue) {
   return processed;
 }
 
+/**
+ * 임시저장 상품 자동 삭제 + 재큐잉
+ * coupangStatus가 '임시저장'인 상품을 삭제 후 pending으로 재등록
+ */
+const TEMP_BATCH = 2;
+const MAX_TEMP_RETRY = 2;
+
+async function processTemporarySaved(queue) {
+  const H24 = 24 * 60 * 60 * 1000;
+  const tempSaved = queue.filter(q =>
+    q.status === 'registered' && q.coupangStatus === '임시저장' &&
+    (q.tempSavedRetry || 0) < MAX_TEMP_RETRY &&
+    q.registeredAt && (Date.now() - new Date(q.registeredAt).getTime()) > H24
+  );
+  if (!tempSaved.length) return 0;
+
+  let processed = 0;
+  for (const item of tempSaved.slice(0, TEMP_BATCH)) {
+    console.log(`\n[임시저장 처리] ${item.sellerName} (pid: ${item.productId})`);
+    try {
+      const { success, message } = await deleteProduct(item.productId);
+      if (success) {
+        console.log(`  삭제 완료: ${message}`);
+        item.status = 'pending';
+        item.optimized = false;
+        item.tempSavedRetry = (item.tempSavedRetry || 0) + 1;
+        delete item.productId;
+        delete item.registeredAt;
+        delete item.coupangStatus;
+        delete item.coupangPayload;
+        console.log(`  → pending 재큐잉 (tempRetry ${item.tempSavedRetry})`);
+      } else {
+        console.log(`  삭제 실패: ${message}`);
+      }
+    } catch (e) {
+      console.log(`  처리 실패: ${e.message}`);
+    }
+    processed++;
+  }
+  return processed;
+}
+
+// 한 번 실행에 최대 등록할 상품 수 (기본 10개, 환경변수로 오버라이드 가능)
+const BATCH_SIZE = parseInt(process.env.REGISTER_BATCH_SIZE || '10', 10);
+
 async function main(){
   // Pre-flight: 필수 환경변수 검증
   const requiredEnv = { COUPANG_ACCESS_KEY: AK, COUPANG_SECRET_KEY: SK, COUPANG_VENDOR_ID: VID };
@@ -516,30 +705,51 @@ async function main(){
   }
 
   const now = new Date().toISOString();
-  console.log(`[${now}] 크론 실행`);
+  console.log(`[${now}] 크론 실행 (배치 최대 ${BATCH_SIZE}개)`);
 
   const queue = loadQueue();
   const log = loadLog();
 
-  // 대기 중인 상품 찾기 (SEO 최적화 완료된 것 우선, 24h 초과 대기 항목 폴백)
-  const SEO_TIMEOUT_MS = 24 * 60 * 60 * 1000; // 24시간
-  let pending = queue.find(q => q.status === 'pending' && q.optimized === true);
+  // 오래된 skip_invalid/error 상품 큐 정리 (7일 이상)
+  const STALE_THRESHOLD_MS = 7 * 24 * 60 * 60 * 1000;
+  const beforeLen = queue.length;
+  const staleStatuses = new Set(['skip_invalid', 'error']);
+  for (let i = queue.length - 1; i >= 0; i--) {
+    const q = queue[i];
+    if (!staleStatuses.has(q.status)) continue;
+    const addedAt = q.addedAt ? new Date(q.addedAt).getTime() : 0;
+    if (addedAt > 0 && (Date.now() - addedAt) > STALE_THRESHOLD_MS) {
+      queue.splice(i, 1);
+    }
+  }
+  const cleaned = beforeLen - queue.length;
+  if (cleaned > 0) {
+    console.log(`큐 정리: skip_invalid/error ${cleaned}건 제거 (7일 초과)`);
+  }
 
-  if(!pending){
-    // SEO 최적화 24시간 초과 대기 항목 → 폴백 등록
-    const timedOut = queue.find(q => {
+  const SEO_TIMEOUT_MS = 24 * 60 * 60 * 1000; // 24시간
+
+  // 배치 수집: SEO 완료 항목 우선
+  let pendingItems = queue
+    .filter(q => q.status === 'pending' && q.optimized === true)
+    .slice(0, BATCH_SIZE);
+
+  // 배치 미달 시 SEO 타임아웃 폴백으로 보충
+  if(pendingItems.length < BATCH_SIZE){
+    const remaining = BATCH_SIZE - pendingItems.length;
+    const timedOut = queue.filter(q => {
       if(q.status !== 'pending' || q.optimized) return false;
       const addedAt = q.addedAt ? new Date(q.addedAt).getTime() : 0;
       return addedAt > 0 && (Date.now() - addedAt) > SEO_TIMEOUT_MS;
+    }).slice(0, remaining);
+    timedOut.forEach(t => {
+      t.seoTimedOut = true;
+      console.log(`SEO 타임아웃 폴백: ${t.sellerName} (${Math.round((Date.now() - new Date(t.addedAt).getTime()) / 3600000)}h 대기)`);
     });
-    if(timedOut){
-      timedOut.seoTimedOut = true;
-      pending = timedOut;
-      console.log(`SEO 타임아웃 폴백: ${timedOut.sellerName} (${Math.round((Date.now() - new Date(timedOut.addedAt).getTime()) / 3600000)}h 대기)`);
-    }
+    pendingItems = [...pendingItems, ...timedOut];
   }
 
-  if(!pending){
+  if(pendingItems.length === 0){
     const unoptimized = queue.filter(q => q.status === 'pending' && !q.optimized).length;
     if(unoptimized > 0){
       console.log(`SEO 최적화 대기 중: ${unoptimized}개`);
@@ -557,108 +767,135 @@ async function main(){
       else if(status === '승인반려') item.status = 'denied';
     }
 
-    // denied 상품 자동 분석 + 재등록
     const deniedCount = await processDenied(queue);
     if(deniedCount) console.log(`denied 처리: ${deniedCount}건`);
 
+    const tempCount = await processTemporarySaved(queue);
+    if(tempCount) console.log(`임시저장 처리: ${tempCount}건`);
+
     saveQueue(queue);
     return;
   }
 
-  // 등록 전 유효성 검사
-  const invalidity = validateItem(pending);
-  if(invalidity){
-    pending.status = 'skip_invalid';
-    pending.error = invalidity;
-    console.log(`  SKIP (${invalidity}): ${pending.sellerName}`);
-    saveQueue(queue);
-    return;
-  }
+  console.log(`배치 등록 시작: ${pendingItems.length}개`);
+  let successCount = 0;
+  let failCount = 0;
 
-  console.log(`등록: ${pending.sellerName}`);
+  for(const pending of pendingItems){
+    const itemNow = new Date().toISOString();
+    console.log(`\n[${successCount + failCount + 1}/${pendingItems.length}] ${pending.sellerName}`);
 
-  try {
-    const result = await registerProduct(pending);
-
-    // SKIP 처리 (속성 매핑 실패 등)
-    if(result?._skip){
+    // 유효성 검사
+    const invalidity = validateItem(pending);
+    if(invalidity){
       pending.status = 'skip_invalid';
-      pending.error = result.reason;
-      console.log(`  SKIP (${result.reason}): ${pending.sellerName}`);
-      saveQueue(queue);
-      return;
+      pending.error = invalidity;
+      console.log(`  SKIP (${invalidity})`);
+      failCount++;
+      continue;
     }
 
-    // 쿠팡 등록 페이로드 요약 저장 (후속 재주문/매핑용)
-    if (result?._payload) {
-      pending.coupangPayload = summarizePayload(result._payload);
-      pending.coupangPayloadAt = now;
-    }
+    try {
+      const result = await registerProduct(pending);
 
-    const ok = result?.code === 'SUCCESS';
-    const pid = result?.data;
+      if(result?._skip){
+        pending.status = 'skip_invalid';
+        pending.error = result.reason;
+        console.log(`  SKIP (${result.reason})`);
+        failCount++;
+        continue;
+      }
 
-    if(ok){
-      pending.status = 'registered';
-      pending.productId = pid;
-      pending.registeredAt = now;
-      console.log(`  SUCCESS | productId: ${pid}`);
-      log.push({
-        action: 'register',
-        name: pending.sellerName,
-        productId: pid,
-        time: now,
-        result: 'SUCCESS',
-        domeggookProductNo: pending.domeggookProductNo || null,
-        domeggookProductName: pending.domeggookProductName || pending.displayName || null,
-        domeggookOptionNos: pending.domeggookOptionNos || [],
-        seoOptimizedName: pending.optimized ? pending.displayName : null,
-        seoOriginalName: pending.originalName || null,
-        coupangPayload: pending.coupangPayload || null
-      });
-    } else {
-      const { _payload, ...rest } = result || {};
-      const errText = rest?.message || rest?.code || JSON.stringify(rest).slice(0,300);
+      if(result?._payload){
+        pending.coupangPayload = summarizePayload(result._payload);
+        pending.coupangPayloadAt = itemNow;
+      }
+
+      const ok = result?.code === 'SUCCESS';
+      const pid = result?.data;
+
+      if(ok){
+        pending.status = 'registered';
+        pending.productId = pid;
+        pending.registeredAt = itemNow;
+        console.log(`  SUCCESS | productId: ${pid}`);
+        successCount++;
+        log.push({
+          action: 'register',
+          name: pending.sellerName,
+          productId: pid,
+          time: itemNow,
+          result: 'SUCCESS',
+          domeggookProductNo: pending.domeggookProductNo || null,
+          domeggookProductName: pending.domeggookProductName || pending.displayName || null,
+          domeggookOptionNos: pending.domeggookOptionNos || [],
+          seoOptimizedName: pending.optimized ? pending.displayName : null,
+          seoOriginalName: pending.originalName || null,
+          coupangPayload: pending.coupangPayload || null
+        });
+      } else {
+        const { _payload, ...rest } = result || {};
+        const errText = rest?.message || rest?.code || JSON.stringify(rest).slice(0,300);
+        const isInvalidOptionUnit = /유효하지 않은 구매 옵션 값 혹은 단위/.test(errText || '');
+
+        if (isInvalidOptionUnit) {
+          pending.status = 'skip_invalid';
+          const attrDump = (pending.coupangPayload?.attributes || []).map(a => `${a.attributeTypeName}=${a.attributeValueName}`).join(', ');
+          pending.error = `구매옵션/단위 메타 검증 실패: ${attrDump || '속성정보 없음'}`;
+          pending.errorDetail = rest?.errorItems || rest?.details || null;
+          console.log(`  SKIP (${pending.error})`);
+        } else {
+          pending.status = 'error';
+          pending.error = errText;
+          pending.errorDetail = rest?.errorItems || rest?.details || null;
+          console.log(`  FAIL | ${pending.error}`);
+        }
+
+        failCount++;
+        log.push({
+          action: 'register',
+          name: pending.sellerName,
+          time: itemNow,
+          result: isInvalidOptionUnit ? 'SKIP' : 'FAIL',
+          error: pending.error,
+          errorDetail: pending.errorDetail || null,
+          domeggookProductNo: pending.domeggookProductNo || null,
+          domeggookProductName: pending.domeggookProductName || pending.displayName || null,
+          domeggookOptionNos: pending.domeggookOptionNos || [],
+          seoOptimizedName: pending.optimized ? pending.displayName : null,
+          seoOriginalName: pending.originalName || null,
+          coupangPayload: pending.coupangPayload || null
+        });
+      }
+    } catch(e){
       pending.status = 'error';
-      pending.error = errText;
-      pending.errorDetail = rest?.errorItems || rest?.details || null;
-      console.log(`  FAIL | ${pending.error}`);
+      pending.error = e.message;
+      console.log(`  ERROR | ${e.message}`);
+      failCount++;
       log.push({
         action: 'register',
         name: pending.sellerName,
-        time: now,
-        result: 'FAIL',
-        error: pending.error,
-        errorDetail: pending.errorDetail || null,
+        time: itemNow,
+        result: 'ERROR',
+        error: e.message,
         domeggookProductNo: pending.domeggookProductNo || null,
         domeggookProductName: pending.domeggookProductName || pending.displayName || null,
         domeggookOptionNos: pending.domeggookOptionNos || [],
         seoOptimizedName: pending.optimized ? pending.displayName : null,
-        seoOriginalName: pending.originalName || null,
-        coupangPayload: pending.coupangPayload || null
+        seoOriginalName: pending.originalName || null
       });
     }
-  } catch(e){
-    pending.status = 'error';
-    pending.error = e.message;
-    console.log(`  ERROR | ${e.message}`);
-    log.push({
-      action: 'register',
-      name: pending.sellerName,
-      time: now,
-      result: 'ERROR',
-      error: e.message,
-      domeggookProductNo: pending.domeggookProductNo || null,
-      domeggookProductName: pending.domeggookProductName || pending.displayName || null,
-      domeggookOptionNos: pending.domeggookOptionNos || [],
-      seoOptimizedName: pending.optimized ? pending.displayName : null,
-      seoOriginalName: pending.originalName || null
-    });
   }
+
+  console.log(`\n배치 완료: 성공 ${successCount}건 / 실패·스킵 ${failCount}건`);
 
   // denied 상품 자동 분석 + 재등록
   const deniedCount = await processDenied(queue);
   if(deniedCount) console.log(`denied 처리: ${deniedCount}건`);
+
+  // 임시저장 상품 재등록
+  const tempCount = await processTemporarySaved(queue);
+  if(tempCount) console.log(`임시저장 처리: ${tempCount}건`);
 
   // register_log.json 트리밍: 500건 초과 시 최신 500건만 유지
   if(log.length > 500){

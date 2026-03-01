@@ -1,0 +1,218 @@
+[
+  {
+    "runAt": "2026-02-22T21:08:01.717Z",
+    "results": [
+      {
+        "productId": 16055260933,
+        "domeggookProductNo": "12133980",
+        "status": "dry-run",
+        "existingCount": 15
+      },
+      {
+        "productId": 16057439470,
+        "domeggookProductNo": "7360538",
+        "status": "dry-run",
+        "existingCount": 14
+      },
+      {
+        "productId": 16057123606,
+        "domeggookProductNo": "27683377",
+        "status": "dry-run",
+        "existingCount": 13
+      }
+    ]
+  },
+  {
+    "runAt": "2026-02-22T21:08:26.543Z",
+    "results": [
+      {
+        "productId": 16055260933,
+        "domeggookProductNo": "12133980",
+        "status": "skipped",
+        "reason": "ollama 응답에서 JSON 배열 파싱 실패: {\"timestamp\":1645835212,\"log\":\" product tags for korean search: \", \"query\": \"\"},\n\n{\\\"timestamp\\\":164"
+      }
+    ]
+  },
+  {
+    "runAt": "2026-02-22T21:09:12.807Z",
+    "results": [
+      {
+        "productId": 16055260933,
+        "domeggookProductNo": "12133980",
+        "status": "success",
+        "oldCount": 15,
+        "newCount": 19,
+        "addedTags": [
+          "HOME웨어",
+          "SESA",
+          "KEYWORD4",
+          "SESA"
+        ]
+      }
+    ]
+  },
+  {
+    "runAt": "2026-02-22T21:10:00.550Z",
+    "results": [
+      {
+        "productId": 16057439470,
+        "domeggookProductNo": "7360538",
+        "status": "success",
+        "oldCount": 14,
+        "newCount": 19,
+        "addedTags": [
+          "받มไม้",
+          "บาศkes",
+          "พีดี",
+          "คอนเวน션",
+          "แช่ของ"
+        ]
+      },
+      {
+        "productId": 16057123606,
+        "domeggookProductNo": "27683377",
+        "status": "success",
+        "oldCount": 13,
+        "newCount": 16,
+        "addedTags": [
+          "서랍칸막이(길이 조절 가능)",
+          "3개세트 서랍 칸막이",
+          "칸막이서rap"
+        ]
+      }
+    ]
+  },
+  {
+    "runAt": "2026-02-22T21:10:44.882Z",
+    "results": [
+      {
+        "productId": 16057123606,
+        "domeggookProductNo": "27683377",
+        "status": "success",
+        "oldCount": 16,
+        "newCount": 19,
+        "addedTags": [
+          "서랍 칸막이",
+          "칸막이서랍",
+          "수납 칸막이"
+        ]
+      },
+      {
+        "productId": 16057123644,
+        "domeggookProductNo": "59265835",
+        "status": "success",
+        "oldCount": 15,
+        "newCount": 17,
+        "addedTags": [
+          "수납품",
+          "직각 쌓기"
+        ]
+      }
+    ]
+  },
+  {
+    "runAt": "2026-02-23T01:32:38.678Z",
+    "results": [
+      {
+        "productId": 16057123688,
+        "domeggookProductNo": "39424662",
+        "status": "skipped",
+        "reason": "ollama 미응답: relay 타임아웃 (30000ms)"
+      },
+      {
+        "productId": 16058474475,
+        "domeggookProductNo": "9928631",
+        "status": "skipped",
+        "reason": "ollama 미응답: relay 타임아웃 (30000ms)"
+      },
+      {
+        "productId": 16058474485,
+        "domeggookProductNo": "19568401",
+        "status": "skipped",
+        "reason": "ollama 미응답: relay 타임아웃 (30000ms)"
+      },
+      {
+        "productId": 16058474499,
+        "domeggookProductNo": "13288556",
+        "status": "skipped",
+        "reason": "ollama 미응답: relay 타임아웃 (30000ms)"
+      },
+      {
+        "productId": 16058474511,
+        "domeggookProductNo": "18035016",
+        "status": "skipped",
+        "reason": "ollama 미응답: relay 타임아웃 (30000ms)"
+      }
+    ]
+  },
+  {
+    "runAt": "2026-02-24T01:30:08.184Z",
+    "results": [
+      {
+        "productId": 16057123688,
+        "domeggookProductNo": "39424662",
+        "status": "skipped",
+        "reason": "ollama 미응답: PC remote disabled (manual-only mode)"
+      },
+      {
+        "productId": 16058474475,
+        "domeggookProductNo": "9928631",
+        "status": "skipped",
+        "reason": "ollama 미응답: PC remote disabled (manual-only mode)"
+      },
+      {
+        "productId": 16058474485,
+        "domeggookProductNo": "19568401",
+        "status": "skipped",
+        "reason": "ollama 미응답: PC remote disabled (manual-only mode)"
+      },
+      {
+        "productId": 16058474499,
+        "domeggookProductNo": "13288556",
+        "status": "skipped",
+        "reason": "ollama 미응답: PC remote disabled (manual-only mode)"
+      },
+      {
+        "productId": 16058474511,
+        "domeggookProductNo": "18035016",
+        "status": "skipped",
+        "reason": "ollama 미응답: PC remote disabled (manual-only mode)"
+      }
+    ]
+  },
+  {
+    "runAt": "2026-02-24T09:30:08.355Z",
+    "results": [
+      {
+        "productId": 16057123688,
+        "domeggookProductNo": "39424662",
+        "status": "skipped",
+        "reason": "ollama 미응답: PC remote disabled (manual-only mode)"
+      },
+      {
+        "productId": 16058474475,
+        "domeggookProductNo": "9928631",
+        "status": "skipped",
+        "reason": "ollama 미응답: PC remote disabled (manual-only mode)"
+      },
+      {
+        "productId": 16058474485,
+        "domeggookProductNo": "19568401",
+        "status": "skipped",
+        "reason": "ollama 미응답: PC remote disabled (manual-only mode)"
+      },
+      {
+        "productId": 16058474499,
+        "domeggookProductNo": "13288556",
+        "status": "skipped",
+        "reason": "ollama 미응답: PC remote disabled (manual-only mode)"
+      },
+      {
+        "productId": 16058474511,
+        "domeggookProductNo": "18035016",
+        "status": "skipped",
+        "reason": "ollama 미응답: PC remote disabled (manual-only mode)"
+      }
+    ]
+  }
+]

@@ -35,9 +35,30 @@ function roundPrice10(price) {
   return Math.ceil(price / 10) * 10;
 }
 
+/**
+ * 이미지 URL HEAD 요청으로 접근 가능 여부 확인 (timeout 3초)
+ * @returns {Promise<boolean>} 접근 가능하면 true
+ */
+async function checkImageReachable(url) {
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 5000);
+    const res = await fetch(url, { method: 'HEAD', signal: controller.signal });
+    clearTimeout(timer);
+    if (!res.ok) return false;
+    // Content-Length < 1KB → 플레이스홀더 가능성
+    const cl = res.headers.get('content-length');
+    if (cl && parseInt(cl, 10) < 1024) return false;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 module.exports = {
   INVALID_IMAGE_PATTERNS,
   isValidImageUrl,
   getSafeVendorPath,
   roundPrice10,
+  checkImageReachable,
 };

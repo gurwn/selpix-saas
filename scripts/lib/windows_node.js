@@ -1,0 +1,1 @@
+/home/dev/openclaw/config/workspace/scripts/lib/windows_node.js

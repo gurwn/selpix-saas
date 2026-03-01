@@ -59,35 +59,255 @@
       "reportedAt": "2026-02-18T09:07:33.937Z",
       "domeggookNo": "54046053",
       "anomalyPrice": 1
+    },
+    "16057439518": {
+      "reportedAt": "2026-02-22T09:04:34.641Z",
+      "domeggookNo": "8827518",
+      "anomalyPrice": 1
+    },
+    "16057439598": {
+      "reportedAt": "2026-02-22T09:04:34.641Z",
+      "domeggookNo": "27535236",
+      "anomalyPrice": 1
+    },
+    "16057439657": {
+      "reportedAt": "2026-02-22T09:04:34.641Z",
+      "domeggookNo": "7865156",
+      "anomalyPrice": 1
+    },
+    "16058474519": {
+      "reportedAt": "2026-02-22T22:31:40.510Z",
+      "domeggookNo": "7863834",
+      "anomalyPrice": 1
+    },
+    "16058475597": {
+      "reportedAt": "2026-02-23T03:04:14.796Z",
+      "domeggookNo": "41548206",
+      "anomalyPrice": 1
+    },
+    "16058475613": {
+      "reportedAt": "2026-02-23T03:04:14.796Z",
+      "domeggookNo": "54047699",
+      "anomalyPrice": 1
+    },
+    "16058475619": {
+      "reportedAt": "2026-02-23T03:04:14.796Z",
+      "domeggookNo": "47860153",
+      "anomalyPrice": 1
+    },
+    "16058475635": {
+      "reportedAt": "2026-02-23T03:04:14.796Z",
+      "domeggookNo": "31529663",
+      "anomalyPrice": 1
+    },
+    "16062064098": {
+      "reportedAt": "2026-02-24T20:03:31.178Z",
+      "domeggookNo": "22727276",
+      "anomalyPrice": 1
+    },
+    "16062064203": {
+      "reportedAt": "2026-02-24T20:03:31.178Z",
+      "domeggookNo": "35594965",
+      "anomalyPrice": 1
+    },
+    "16062064249": {
+      "reportedAt": "2026-02-24T20:03:31.178Z",
+      "domeggookNo": "27535236",
+      "anomalyPrice": 1
+    },
+    "16062064301": {
+      "reportedAt": "2026-02-24T20:03:31.178Z",
+      "domeggookNo": "38712138",
+      "anomalyPrice": 1
+    },
+    "16062064407": {
+      "reportedAt": "2026-02-24T20:03:31.178Z",
+      "domeggookNo": "63411861",
+      "anomalyPrice": 1
+    },
+    "16062064469": {
+      "reportedAt": "2026-02-24T20:03:31.178Z",
+      "domeggookNo": "30001042",
+      "anomalyPrice": 1
+    },
+    "16062398596": {
+      "reportedAt": "2026-02-24T21:04:20.286Z",
+      "domeggookNo": "32525262",
+      "anomalyPrice": 1
+    },
+    "16062499577": {
+      "reportedAt": "2026-02-25T03:04:20.881Z",
+      "domeggookNo": "57885459",
+      "anomalyPrice": 1
+    },
+    "16063855011": {
+      "reportedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "46006497",
+      "anomalyPrice": 1
+    },
+    "16063855044": {
+      "reportedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "17634915",
+      "anomalyPrice": 1
+    },
+    "16063855106": {
+      "reportedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "33927439",
+      "anomalyPrice": 1
+    },
+    "16063855167": {
+      "reportedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "34995275",
+      "anomalyPrice": 1
+    },
+    "16063919808": {
+      "reportedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "44901026",
+      "anomalyPrice": 1
+    },
+    "16063919880": {
+      "reportedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "22170178",
+      "anomalyPrice": 1
+    },
+    "16063919935": {
+      "reportedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "38712520",
+      "anomalyPrice": 1
+    },
+    "16063919954": {
+      "reportedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "7864046",
+      "anomalyPrice": 1
+    },
+    "16063919989": {
+      "reportedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "54047697",
+      "anomalyPrice": 1
+    },
+    "16063920041": {
+      "reportedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "54048012",
+      "anomalyPrice": 1
+    },
+    "16063920065": {
+      "reportedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "54465999",
+      "anomalyPrice": 1
+    },
+    "16064583063": {
+      "reportedAt": "2026-02-25T21:04:16.225Z",
+      "domeggookNo": "62949368",
+      "anomalyPrice": 1
+    },
+    "16064707581": {
+      "reportedAt": "2026-02-26T03:04:14.644Z",
+      "domeggookNo": "8827518",
+      "anomalyPrice": 1
+    },
+    "16065977198": {
+      "reportedAt": "2026-02-26T15:04:23.118Z",
+      "domeggookNo": "20648630",
+      "anomalyPrice": 1
+    },
+    "16065977217": {
+      "reportedAt": "2026-02-26T15:04:23.118Z",
+      "domeggookNo": "8968837",
+      "anomalyPrice": 1
+    },
+    "16065977237": {
+      "reportedAt": "2026-02-26T15:04:23.118Z",
+      "domeggookNo": "20647159",
+      "anomalyPrice": 1
+    },
+    "16065977259": {
+      "reportedAt": "2026-02-26T15:04:23.118Z",
+      "domeggookNo": "8975022",
+      "anomalyPrice": 1
+    },
+    "16065977292": {
+      "reportedAt": "2026-02-26T15:04:23.118Z",
+      "domeggookNo": "54406243",
+      "anomalyPrice": 1
+    },
+    "16066130889": {
+      "reportedAt": "2026-02-26T15:04:23.118Z",
+      "domeggookNo": "54804743",
+      "anomalyPrice": 1
+    },
+    "16068770827": {
+      "reportedAt": "2026-02-27T19:25:09.596Z",
+      "domeggookNo": "41575908",
+      "anomalyPrice": 1
+    },
+    "16068770849": {
+      "reportedAt": "2026-02-27T19:25:09.596Z",
+      "domeggookNo": "62876715",
+      "anomalyPrice": 1
+    },
+    "16068770865": {
+      "reportedAt": "2026-02-27T19:25:09.596Z",
+      "domeggookNo": "34508777",
+      "anomalyPrice": 1
+    },
+    "16068770878": {
+      "reportedAt": "2026-02-27T19:25:09.596Z",
+      "domeggookNo": "33927439",
+      "anomalyPrice": 1
+    },
+    "16068770898": {
+      "reportedAt": "2026-02-27T19:25:09.596Z",
+      "domeggookNo": "32296695",
+      "anomalyPrice": 1
+    },
+    "16068770910": {
+      "reportedAt": "2026-02-27T19:25:09.596Z",
+      "domeggookNo": "32297751",
+      "anomalyPrice": 1
+    },
+    "16069933280": {
+      "reportedAt": "2026-02-28T15:04:44.202Z",
+      "domeggookNo": "57310500",
+      "anomalyPrice": 1
+    },
+    "16070488590": {
+      "reportedAt": "2026-03-01T03:04:19.696Z",
+      "domeggookNo": "33927439",
+      "anomalyPrice": 1
+    },
+    "16070488602": {
+      "reportedAt": "2026-03-01T03:04:19.696Z",
+      "domeggookNo": "12871816",
+      "anomalyPrice": 1
     }
   },
   "outOfStock": {
     "16041404905": {
-      "stoppedAt": "2026-02-18T09:08:22.530Z",
+      "stoppedAt": "2026-02-22T11:03:33.188Z",
       "domeggookNo": "57950596"
     },
     "16041439752": {
-      "stoppedAt": "2026-02-18T09:08:22.530Z",
+      "stoppedAt": "2026-02-22T11:03:33.188Z",
       "domeggookNo": "57952492"
     },
     "16047707374": {
-      "stoppedAt": "2026-02-18T09:08:22.530Z",
+      "stoppedAt": "2026-02-22T11:03:33.188Z",
       "domeggookNo": "26932516"
     },
     "16047713047": {
-      "stoppedAt": "2026-02-18T09:08:22.530Z",
+      "stoppedAt": "2026-02-22T11:03:33.188Z",
       "domeggookNo": "54804743"
     },
     "16047625400": {
-      "stoppedAt": "2026-02-18T09:08:22.530Z",
+      "stoppedAt": "2026-02-22T11:03:33.188Z",
       "domeggookNo": "57529001"
     },
     "16047658790": {
-      "stoppedAt": "2026-02-18T09:08:22.530Z",
+      "stoppedAt": "2026-02-22T11:03:33.188Z",
       "domeggookNo": "47005742"
     },
     "16047658822": {
-      "stoppedAt": "2026-02-18T09:08:22.530Z",
+      "stoppedAt": "2026-02-22T11:03:33.188Z",
       "domeggookNo": "39659008"
     },
     "16047892094": {
@@ -95,7 +315,7 @@
       "domeggookNo": "12188471"
     },
     "16047659168": {
-      "stoppedAt": "2026-02-18T09:08:22.530Z",
+      "stoppedAt": "2026-02-22T11:03:33.188Z",
       "domeggookNo": "57338667"
     },
     "16048549154": {
@@ -105,6 +325,182 @@
     "16048564394": {
       "stoppedAt": "2026-02-18T09:08:22.530Z",
       "domeggookNo": "54046053"
+    },
+    "16057439518": {
+      "stoppedAt": "2026-02-22T09:04:34.641Z",
+      "domeggookNo": "8827518"
+    },
+    "16057439598": {
+      "stoppedAt": "2026-02-22T09:04:34.641Z",
+      "domeggookNo": "27535236"
+    },
+    "16057439657": {
+      "stoppedAt": "2026-02-22T09:04:34.641Z",
+      "domeggookNo": "7865156"
+    },
+    "16058474519": {
+      "stoppedAt": "2026-02-23T03:04:14.796Z",
+      "domeggookNo": "7863834"
+    },
+    "16058475597": {
+      "stoppedAt": "2026-02-23T03:04:14.796Z",
+      "domeggookNo": "41548206"
+    },
+    "16058475613": {
+      "stoppedAt": "2026-02-23T03:04:14.796Z",
+      "domeggookNo": "54047699"
+    },
+    "16058475619": {
+      "stoppedAt": "2026-02-23T03:04:14.796Z",
+      "domeggookNo": "47860153"
+    },
+    "16058475635": {
+      "stoppedAt": "2026-02-23T03:04:14.796Z",
+      "domeggookNo": "31529663"
+    },
+    "16062064098": {
+      "stoppedAt": "2026-02-24T20:03:31.178Z",
+      "domeggookNo": "22727276"
+    },
+    "16062064203": {
+      "stoppedAt": "2026-02-24T20:03:31.178Z",
+      "domeggookNo": "35594965"
+    },
+    "16062064249": {
+      "stoppedAt": "2026-02-24T20:03:31.178Z",
+      "domeggookNo": "27535236"
+    },
+    "16062064301": {
+      "stoppedAt": "2026-02-24T20:03:31.178Z",
+      "domeggookNo": "38712138"
+    },
+    "16062064407": {
+      "stoppedAt": "2026-02-24T20:03:31.178Z",
+      "domeggookNo": "63411861"
+    },
+    "16062064469": {
+      "stoppedAt": "2026-02-24T20:03:31.178Z",
+      "domeggookNo": "30001042"
+    },
+    "16062398596": {
+      "stoppedAt": "2026-02-24T21:04:20.286Z",
+      "domeggookNo": "32525262"
+    },
+    "16062499577": {
+      "stoppedAt": "2026-02-25T03:04:20.881Z",
+      "domeggookNo": "57885459"
+    },
+    "16063855011": {
+      "stoppedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "46006497"
+    },
+    "16063855044": {
+      "stoppedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "17634915"
+    },
+    "16063855106": {
+      "stoppedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "33927439"
+    },
+    "16063855167": {
+      "stoppedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "34995275"
+    },
+    "16063919808": {
+      "stoppedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "44901026"
+    },
+    "16063919880": {
+      "stoppedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "22170178"
+    },
+    "16063919935": {
+      "stoppedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "38712520"
+    },
+    "16063919954": {
+      "stoppedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "7864046"
+    },
+    "16063919989": {
+      "stoppedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "54047697"
+    },
+    "16063920041": {
+      "stoppedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "54048012"
+    },
+    "16063920065": {
+      "stoppedAt": "2026-02-25T15:04:14.895Z",
+      "domeggookNo": "54465999"
+    },
+    "16064583063": {
+      "stoppedAt": "2026-02-25T21:04:16.225Z",
+      "domeggookNo": "62949368"
+    },
+    "16064707581": {
+      "stoppedAt": "2026-02-26T03:04:14.644Z",
+      "domeggookNo": "8827518"
+    },
+    "16065977198": {
+      "stoppedAt": "2026-02-26T15:04:23.118Z",
+      "domeggookNo": "20648630"
+    },
+    "16065977217": {
+      "stoppedAt": "2026-02-26T15:04:23.118Z",
+      "domeggookNo": "8968837"
+    },
+    "16065977237": {
+      "stoppedAt": "2026-02-26T15:04:23.118Z",
+      "domeggookNo": "20647159"
+    },
+    "16065977259": {
+      "stoppedAt": "2026-02-26T15:04:23.118Z",
+      "domeggookNo": "8975022"
+    },
+    "16065977292": {
+      "stoppedAt": "2026-02-26T15:04:23.118Z",
+      "domeggookNo": "54406243"
+    },
+    "16066130889": {
+      "stoppedAt": "2026-02-26T15:04:23.118Z",
+      "domeggookNo": "54804743"
+    },
+    "16068770827": {
+      "stoppedAt": "2026-02-27T19:31:17.004Z",
+      "domeggookNo": "41575908"
+    },
+    "16068770849": {
+      "stoppedAt": "2026-02-27T19:31:17.004Z",
+      "domeggookNo": "62876715"
+    },
+    "16068770865": {
+      "stoppedAt": "2026-02-27T19:31:17.004Z",
+      "domeggookNo": "34508777"
+    },
+    "16068770878": {
+      "stoppedAt": "2026-02-27T19:31:17.004Z",
+      "domeggookNo": "33927439"
+    },
+    "16068770898": {
+      "stoppedAt": "2026-02-27T19:31:17.004Z",
+      "domeggookNo": "32296695"
+    },
+    "16068770910": {
+      "stoppedAt": "2026-02-27T19:31:17.004Z",
+      "domeggookNo": "32297751"
+    },
+    "16069933280": {
+      "stoppedAt": "2026-02-28T15:04:44.202Z",
+      "domeggookNo": "57310500"
+    },
+    "16070488590": {
+      "stoppedAt": "2026-03-01T03:04:19.696Z",
+      "domeggookNo": "33927439"
+    },
+    "16070488602": {
+      "stoppedAt": "2026-03-01T03:04:19.696Z",
+      "domeggookNo": "12871816"
     }
   }
 }

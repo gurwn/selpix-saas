@@ -19,10 +19,12 @@ const { INVALID_IMAGE_PATTERNS, isValidImageUrl, getSafeVendorPath, roundPrice10
 
 const DOMEGGOOK_API_KEY = process.env.DOMEGGOOK_API_KEY;
 
-const DIRECTIVE_FILE = path.resolve(__dirname, '../data/sourcing_directive.json');
+const CANDIDATE_FILE = '/home/dev/openclaw/config/workspace/candidate_keywords.json';
 const QUEUE_FILE = path.resolve(__dirname, '../data/register_queue.json');
 const LOG_FILE = path.resolve(__dirname, '../data/pipeline.log');
 const KEYWORD_HISTORY_FILE = path.resolve(__dirname, '../data/keyword_history.json');
+const PRODUCTIZABLE_CACHE_FILE = path.resolve(__dirname, '../data/keyword_productizable_cache.json');
+const TWITTER_INTEL_DIR = '/home/dev/openclaw/config/workspace/data/twitter-intel/raw';
 const KEYWORD_HISTORY_DAYS = 7;
 
 const MIN_PRICE = 1000;
@@ -119,6 +121,102 @@ function saveJson(filePath, data) {
 }
 
 /**
+ * 트위터 인텔에서 상품 키워드 추출
+ * - 최근 1일 JSON 파일에서 모든 카테고리의 summary_kr 활용
+ * - summary_kr에서 2글자 이상 한국어 명사구 추출
+ */
+function loadTwitterKeywords() {
+  if (!fs.existsSync(TWITTER_INTEL_DIR)) {
+    log('트위터 인텔 디렉토리 없음, 스킵');
+    return [];
+  }
+
+  const files = fs.readdirSync(TWITTER_INTEL_DIR)
+    .filter(f => /^\d{8}\.json$/.test(f))
+    .sort()
+    .reverse();
+
+  if (files.length === 0) {
+    log('트위터 인텔 raw 파일 없음, 스킵');
+    return [];
+  }
+
+  // 최근 1일 파일만 로드
+  const latestFile = path.join(TWITTER_INTEL_DIR, files[0]);
+  const data = loadJson(latestFile);
+  if (!Array.isArray(data)) {
+    log(`트위터 인텔 파일 형식 불일치: ${files[0]}`);
+    return [];
+  }
+
+  const keywords = new Set();
+  const stopWords = new Set(['에서', '으로', '하는', '있는', '없는', '위한', '대한', '통해',
+    '모델', '공개', '출시', '발표', '업그레이드', '프리뷰', '연구', '보고서',
+    '수준', '기업', '달러', '가치', '투자', '유치', '서비스', '플랫폼', '시스템',
+    '기술', '개발', '데이터', '인공', '지능', '학습', '네트워크', '알고리즘',
+    '오픈소스', '프레임', '워크', '벤치', '마크', '토큰', '파라미터']);
+
+  for (const item of data) {
+    const summary = item.summary_kr;
+    if (!summary || typeof summary !== 'string') continue;
+
+    const matches = summary.match(/[가-힣]{2,6}/g) || [];
+    for (const m of matches) {
+      if (!stopWords.has(m) && !isBlockedProduct(m).blocked) {
+        keywords.add(m);
+      }
+    }
+  }
+
+  const result = [...keywords];
+  log(`트위터 인텔 키워드 ${result.length}개 추출 (${files[0]}): ${result.join(', ')}`);
+  return result;
+}
+
+/**
+ * 상품화 가능성 필터 — 도매꾹 API 검색으로 실제 상품 존재 여부 확인
+ * 캐시: keyword_productizable_cache.json (7일 TTL)
+ */
+async function filterProductizable(keywords) {
+  // 캐시 로드 + 만료 항목 정리
+  const cache = loadJson(PRODUCTIZABLE_CACHE_FILE) || {};
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 7);
+  for (const [kw, entry] of Object.entries(cache)) {
+    if (new Date(entry.checkedAt) < cutoff) delete cache[kw];
+  }
+
+  const viable = [];
+  for (const kw of keywords.slice(0, 30)) {
+    if (cache[kw]) {
+      if (cache[kw].viable) viable.push(kw);
+      else log(`SKIP (캐시: 상품화 불가): "${kw}"`);
+      continue;
+    }
+
+    try {
+      const results = await searchViaApi(kw);
+      const isViable = results.length > 0;
+      cache[kw] = { viable: isViable, count: results.length, checkedAt: new Date().toISOString() };
+
+      if (isViable) {
+        viable.push(kw);
+        log(`상품화 가능: "${kw}" (${results.length}건)`);
+      } else {
+        log(`SKIP (상품화 불가): "${kw}" — 도매꾹 검색 0건`);
+      }
+      await new Promise(r => setTimeout(r, 500));
+    } catch (e) {
+      log(`상품화 체크 실패: "${kw}" — ${e.message}`);
+      viable.push(kw); // 에러 시 포함 (benefit of doubt)
+    }
+  }
+
+  saveJson(PRODUCTIZABLE_CACHE_FILE, cache);
+  return viable;
+}
+
+/**
  * keyword_history.json 로드 — { "키워드": "YYYY-MM-DD", ... }
  */
 function loadKeywordHistory() {
@@ -144,19 +242,57 @@ function isRecentlySourced(keyword, history) {
 }
 
 /**
- * 도매꾹/도매매 API: 키워드로 상품 목록 검색
- * @param {string} keyword - 검색 키워드
- * @param {'dome'|'supply'} market - 'dome'=도매꾹, 'supply'=도매매(위탁판매 1개 단위)
+ * Step 1: candidate_keywords.json에서 키워드 추출
+ * - ranked_keywords + keyword_scores: score >= 80 우선, >= 50 일반, < 50 스킵
+ * - 없으면 기존 naver_shopping direction/change_pct 기반 (하위 호환)
  */
-async function searchViaApi(keyword, market = 'dome') {
-  const url = `https://domeggook.com/ssl/api/?ver=4.0&mode=getItemList&aid=${DOMEGGOOK_API_KEY}&market=${market}&om=json&kw=${encodeURIComponent(keyword)}&mnp=${MIN_PRICE}&mxp=${MAX_PRICE}&sz=20&so=se`;
+function extractKeywords(candidates) {
+  // 점수 기반 정렬 (ranked_keywords가 있을 때)
+  if (candidates?.ranked_keywords?.length && candidates?.keyword_scores) {
+    const scores = candidates.keyword_scores;
+    const priority = []; // score >= 80
+    const normal = [];   // score >= 50
+    for (const kw of candidates.ranked_keywords) {
+      const s = scores[kw];
+      if (!s || s.direction === 'falling') continue;
+      if (isBlockedProduct(kw).blocked) continue;
+      if (s.composite >= 80) {
+        priority.push(kw);
+      } else if (s.composite >= 50) {
+        normal.push(kw);
+      }
+      // composite < 50: 스킵
+    }
+    const keywords = [...priority, ...normal];
+    log(`점수 기반 키워드 ${keywords.length}개 (우선 ${priority.length}개, 일반 ${normal.length}개): ${keywords.map(k => `${k}(${scores[k].composite})`).join(', ')}`);
+    return keywords;
+  }
+
+  // fallback: 기존 로직 (하위 호환)
+  const naverShopping = candidates?.naver_shopping || [];
+  const filtered = naverShopping.filter(k => k.direction !== 'falling');
+  filtered.sort((a, b) => {
+    if (a.direction === 'rising' && b.direction !== 'rising') return -1;
+    if (a.direction !== 'rising' && b.direction === 'rising') return 1;
+    return (b.change_pct || 0) - (a.change_pct || 0);
+  });
+
+  const keywords = filtered.map(k => k.keyword).filter(kw => !isBlockedProduct(kw).blocked);
+  log(`추출 키워드 ${keywords.length}개: ${keywords.join(', ')}`);
+  return keywords;
+}
+
+/**
+ * 도매꾹 API: 키워드로 상품 목록 검색
+ */
+async function searchViaApi(keyword) {
+  const url = `https://domeggook.com/ssl/api/?ver=4.0&mode=getItemList&aid=${DOMEGGOOK_API_KEY}&market=dome&om=json&kw=${encodeURIComponent(keyword)}&mnp=${MIN_PRICE}&mxp=${MAX_PRICE}&sz=20&so=se`;
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`도매꾹 API 검색 실패 (${market}): ${res.status}`);
+  if (!res.ok) throw new Error(`도매꾹 API 검색 실패: ${res.status}`);
   const data = await res.json();
   const items = data?.domeggook?.list?.item || [];
   // 단일 상품이면 배열이 아니라 객체로 올 수 있음
   const itemList = Array.isArray(items) ? items : [items];
-  const sourceSite = market === 'supply' ? 'domeggook.supply' : 'domeggook';
   return itemList.map(item => {
     const sourceUrl = item.url || (item.no ? `http://domeggook.com/${item.no}` : null);
     return {
@@ -165,8 +301,7 @@ async function searchViaApi(keyword, market = 'dome') {
       imageUrl: item.thumb || null,
       sourceUrl,
       productNo: extractProductNo(sourceUrl) || (item.no ? String(item.no) : null),
-      site: sourceSite,
-      sourceSite,
+      site: 'domeggook',
       category: keyword,
       minOrderQuantity: parseInt(item.unitQty || 1, 10),
       shippingCost: parseInt(item.deli?.fee || 0, 10)
@@ -175,24 +310,22 @@ async function searchViaApi(keyword, market = 'dome') {
 }
 
 /**
- * 도매꾹/도매매 API: 상품 상세 조회 (enrichment)
- * @param {object} product - 상품 객체
- * @param {'dome'|'supply'} market - 'dome'=도매꾹, 'supply'=도매매
+ * 도매꾹 API: 상품 상세 조회 (enrichment)
  */
-async function enrichViaApi(product, market = 'dome') {
+async function enrichViaApi(product) {
   if (!product.productNo) return { ...product, detailImages: [], imageUsageStatus: 'unknown' };
 
   const url = `https://domeggook.com/ssl/api/?ver=4.1&mode=getItemView&aid=${DOMEGGOOK_API_KEY}&no=${product.productNo}&om=json`;
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`도매꾹 API 상세 조회 실패 (${market}): ${res.status}`);
+  if (!res.ok) throw new Error(`도매꾹 API 상세 조회 실패: ${res.status}`);
   const raw = await res.json();
   const data = raw?.domeggook || raw;
 
-  // 가격 파싱: market에 따라 dome/supply 단가 사용
+  // 가격 파싱 (수량별 차등 가격에서 첫 번째 가격 추출: "1+9850|11+9800")
   let price = product.price;
-  const rawPrice = market === 'supply' ? data?.price?.supply : data?.price?.dome;
-  if (rawPrice) {
-    const priceStr = String(rawPrice);
+  const domePrice = data?.price?.dome;
+  if (domePrice) {
+    const priceStr = String(domePrice);
     const priceMatch = priceStr.match(/(\d+)\+(\d+)/);
     if (priceMatch) price = parseInt(priceMatch[2], 10);
     else if (/^\d+$/.test(priceStr)) price = parseInt(priceStr, 10);
@@ -308,12 +441,8 @@ async function enrichViaApi(product, market = 'dome') {
     imageUsageStatus,
     manufacturer: data?.detail?.manufacturer || null,
     country: data?.detail?.country || null,
-    minOrderQuantity: market === 'supply'
-      ? parseInt(data?.qty?.supplyUnit || 1, 10)
-      : parseInt(data?.qty?.domeMoq || product.minOrderQuantity || 1, 10),
-    shippingCost: market === 'supply'
-      ? parseInt(data?.deli?.supply?.fee || data?.deli?.dome?.fee || product.shippingCost || 0, 10)
-      : parseInt(data?.deli?.dome?.fee || product.shippingCost || 0, 10),
+    minOrderQuantity: parseInt(data?.qty?.domeMoq || product.minOrderQuantity || 1, 10),
+    shippingCost: parseInt(data?.deli?.dome?.fee || product.shippingCost || 0, 10),
     resaleMinimum: data?.price?.resale?.minimum || data?.price?.resale?.minumum || null,
     inventory: data?.qty?.inventory || null,
     options: parsedOptions.length > 0 ? parsedOptions : null,
@@ -349,37 +478,13 @@ function calculateMargin(product, keyword, categoryName) {
   };
 }
 
-// 동의어 매핑 테이블 (SEO 태그 확장용) — 소싱 키워드 28개 전체 커버
+// 동의어 매핑 테이블 (SEO 태그 확장용)
 const SYNONYMS = {
-  '텀블러': ['보온병', '보냉컵', '스텐텀블러', '보온텀블러', '보온보냉', '스텐컵'],
-  '폰케이스': ['휴대폰케이스', '보호케이스', '핸드폰케이스', '갤럭시케이스', '아이폰케이스'],
-  '요가매트': ['운동매트', '필라테스매트', '스트레칭매트', '홈트매트', 'TPE매트', 'NBR매트'],
-  '수납함': ['정리함', '수납정리', '보관함', '리빙박스', '다용도함'],
-  '수납': ['정리함', '수납함', '수납정리', '보관함'],
-  '수납박스': ['정리박스', '접이식박스', '플라스틱박스', '투명수납', '보관박스'],
-  '마사지기': ['안마기', '마사지건', '목마사지기', '어깨마사지기', '전동마사지기'],
-  '괄사': ['스크래퍼', '괄사마사지', '스테인리스괄사', '페이스괄사'],
-  '모니터받침대': ['모니터선반', '모니터거치대', '높이조절받침대', '데스크받침대'],
-  '욕실용품': ['욕실수납', '욕실정리', '화장실용품', '욕실소품'],
-  '욕실화': ['욕실슬리퍼', '화장실슬리퍼', 'EVA슬리퍼', '미끄럼방지슬리퍼'],
-  '욕실매트': ['화장실매트', '미끄럼방지매트', '규조토매트', '발매트'],
-  '밀폐용기': ['보관용기', '반찬통', '밀폐반찬통', '냉장보관', '트라이탄용기'],
-  '도마': ['항균도마', '실리콘도마', 'TPU도마', '주방도마', '위생도마'],
-  '반려동물용품': ['반려동물', '펫용품', '강아지용품', '고양이용품'],
-  '강아지장난감': ['애견장난감', '노즈워크', '터그장난감', '펫토이'],
-  '자세교정': ['자세교정밴드', '바른자세', '교정벨트', '자세보정'],
-  '꼬리뼈방석': ['메모리폼방석', '사무실방석', '기능성방석', '골반방석'],
-  '케이블정리': ['전선정리', '케이블트레이', '선정리', '데스크정리'],
-  '전선정리': ['케이블홀더', '전선클립', '케이블타이', '선정리홀더'],
-  '차량수납': ['차량정리함', '트렁크정리', '시트포켓', '차량용품'],
-  '청소용품': ['청소도구', '극세사걸레', '틈새브러시', '유리닦이'],
-  '밀대걸레': ['물걸레', '먼지걸레', '밀대청소', '바닥청소'],
-  '우산': ['자동우산', '접이식우산', '3단우산', '암막양산', '우양산'],
-  '행주걸이': ['행주홀더', '주방걸이', '수건걸이'],
-  '키친타월걸이': ['키친타올', '주방타월', '타월홀더'],
+  '텀블러': ['보온병', '보냉컵', '스텐텀블러', '보온텀블러'],
   '충전기': ['고속충전기', 'USB충전기', 'C타입충전기'],
   '거치대': ['스탠드', '홀더', '마운트'],
   '가위': ['다용도가위', '작업가위', '사무용가위'],
+  '수납': ['정리함', '수납함', '수납정리'],
   '이어폰': ['블루투스이어폰', '무선이어폰', '이어버드'],
   '캠핑': ['캠핑용품', '아웃도어', '야외용품'],
   '텐트': ['캠핑텐트', '원터치텐트', '팝업텐트'],
@@ -387,164 +492,43 @@ const SYNONYMS = {
   '조명': ['LED조명', '무드등', '랜턴'],
 };
 
-// 쿠팡 금지 키워드 — 상품명/태그에 포함 시 노출 제한 또는 등록 거부
-const TITLE_STOPWORDS = new Set([
-  // 홍보/할인 관련 (노출 제한 사유)
-  '최저가', '특가', '한정', '할인', '이벤트', '초특가', '사은품', '증정',
-  '판촉물', '홍보스티커무료', '베스트', '1위', '인기', 'BEST', 'HOT',
-  // 배송 관련 (상품명에 불필요)
-  '당일출고', '무료배송', '빠른배송', '즉시발송', '당일발송', '오늘출발',
-  // 시즌/시기 (시스템 카테고리와 충돌)
-  '신상', '신상품', '올해', '2024', '2025', '2026', '봄신상', '여름신상',
-  // 시스템 키워드 (쿠팡 자체 분류)
-  '추천', '정품', '공식몰', '공식', '리뷰이벤트',
-  // 무의미 수식어
-  '고급', '프리미엄', '럭셔리', '최고급', '명품', '대박',
-]);
-
-// 쿠팡 금지 특수문자 (상품명에서 제거)
-const FORBIDDEN_CHARS = /[!$?*@#~<>\[\]|]/g;
-
-function normalizeText(input) {
-  return String(input || '')
-    .replace(FORBIDDEN_CHARS, ' ')
-    .replace(/[\[\]{}()]/g, ' ')
-    .replace(/[|\\/]+/g, ' ')
-    .replace(/[_~`"'""'']+/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function sanitizeTag(tag) {
-  const clean = normalizeText(tag)
-    .replace(/[^0-9a-zA-Z가-힣\s+]/g, '')
-    .trim();
-  if (clean.length < 2 || clean.length > 20) return null;
-  if (/^(keyword\d*|sesa|test|sample)$/i.test(clean)) return null;
-  return clean;
-}
-
-function optimizeProductTitle(rawName, keyword, moq = 1) {
-  const base = normalizeText(rawName)
-    .replace(/^\[[^\]]+\]\s*/g, '')       // [브랜드] 접두사 제거
-    .replace(/^(1\+1|\d+개세트)\s*/g, '') // MOQ 접두사 제거 (아래서 다시 추가)
-    .replace(/\d{4}년?\s*(신상|신제품)?/g, '') // 연도 표기 제거
-    .trim();
-
-  const tokens = base.split(/\s+/)
-    .map(t => t.replace(/[^0-9a-zA-Z가-힣]/g, '').trim())
-    .filter(t => t.length >= 2 && t.length <= 15)
-    .filter(t => !TITLE_STOPWORDS.has(t))
-    .filter(t => !TITLE_STOPWORDS.has(t.toLowerCase()));
-
-  const unique = [];
-  const seen = new Set();
-  for (const t of tokens) {
-    const low = t.toLowerCase();
-    if (seen.has(low)) continue;
-    seen.add(low);
-    unique.push(t);
-  }
-
-  // 핵심 키워드를 맨 앞에 배치 (쿠팡 앞 40자 가중치)
-  const kw = sanitizeTag(keyword || '');
-  let titleParts = [];
-  if (kw) titleParts.push(kw);
-
-  // 동의어 중 상품명에 없는 것 1개 추가 (서브키워드 역할)
-  if (kw) {
-    const syns = SYNONYMS[kw] || [];
-    for (const s of syns) {
-      const ss = sanitizeTag(s);
-      if (ss && !seen.has(ss.toLowerCase())) {
-        titleParts.push(ss);
-        seen.add(ss.toLowerCase());
-        break;  // 1개만
-      }
-    }
-  }
-
-  for (const t of unique) {
-    if (kw && t === kw) continue;
-    titleParts.push(t);
-    if (titleParts.join(' ').length >= 70) break;  // 70자 타겟 (100자 제한 내 여유)
-  }
-
-  let optimized = titleParts.join(' ').trim();
-  if (!optimized) optimized = base.slice(0, 70);
-  if (moq > 1) {
-    const prefix = moq === 2 ? '1+1' : `${moq}개세트`;
-    optimized = `${prefix} ${optimized}`;
-  }
-
-  return normalizeText(optimized).slice(0, 100);
-}
-
 /**
- * 검색 태그 생성 — 쿠팡 공식 가이드 기반
- * 구조: 핵심(1~5) + 동의어(6~10) + 롱테일(11~15) + 용도/재질(16~20)
- * 최대 20개, 2~20자, 상품명/카테고리 중복 단어 피함
+ * 검색 태그 생성 — 키워드 + 상품명 단어 + 동의어 + 롱테일 + 제조사
+ * 최대 15개, 2~20자
  */
-function generateSearchTags(productName, keyword, manufacturer = '') {
-  const tags = [];
-  const added = new Set();
-  const safeKeyword = sanitizeTag(keyword || '');
+function generateSearchTags(product, keyword) {
+  const tags = new Set();
 
-  function addTag(raw) {
-    const t = sanitizeTag(raw);
-    if (!t || added.has(t.toLowerCase()) || TITLE_STOPWORDS.has(t)) return false;
-    added.add(t.toLowerCase());
-    tags.push(t);
-    return true;
-  }
+  // 1. 원본 키워드
+  if (keyword && keyword.length >= 2) tags.add(keyword);
 
-  const words = normalizeText(productName)
-    .split(/\s+/)
-    .map(w => sanitizeTag(w))
-    .filter(Boolean);
+  // 2. 상품명에서 단어 추출 (2자+)
+  const words = (product.name || '').replace(/[^\w가-힣\s]/g, '').split(/\s+/).filter(w => w.length >= 2);
+  for (const w of words) tags.add(w);
 
-  // 1~5: 핵심 키워드
-  if (safeKeyword) addTag(safeKeyword);
-  for (const w of words) {
-    if (tags.length >= 5) break;
-    addTag(w);
-  }
-
-  // 6~10: 동의어/유의어
+  // 3. 동의어 확장
   for (const [term, syns] of Object.entries(SYNONYMS)) {
-    if ((productName || '').includes(term) || (safeKeyword && safeKeyword.includes(term))) {
-      for (const s of syns) {
-        if (tags.length >= 10) break;
-        addTag(s);
+    if ((product.name || '').includes(term) || (keyword && keyword.includes(term))) {
+      for (const s of syns) tags.add(s);
+    }
+  }
+
+  // 4. 롱테일 조합: keyword + 주요 단어
+  if (keyword) {
+    for (const w of words.slice(0, 3)) {
+      const combo = keyword + ' ' + w;
+      if (w !== keyword && combo.length <= 20) {
+        tags.add(combo);
       }
     }
   }
 
-  // 11~15: 롱테일 조합 (키워드 + 상품 속성)
-  if (safeKeyword) {
-    for (const w of words.slice(0, 8)) {
-      if (tags.length >= 15) break;
-      if (w === safeKeyword) continue;
-      addTag(`${safeKeyword} ${w}`);
-    }
+  // 5. 제조사명
+  if (product.manufacturer && product.manufacturer.length >= 2) {
+    tags.add(product.manufacturer);
   }
 
-  // 16~20: 용도/재질/상위분류 (쿠팡 공식: 형태, 소재, 별칭, 용도)
-  const contextBoosters = [
-    '가성비', '생활용품', '자취', '원룸', '사무실',
-    '선물', '세트', '대용량', '미니', '휴대용',
-  ];
-  for (const b of contextBoosters) {
-    if (tags.length >= 20) break;
-    const combo = safeKeyword ? `${safeKeyword} ${b}` : b;
-    addTag(combo);
-  }
-
-  // 제조사 (슬롯 남으면)
-  const maker = sanitizeTag(manufacturer || '');
-  if (maker && tags.length < 20) addTag(maker);
-
-  return tags.slice(0, 20);
+  return [...tags].filter(t => t.length >= 2 && t.length <= 20).slice(0, 15);
 }
 
 /**
@@ -552,6 +536,8 @@ function generateSearchTags(productName, keyword, manufacturer = '') {
  * enriched product를 받아 고해상도 이미지 및 상세 HTML을 포함
  */
 function toQueueItem(product, marginInfo, keyword) {
+  const searchTags = generateSearchTags(product, keyword);
+
   // 상세 이미지들 (최대 10개, vendorPath 규격에 맞는 것만)
   const safeDetailImages = (product.detailImages || [])
     .map(url => getSafeVendorPath(url))
@@ -562,13 +548,12 @@ function toQueueItem(product, marginInfo, keyword) {
   const safeMainImage = getSafeVendorPath(product.imageUrl) || safeDetailImages[0] || null;
 
   const moq = product.minOrderQuantity || 1;
-  const optimizedDisplayName = optimizeProductTitle(product.name, keyword, moq);
-  const searchTags = generateSearchTags(optimizedDisplayName, keyword, product.manufacturer);
+  const setDisplayName = buildSetName(product.name, moq);
   const productNo = product.productNo || extractProductNo(product.sourceUrl);
 
   return {
-    sellerName: optimizedDisplayName.slice(0, 30),
-    displayName: optimizedDisplayName,
+    sellerName: setDisplayName.slice(0, 30),
+    displayName: setDisplayName,
     // 도매꾹 원본 식별자/상품명 보존 (재주문/출고용)
     domeggookProductNo: productNo || null,
     productNo: productNo || null,
@@ -583,15 +568,13 @@ function toQueueItem(product, marginInfo, keyword) {
     searchTags,
     status: 'pending',
     sourceUrl: product.sourceUrl || null,
-    sourceSite: product.sourceSite || 'domeggook',
+    sourceSite: 'domeggook',
     sourcePrice: product.price,
     unitCost: marginInfo.unitCost,
     margin: marginInfo.margin,
     marginRate: Math.round(marginInfo.marginRate * 100),
-    originalName: product.name,
     addedAt: new Date().toISOString(),
     addedBy: 'pipeline',
-    optimized: true,    // 소싱 시점에 searchTags 이미 생성됨 → 즉시 등록 가능
     // 도매꾹 옵션 (색상/사이즈 등)
     domeggookOptions: product.options || null,
     domeggookOptionNos: product.domeggookOptionNos || [],
@@ -621,21 +604,33 @@ async function runPipeline() {
     process.exit(1);
   }
 
-  // Step 1: 지시서(Directive) 로드
-  const directive = loadJson(DIRECTIVE_FILE);
-  if (!directive || !directive.keywords || directive.keywords.length === 0) {
-    log('ERROR: sourcing_directive.json에 유효한 지시서 없음. 오늘 소싱 스킵.');
-    return; // 그냥 정상 스킵
+  // Step 1: 키워드 추출
+  const candidates = loadJson(CANDIDATE_FILE);
+  if (!candidates) {
+    log('ERROR: candidate_keywords.json 없음. 트렌드 수집이 먼저 실행되어야 합니다.');
+    process.exit(1);
   }
 
-  // 지시서에서 타겟 추출
-  const allKeywords = directive.keywords.map(k => typeof k === 'string' ? k : k.term).filter(Boolean);
+  const candidateKeywords = extractKeywords(candidates);
+
+  // 트위터 인텔 키워드 병합 (상품화 필터 적용 + 중복 제거)
+  const twitterKeywordsRaw = loadTwitterKeywords();
+  let twitterFiltered = [];
+  if (twitterKeywordsRaw.length > 0) {
+    twitterFiltered = await filterProductizable(twitterKeywordsRaw);
+    log(`트위터 키워드 상품화 필터: ${twitterKeywordsRaw.length} → ${twitterFiltered.length}개`);
+  }
+  const candidateSet = new Set(candidateKeywords);
+  const mergedTwitter = twitterFiltered.filter(kw => !candidateSet.has(kw));
+  const allKeywords = [...candidateKeywords, ...mergedTwitter];
 
   if (allKeywords.length === 0) {
-    log('키워드 없음 (directive). 종료.');
+    log('키워드 없음 (candidate + twitter). 종료.');
     return;
   }
-  log(`트렌드 지시서에서 ${allKeywords.length}개 키워드 타겟팅: ${allKeywords.join(', ')}`);
+  if (mergedTwitter.length > 0) {
+    log(`트위터 인텔에서 ${mergedTwitter.length}개 키워드 병합: ${mergedTwitter.join(', ')}`);
+  }
 
   // 키워드 이력 로드 — 최근 7일 내 소싱한 키워드 스킵
   const keywordHistory = loadKeywordHistory();
@@ -674,49 +669,24 @@ async function runPipeline() {
   }
 
   const existingNames = new Set(queue.map(q => q.displayName));
-  // 이미 실패한 도매꾹 상품번호 재추가 방지
-  const failedProductNos = new Set(
-    queue.filter(q => q.status === 'skip_invalid' || q.status === 'error')
-      .map(q => q.domeggookProductNo || q.productNo)
-      .filter(Boolean)
-  );
-  log(`기존 대기열: ${queue.length}개 (${queue.filter(q => q.status === 'pending').length}개 pending, 실패 이력 ${failedProductNos.size}개)`);
+  log(`기존 대기열: ${queue.length}개 (${queue.filter(q => q.status === 'pending').length}개 pending)`);
 
   let totalSearched = 0;
   let totalPassed = 0;
   let totalDuplicate = 0;
   let totalBlocked = 0;
 
-  // Step 2: 키워드별 도매꾹 + 도매매 API 검색
+  // Step 2: 키워드별 도매꾹 API 검색
   for (const keyword of keywords) {
     log(`--- 키워드: "${keyword}" API 검색 중 ---`);
 
     try {
-      // 도매꾹 + 도매매 이중 검색, 중복 제거 (도매매 1개 단위 우선)
-      const [domeProducts, supplyProducts] = await Promise.all([
-        searchViaApi(keyword, 'dome'),
-        searchViaApi(keyword, 'supply').catch(err => {
-          log(`  도매매 검색 실패 (dome만 사용): ${err.message}`);
-          return [];
-        })
-      ]);
-
-      // 중복 제거: 같은 productNo면 도매매(1개 단위) 우선
-      const productMap = new Map();
-      for (const p of domeProducts) {
-        if (p.productNo) productMap.set(p.productNo, p);
-      }
-      for (const p of supplyProducts) {
-        if (p.productNo) productMap.set(p.productNo, p); // supply가 dome 덮어씀
-      }
-      const mergedProducts = [...productMap.values()];
-
+      const products = await searchViaApi(keyword);
       // 가격 필터링
-      const filtered = mergedProducts.filter(p => p.price >= MIN_PRICE && p.price <= MAX_PRICE);
+      const filtered = products.filter(p => p.price >= MIN_PRICE && p.price <= MAX_PRICE);
       const topProducts = filtered.slice(0, PRODUCTS_PER_KEYWORD);
       totalSearched += topProducts.length;
-      const supplyCount = topProducts.filter(p => p.sourceSite === 'domeggook.supply').length;
-      log(`  검색 결과: dome ${domeProducts.length}개 + supply ${supplyProducts.length}개 → 병합 ${mergedProducts.length}개 → 가격 필터: ${filtered.length}개 → 상위 ${topProducts.length}개 (도매매 ${supplyCount}개)`);
+      log(`  검색 결과: ${products.length}개 → 가격 필터: ${filtered.length}개 → 상위 ${topProducts.length}개 선택`);
 
       // Step 3: 마진 계산 + 필터링
       for (const product of topProducts) {
@@ -749,22 +719,13 @@ async function runPipeline() {
           continue;
         }
 
-        // Step 4-1: 이전 등록 실패 이력 체크
-        const prodNo = String(product.productNo || product.id || '');
-        if (prodNo && failedProductNos.has(prodNo)) {
-          log(`  SKIP (이전 등록 실패): ${product.name.slice(0, 40)}`);
-          totalDuplicate++;
-          continue;
-        }
-
         // Step 5: API enrichment (상세 조회) — 최대 2회 재시도 + exponential backoff
-        const enrichMarket = product.sourceSite === 'domeggook.supply' ? 'supply' : 'dome';
-        log(`  enriching via API (${enrichMarket}): ${product.name.slice(0, 40)}...`);
+        log(`  enriching via API: ${product.name.slice(0, 40)}...`);
         let enriched;
         let enrichSuccess = false;
         for (let attempt = 0; attempt < 3; attempt++) {
           try {
-            enriched = await enrichViaApi(product, enrichMarket);
+            enriched = await enrichViaApi(product);
             enrichSuccess = true;
             break;
           } catch (enrichErr) {

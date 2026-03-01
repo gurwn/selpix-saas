@@ -266,6 +266,7 @@ async function main() {
   let resumed = 0;
   let unchanged = 0;
   let errors = 0;
+  let alreadyStopped = 0; // 이미 stock_stopped 상태인 상품 카운트
 
   const newAnomalyReports = [];
   const priorityStopAttempted = new Set();
@@ -344,6 +345,8 @@ async function main() {
           appendLog(`    → 판매중지 실패: ${result.message}`);
           errors++;
         }
+      } else if (item.status === 'stock_stopped') {
+        alreadyStopped++;
       } else {
         unchanged++;
       }
@@ -465,7 +468,7 @@ async function main() {
   await sendDiscordPriceAnomalyReport(newAnomalyReports);
 
   appendLog(`\n=== 결과 ===`);
-  appendLog(`판매중지: ${stopped} | 재개: ${resumed} | 변동없음: ${unchanged} | 에러: ${errors}`);
+  appendLog(`신규 판매중지: ${stopped} | 재개: ${resumed} | 기존 중지 유지: ${alreadyStopped} | 변동없음: ${unchanged} | 에러: ${errors}`);
   appendLog(`우선대상 10건 판매중지 시도: 성공 ${priorityStopSuccess}건 / 실패 ${priorityStopFail}건`);
   if (priorityStopFailReasons.length) {
     appendLog(`우선대상 실패 사유: ${priorityStopFailReasons.join(' | ')}`);

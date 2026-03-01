@@ -1,0 +1,1364 @@
+[
+  {
+    "timestamp": "2026-02-21T08:05:15.584Z",
+    "total": 2,
+    "critical": 1,
+    "high": 0,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 1,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-21T08:05:43.275Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-21T11:07:49.088Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-21T11:09:58.462Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-21T11:26:42.537Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-21T11:26:52.693Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-21T15:38:20.713Z",
+    "total": 2,
+    "critical": 0,
+    "high": 1,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 1,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-21T19:03:38.020Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-21T19:24:21.049Z",
+    "total": 3,
+    "critical": 0,
+    "high": 1,
+    "medium": 2,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 3,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-21T19:24:28.031Z",
+    "total": 3,
+    "critical": 0,
+    "high": 0,
+    "medium": 2,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 2,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-21T20:00:06.950Z",
+    "total": 4,
+    "critical": 0,
+    "high": 1,
+    "medium": 2,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 3,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-21T20:13:34.941Z",
+    "total": 4,
+    "critical": 0,
+    "high": 1,
+    "medium": 2,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 3,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-21T20:26:09.061Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-21T23:03:39.299Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T03:03:37.900Z",
+    "total": 2,
+    "critical": 1,
+    "high": 0,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T03:33:59.294Z",
+    "total": 1,
+    "critical": 0,
+    "high": 1,
+    "medium": 0,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T07:03:57.396Z",
+    "total": 2,
+    "critical": 0,
+    "high": 1,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T08:00:51.138Z",
+    "total": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T11:10:17.503Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T15:03:39.361Z",
+    "total": 2,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 1,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T19:03:36.316Z",
+    "total": 2,
+    "critical": 0,
+    "high": 1,
+    "medium": 0,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T20:00:05.844Z",
+    "total": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-22T23:03:35.674Z",
+    "total": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-23T03:03:37.496Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 1,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-23T11:03:40.239Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-23T15:03:54.991Z",
+    "total": 2,
+    "critical": 0,
+    "high": 1,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 1,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-23T19:03:36.826Z",
+    "total": 10,
+    "critical": 0,
+    "high": 2,
+    "medium": 8,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 10,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-23T20:00:07.468Z",
+    "total": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-23T23:03:36.682Z",
+    "total": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-24T03:03:38.115Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 1,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-24T07:03:43.813Z",
+    "total": 2,
+    "critical": 1,
+    "high": 0,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-24T11:09:32.704Z",
+    "total": 2,
+    "critical": 1,
+    "high": 0,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-24T12:38:05.005Z",
+    "total": 2,
+    "critical": 2,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 2,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-24T15:03:40.946Z",
+    "total": 4,
+    "critical": 2,
+    "high": 1,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 2,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-24T15:06:16.156Z",
+    "total": 2,
+    "critical": 2,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 2,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-24T15:54:00.856Z",
+    "total": 2,
+    "critical": 2,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 2,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-24T15:54:26.886Z",
+    "total": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-24T20:00:07.637Z",
+    "total": 3,
+    "critical": 0,
+    "high": 1,
+    "medium": 1,
+    "low": 1,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 1,
+      "infra": 1,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-24T20:32:17.714Z",
+    "total": 5,
+    "critical": 0,
+    "high": 1,
+    "medium": 3,
+    "low": 1,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 2,
+      "idea": 0,
+      "coding": 0,
+      "intel": 1,
+      "infra": 1,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-24T23:03:40.602Z",
+    "total": 4,
+    "critical": 0,
+    "high": 2,
+    "medium": 1,
+    "low": 1,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 1,
+      "idea": 0,
+      "coding": 0,
+      "intel": 1,
+      "infra": 1,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-25T03:03:39.098Z",
+    "total": 4,
+    "critical": 0,
+    "high": 1,
+    "medium": 1,
+    "low": 2,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 1,
+      "infra": 1,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-25T05:04:23.686Z",
+    "total": 1,
+    "critical": 0,
+    "high": 1,
+    "medium": 0,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-25T05:04:52.135Z",
+    "total": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-25T07:03:43.718Z",
+    "total": 2,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 1,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 1,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-25T11:03:38.950Z",
+    "total": 2,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 1,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 1,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-25T15:03:38.324Z",
+    "total": 2,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 1,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 1,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-25T19:03:38.324Z",
+    "total": 2,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 1,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 1,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-25T20:00:06.082Z",
+    "total": 2,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 1,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 1,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-25T23:03:39.057Z",
+    "total": 2,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 1,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 1,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-26T03:03:38.733Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-26T07:03:44.264Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-26T11:10:52.052Z",
+    "total": 2,
+    "critical": 0,
+    "high": 1,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 2,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-26T15:03:37.550Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-26T19:03:37.877Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-26T20:00:05.484Z",
+    "total": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-26T23:03:42.273Z",
+    "total": 3,
+    "critical": 0,
+    "high": 0,
+    "medium": 3,
+    "low": 0,
+    "autoFixed": 2,
+    "bySubsystem": {
+      "coupang": 2,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-27T03:03:37.437Z",
+    "total": 3,
+    "critical": 0,
+    "high": 0,
+    "medium": 3,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 2,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-27T07:03:41.465Z",
+    "total": 2,
+    "critical": 0,
+    "high": 0,
+    "medium": 2,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-27T18:00:01.147Z",
+    "total": 17,
+    "critical": 2,
+    "high": 6,
+    "medium": 8,
+    "low": 1,
+    "autoFixed": 4,
+    "bySubsystem": {
+      "coupang": 2,
+      "cron": 11,
+      "idea": 1,
+      "coding": 0,
+      "intel": 1,
+      "infra": 2,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-27T18:00:32.305Z",
+    "total": 17,
+    "critical": 2,
+    "high": 6,
+    "medium": 8,
+    "low": 1,
+    "autoFixed": 3,
+    "bySubsystem": {
+      "coupang": 2,
+      "cron": 11,
+      "idea": 1,
+      "coding": 0,
+      "intel": 1,
+      "infra": 2,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-27T18:24:50.281Z",
+    "total": 10,
+    "critical": 2,
+    "high": 4,
+    "medium": 4,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 2,
+      "cron": 7,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-27T18:25:24.808Z",
+    "total": 11,
+    "critical": 2,
+    "high": 5,
+    "medium": 4,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 2,
+      "cron": 7,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 2,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-27T19:07:39.721Z",
+    "total": 5,
+    "critical": 2,
+    "high": 2,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 2,
+      "cron": 3,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-27T20:00:17.623Z",
+    "total": 2,
+    "critical": 0,
+    "high": 2,
+    "medium": 0,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 1,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 0,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-27T23:03:39.636Z",
+    "total": 3,
+    "critical": 0,
+    "high": 2,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 2,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 1,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-28T03:03:43.624Z",
+    "total": 8,
+    "critical": 0,
+    "high": 3,
+    "medium": 5,
+    "low": 0,
+    "autoFixed": 2,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 5,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-28T07:03:40.549Z",
+    "total": 8,
+    "critical": 0,
+    "high": 4,
+    "medium": 4,
+    "low": 0,
+    "autoFixed": 2,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 5,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-28T11:11:18.980Z",
+    "total": 8,
+    "critical": 0,
+    "high": 5,
+    "medium": 3,
+    "low": 0,
+    "autoFixed": 2,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 5,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-28T15:03:46.661Z",
+    "total": 2,
+    "critical": 0,
+    "high": 1,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-28T19:03:59.200Z",
+    "total": 3,
+    "critical": 0,
+    "high": 2,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 2,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 1,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-28T20:00:08.828Z",
+    "total": 2,
+    "critical": 0,
+    "high": 1,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 1,
+    "bySubsystem": {
+      "coupang": 0,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-28T23:03:37.985Z",
+    "total": 6,
+    "critical": 0,
+    "high": 3,
+    "medium": 2,
+    "low": 1,
+    "autoFixed": 3,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 2,
+      "idea": 0,
+      "coding": 0,
+      "intel": 1,
+      "infra": 1,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-03-01T03:03:40.390Z",
+    "total": 4,
+    "critical": 0,
+    "high": 3,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 2,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 1,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-03-01T07:03:43.240Z",
+    "total": 6,
+    "critical": 0,
+    "high": 4,
+    "medium": 2,
+    "low": 0,
+    "autoFixed": 2,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 1,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 3,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-03-01T11:10:13.116Z",
+    "total": 6,
+    "critical": 0,
+    "high": 4,
+    "medium": 2,
+    "low": 0,
+    "autoFixed": 2,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 1,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 3,
+      "review": 1
+    }
+  },
+  {
+    "timestamp": "2026-03-01T13:38:36.263Z",
+    "total": 3,
+    "critical": 0,
+    "high": 2,
+    "medium": 1,
+    "low": 0,
+    "autoFixed": 0,
+    "bySubsystem": {
+      "coupang": 1,
+      "cron": 0,
+      "idea": 0,
+      "coding": 0,
+      "intel": 0,
+      "infra": 1,
+      "review": 1
+    }
+  }
+]
