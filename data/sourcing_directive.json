@@ -1,0 +1,202 @@
+{
+  "date": "2026-03-01",
+  "directive_id": "TD-20260301",
+  "keywords": [
+    {
+      "term": "텀블러",
+      "category": "주방생활",
+      "reason": "Track A 후보군(검색 상위/검색량 기준) 유지 + Track C 요약에서 생활 필수형 소비 맥락으로 재확인",
+      "target_margin_min": 30,
+      "sourcing_strategy": "도매꾹에서 재구매 속도 높은 기본형(용량/보온형) 4종군 테스트, 계절성 낮은 기본 SKU 1차 확보 후 매출 회전 확인"
+    },
+    {
+      "term": "폰케이스",
+      "category": "모바일 액세서리",
+      "reason": "Track A 상위권 유지(폰케이스 검색량·트래픽), Track B 자취·생활 영상의 휴대용 소형 소품군 연동",
+      "target_margin_min": 30,
+      "sourcing_strategy": "무광·실리콘·하드형 소재를 섞어 5개급 SKU로 분기 테스트, 가성비 위주 공급사 우선 매칭"
+    },
+    {
+      "term": "요가매트",
+      "category": "운동/헬스",
+      "reason": "Track A 키워드 랭킹 상위+Track B 요가매트 비교 영상 반복 노출",
+      "target_margin_min": 30,
+      "sourcing_strategy": "쿠팡/도매꾹에서 1000x1830~1830 규격, 3만원 미만 경량 모델 4~5종 분할 출시 후 판매 초기 속도 기반 상위 SKU 확정"
+    },
+    {
+      "term": "수납함",
+      "category": "정리/수납",
+      "reason": "Track B 정리·다이소·자취 필수템 영상에서 수납 함유형 수요 반복 확인",
+      "target_margin_min": 30,
+      "sourcing_strategy": "규격별(소/중/대) 수납함 3종 라인업으로 초기 20개 이하 테스트, 설치 난이도 낮은 접착형 중심으로 입점"
+    },
+    {
+      "term": "수납 선반",
+      "category": "정리/수납",
+      "reason": "Track B의 공간활용 정리 콘텐츠 연계 및 자취방 필수템 카테고리에서 빈도 상승",
+      "target_margin_min": 30,
+      "sourcing_strategy": "드릴 불필요 벽면 고정형/클램프형 위주로 3종 추려 출고량 기준 1주 테스트, 파손·낙하 이슈 낮은 재질 우선"
+    },
+    {
+      "term": "자석 수납함",
+      "category": "수납/욕실·주방",
+      "reason": "Track B 생활정리 영상에서 부착식 수납군이 반복 언급되어 유지보수 편의성 확인",
+      "target_margin_min": 30,
+      "sourcing_strategy": "강한 자력·부착력 스펙이 명확한 SKU 중심으로 색상 2~3색만 소싱, 동시 묶음 구성 가능성 우선 점검"
+    },
+    {
+      "term": "전선 정리 홀더",
+      "category": "생활정리",
+      "reason": "Track B 정리/공간활용 영상에서 전선 정리 니즈가 명시적으로 반복",
+      "target_margin_min": 30,
+      "sourcing_strategy": "케이블타이+홀더 조합 번들형까지 포함해 3개군만 우선 테스트, 패키지 단가 1개당 1,500~3,500원대 구간 우선"
+    },
+    {
+      "term": "행주걸이",
+      "category": "주방 생활잡화",
+      "reason": "Track B 정리·주방 관련 영상과 생활용품군 소비 맥락과 정합적, 도매꾹 조달 여지 높음",
+      "target_margin_min": 30,
+      "sourcing_strategy": "행주 고정 방식(클립/자석/훅형) 분기별 3개만 테스트해 사용성 높은 타입 중심으로 확대"
+    },
+    {
+      "term": "키친타월 걸이",
+      "category": "주방잡화",
+      "reason": "Track B 주방 중심 정리 영상에서 상시 사용 빈도가 높은 품목군으로 확인",
+      "target_margin_min": 30,
+      "sourcing_strategy": "크기 4~8개 규격으로 분할 등록, 화이트·그레이 등 실사용 폭넓은 컬러 2색만 초기 등록 후 반응 확인"
+    },
+    {
+      "term": "미니 스퀴지",
+      "category": "주방청소",
+      "reason": "Track B 주방 청소 연계 콘텐츠에서 싱크대·조리공간 정리용 작은 도구 수요로 확인",
+      "target_margin_min": 30,
+      "sourcing_strategy": "미끄럼 방지 재질/그립감 좋은 미니 스퀴지를 4개 정도로 구성, 세트형(2개 묶음) 판매 가능성 포함해 초기 노출 테스트"
+    },
+    {
+      "term": "마사지기",
+      "category": "건강/마사지",
+      "reason": "네이버 트렌드 평균 83, 시즌성 31%로 사계절 최우선 키워드. 연중 검색 수요 안정적",
+      "target_margin_min": 30,
+      "sourcing_strategy": "목/어깨 마사지기 위주 3~5종 테스트, 도매매 1개 단위 소싱으로 재고 리스크 최소화"
+    },
+    {
+      "term": "괄사",
+      "category": "건강/마사지",
+      "reason": "마사지기 연관 키워드, 시즌성 낮고 단가 저렴하여 위탁판매 적합",
+      "target_margin_min": 30,
+      "sourcing_strategy": "스테인리스/구리 재질 괄사 2~3종, 세트 구성으로 차별화"
+    },
+    {
+      "term": "모니터받침대",
+      "category": "사무용품",
+      "reason": "네이버 트렌드 평균 50, 시즌성 42%. 사무용품 수요 안정적, 재택근무 트렌드",
+      "target_margin_min": 30,
+      "sourcing_strategy": "높이조절형/원목형 2~3종 테스트, 무게 스펙 명확한 상품 우선"
+    },
+    {
+      "term": "욕실용품",
+      "category": "욕실/생활",
+      "reason": "네이버 트렌드 평균 48, 시즌성 45%. 여름 피크이나 연중 수요 존재",
+      "target_margin_min": 30,
+      "sourcing_strategy": "욕실 수납/정리 소품 위주, 부착식 제품 중심으로 3종 테스트"
+    },
+    {
+      "term": "욕실화",
+      "category": "욕실/생활",
+      "reason": "욕실용품 연관 키워드, 시즌 무관 필수품. 도매매 1개 단위 소싱 가능",
+      "target_margin_min": 30,
+      "sourcing_strategy": "미끄럼방지 욕실화 3~4색, EVA 재질 경량 제품 위주"
+    },
+    {
+      "term": "욕실매트",
+      "category": "욕실/생활",
+      "reason": "욕실용품 연관 키워드, 규격별 차별화 가능",
+      "target_margin_min": 30,
+      "sourcing_strategy": "규사이즈 40x60, 50x80 2개 규격으로 테스트"
+    },
+    {
+      "term": "밀폐용기",
+      "category": "주방생활",
+      "reason": "주방용품 하위 키워드, 시즌성 40%로 안정적. 세트 구성으로 차별화 용이",
+      "target_margin_min": 30,
+      "sourcing_strategy": "PP/트라이탄 재질 세트(3~5개) 구성, 전자레인지 사용 가능 여부 강조"
+    },
+    {
+      "term": "도마",
+      "category": "주방생활",
+      "reason": "주방 필수품, 시즌 무관 꾸준한 수요",
+      "target_margin_min": 30,
+      "sourcing_strategy": "항균 TPU/실리콘 도마 2~3종, 크기별 세트 구성"
+    },
+    {
+      "term": "반려동물용품",
+      "category": "반려동물",
+      "reason": "네이버 트렌드 평균 28, 시즌성 34%로 매우 안정적. 반려동물 시장 성장세",
+      "target_margin_min": 30,
+      "sourcing_strategy": "급식기/급수기/장난감 중 도매매 1개 소싱 가능 제품 3~5종 테스트"
+    },
+    {
+      "term": "강아지장난감",
+      "category": "반려동물",
+      "reason": "반려동물 연관 키워드, 단가 저렴하고 다양한 구성 가능",
+      "target_margin_min": 30,
+      "sourcing_strategy": "노즈워크/터그/씹는장난감 3종, 세트 번들로 차별화"
+    },
+    {
+      "term": "자세교정",
+      "category": "건강/교정",
+      "reason": "네이버 트렌드 시즌성 33%로 매우 안정적. 재택근무+사무직 수요",
+      "target_margin_min": 30,
+      "sourcing_strategy": "자세교정밴드/바른자세벨트 2~3종, 사이즈별 옵션 구성"
+    },
+    {
+      "term": "꼬리뼈방석",
+      "category": "건강/교정",
+      "reason": "자세교정 연관 키워드, 사무직 대상 꾸준한 수요",
+      "target_margin_min": 30,
+      "sourcing_strategy": "메모리폼 쿠션 2~3종, 통기성/커버 세탁 가능 여부 강조"
+    },
+    {
+      "term": "케이블정리",
+      "category": "생활정리",
+      "reason": "전선 정리 홀더와 연관, 더 넓은 검색 범위 커버",
+      "target_margin_min": 30,
+      "sourcing_strategy": "케이블트레이/클립/벨크로 세트형 3종, 데스크 정리 세트 번들"
+    },
+    {
+      "term": "차량수납",
+      "category": "차량용품",
+      "reason": "차량용품 하위 키워드, 시즌 무관. 차량 보유자 대상 안정 수요",
+      "target_margin_min": 30,
+      "sourcing_strategy": "시트 사이드포켓/트렁크정리함/선바이저포켓 3종 테스트"
+    },
+    {
+      "term": "수납박스",
+      "category": "정리/수납",
+      "reason": "수납함과 함께 정리수납 카테고리 검색량 상위. 이사 시즌(봄/가을) 피크",
+      "target_margin_min": 30,
+      "sourcing_strategy": "접이식 수납박스 대/중/소 3종, 투명 PP 재질 위주"
+    },
+    {
+      "term": "청소용품",
+      "category": "생활/청소",
+      "reason": "시즌성 보통이나 연중 안정 수요. 다양한 세부 상품군",
+      "target_margin_min": 30,
+      "sourcing_strategy": "극세사걸레/유리닦이/틈새브러시 등 세트 구성으로 차별화"
+    },
+    {
+      "term": "밀대걸레",
+      "category": "생활/청소",
+      "reason": "청소용품 하위 키워드, 단가 적절하고 위탁판매 적합",
+      "target_margin_min": 30,
+      "sourcing_strategy": "물걸레/먼지걸레 겸용 밀대 2~3종, 교체패드 포함 세트"
+    },
+    {
+      "term": "우산",
+      "category": "생활잡화",
+      "reason": "장마철(6~8월) 피크이나 연중 수요. 접이식/자동 키워드 검색량 높음",
+      "target_margin_min": 30,
+      "sourcing_strategy": "3단 자동우산/암막양산 2~3종, 5~6월 사전 등록으로 시즌 선점"
+    }
+  ]
+}

@@ -144,16 +144,19 @@ function isRecentlySourced(keyword, history) {
 }
 
 /**
- * 도매꾹 API: 키워드로 상품 목록 검색
+ * 도매꾹/도매매 API: 키워드로 상품 목록 검색
+ * @param {string} keyword - 검색 키워드
+ * @param {'dome'|'supply'} market - 'dome'=도매꾹, 'supply'=도매매(위탁판매 1개 단위)
  */
-async function searchViaApi(keyword) {
-  const url = `https://domeggook.com/ssl/api/?ver=4.0&mode=getItemList&aid=${DOMEGGOOK_API_KEY}&market=dome&om=json&kw=${encodeURIComponent(keyword)}&mnp=${MIN_PRICE}&mxp=${MAX_PRICE}&sz=20&so=se`;
+async function searchViaApi(keyword, market = 'dome') {
+  const url = `https://domeggook.com/ssl/api/?ver=4.0&mode=getItemList&aid=${DOMEGGOOK_API_KEY}&market=${market}&om=json&kw=${encodeURIComponent(keyword)}&mnp=${MIN_PRICE}&mxp=${MAX_PRICE}&sz=20&so=se`;
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`도매꾹 API 검색 실패: ${res.status}`);
+  if (!res.ok) throw new Error(`도매꾹 API 검색 실패 (${market}): ${res.status}`);
   const data = await res.json();
   const items = data?.domeggook?.list?.item || [];
   // 단일 상품이면 배열이 아니라 객체로 올 수 있음
   const itemList = Array.isArray(items) ? items : [items];
+  const sourceSite = market === 'supply' ? 'domeggook.supply' : 'domeggook';
   return itemList.map(item => {
     const sourceUrl = item.url || (item.no ? `http://domeggook.com/${item.no}` : null);
     return {
@@ -162,7 +165,8 @@ async function searchViaApi(keyword) {
       imageUrl: item.thumb || null,
       sourceUrl,
       productNo: extractProductNo(sourceUrl) || (item.no ? String(item.no) : null),
-      site: 'domeggook',
+      site: sourceSite,
+      sourceSite,
       category: keyword,
       minOrderQuantity: parseInt(item.unitQty || 1, 10),
       shippingCost: parseInt(item.deli?.fee || 0, 10)
@@ -171,22 +175,24 @@ async function searchViaApi(keyword) {
 }
 
 /**
- * 도매꾹 API: 상품 상세 조회 (enrichment)
+ * 도매꾹/도매매 API: 상품 상세 조회 (enrichment)
+ * @param {object} product - 상품 객체
+ * @param {'dome'|'supply'} market - 'dome'=도매꾹, 'supply'=도매매
  */
-async function enrichViaApi(product) {
+async function enrichViaApi(product, market = 'dome') {
   if (!product.productNo) return { ...product, detailImages: [], imageUsageStatus: 'unknown' };
 
   const url = `https://domeggook.com/ssl/api/?ver=4.1&mode=getItemView&aid=${DOMEGGOOK_API_KEY}&no=${product.productNo}&om=json`;
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`도매꾹 API 상세 조회 실패: ${res.status}`);
+  if (!res.ok) throw new Error(`도매꾹 API 상세 조회 실패 (${market}): ${res.status}`);
   const raw = await res.json();
   const data = raw?.domeggook || raw;
 
-  // 가격 파싱 (수량별 차등 가격에서 첫 번째 가격 추출: "1+9850|11+9800")
+  // 가격 파싱: market에 따라 dome/supply 단가 사용
   let price = product.price;
-  const domePrice = data?.price?.dome;
-  if (domePrice) {
-    const priceStr = String(domePrice);
+  const rawPrice = market === 'supply' ? data?.price?.supply : data?.price?.dome;
+  if (rawPrice) {
+    const priceStr = String(rawPrice);
     const priceMatch = priceStr.match(/(\d+)\+(\d+)/);
     if (priceMatch) price = parseInt(priceMatch[2], 10);
     else if (/^\d+$/.test(priceStr)) price = parseInt(priceStr, 10);
@@ -302,8 +308,12 @@ async function enrichViaApi(product) {
     imageUsageStatus,
     manufacturer: data?.detail?.manufacturer || null,
     country: data?.detail?.country || null,
-    minOrderQuantity: parseInt(data?.qty?.domeMoq || product.minOrderQuantity || 1, 10),
-    shippingCost: parseInt(data?.deli?.dome?.fee || product.shippingCost || 0, 10),
+    minOrderQuantity: market === 'supply'
+      ? parseInt(data?.qty?.supplyUnit || 1, 10)
+      : parseInt(data?.qty?.domeMoq || product.minOrderQuantity || 1, 10),
+    shippingCost: market === 'supply'
+      ? parseInt(data?.deli?.supply?.fee || data?.deli?.dome?.fee || product.shippingCost || 0, 10)
+      : parseInt(data?.deli?.dome?.fee || product.shippingCost || 0, 10),
     resaleMinimum: data?.price?.resale?.minimum || data?.price?.resale?.minumum || null,
     inventory: data?.qty?.inventory || null,
     options: parsedOptions.length > 0 ? parsedOptions : null,
@@ -501,7 +511,7 @@ function toQueueItem(product, marginInfo, keyword) {
     searchTags,
     status: 'pending',
     sourceUrl: product.sourceUrl || null,
-    sourceSite: 'domeggook',
+    sourceSite: product.sourceSite || 'domeggook',
     sourcePrice: product.price,
     unitCost: marginInfo.unitCost,
     margin: marginInfo.margin,
@@ -592,24 +602,49 @@ async function runPipeline() {
   }
 
   const existingNames = new Set(queue.map(q => q.displayName));
-  log(`기존 대기열: ${queue.length}개 (${queue.filter(q => q.status === 'pending').length}개 pending)`);
+  // 이미 실패한 도매꾹 상품번호 재추가 방지
+  const failedProductNos = new Set(
+    queue.filter(q => q.status === 'skip_invalid' || q.status === 'error')
+      .map(q => q.domeggookProductNo || q.productNo)
+      .filter(Boolean)
+  );
+  log(`기존 대기열: ${queue.length}개 (${queue.filter(q => q.status === 'pending').length}개 pending, 실패 이력 ${failedProductNos.size}개)`);
 
   let totalSearched = 0;
   let totalPassed = 0;
   let totalDuplicate = 0;
   let totalBlocked = 0;
 
-  // Step 2: 키워드별 도매꾹 API 검색
+  // Step 2: 키워드별 도매꾹 + 도매매 API 검색
   for (const keyword of keywords) {
     log(`--- 키워드: "${keyword}" API 검색 중 ---`);
 
     try {
-      const products = await searchViaApi(keyword);
+      // 도매꾹 + 도매매 이중 검색, 중복 제거 (도매매 1개 단위 우선)
+      const [domeProducts, supplyProducts] = await Promise.all([
+        searchViaApi(keyword, 'dome'),
+        searchViaApi(keyword, 'supply').catch(err => {
+          log(`  도매매 검색 실패 (dome만 사용): ${err.message}`);
+          return [];
+        })
+      ]);
+
+      // 중복 제거: 같은 productNo면 도매매(1개 단위) 우선
+      const productMap = new Map();
+      for (const p of domeProducts) {
+        if (p.productNo) productMap.set(p.productNo, p);
+      }
+      for (const p of supplyProducts) {
+        if (p.productNo) productMap.set(p.productNo, p); // supply가 dome 덮어씀
+      }
+      const mergedProducts = [...productMap.values()];
+
       // 가격 필터링
-      const filtered = products.filter(p => p.price >= MIN_PRICE && p.price <= MAX_PRICE);
+      const filtered = mergedProducts.filter(p => p.price >= MIN_PRICE && p.price <= MAX_PRICE);
       const topProducts = filtered.slice(0, PRODUCTS_PER_KEYWORD);
       totalSearched += topProducts.length;
-      log(`  검색 결과: ${products.length}개 → 가격 필터: ${filtered.length}개 → 상위 ${topProducts.length}개 선택`);
+      const supplyCount = topProducts.filter(p => p.sourceSite === 'domeggook.supply').length;
+      log(`  검색 결과: dome ${domeProducts.length}개 + supply ${supplyProducts.length}개 → 병합 ${mergedProducts.length}개 → 가격 필터: ${filtered.length}개 → 상위 ${topProducts.length}개 (도매매 ${supplyCount}개)`);
 
       // Step 3: 마진 계산 + 필터링
       for (const product of topProducts) {
@@ -642,13 +677,22 @@ async function runPipeline() {
           continue;
         }
 
+        // Step 4-1: 이전 등록 실패 이력 체크
+        const prodNo = String(product.productNo || product.id || '');
+        if (prodNo && failedProductNos.has(prodNo)) {
+          log(`  SKIP (이전 등록 실패): ${product.name.slice(0, 40)}`);
+          totalDuplicate++;
+          continue;
+        }
+
         // Step 5: API enrichment (상세 조회) — 최대 2회 재시도 + exponential backoff
-        log(`  enriching via API: ${product.name.slice(0, 40)}...`);
+        const enrichMarket = product.sourceSite === 'domeggook.supply' ? 'supply' : 'dome';
+        log(`  enriching via API (${enrichMarket}): ${product.name.slice(0, 40)}...`);
         let enriched;
         let enrichSuccess = false;
         for (let attempt = 0; attempt < 3; attempt++) {
           try {
-            enriched = await enrichViaApi(product);
+            enriched = await enrichViaApi(product, enrichMarket);
             enrichSuccess = true;
             break;
           } catch (enrichErr) {
